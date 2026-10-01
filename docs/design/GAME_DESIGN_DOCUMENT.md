@@ -1,31 +1,39 @@
 # Super BoundHaven (SBH): Master Game Design Document
 
-Version 0.1, 2026-09-30. Working title; independent project, unrelated to Anthony's other projects. This is the single document that aligns the brief, the decisions log, the mounts/exploration doc, the art north star, the M1 spec and the public site.
+Version 0.2, 2026-09-30 (owner answers recorded). Working title; independent project, unrelated to Anthony's other projects. This is the single document that aligns the brief, the decisions log, the mounts/exploration doc, the art north star, the M1 spec and the public site.
 
 ## How to read this document
 
 | Badge | Meaning |
 |---|---|
-| **[CONFIRMED]** | Anthony's own words (design brief, accepted-decisions log, owner direction in the art north star). Source is named. |
-| **[PROPOSAL]** | Claude's design suggestion awaiting Anthony's approval. Never treat as decided. |
+| **[CONFIRMED]** | Anthony's own words (design brief, accepted-decisions log, owner answers of 2026-09-30, owner direction in the art north star). Source is named. |
+| **[ACCEPTED-DELEGATED]** | Anthony said "I'll let you decide" (2026-09-30); Claude adopted its documented recommendation. Binding for development; revisable by Anthony any time. |
+| **[PROPOSAL]** | Claude's design suggestion awaiting Anthony's approval. Never treat as decided. Money, legal exposure, real-world risk and public promises stay here until Anthony decides. |
 | **[OPEN]** | Unresolved question; needs an answer (see section 14). |
 
-Ground rules that apply everywhere **[CONFIRMED]**: original assets and designs only; no promises of dates, prices or rewards; long-term, open-ended scope ("no feature too big, no addition too small", DECISIONS 2026-09-30), so every system is designed for extensibility and phased. Do not import the other projects' rules. No real-money gambling is assumed.
+Ground rules that apply everywhere **[CONFIRMED]**: original assets and designs only (no third-party assets or mocap, 2026-09-30); no promises of dates, prices or rewards; long-term, open-ended scope ("no feature too big, no addition too small", DECISIONS 2026-09-30), so every system is designed for extensibility and phased. Do not import the other projects' rules. No real-money gambling is assumed. Licensing **[CONFIRMED]** 2026-09-30: code MIT; art, music, content and docs CC BY-NC-SA 4.0; name and logo reserved.
 
-Related docs: `DESIGN_BRIEF.md`, `DECISIONS.md`, `OPEN_QUESTIONS.md`, `docs/design/MOUNTS_AND_EXPLORATION.md`, `docs/design/SKILL_TREE_AND_ABILITIES.md` (detail tables), `docs/ART_NORTH_STAR.md`, `docs/superpowers/specs/2026-09-30-sbh-m1-shared-playground-design.md`.
+Related docs: `DESIGN_BRIEF.md`, `DECISIONS.md`, `OPEN_QUESTIONS.md`, `docs/design/DIFFICULTY_PHILOSOPHY.md`, `docs/design/MOUNTS_AND_EXPLORATION.md`, `docs/design/SKILL_TREE_AND_ABILITIES.md` (detail tables), `docs/ART_NORTH_STAR.md`, `docs/superpowers/specs/2026-09-30-sbh-m1-shared-playground-design.md`.
 
 ### Confirmed register (Anthony's words; everything else in this doc is proposal or open)
 
 | Confirmed item | Source |
 |---|---|
-| Mount roster: many animals; first four frog, dinosaur, flying dinosaur, cheetah | DECISIONS log 2026-09-30; MOUNTS doc |
+| Mount roster: frog, dinosaur, flying dinosaur, cheetah; **no wolf planned** (more animals possible later) | DECISIONS log 2026-09-30; Anthony's answer 2026-09-30 |
+| Difficulty: challenging but not too difficult; **mounts must not be hard to get** | Anthony 2026-09-30; `DIFFICULTY_PHILOSOPHY.md` |
+| Base moveset gains **crouch/down** (and drop-through) and **action/activate**: six inputs | Anthony 2026-09-30 |
+| Skill model: **both** skill-point tree and mastery-by-use, with **free respecs** | Anthony 2026-09-30 |
+| Raids: **8 players** (cap 8); smaller co-op rooms for 2 to 4 | Anthony 2026-09-30 |
+| Character creator: add front/three-quarter face views to the preview, evaluate visually; side-view faces stay for gameplay | Anthony 2026-09-30 |
+| Strictly original: no third-party assets or mocap | Anthony 2026-09-30 |
+| Open-source: code MIT; art/music/content/docs CC BY-NC-SA 4.0; name and logo reserved | Anthony 2026-09-30 |
 | Mounts summonable anytime in the open world | same |
 | Some levels/areas require a specific mount; Metroidvania-style exploration with secrets and Easter eggs | same |
 | Art: Super Mario World essence (bones, inspiration), 100% original designs, no cubes | ART_NORTH_STAR owner direction 2026-09-30 |
 | Layered humanoid character creator with much larger customization | ART_NORTH_STAR ("Terraria-style" wording is from the task request; not yet in DECISIONS) |
 | Long-term, open-ended scope: no feature too big, no addition too small | DECISIONS log 2026-09-30 |
 | Shared multiplayer playground from day one; TypeScript stack; prediction + server authority; player collision; 256x224 placeholder art | DECISIONS log 2026-09-30 |
-| Precise SMW-like movement, skill gap, original powerups/mounts, genuine co-op, raids 6 or 8+, uploads, weekly featured, mirror/pursuer, region list, cat casino lore (no real gambling), tradeable functional gear | DESIGN_BRIEF |
+| Precise SMW-like movement, skill gap, original powerups/mounts, genuine co-op, hard raids (size now decided: 8), uploads, weekly featured, mirror/pursuer, region list, cat casino lore (no real gambling), tradeable functional gear | DESIGN_BRIEF |
 
 ## Table of contents
 
@@ -42,7 +50,7 @@ Related docs: `DESIGN_BRIEF.md`, `DECISIONS.md`, `OPEN_QUESTIONS.md`, `docs/desi
 11. [Progression flow](#11-progression-flow)
 12. [Technical design implications and roadmap](#12-technical-design-implications-and-roadmap)
 13. [Consistency audit](#13-consistency-audit)
-14. [Decision queue](#14-decision-queue)
+14. [Resolved decision log](#14-resolved-decision-log)
 
 ---
 
@@ -55,7 +63,8 @@ SBH is an independent 16-bit-style side-scrolling **platforming MMO**: precise m
 | # | Pillar | Status | What it means in design |
 |---|---|---|---|
 | P1 | **Movement is the skill** | **[CONFIRMED]** (brief) | Base moveset is deep; challenge is mostly precision platforming and timing |
-| P2 | **Fair, forgiving, endlessly retryable** | **[CONFIRMED]** ("challenging, fair, forgiving enough to encourage retries") | Fast retry, clear telegraphs, checkpoints (rules **[OPEN]**) |
+| P2 | **Fair, forgiving, endlessly retryable** | **[CONFIRMED]** ("challenging, fair, forgiving enough to encourage retries") | Fast retry, clear telegraphs, instant retry plus checkpoints on long levels **[ACCEPTED-DELEGATED]** |
+| P8 | **Challenging, but not too difficult; mounts approachable** | **[CONFIRMED]** (Anthony 2026-09-30) | Hardest content stays optional/endgame; mounts obtainable by an average player with moderate effort; assists and checkpoints exist; see `DIFFICULTY_PHILOSOPHY.md` |
 | P3 | **Together is the point** | **[CONFIRMED]** (brief) | Players are solid; co-op requires coordinated execution, not solo carries |
 | P4 | **Explore and discover** | **[CONFIRMED]** (decisions log: Metroidvania-style world, secrets, Easter eggs) | Gates, secrets, map, curiosity rewarded |
 | P5 | **Gear eases, never replaces** | **[CONFIRMED]** (brief) | Build expression without breaking the skill ceiling |
@@ -66,16 +75,16 @@ SBH is an independent 16-bit-style side-scrolling **platforming MMO**: precise m
 | Is | Is not |
 |---|---|
 | An independent platformer MMO with mounts, raids, editor | A clone or reskin of any Nintendo game; no copied characters, tiles, enemies, music or levels **[CONFIRMED]** |
-| Skill-first, gear-assisted | Pay-to-win (paid power **[OPEN]**, cosmetics-only recommended, section 9) |
+| Skill-first, gear-assisted | Pay-to-win (no paid power **[ACCEPTED-DELEGATED]**; monetization terms still need Anthony, section 9) |
 | Browser first, Steam later | Launch-date-bound; no date promised **[CONFIRMED]** |
 | Open-ended and extensible | A fixed launch feature list; not all regions required at launch |
 | Fictional cat/casino lore later | A real-money gambling product **[CONFIRMED]** (none assumed) |
 
 ### 1.4 Audience and tone
-Audience: players who like precise platformers and social games; references for *feel and community* are MapleStory, PokeMMO, Club Penguin, WoW (not content reuse) **[CONFIRMED]**. Age band, chat posture and accessibility targets **[OPEN]** (decision 15). Tone: bright, friendly, quirky humor (e.g. the cat-staff lore) **[CONFIRMED]** in lore; danger is in the platforming, not grimness (art north star: "nothing muddy, nothing grim").
+Audience: players who like precise platformers and social games; references for *feel and community* are MapleStory, PokeMMO, Club Penguin, WoW (not content reuse) **[CONFIRMED]**. Age band and chat posture **[OPEN, needs Anthony]** (decision 15; interim development default is quick-chat only); accessibility follows `DIFFICULTY_PHILOSOPHY.md` assists. Tone: bright, friendly, quirky humor (e.g. the cat-staff lore) **[CONFIRMED]** in lore; danger is in the platforming, not grimness (art north star: "nothing muddy, nothing grim").
 
 ### 1.5 Platform plan
-Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack accepted 2026-09-30: TypeScript end to end, Vite + PixiJS client, Node + `ws` authoritative server, shared deterministic `@sbh/sim`; client prediction + server authority + reconciliation, remote interpolation **[CONFIRMED]** (decisions log). Input devices/mobile/touch **[OPEN]** (keyboard assumed; M1 spec lists touch out of scope). Steam cross-play design constraints: no browser-only assumptions in protocol; stable account linking **[OPEN]**.
+Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack accepted 2026-09-30: TypeScript end to end, Vite + PixiJS client, Node + `ws` authoritative server, shared deterministic `@sbh/sim`; client prediction + server authority + reconciliation, remote interpolation **[CONFIRMED]** (decisions log). Input devices **[ACCEPTED-DELEGATED]** 2026-09-30: keyboard first, then gamepad; touch/mobile is not a launch target (M1 spec lists touch out of scope). Six inputs (section 2.2). Steam cross-play design constraints: no browser-only assumptions in protocol; stable account linking **[OPEN]**.
 
 ### 1.6 Art north star pointer
 `docs/ART_NORTH_STAR.md` governs all visual decisions: SMW essence, dark hue-matched outlines, flat 2-3 tone shading, stout humanoid characters (no cubes), 16x16 tile language, 256x224 native with integer scaling (placeholder art accepted). Signature motifs to invent: spring/coil/bounce-ring, "haven shards". Every powerup/mount/gear concept below must pass that page.
@@ -87,7 +96,7 @@ Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack 
 **Status:** M1 movement is implemented in `packages/sim` **[CONFIRMED]** as accepted direction; numbers are original tuning (config.ts: "no third-party game data used"). Final feel **[OPEN]** until Anthony playtests.
 
 ### 2.1 Simulation facts (from `packages/sim/src/config.ts` and `step.ts`)
-Tick 60 Hz, tile 16 px, screen 256x224 (16x14 tiles), hitbox 14x28, position units px, inputs = 4 bits (LEFT, RIGHT, JUMP, RUN).
+Tick 60 Hz, tile 16 px, screen 256x224 (16x14 tiles), hitbox 14x28, position units px, inputs = 4 bits today (LEFT, RIGHT, JUMP, RUN); target is six (adds DOWN and ACTION, section 2.2; sim work in M4).
 
 | Quantity | Value in config | Derived (approx., continuous physics) |
 |---|---|---|
@@ -116,14 +125,16 @@ Playground gates built from these: 5-tile pit needs a run-jump; 4-tile wall need
 | Variable-height jump | Yes | Hold = high, release = cut |
 | Run-speed jump bonus | Yes | Momentum rewards |
 | Momentum preserved in air | Yes | |
-| Coyote time, jump buffer | Yes (config) | Assist feel for everyone; **[OPEN]** confirm as base |
+| Coyote time, jump buffer | Yes (config) | Shared feel for everyone **[ACCEPTED-DELEGATED]** (base, not a purchasable stat) |
 | Slopes (45 degrees), snap | Yes | |
 | Bounce pads (held-jump boost) | Yes | |
 | Stomp-bounce on players (held-jump boost) | Yes | The co-op primitive |
 | Soft push between players | Yes | |
-| Crouch / drop-through semi-solids (DOWN) | No | **[PROPOSAL]**; semi-solids exist in the tile language |
-| Interact / ACTION | No | **[PROPOSAL]**; never required on base-only routes |
+| Crouch / drop-through semi-solids (DOWN) | Not yet (M4) | **[CONFIRMED]** 2026-09-30; semi-solids exist in the tile language |
+| Action / Activate (ACTION) | Not yet (M4) | **[CONFIRMED]** 2026-09-30; interact with switches, summon/dismount mount, use powerup, trigger mount ability. Pure movement routes never require it beyond level-provided switches |
 | Swim | No | **[PROPOSAL]**, zone-provided |
+
+**Six inputs [CONFIRMED]:** LEFT, RIGHT, JUMP, RUN, DOWN (crouch), ACTION. The input byte widens from 4 to 6 bits; the server validates the mask per ruleset (section 12.1).
 
 **Reference provenance [CONFIRMED]:** SMW movement study is intended only to understand behavior; no Nintendo code, assets, ROMs or extracted data go into SBH; any reference study is logged in the M1 spec provenance. Original tuning stays in `config.ts`.
 
@@ -153,14 +164,14 @@ Detailed tables live in `docs/design/SKILL_TREE_AND_ABILITIES.md`. All **[PROPOS
 
 **Stacking/conflict:** server resolves one `MovementProfile` per player: base, then traits and gear (additive %, clamped by the **Movement Budget**), then powerup layer, then mount swap, then zone modifier, then hard per-stat ceiling. Same-stat powerups do not stack; conflicting powerups are suspended while mounted. Budget numbers and flow diagram are in the detail doc (section 5 and 2).
 
-### 3.2 Fairness and rulesets **[PROPOSAL]**
+### 3.2 Fairness and rulesets **[ACCEPTED-DELEGATED]** 2026-09-30 (Open/Standard/Classic, Classic = normalized leaderboard)
 | Ruleset | Allows | Use |
 |---|---|---|
 | **Open** | All layers | Overworld, raids, most creator levels |
 | **Standard** | Non-movement traits, capped movement traits/gear, level-provided pickups | Default race/time-attack |
 | **Classic** (normalized/unequipped) | Base moveset, non-movement UI traits, level-provided pickups and loaner mounts only | Purist leaderboard |
 
-Normalized/unequipped leaderboards are a **brief proposal, not confirmed** (DESIGN_BRIEF; DECISIONS "Recommendations"). Every leaderboard entry stores the ruleset and a profile hash. A self-imposed **Purist Mark** (tree node F7) tags unequipped runs for fun.
+Normalized/unequipped leaderboards were a brief proposal; accepted by delegation 2026-09-30. Every leaderboard entry stores the ruleset and a profile hash. A self-imposed **Purist Mark** (tree node F7) tags unequipped runs for fun.
 
 ### 3.3 Powerups: original concepts
 Design rules: no mushrooms, capes/feathers, invincibility stars, fire flowers, or tongue-eats-enemy. A player carries at most **2** powerups (slot count **[OPEN]**), used with ACTION; timed ones show a clear meter. Durations are starting numbers **[OPEN]**. Ruleset key: **O** Open, **S** Standard (only when level-provided), **C** Classic (only when level-provided). "Level-provided" = placed in the level as a fixed pickup.
@@ -190,35 +201,39 @@ Design rules: no mushrooms, capes/feathers, invincibility stars, fire flowers, o
 
 ## 4. Skill tree
 
-**Status:** a skill tree is **tentative [CONFIRMED as tentative]** in the brief. Everything below is **[PROPOSAL]**; the model choice is **[OPEN]** (decision 1).
+**Status:** **[CONFIRMED 2026-09-30]** Anthony chose **both** a skill-point tree and mastery-by-use unlocks, with **free respecs** ("free redos if you don't like your build"). Numbers, costs and slot counts below stay **[PROPOSAL]** tuning values; coexistence rules and build order are **[ACCEPTED-DELEGATED]**. Full detail in `SKILL_TREE_AND_ABILITIES.md` (sections 4 to 6).
 
 ### 4.1 Constraints
-- No pay-to-win; points never purchasable. Must not break base-moveset fairness. Movement-affecting nodes capped and disabled in Classic. Tree never gates required content or mount acquisition.
+- No pay-to-win; points and mastery never purchasable **[ACCEPTED-DELEGATED]**. Must not break base-moveset fairness. Movement-affecting nodes capped and disabled in Classic (Classic/normalized leaderboard rule stays). Tree never gates required content or mount acquisition.
 - Interacts with gear/mounts/powerups through the same `MovementProfile` budget (section 3.1).
 
-### 4.2 Model A: Points tree (full detail in SKILL_TREE_AND_ABILITIES.md)
-Five branches **Footwork** (Mobility/Precision), **Bond** (Co-op/Support), **Wayfinder** (Explorer), **Maker** (Creator), **Stablemaster** (Mount Mastery) plus cross-branch nodes; sample tree of **38 nodes / 76 SP**. Node types: Stat, Utility, Info, Keystone, Cosmetic. Points come only from in-game first-time feats. Free respec in safe zones; loadout snapshotted at event start. Diminishing returns: two ranks max on stat nodes, small totals.
+### 4.2 Points tree (half one)
+Five branches **Footwork** (Mobility/Precision), **Bond** (Co-op/Support), **Wayfinder** (Explorer), **Maker** (Creator), **Stablemaster** (Mount Mastery) plus cross-branch nodes; sample tree of **38 nodes / 76 SP**. Node types: Stat, Utility, Info, Keystone, Cosmetic. Build-shaping effects (capped stats, keystones, tradeoffs) live here. Diminishing returns: two ranks max on stat nodes, small totals.
 
-### 4.3 Model B: Mastery-by-use (no points)
-Five tracks unlock perks by doing (explore, clear, co-op, ride, create); equip a limited number of perks in Trait Slots; swap freely.
+### 4.3 Mastery-by-use (half two)
+Five tracks (same names) advance by doing (explore, clear, co-op, ride, create). Each tier milestone auto-grants a perk (convenience, info, expression, small capped extras) and a fixed number of Skill Points. Equip a limited number of perks in Trait Slots.
 
-### 4.4 Comparison and recommendation
-| | A: Points tree | B: Mastery-by-use |
-|---|---|---|
-| Fit with exploration | Medium | High |
-| Regret/respec burden | Medium | Low |
-| Balance/dev cost | Higher | Lower |
-| Build diversity | Higher | Medium |
-| Grind risk | Medium | Low-medium |
+### 4.4 How they coexist [ACCEPTED-DELEGATED]
+| Rule | Meaning |
+|---|---|
+| One feat, one reward ledger entry | A feat advances mastery only; it never also pays SP directly (no double-dipping) |
+| SP only from mastery tiers | Total SP supply about 75% of full tree cost |
+| Partitioned catalog | An effect is a mastery perk **or** a tree node, never both |
+| Shared caps | Both draw on the same Movement Budget and ceilings |
+| Separate slot pools | Trait Slots (mastery) and active keystones (tree) |
+| Free respec | Free, instant, no currency, no loss; allowed out of combat and outside attempts/raid encounters **[CONFIRMED free]** |
+| Presets | 3 free build presets from the start; +3 via a tree node |
+| Build order | Mastery layer first (M8), points tree as overlay on the same catalog |
 
-**Recommendation [PROPOSAL]:** start with **Model B**, using the same perk catalog, and keep the point tree as a later overlay. **[OPEN]:** Anthony chooses (decision 1).
+Comparison table (reference): mastery is higher on exploration fit and lower on regret/dev cost; the tree is higher on build diversity. Together they cover both.
 
 ---
 
 ## 5. Mounts and Metroidvania exploration
 
 ### 5.1 Confirmed **[CONFIRMED]** (DECISIONS log 2026-09-30; `MOUNTS_AND_EXPLORATION.md`)
-- Many different animals, each doing different things. First four: **frog, dinosaur, flying dinosaur, cheetah** (the "wolves" mention is unconfirmed, possibly a voice artifact).
+- Many different animals, each doing different things. Roster: **frog, dinosaur, flying dinosaur, cheetah**. **No wolf is planned** (Anthony, 2026-09-30); more animals may come later but none are committed.
+- **Difficulty rule [CONFIRMED 2026-09-30]:** getting mounts must not be too difficult (pillar P8, `DIFFICULTY_PHILOSOPHY.md`).
 - **Summon anytime** in the open world.
 - Some levels and open-world areas **require** a specific mount (e.g. frog).
 - Metroidvania-style exploration with secrets, hidden content, Easter eggs, gated by abilities/mounts.
@@ -234,8 +249,9 @@ Five tracks unlock perks by doing (explore, clear, co-op, ride, create); equip a
 
 Mounts add abilities on top of the base moveset; they never replace it (MOUNTS guardrail).
 
-### 5.3 Acquisition, summon, rules **[PROPOSAL]** (all currently **[OPEN]** in MOUNTS/OPEN_QUESTIONS)
-- **Acquisition:** found through exploration quests in each mount's home region. Free, permanent, never sold, never in the skill tree. Frog early (starter region) so the confirmed frog gate is not a long wait.
+### 5.3 Acquisition, summon, rules
+- **Acquisition [ACCEPTED-DELEGATED 2026-09-30; principle CONFIRMED]:** each mount is earned through a **short, friendly, non-punishing questline** (about 3 stages, about 15 to 45 minutes) in its home region, solo-doable by an average player with the base moveset. Free, permanent, never sold, never in the skill tree, **never behind raid or brutal content**, no grind, no trade/consumable needed. Checkpoints before each stage, hints, optional assists. Each mount may add **optional hard cosmetic/bonus challenges** (alternate coats, titles, bonus time trial), recognition only. Release gate: 9 of 10 average-skill playtesters finish it unassisted in time. Frog early (starter region) so the confirmed frog gate is not a long wait.
+- The remaining items below are working proposals (summon cooldown, health, passengers, races) that stay **[OPEN]**.
 - **Summon:** anytime in the open world with a short cooldown; blocked in raids/instances unless the content's mount policy allows.
 - **Mount policy field** per level/raid/event: `none | loaner | free`. `loaner` = a stable post in the level lends a mount to everyone for that section.
 - **Health/stamina:** mounts have stamina where relevant; "mount health" **[OPEN]**. Suggest no death: a hit dismounts and starts the cooldown.
@@ -261,6 +277,9 @@ Fairness rules:
 - **G6** Optional secrets may gate harder; clearly marked as optional on the map legend.
 - **G7** Raids state their mount policy in the entry UI.
 - **G8** A stuck player can always leave via waypoint; the map highlights the nearest solution when they opt in (Pathfinder's Promise, F-tree node or Mastery perk).
+- **G9** Mount acquisition itself is never gated behind content harder than the T2 tier (`DIFFICULTY_PHILOSOPHY.md`): no raids, no brutal trials, no purchase.
+
+G1 to G9 are **[ACCEPTED-DELEGATED]** 2026-09-30 (required gates always have an alternate or loaner).
 
 ### 5.5 Zone graph and discovery **[PROPOSAL]**
 Loose journey; Sunny Grassland is hub one; City is a social/trade hub. Gates shown as labels.
@@ -293,7 +312,11 @@ flowchart LR
 ## 6. Gear, equipment and cosmetics
 
 ### 6.1 Functional gear vs cosmetic **[CONFIRMED that both exist; slot split PROPOSAL]**
-Brief: useful functional equipment/clothing changes stats or abilities (e.g. higher jump); builds/loadouts matter; equipment meaningfully eases hard content **[CONFIRMED]**. Separate cosmetic vs equipment slots is a **proposal, not confirmed** (brief, decisions). Layered character creator with much larger customization is owner direction in the art north star **[CONFIRMED]**; "Terraria-style" phrasing came from the task request, not the repo docs (recommend logging in DECISIONS).
+Brief: useful functional equipment/clothing changes stats or abilities (e.g. higher jump); builds/loadouts matter; equipment meaningfully eases hard content **[CONFIRMED]**. Separate cosmetic vs equipment slots is a **proposal, not confirmed** (brief, decisions). Layered character creator with much larger customization is owner direction in the art north star **[CONFIRMED]**; logged in DECISIONS 2026-09-30 ("Terraria-style" layered humanoid, not cubes). Separating cosmetic from equipment slots is **[ACCEPTED-DELEGATED]** 2026-09-30.
+
+**Faces [CONFIRMED 2026-09-30]:** add front and three-quarter face views to the creator preview (and possibly a front-facing idle/portrait) and evaluate how they look ("we'll see how that looks"); side-view faces remain for gameplay. Visual verdict pending; revisable.
+
+**Launch counts [ACCEPTED-DELEGATED 2026-09-30, Claude decides]:** about **8 headwear, 8 tops, 6 bottoms, 6 footwear, 4 back items, 4 accessories** as gear-bearing items (about 36 total); hair, faces, skin, eyes, recolors, emotes, trails and everything else are **cosmetic-only**. Bottoms pair with the Body slot as a set piece. Modest on purpose; expandable ("no addition too small"). Strictly original art, no third-party assets or mocap **[CONFIRMED]**.
 
 **Proposed slots:**
 | Functional (stats/effects) | Cosmetic (paper-doll layers) |
@@ -309,7 +332,7 @@ Uses the Movement Budget in SKILL_TREE_AND_ABILITIES.md section 5: jump +10%, ru
 Rarity adds **sidegrade options and flair**, not raw power. Each item has a **budget** of affix points; rarer items have more affixes at lower values each, and the loadout aggregate is clamped. Tiers: Common, Uncommon, Rare, Epic, Legendary (names **[OPEN]**). Legendary flair: visual effects, not bigger numbers.
 
 ### 6.4 Loadouts/builds
-Named loadouts (first slot free; more via tree/mastery or earned), snapshotted at event/raid entry. Build archetypes: Precision, Support, Explorer, Mounted, Hybrid.
+Named loadouts: 3 free preset slots from the start (+3 via tree node X1), switched under the free-respec rules, snapshotted at event/raid entry **[ACCEPTED-DELEGATED]**. Build archetypes: Precision, Support, Explorer, Mounted, Hybrid.
 
 ### 6.5 How gear eases but does not replace skill
 Required routes are base-clearable (section 2.3); gear widens margins on optional/hard-but-fair content, enables alternate routes, and gives recovery conveniences (e.g. +1 powerup slot). Classic/Standard rulesets cap or remove movement gear.
@@ -319,16 +342,16 @@ Required routes are base-clearable (section 2.3); gear widens margins on optiona
 ## 7. Co-op dungeons and raids
 
 ### 7.1 Confirmed intent **[CONFIRMED]** (brief)
-Cooperative dungeons must genuinely require coordinated actions: player bounces, switches, timing, shared execution. Hardest raids approach Kaizo difficulty mixed with Ms. Splosion Man-style cooperation and require **at least six or eight players**; exact minimum/maximum unresolved. Solo completion is not the default reading.
+Cooperative dungeons must genuinely require coordinated actions: player bounces, switches, timing, shared execution. Hardest raids approach Kaizo difficulty mixed with Ms. Splosion Man-style cooperation. The brief said "six or eight"; **Anthony decided 8 players on 2026-09-30 [CONFIRMED]**, the standard hardest-raid group size. Solo completion is not the default reading.
 
-### 7.2 Tiers and group sizes **[PROPOSAL / OPEN]**
-| Tier | Purpose | Size (proposal) |
+### 7.2 Tiers and group sizes
+| Tier | Purpose | Size |
 |---|---|---|
-| Trials | Teach co-op primitives | 2 to 3 |
-| Dungeons | Mixed execution, puzzle bosses | 3 to 5 |
-| Raids | Kaizo-level cooperation | 6 to 8 minimum intent **[CONFIRMED range]**; cap **[OPEN]** |
+| Co-op rooms / trials | Teach co-op primitives inside the open world | 2 to 4 [CONFIRMED: smaller co-op rooms for 2 to 4] |
+| Dungeons | Mixed execution, puzzle bosses | 3 to 5 **[ACCEPTED-DELEGATED]** |
+| Raids | Kaizo-level cooperation | **8 players, cap 8** [CONFIRMED]; cap stays 8 unless Anthony later decides otherwise |
 
-Smaller groups may enter easier content; raids do not scale down (keeps coordination real). Decision 7.
+A raid **requires 8** (minimum and cap are both 8 at launch); it never scales down, which keeps coordination real **[ACCEPTED-DELEGATED]**. Smaller groups play the 2 to 4 co-op rooms and dungeons. Raids are optional endgame (pillar P8): no mount or required progression sits behind them. Raid parties need ready-check and party-fill tools (friends, party finder) so 8 can actually assemble; design detail in 7.4.
 
 ### 7.3 Co-op mechanics (built from existing sim primitives)
 - **Bounce stacks:** stomp chains lift players over tall walls (playground 6-tile wall is the prototype).
@@ -339,9 +362,11 @@ Smaller groups may enter easier content; raids do not scale down (keeps coordina
 - **Role rooms:** mount-carried switch hitter, weight anchor (Ballast), spotters using Bond pings.
 - **Sync windows:** authoritative windows of about 8 to 12 ticks (about 133 to 200 ms) to tolerate latency **[PROPOSAL; tune in M3 tests]**.
 
-### 7.4 Checkpoints, failure, disconnects **[PROPOSAL]** (brief: checkpoint/recovery undecided)
+### 7.4 Checkpoints, failure, disconnects **[ACCEPTED-DELEGATED]** (needs to support an 8-player raid)
 - Encounters use **segment checkpoints**; wipe returns to segment start; instant retry.
-- **Disconnect:** server already keeps a 10 s reconnect grace (M1 spec). In a raid: slot held, encounter **pauses up to 30 s** at the next safe beat; if not back, rewind to last checkpoint and hold the slot for the session. Optional "Echo stand-in" (a limited replay of the player's last role) only for non-critical roles **[OPEN]**.
+- **Disconnect (8-player rule set):** server already keeps a 10 s reconnect grace (M1 spec). In a raid, because exactly 8 are required: the slot is held, the encounter **pauses up to 30 s** at the next safe beat; if the player is not back, rewind to the last checkpoint and hold the slot for the session (the raid pauses rather than continuing short-handed). The leader may **swap in a replacement from the lobby at a checkpoint** (new player gets the held slot) so one dropout never ends the run. Dropouts are no-penalty. Optional "Echo stand-in" for non-critical roles **[OPEN]**.
+- **Assembling 8:** ready-check, party finder/fill, leaver-friendly (no loss) so groups can form without friction.
+- **Netcode:** sync windows, bounce chains and plates must be stress-tested at 8 clients in M3/M13 before any raid is built.
 - **Recovery:** Rally Call trait returns a fallen ally (non-Classic), limited cooldown.
 - **Anti-grief:** leader can kick; wipes caused by idle/AFK flagged; no loot loss on wipe.
 
@@ -381,7 +406,7 @@ Raid declares ruleset (default Open) and mount policy; Tether Ribbon, Ballast Be
 | Sunbaked Sands | Sandy desert | Dunes, ruins | Cheetah |
 | Neon Bazaar City | Bustling city | Shopping, trading hub | Social |
 
-Launch priorities **[OPEN]** (decision 14). Zone modifiers (low gravity, ice, water, wind) affect everyone equally, so they do not violate the base-moveset rule.
+Launch priorities **[ACCEPTED-DELEGATED]** 2026-09-30: Sunny Grassland, Crystal Caves, Clockwork Factory first; Neon Bazaar City hub later. Zone modifiers (low gravity, ice, water, wind) affect everyone equally, so they do not violate the base-moveset rule.
 
 ### 8.2 Overworld vs instances **[PROPOSAL]**
 Hybrid: a **shared overworld** split into capped channels per region (cap **[OPEN]**; measure in M2), plus **instances** for dungeons, raids, races, time attacks and player levels. Hub City is a social/trade channel. Persistent state (unlocks, discovered secrets) lives on the account; instances are ephemeral.
@@ -410,15 +435,15 @@ Combination matrix **[PROPOSAL]**:
 | Mirror + directional-text puzzle | Needs manual check |
 | Pursuer + powerups that slow hazards (Hourglass) | Disabled |
 
-### 8.5 Checkpoints and failure **[OPEN]**
-Sim now respawns at spawn on fall. Proposal: instant retry, checkpoints on long levels, no punitive loss; accessibility options (assist feel, hint toggles) **[OPEN]**.
+### 8.5 Checkpoints and failure **[ACCEPTED-DELEGATED]**
+Sim now respawns at spawn on fall. Decided: instant retry, checkpoints on long levels, no punitive loss, no lives, raids by segment; assist options (extra checkpoints, wider forgiveness, slower threats, telegraph boost, practice mode, hints) per `DIFFICULTY_PHILOSOPHY.md`, marked "Assisted" and excluded from ranked boards. Matches Anthony's difficulty answer (P8).
 
 ---
 
 ## 9. Economy and items
 
 ### 9.1 Stance and constraints
-Tradeable useful items, consumables, functional gear exist **[CONFIRMED]**. Currencies, sinks, crafting, trading model, paid power are **[OPEN]**. **Cosmetics-only monetization is a recommendation, not a rule [PROPOSAL]**; no promises of amounts, terms, dates, rewards **[CONFIRMED]**. Monetization and beta rules from other projects are not imported **[CONFIRMED]**.
+Tradeable useful items, consumables, functional gear exist **[CONFIRMED]**. Currencies, sinks, crafting, trading model, paid power are **[OPEN]**. **No paid power is accepted by delegation (2026-09-30); the monetization model, prices and terms remain [PROPOSAL, needs Anthony]**; no promises of amounts, terms, dates, rewards **[CONFIRMED]**. Monetization and beta rules from other projects are not imported **[CONFIRMED]**.
 
 ### 9.2 Currencies **[PROPOSAL]**
 | Currency | Source | Tradeable | Purpose |
@@ -478,7 +503,7 @@ flowchart TD
   A --> H["Co-op trials"]
   G --> H
   H --> I["Dungeons"]
-  I --> J["Raids (6-8)"]
+  I --> J["Raids (8 players)"]
   A --> K["Creator levels and events"]
   G --> K
   D --> L["More mounts and regions"]
@@ -492,7 +517,7 @@ Skill is the loop's engine: every reward widens options, but mastery always feed
 |---|---|---|
 | **First hour** | Create a look; join the shared grassland; learn walk/run, variable jump, pads, stomp-bounce (exists today); first 5-tile pit and 4-tile wall; a friend bounces you over the 6-tile wall; find the frog pond and the first gate | L0 moves, cosmetics, stomp co-op |
 | **First day** | Explore 2 to 3 regions; unlock 1 to 2 mounts; first secrets; first powerups (Coil Spring, Magnet Mitt); first trials with friends; first mastery perks; first loadout | Mounts, Wayfinder perks, gear (first pieces), trials |
-| **First month** | Tune a build; try Standard race boards; first dungeon runs; make and publish a level; join a weekly featured event; maybe attempt a 6-player raid; cosmetics collection | Gear/loadouts, trading, editor, events, raids |
+| **First month** | Tune a build; try Standard race boards; first dungeon runs; make and publish a level; join a weekly featured event; maybe attempt an 8-player raid (optional endgame); cosmetics collection | Gear/loadouts, trading, editor, events, raids |
 
 Beyond: regional mastery, raid progression, Classic boards, crafting, creator reputation, later casino lore region.
 
@@ -503,7 +528,7 @@ Beyond: regional mastery, raid progression, Classic boards, crafting, creator re
 ### 12.1 What each system needs
 | System | `packages/sim` | `packages/protocol` | Server authority | Persistence | Anti-cheat |
 |---|---|---|---|---|---|
-| Base moves (DOWN/ACTION) | Extend `BTN` (only 4 bits used now) and step | Input byte widened | Validates mask | none | Input mask per ruleset |
+| Base moves (DOWN/ACTION, six inputs) | Extend `BTN` from 4 to 6 bits and step | Input byte widened | Validates mask | none | Input mask per ruleset |
 | MovementProfile | Per-player `cfg` (stepPlayer already takes `cfg`) | Profile in join/snapshot, hash | Resolves profile; clamps budget | Loadout on account | Profile hash; recompute server-side |
 | Mounts | `mount` state on `PlayerState`, per-mount configs | Mount events | Summon rules, cooldowns | Roster, unlocks | Server state only |
 | Powerups | Timed effect state | Use/expiry events | Charges/timers authoritative | Inventory counts | Server-spawned pickups only |
@@ -521,16 +546,16 @@ Known sim limitation today: the client predicts only the local player against st
 | **M1** Movement playground (in progress) | Shared 60 Hz sim, prediction, stomp/push | Accepted 2026-09-30 | Anthony playtest signs off feel; tuning doc; tests green |
 | **M2** Small shared region | Polished region, latency/jitter/loss tests, reconnect | M1 exit | Coherent motion for N clients at agreed latency; no state corruption |
 | **M3** Coordinated challenge | One co-op room (switches + bounce), disconnect rule | M2 exit | Solution requires coordination; retry cost acceptable; fair at tested latency |
-| **M4** Base moveset additions | DOWN/ACTION, semi-solids, checkpoints, per-player cfg | M3 learnings | New moves regression-tested; feel playtested |
+| **M4** Base moveset additions | DOWN (crouch/drop-through) and ACTION (six inputs), semi-solids, checkpoints, per-player cfg | M3 learnings | New moves regression-tested; feel playtested |
 | **M5** Mount prototype (frog) | Summon, mount physics, one gate, loaner | M4 | Frog gate is fun and never hard-locks; determinism tests |
 | **M6** Abilities foundation | Powerups (3 to 4), MovementProfile + rulesets, gear stub | M5 | Fairness tests, Classic board works |
 | **M7** Persistence/accounts | Accounts, DB, unlocks, loadouts, looks | Accounts decision | Safe logins; restores state; ledger stub |
-| **M8** Mastery/tree layer | Model B (or A) perks, trait slots | M7 + tree decision | Perks capped; respec rules verified |
+| **M8** Mastery + tree layers | Mastery-by-use first, then the points tree overlay; trait slots; free respec; 3 presets | M7 | Perks capped; no double-dipping; free instant respec verified |
 | **M9** Exploration systems | Zone graph, map/discovery, secrets framework, remaining mounts | M5-M7 | Map works; gates fair; no hard-locks found in playtests |
 | **M10** Creator tools | Editor, validator, replay proof, moderation | M7 | Safe submission pipeline; proof pass rate |
 | **M11** Economy | Trading (atomic), crafting, market later | M7 + economy decisions | Dupe tests pass; audit ledger |
 | **M12** Events/featured | Race/time-attack, weekly selection | M10 | Event boards with rulesets |
-| **M13** Raids | 6 to 8 players, puzzle bosses | M3 + M9 | Stress-tested sync |
+| **M13** Raids | 8 players (cap 8), puzzle bosses, dropout/replacement rules | M3 + M9 | Stress-tested sync at 8 clients |
 | **M14** Steam cross-play | Steam build, account linking | Stable protocol | Cross-play verified |
 | Later | Casino lore region, monetization (if approved), more mounts/regions | Decisions | Per-decision |
 
@@ -557,26 +582,26 @@ Mismatches or tensions between the brief, decisions log, open questions, public 
 
 | # | Area | Tension | Recommended resolution |
 |---|---|---|---|
-| 1 | OPEN_QUESTIONS vs DECISIONS | "First playable proof" and "engine/stack" still listed as open although accepted 2026-09-30 | Mark resolved; move to log |
+| 1 | OPEN_QUESTIONS vs DECISIONS | "First playable proof" and "engine/stack" still listed as open although accepted 2026-09-30 | **RESOLVED 2026-09-30:** OPEN_QUESTIONS rewritten with an Answered section |
 | 2 | README / CLAUDE_HANDOFF | Still say "no implementation/no codebase" | Update stale notes |
 | 3 | Site "shared world" card | Chip says **Planned** though a shared playground is playable | Re-chip as "Playable prototype (small)" |
 | 4 | Site M2 "persistent-feeling region where many players" | "Many" and "persistent" overpromise; scale and persistence undecided | Reword: "a small shared region; scale to be tested" |
-| 5 | Site "Fair, forgiving of small slips, endless retries" | Checkpoint/failure/accessibility undecided; coyote/buffer are "options to evaluate" | Soften or accept coyote/buffer as base (decision 3) |
+| 5 | Site "Fair, forgiving of small slips, endless retries" | Checkpoint/failure/accessibility undecided; coyote/buffer are "options to evaluate" | **RESOLVED 2026-09-30:** coyote/buffer accepted as base (delegated); checkpoints decided (instant retry + checkpoints); copy may keep "forgiving", still labelled Planned |
 | 6 | Site community goals "We are planning" | DECISIONS lists goals as ideas, not finalized policy | Soften to "We are considering" |
 | 7 | Site tags "Low gravity idea" (space) | Low gravity vs base-moveset fairness | Document as a zone modifier affecting everyone (section 8.1) |
 | 8 | Site hero "round mint-green mount" | Art north star bans clone-adjacent (green saddle dinosaur) | Re-design mount silhouette/color; run through rights review |
 | 9 | MOUNTS doc "sticky-tongue grab" (frog) | Yoshi-like signature | Reframe as a tether/anchor swing; avoid enemy-eating |
 | 10 | Brief "base moveset makes hard content possible" vs co-op 6-tile wall | Solo-impossible by design | Define co-op base-clearable as team base (section 2.3) |
-| 11 | Sim inputs only LEFT/RIGHT/JUMP/RUN | Abilities/mounts/crouch need buttons; devices/mobile undecided | Decide input scheme and add ACTION/DOWN (decision 3) |
-| 12 | Sim respawns at spawn only | Brief leaves checkpoints undecided | Decide checkpoint/failure rules (decision 4) |
+| 11 | Sim inputs only LEFT/RIGHT/JUMP/RUN | Abilities/mounts/crouch need buttons; devices/mobile undecided | **RESOLVED 2026-09-30 [CONFIRMED]:** six inputs, DOWN and ACTION added (sim work in M4) |
+| 12 | Sim respawns at spawn only | Brief leaves checkpoints undecided | **RESOLVED 2026-09-30 [ACCEPTED-DELEGATED]:** instant retry, checkpoints on long levels, raids by segment (sim work in M4) |
 | 13 | Skill tree not on the site | Good, tentative per brief | Keep off public copy until approved |
-| 14 | Layered creator / "Terraria-style" | In art north star (owner direction), absent from DECISIONS | Log in DECISIONS with date |
-| 15 | Cosmetic vs equipment slot separation | Brief: proposal not confirmed, art north star treats it as direction | Keep labeled PROPOSAL until accepted |
-| 16 | Normalized/unequipped leaderboards | Proposal only | Keep labeled; ask Anthony (decision 2) |
+| 14 | Layered creator / "Terraria-style" | In art north star (owner direction), absent from DECISIONS | **RESOLVED 2026-09-30:** logged in DECISIONS with date |
+| 15 | Cosmetic vs equipment slot separation | Brief: proposal not confirmed, art north star treats it as direction | **RESOLVED 2026-09-30 [ACCEPTED-DELEGATED]** with launch counts (section 6.1) |
+| 16 | Normalized/unequipped leaderboards | Proposal only | **RESOLVED 2026-09-30 [ACCEPTED-DELEGATED]:** Classic ruleset |
 | 17 | Site roadmap | Lacks mounts, abilities/persistence milestones in order | Add phased list after approval (section 12.2) |
-| 18 | "Raid 6 or 8 players" vs site "team sizes still being designed" | Consistent | No change |
-| 19 | Mount acquisition | DECISIONS confirms roster/gating but not acquisition | Decision 5 |
-| 20 | Wolves as mount | Unconfirmed voice artifact | Ask (decision list bonus) |
+| 18 | Raid size: brief "6 or 8", decided 8; site `index.html` still says "roughly six to eight players or more; exact sizes are undecided" | Site copy now stale | **DECIDED 2026-09-30 (8, [CONFIRMED]).** `apps/site/index.html` lines ~492-493 should say eight players is the design intent, still Planned (outside this editor's file ownership; flagged to lead) |
+| 19 | Mount acquisition | DECISIONS confirms roster/gating but not acquisition | **RESOLVED 2026-09-30:** friendly questlines (principle [CONFIRMED], design [ACCEPTED-DELEGATED]); site mounts blurb "Still open: how mounts are earned..." is stale (index.html ~384) |
+| 20 | Wolves as mount | Unconfirmed voice artifact | **RESOLVED 2026-09-30 [CONFIRMED]:** no wolf planned. `docs/ART_DIRECTION.md` line 54 ("No wolf (unconfirmed...)") should be reworded (outside this editor's files) |
 | 21 | Brief "Dessert region" | Likely "dessert" (candy) separate from desert; site matches (Sugar Summit vs Sunbaked Sands) | No change; fix brief typo optionally |
 | 22 | Casino lore publicly described on site | Brief says later update and not launch requirement; site labels it far-off and fiction | Keep as is; ensure "no real-money gambling" line stays |
 | 23 | Funding milestones | Brief hypothetical; site mentions none | Keep off site |
@@ -584,24 +609,34 @@ Mismatches or tensions between the brief, decisions log, open questions, public 
 
 ---
 
-## 14. Decision queue
+## 14. Resolved decision log
 
-Top 15 highest-leverage **[OPEN]** questions, in order. Each is short for voice answers. Reply with number and option letter.
+Resolved 2026-09-30 after Anthony answered the 15-question queue. Status key: **DECIDED** = Anthony's own answer **[CONFIRMED]**; **DELEGATED** = Anthony said "I'll let you decide", Claude adopted its own recommendation **[ACCEPTED-DELEGATED]**, revisable by Anthony any time; **STILL OPEN** = money/legal/real-world-risk/public-promise items that need Anthony. Mirror of `DECISIONS.md`.
 
-1. **Skill model?** A) Points tree. B) Mastery-by-use unlocks plus trait slots. C) Both, B first. *Recommend C (start B).*
-2. **Fair-play rulesets?** A) Open/Standard/Classic with Classic = normalized leaderboard. B) One board with everything allowed. C) Only Classic ranked. *Recommend A.*
-3. **Base moveset additions?** Confirm: keep coyote and buffer for everyone, add DOWN (crouch/drop-through) and ACTION button? A) Yes both. B) Only coyote/buffer. *Recommend A.*
-4. **Fail and checkpoints?** A) Instant retry, checkpoints on long levels, no loss. B) Lives/penalties. C) Decide per level. *Recommend A (C for raids by segment).*
-5. **Mount acquisition?** A) Exploration quests, free and permanent. B) Shop. C) Drops/levels. *Recommend A; never sold.*
-6. **Mount gates on the required path?** A) Always an alternate or loaner. B) Hard gates allowed. *Recommend A.*
-7. **Raid size?** Min: A) 6 B) 8. Cap: A) 8 B) 10 C) 12. Smaller groups scale? No. *Recommend min 6, cap 8, revisit after M3.*
-8. **Paid power?** A) None, cosmetics-only. B) Allowed. *Recommend A.*
-9. **Trading?** A) Direct trade first, market later. B) Market first. C) Both at once. *Recommend A.*
-10. **Accounts/persistence first?** Login: A) Google. B) Email. C) Guest plus later link. What persists first: looks, unlocks, loadouts? *Recommend C, persist look/unlocks/loadout.*
-11. **Overworld shape?** A) Channels per region plus instances. B) Single world. *Recommend A; channel cap from M2 tests.*
-12. **Gear power cap?** A) Movement Budget caps (+10% jump etc.). B) Uncapped. *Recommend A.*
-13. **Editor and weekly pick?** A) Editor v1 tile-only, hybrid AI shortlist plus human pick. B) Fully AI. C) Fully human. *Recommend A.*
-14. **First content slice?** Pick launch-priority regions: e.g. A) Grassland, Caves, Factory. B) Grassland, Jungle, Sky. *Recommend A, plus City hub later.*
-15. **Audience and chat?** A) Teen-plus open chat with filter and quick-chat. B) All-ages quick-chat only by default. *Recommend B default, unlockable.*
+| # | Question | Result | Status | Rationale |
+|---|---|---|---|---|
+| 1 | Skill model | **Both**: skill-point tree plus mastery-by-use; **free respecs**; mastery first, tree overlay (order delegated) | DECIDED (model, free respec); DELEGATED (coexistence, order) | Anthony: free redos if you dislike your build. See section 4.4 |
+| 2 | Fair-play rulesets | A) Open/Standard/Classic; Classic = normalized leaderboard | DELEGATED | Fair competition without banning builds from casual play |
+| 3 | Base moveset additions | **Yes to both**: DOWN (crouch/drop-through) and ACTION; coyote/buffer stay for everyone; six inputs | DECIDED (buttons); DELEGATED (coyote/buffer) | Anthony said yes; coyote/buffer match "forgiving" pillar |
+| 4 | Fail and checkpoints | A) Instant retry, checkpoints on long levels, no loss; raids by segment | DELEGATED | Matches Anthony's difficulty answer (P8) |
+| 5 | Mount acquisition | Friendly short questline per mount, free, permanent, never sold, optional hard cosmetic extras; never behind raids | DECIDED (not too difficult); DELEGATED (questline design) | "Mounts must not be too difficult" |
+| 6 | Required-path mount gates | A) Always an alternate or loaner | DELEGATED | Never hard-lock players |
+| 7 | Raid size | **8 players**, cap 8; no scaling; smaller co-op rooms 2 to 4; dropout/replacement rules | DECIDED | Anthony: standard hardest-raid size |
+| 8 | Paid power | A) None; no pay-to-win. (Monetization model, prices, terms are separate) | DELEGATED (principle); STILL OPEN (monetization terms) | Protects skill-first pillar; money terms need Anthony |
+| 9 | Trading | A) Atomic direct trade first, market later | DELEGATED | Smaller dupe/scam surface |
+| 10 | Accounts/persistence | Guest play with later account link; persist look, unlocks, loadouts first | DELEGATED (persistence scope); STILL OPEN (login provider, privacy) | Provider/privacy involve legal exposure |
+| 11 | Overworld shape | A) Capped channels per region plus instances; channel cap from M2 tests | DELEGATED | Proven MMO shape; measure first |
+| 12 | Gear power cap | A) Movement Budget caps | DELEGATED | Skill ceiling |
+| 13 | Editor and weekly pick | A) Editor v1 tile-only; hybrid shortlist plus human pick; cosmetic/recognition rewards only, nothing promised | DELEGATED; STILL OPEN (moderation policy, ToS, takedown, reward specifics) | Legal exposure from user content |
+| 14 | First content slice | A) Grassland, Caves, Factory; City hub later | DELEGATED | Covers teaching, precision, timing |
+| 15 | Audience and chat | Interim dev default: quick-chat only, no free text | STILL OPEN (age band, chat posture) | Child-safety/legal exposure |
 
-Bonus (answer when convenient): wolves as a mount? Currency and character names? Final title and legal clearance? Input devices (touch)?
+Bonus items: **wolf mount: DECIDED no** (Anthony); **input devices: DELEGATED** keyboard then gamepad, no touch at launch; **currency/character names and final title/legal clearance: STILL OPEN**.
+
+Other decisions recorded from the same answers:
+- **Difficulty philosophy [DECIDED]:** pillar P8, `DIFFICULTY_PHILOSOPHY.md`.
+- **Character creator [DECIDED]:** front/three-quarter face views in the preview, evaluate visually; side-view faces stay for gameplay. **Launch counts [DELEGATED]:** about 8 headwear, 8 tops, 6 bottoms, 6 footwear, 4 back items, 4 accessories gear-bearing; the rest cosmetic-only (section 6.1).
+- **Third-party assets/mocap [DECIDED]:** none; strictly original.
+- **Open source [DECIDED]:** code MIT; art, music, content, docs CC BY-NC-SA 4.0; name and logo reserved (LICENSE files applied by the lead).
+
+Still needing Anthony (never decided by delegation): monetization model and prices, supporter terms, community-goal promises, early-player/download rewards, launch dates, casino mechanics beyond the no-real-money guardrail, login provider and privacy/age/chat posture, moderation policy/ToS/takedowns, final title/legal clearance, naming of currency and characters, and any future change to the BY-NC-SA terms once monetization is approved.

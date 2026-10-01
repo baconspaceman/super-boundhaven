@@ -1,8 +1,10 @@
 # Super BoundHaven: abilities taxonomy and skill tree (detail)
 
-Companion to `GAME_DESIGN_DOCUMENT.md` (sections 2, 3, 4, 6). Everything below is **[PROPOSAL]** unless tagged otherwise. The brief calls the skill tree **tentative**; nothing here is accepted until Anthony says so, and the final choice between the points tree (Model A) and mastery-by-use (Model B) stays **[OPEN]** (GDD decision queue item 1).
+Companion to `GAME_DESIGN_DOCUMENT.md` (sections 2, 3, 4, 6).
 
-Badges: **[CONFIRMED]** = Anthony's own words (brief, decisions log); **[PROPOSAL]** = Claude's design suggestion; **[OPEN]** = unresolved.
+**Decision 2026-09-30 [CONFIRMED by Anthony]:** the skill model is **both** a skill-point tree (Model A) **and** mastery-by-use unlocks (Model B), with **free respecs**. Section 6 defines how they coexist. Detail numbers (costs, caps, slot counts) remain **[PROPOSAL]** tuning values. Build order (mastery layer first, tree overlay after) is **[ACCEPTED-DELEGATED]**.
+
+Badges: **[CONFIRMED]** = Anthony's own words (brief, decisions log, 2026-09-30 answers); **[ACCEPTED-DELEGATED]** = Claude chose by Anthony's delegation, revisable any time; **[PROPOSAL]** = Claude's design suggestion; **[OPEN]** = unresolved.
 
 Reference numbers come from `packages/sim/src/config.ts` (60 Hz, 16 px tiles, hitbox 12x16). Heights and distances are continuous-physics approximations derived from those values; verify against sim tests before tuning anything to them.
 
@@ -14,9 +16,11 @@ Reference numbers come from `packages/sim/src/config.ts` (60 Hz, 16 px tiles, hi
 |---|---|---|---|
 | R1 | Hard content must be possible with the **base moveset** at exceptional skill. | **[CONFIRMED]** | DESIGN_BRIEF "Items, builds, and economy" |
 | R2 | Gear/abilities add flair and meaningfully **ease** hard content; they do not replace skill. | **[CONFIRMED]** | DESIGN_BRIEF |
-| R3 | Nothing purchasable with real money grants movement or ability power. | **[PROPOSAL]** (cosmetics-only is a recommendation, brief) | DECISIONS "Recommendations" |
+| R3 | Nothing purchasable with real money grants movement or ability power (no pay-to-win). Skill points and mastery are never sold or traded. | **[ACCEPTED-DELEGATED]** 2026-09-30 | DECISIONS "No paid power" |
 | R4 | No node/gear/powerup may make a **required** route impossible without it. Required routes are base-clearable (with the team, for co-op). | **[PROPOSAL]** | extends R1 |
-| R5 | Competitive play runs under an explicit **ruleset** (Open / Standard / Classic). Classic = base moveset only. | **[PROPOSAL]** (normalized leaderboards are a brief proposal) | brief, "proposals, not confirmed" |
+| R5 | Competitive play runs under an explicit **ruleset** (Open / Standard / Classic). Classic = base moveset only (normalized/unequipped leaderboard). | **[ACCEPTED-DELEGATED]** 2026-09-30 | DECISIONS rulesets |
+| R9 | Respec is **free**: no currency, instant, never lossy. | **[CONFIRMED]** 2026-09-30 | Anthony: free redos if you don't like your build |
+| R10 | The tree and mastery never gate mount acquisition (mounts are earned via friendly questlines). | **[ACCEPTED-DELEGATED]** | difficulty pillar D2 |
 | R6 | Every movement-affecting bonus is **capped** by the Movement Budget (section 5). | **[PROPOSAL]** | fairness |
 | R7 | Mounts, abilities and gates are **never acquired from the tree or shop in a way that hard-locks progress**. | **[PROPOSAL]** | MOUNTS doc guardrail |
 | R8 | All designs, names and effects are original. No mushrooms, capes/feathers, stars-as-invincibility, fire flowers, tongue-eats-enemy, etc. | **[CONFIRMED]** (originality) | brief + ART_NORTH_STAR |
@@ -69,15 +73,15 @@ See GDD section 2 for the numbers. Summary of the **proposed growth of the base*
 | Move | State | Note |
 |---|---|---|
 | Walk/run, accel, skid, friction | **Exists in sim** | L0 |
-| Variable jump, run-speed jump bonus, coyote (5 t), buffer (6 t) | **Exists in sim**; coyote/buffer adoption as permanent base is **[OPEN]** (handoff lists them as options) | L0 |
+| Variable jump, run-speed jump bonus, coyote (5 t), buffer (6 t) | **Exists in sim**; coyote/buffer kept as permanent base for everyone **[ACCEPTED-DELEGATED]** 2026-09-30 | L0 |
 | Slopes, bounce pads, stomp-bounce, player push | **Exists in sim** | L0 |
-| Crouch / drop through semi-solids (DOWN) | **[PROPOSAL]** new input | L0; semi-solids appear in the art north star |
-| ACTION button (mount move, powerup use, interact) | **[PROPOSAL]** new input | used only by L2/L3 and interactables, never required for base-only routes |
+| Crouch / drop through semi-solids (DOWN) | **[CONFIRMED]** 2026-09-30, to be added to sim (M4) | L0; semi-solids appear in the art north star |
+| ACTION / Activate button (interact with switches, summon/dismount mount, use powerup, mount ability) | **[CONFIRMED]** 2026-09-30, to be added to sim (M4) | Interact is part of the base; mount/powerup uses are L2/L3. Never required for pure base-only movement routes except level-provided switches |
 | Swim / water movement | **[PROPOSAL]** | zone-provided, same for all |
 
 ---
 
-## 4. Skill tree, Model A: Points tree [PROPOSAL, tentative per brief]
+## 4. Skill tree, Model A: Points tree [part of the confirmed "both" model; numbers PROPOSAL]
 
 ### 4.1 Design goals
 
@@ -93,9 +97,9 @@ See GDD section 2 for the numbers. Summary of the **proposed growth of the base*
 | Branches | **Footwork** (Mobility/Precision), **Bond** (Co-op/Support), **Wayfinder** (Explorer/Metroidvania), **Maker** (Creator/Builder), **Stablemaster** (Mount Mastery) + cross-branch **X** nodes |
 | Node types | **S** Stat (tiny, capped), **U** Utility (new convenience), **I** Info (UI/readouts), **K** Keystone (tradeoff/toggle), **C** Cosmetic/Title |
 | Movement flag | **M** = affects movement/ability numbers (suppressed in Classic, capped in Standard). **N** = non-movement (always allowed) |
-| Points | "Skill Points" (name **[OPEN]**). Earned only in-game by first-time feats: new discoveries, first clears, co-op completions, creator milestones, mastery challenges. **Never sold, never traded.** No numeric earn rate promised. |
+| Points | "Skill Points" (name **[OPEN]**). Under the "both" model, SP come **only from Mastery tier milestones** (section 6), never directly from individual feats, so a feat is never paid twice. **Never sold, never traded.** No numeric earn rate promised. |
 | Supply vs cost | Full tree costs **76 SP** in the sample below; proposed long-run supply is deliberately **below** full cost (target ~75%) so choices matter. Numbers are placeholders **[OPEN]** |
-| Respec | Free, instant, in any safe zone/hub; not allowed mid-attempt. Loadout is **snapshotted when an event attempt starts**. No currency sink (avoids respec economy). |
+| Respec | **Free and instant [CONFIRMED]**: no currency, no cooldown, no point loss. Allowed any time you are out of combat, outside an active attempt, and not inside a raid encounter (so safe zones, overworld, between attempts, raid lobby). Loadout is **snapshotted when an event/raid attempt starts**. See section 6.3. |
 | Loadout | Up to N "active keystones" at once (N=2 proposal). Unlimited passive nodes once purchased. |
 | Caps | Movement Budget (section 5). Diminishing returns: rank II of a stat node gives the same % but costs more; no third rank. |
 | Prerequisites | Tree edges (node A requires B); some cross-branch nodes need 1 node from 2 branches. |
@@ -171,7 +175,7 @@ Requires owning at least one mount for any node here to be useful; mount **acqui
 
 | ID | Node | Type | Flag | Effect | Req | SP |
 |---|---|---|---|---|---|---|
-| X1 | Spare Loadout | U | N | Second saved loadout slot | F2 and W1 | 2 |
+| X1 | Spare Loadout | U | N | +3 extra preset slots (base game already gives 3, see 6.3) | F2 and W1 | 2 |
 | X2 | Hybrid Stride | S | M | Powerup durations +10% (Open ruleset only) | F4 and M1 | 3 |
 | X3 | Haven Sage | C | N | Capstone: title and aura cosmetic, no power | >= 3 nodes in each of 4 branches | 5 |
 
@@ -200,9 +204,40 @@ Coyote time and jump buffering are **assist/feel settings shared by everyone**, 
 
 ---
 
-## 6. Skill tree, Model B: Mastery-by-use (no points) [PROPOSAL, alternative]
+## 6. Mastery-by-use and how it coexists with the points tree
 
-Replace spend-and-refund with **unlock by doing**. Five tracks (same names as branches). Each has **Mastery Marks** unlocked once by feats (first discovery, first clears, co-op completions, mount trials, creator milestones). Unlocked **perks** are identical in effect to the N/I/U nodes above and to a *smaller* set of M stat perks. You then **equip** up to N perks into "Trait Slots" (N grows slowly, e.g. 3 to 5). No points, no respec economy: swap freely in safe zones.
+**Decision [CONFIRMED 2026-09-30]:** both systems exist. Section 6.1 describes the mastery half, 6.2 the coexistence contract, 6.3 free respec and presets, 6.5 the original comparison (kept for reference).
+
+### 6.1 Mastery-by-use (the "by doing" half)
+
+**Unlock by doing.** Five tracks (same names as the tree branches). Each track has **Mastery Marks** earned by feats (first discovery, first clears, co-op completions, mount trials, creator milestones). Each track has tiers; reaching a tier auto-grants that tier's perk and its Skill Points. Mastery **perks** are the non-movement and information/utility kind (N/I/U nodes above) plus a *small* set of capped M perks. You **equip** up to N perks into "Trait Slots" (N grows slowly with mastery, e.g. 3 to 5); swap freely under the respec rules.
+
+### 6.2 Coexistence contract (no double-dipping) [ACCEPTED-DELEGATED]
+
+1. **One feat, one ledger entry.** A feat adds Mastery progress in exactly one track. It never also grants Skill Points directly.
+2. **Skill Points come from Mastery tiers only.** Each tier milestone grants its perk plus a fixed number of SP. Total SP supply is below total tree cost (about 75%).
+3. **Partitioned catalog.** A given effect lives in **either** the tree **or** the mastery perks, never both. Rule of thumb: convenience, info, expression, creator and quality-of-life effects (mostly N/I/U/C) are **mastery perks** unlocked by doing; build-shaping effects (capped stat nodes, keystones, tradeoffs, mount stat nodes) are **tree nodes** bought with SP. Where the sample tree above lists an N/I/U node, it is the mastery-perk catalog entry (the 1:1 mapping noted in the original design); where it lists S or K, it is a tree node.
+4. **Perks do not stack with tree nodes** for the same stat: both draw from the **same Movement Budget** and the same per-stat ceiling (section 5).
+5. **Trait Slots** (mastery) and **active keystone slots** (tree, N=2) are separate pools with separate limits; both count toward the ruleset mask.
+6. **Mastery never spends or refunds.** Respec only touches Skill Point spends and slot assignments; mastery progress and earned perks are permanent.
+7. **Mounts are not in either system.** Mastery/tree only tune mounts (stamina, cooldown, reach) after acquisition (R10).
+
+### 6.3 Free respec and loadout presets [CONFIRMED respec; ACCEPTED-DELEGATED presets]
+
+- **Respec is free and instant** ("free redos if you don't like your build"): refund all spent SP, reassign Trait Slots, change keystones; no currency, no cooldown, no point loss.
+- **When allowed:** out of combat, outside an active attempt, not inside a raid encounter. Safe zones, the overworld, between attempts and the raid lobby all qualify.
+- **Presets:** 3 free build-preset slots for everyone from the start, each storing tree spend, Trait Slots, keystones and gear loadout; X1 Spare Loadout adds 3 more. Presets are renameable and can be swapped under the same rules as respec.
+- **Snapshots:** the loadout is snapshotted when an event, raid or ranked attempt starts, and recorded with a profile hash for leaderboards.
+- **Classic ruleset:** movement-affecting perks and nodes are zeroed (normalized/unequipped board stays intact); Purist Mark (F7) remains.
+- **Respec and fairness:** free respec is safe because every movement stat is capped by the Movement Budget and the base moveset is always sufficient for required routes.
+
+### 6.4 Build order [ACCEPTED-DELEGATED]
+
+Ship the mastery layer first (cheaper, less grindy), then add the points tree as an overlay using the same catalog. Both are live before either is declared "done"; neither is ever sold.
+
+### 6.5 Original comparison (reference)
+
+Earlier proposal compared the two as alternatives; Anthony chose both, so the comparison now shows what each half contributes.
 
 | Dimension | Model A: Points tree | Model B: Mastery-by-use |
 |---|---|---|
@@ -218,7 +253,7 @@ Replace spend-and-refund with **unlock by doing**. Five tracks (same names as br
 | Extensibility ("no addition too small") | Add nodes (graph growth) | Add feats/perks (flat list growth) |
 | Ties to brief | "tentative skill tree" | Consistent with secrets/exploration emphasis |
 
-**Recommendation [PROPOSAL, choice stays OPEN]:** start with **Model B** (mastery unlocks + a few Trait Slots). It reuses the same perk catalog above, is cheaper, less grindy, and kinder to fairness. Keep Model A's graph as an optional **later overlay** (the catalog is written so nodes map 1:1 to perks). Decide only after the movement/abilities milestone shows what perks players actually want.
+**Resolved 2026-09-30:** Anthony chose both with free respecs. Build mastery (Model B) first and layer the points tree (Model A) over the same catalog, per 6.2 to 6.4.
 
 ---
 

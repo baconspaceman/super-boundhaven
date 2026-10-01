@@ -1,47 +1,41 @@
 # Open questions
 
-> **Update 2026-09-30:** question 1 (first proof) was answered: a shared multiplayer movement playground. Question 2 (stack) was answered: TypeScript end to end (Vite + PixiJS client, Node `ws` authoritative server). Question 3 (netcode) was answered for the prototype: client prediction + server authority + reconciliation, players physically collide. Input/devices (4) and the first co-op room (5) remain open. See `DECISIONS.md`. The full prioritized queue is in `docs/design/GAME_DESIGN_DOCUMENT.md` section 14.
+> **Update 2026-09-30 (second pass):** Anthony answered the queue. Answered items are in the Answered section below with a pointer to `DECISIONS.md`. Items he delegated to Claude are marked ACCEPTED-DELEGATED (revisable by him any time). Only items involving money, legal exposure, real-world risk or public promises remain open. Full queue: `docs/design/GAME_DESIGN_DOCUMENT.md` section 14.
 
-Resolve the first group before committing to a broad implementation. Claude can research options and present tradeoffs; do not silently convert defaults into accepted requirements.
+Claude can research options and present tradeoffs; do not silently convert defaults into accepted requirements.
 
-## First decisions
+## Still open (needs Anthony)
 
-1. What is the smallest first playable proof: local movement only, or an immediately shared browser playground? What demonstrates acceptable movement feel?
-2. Which engine/stack supports browser delivery, later Steam cross-play, precise simulation, and maintainable tools? Compare options before choosing.
-3. What network authority, reconciliation, collision/bounce model, and target latency make coordinated movement fair? What happens when a player disconnects?
-4. Which inputs/devices/browsers are initially supported? Are touch controls and mobile required?
-5. What fits the first small region and cooperative challenge, and what are its checkpoint/retry rules?
+- Monetization model, prices, optional monthly support terms, community goals, supporter names/consent, Steam-fee target. (Principle accepted: no paid power; cosmetics-only.)
+- Early-player/download rewards (amounts, terms, eligibility, how counted); any launch date or dated promise.
+- Casino/cat-lore mechanics beyond the standing guardrail (no real-money gambling, non-cashable tokens, no loot boxes).
+- Account identity: login provider (Google, email, guest-then-link), privacy, age band, chat posture. Interim development default: quick-chat only, no free text.
+- Moderation, terms of service and takedown handling for uploaded levels; weekly featured rewards specifics.
+- Final title, legal/name clearance, character and currency names.
+- Whether the BY-NC-SA 4.0 content license should change once monetization is approved.
+- Visual verdict on front/three-quarter faces after the creator preview is built (Anthony: "we'll see how that looks").
+- Pure engineering unknowns (measured later, not Anthony's call): channel cap per region, sync windows at 8 players, exact numbers in Movement Budget and mastery tiers.
+- Mounts and exploration still unresolved in detail: summon cooldown/stamina, mount health, passengers, mounts in races, map/discovery UI scope, Easter-egg framework scope (working proposals in `docs/design/MOUNTS_AND_EXPLORATION.md`).
 
-## Game rules and scope
+## Answered
 
-- Is the hardest raid minimum six or eight players, and what is its cap? Can smaller groups enter easier content? How do synchronization and recovery work?
-- Which movement actions are core versus mount/powerup/gear abilities? What measurable reference behaviors are wanted from SMW study?
-- How will the base-moveset completion requirement be demonstrated without making every route identical? What is fair gear advantage in competitive events?
-- Is there a skill tree? What stats, stacking limits, tradeoffs, and loadout restrictions exist?
-- Which region themes are launch priorities? How do shared overworlds connect to instances and races?
-- What is persisted initially: position, inventory, unlocks, loadouts, level records, friendships?
+### Answered by Anthony (2026-09-30, CONFIRMED)
 
-## Community and economy
+- Wolf mount? **No.** Roster is frog, dinosaur, flying dinosaur, cheetah; more animals later but no wolf planned.
+- Difficulty? **Challenging but not too difficult; mounts must not be hard to get.** See `docs/design/DIFFICULTY_PHILOSOPHY.md`.
+- Crouch and action buttons? **Yes, both** (six inputs).
+- Skill model? **Both** points tree and mastery-by-use, **free respecs**.
+- Raid size? **8 players**; smaller co-op rooms for 2 to 4.
+- Character creator faces? Add front/three-quarter preview views, evaluate; side-view faces stay in gameplay. Launch equipment counts delegated to Claude.
+- Third-party assets/mocap? **None; strictly original.**
+- Open-source license? **Yes**: MIT for code; CC BY-NC-SA 4.0 for art, music, content, docs; name and logo reserved.
 
-- What editor/upload format is supported? How are impossible, abusive, infringing, or unsafe levels rejected? Who can publish, select, appeal, or remove them?
-- Does weekly selection use AI, humans, or a hybrid? What are the eligibility and featured-reward rules?
-- Direct trade, offline listings, or both? How will atomic exchange, duplication prevention, scams, and rollback be handled?
-- What currencies, sinks, crafting, equipment rarity, and item sources exist?
-- Is paid power allowed? What precisely do support tiers and community goals promise?
-- How are downloads/players and early-player eligibility defined for hypothetical reward milestones? How are privacy and supporter-name consent handled?
-- What casino activities fit the game? No real-money gambling has been specified.
+### Delegated to Claude (ACCEPTED-DELEGATED, 2026-09-30)
 
-## Production and operations
+- Fair-play rulesets (Open/Standard/Classic, Classic normalized); coyote/buffer in base; failure and checkpoints (instant retry, checkpoints, raids by segment); mount acquisition (friendly questline, free, never sold); required mount gates always have an alternate or loaner; no paid power; trading (atomic direct trade first); persistence first (look, unlocks, loadouts; guest then link); overworld (channels plus instances); gear power cap (Movement Budget); editor v1 tile-only with hybrid weekly pick; first content slice (Grassland, Caves, Factory); input devices (keyboard, then gamepad; no touch at launch); equipment launch counts.
 
-- Account identity, browser/Steam linking, privacy, chat safety, permissions, anti-cheat, abuse reports, and age/audience expectations?
-- Expected initial concurrency, hosting budget, operational responsibilities, and performance targets?
-- Art pipeline, native pixel resolution, animation standards, asset licenses, and name/rights review?
-- How should Claude and other models divide work and preserve a shared source of truth?
+### Earlier answers (see `DECISIONS.md`)
 
-## Mounts and exploration (added 2026-09-30)
-
-- Was "wolves" an extra mount or a voice artifact? What is the full mount wishlist beyond frog, dinosaur, flying dinosaur, cheetah?
-- How are mounts obtained (quests, secrets, shop, level-ups)? Summon cooldown/stamina/mount health? Are mounts allowed in raids, races, events, leaderboards?
-- Can mounts carry passengers or take part in player bounces?
-- How strict are mount gates: optional secrets only, or also required progression with alternate routes?
-- Map/discovery UI, zone graph, secret tracking, and Easter-egg framework scope?
+- First proof: shared multiplayer movement playground. Stack: TypeScript end to end. Netcode: prediction + server authority + reconciliation, physical player collision.
+- Art pipeline: hand-authored layered pixel art; Blender as helper only.
+- Model division of labor: Claude as head of development with disjoint-ownership sub-agents.

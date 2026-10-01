@@ -5,7 +5,9 @@ Status legend: **Confirmed** = Anthony's words (2026-09-30). **Proposal** = Clau
 ## Confirmed
 
 - Rideable mounts are not one creature. They are many different animals, each doing different things.
-- Starting roster: **frog**, **dinosaur**, **flying dinosaur**, **cheetah**. (Voice note said "First, wolves"; read as "first, [the following]". A wolf may be a later or extra mount. Unconfirmed.)
+- Roster: **frog**, **dinosaur**, **flying dinosaur**, **cheetah**. More animals may come later, but **no wolf is planned** (Anthony, 2026-09-30: the "wolves" in the voice note was not an intended mount).
+- **Difficulty (2026-09-30, [CONFIRMED]):** getting mounts must not be too difficult. See `DIFFICULTY_PHILOSOPHY.md`. Mounts are obtainable with moderate effort by an average player: no brutal gates, never behind raids.
+- The **Action/Activate button** (confirmed 2026-09-30) summons and dismounts mounts and triggers the mount's signature ability.
 - Players can **summon** a mount in the open world **anytime** they want.
 - Some levels and some open-world areas **require** a specific mount (example given: a frog is needed to pass a certain part of the open world).
 - The open world has **Metroidvania-style exploration**: secrets, other hidden content, and Easter eggs to find, gated by abilities/mounts.
@@ -23,11 +25,25 @@ Status legend: **Confirmed** = Anthony's words (2026-09-30). **Proposal** = Clau
 Design guardrails worth keeping:
 - Mounts add abilities on top of the base moveset; base movement must still make hard content possible (brief). Mount-gated areas are optional secrets or named alternative routes, so the main path never hard-locks a player who lacks a mount without a way to obtain it.
 - Every mount gate should be visually telegraphed (shape of the obstacle hints at the mount).
-- Summon cost/cooldown, stamina, mount health, where mounts are allowed (raids? races? events?) and whether mounts are unlocked via quests, secrets or shop are open questions.
+- Summon cost/cooldown, stamina, mount health and where mounts are allowed (raids? races? events?) are open questions. (Acquisition is decided: friendly quests, see below.)
 - Co-op: mounts can carry a passenger? Mount stomp-bounce rules? Undecided.
 - Fairness: mounts in competitive events/leaderboards need separate rules (see normalized leaderboards proposal).
 
-Further proposals (see `GAME_DESIGN_DOCUMENT.md` section 5; not accepted): acquisition through exploration quests, free and never sold or in the skill tree; per-level mount policy `none | loaner | free`; gate fairness rules G1-G8; frog "tongue" reframed as an anchor tether (avoid Yoshi-like enemy eating).
+Further decisions (see `GAME_DESIGN_DOCUMENT.md` section 5):
+
+**Acquisition [ACCEPTED-DELEGATED 2026-09-30, implements the confirmed "not too difficult" rule]:**
+- Each mount is earned through a **short, friendly, non-punishing questline** in its home region (about 3 stages, about 15 to 45 minutes total), solo-doable by an average player with the base moveset.
+- Free, permanent, never sold, never in the skill tree, **never behind raid or brutal content**, no grind, no trade or consumable required.
+- Checkpoints before every stage, instant retry, hints and stuck-nudges, optional assists (see `DIFFICULTY_PHILOSOPHY.md`).
+- Each mount may offer **optional hard cosmetic/bonus challenges** (alternate coats, titles, a bonus time trial). These grant recognition only, never power.
+- Release gate: no mount ships until at least 9 of 10 average-skill playtesters finish its questline unassisted within the target time.
+- The frog questline is early (starter region), so the confirmed frog gate is not a long wait.
+
+**Gates:** every required-path mount gate has a loaner mount or alternate route (G1); the mount is obtainable before it is required (G2); added **G9**: mount acquisition itself is never gated behind content harder than the T2 tier.
+
+Per-level mount policy `none | loaner | free`; frog "tongue" reframed as an anchor tether (avoid Yoshi-like enemy eating) remain proposals (not yet accepted).
+
+Still open: summon cooldown/stamina, mount health, passengers, mounts in races (GDD section 5.3).
 
 ## Engineering implications (for later milestones)
 
