@@ -34,6 +34,12 @@ No wolf mount; challenging-but-fair, mounts easy to obtain; crouch + action butt
 In flight (agents): (1) docs/decisions alignment, (2) Milestone 3 sim layer: crouch/action inputs, checkpoints, enemies, pickups, switches/doors, 'Twin Plates' co-op room, protocol v3, (3) controller support in apps/client (gamepad layer, remap UI, glyphs, rumble, pad-debug overlay).
 TODO after they land: client integration of M3 entities/crouch/action rendering with the existing art (enemies, shards, doors, plates, checkpoint flags, HUD), hero face front view in creator, restart server on 8080 after sim changes, re-run audit, push; real-controller test by Anthony via `?pad=debug`.
 
+## Milestone 3 status (2026-10-01)
+
+Done and committed: crouch/action inputs, one-way platforms, spikes, checkpoints, shards, enemies, levers, plates, doors, 'Twin Plates' co-op room (`SBH_LEVEL=coopRoom` for the server), protocol v3, controller support, gameplay-object art, client integration with HUD/prompts/enemy sprites. 241 tests pass.
+Known issues / next polish: no dedicated hero crouch frame (uses land squash), lever art low contrast, idle flag too grey, ACTION prompt overlaps name tag, enemy hitbox 14px vs bigger sprite, spikes read too white, open-gate frame abstract; stomp kills not predicted (50 ms hitch). One-off Windows vitest worker crash (exit 3221226505) seen once under heavy load; not reproducible in 4 reruns — re-check if it recurs.
+Next milestones: front-facing hero face/portrait in creator, 8-player raid prototype room, mount prototype (frog) as proposal-labelled, hosting research for online play, real-controller test by Anthony via `?pad=debug`.
+
 ## Waiting on Anthony (do NOT ask until he says everything is done)
 
 Anthony said (2026-09-30): he will provide these once everything is completely done, so keep building and do not nag: monetization model/prices/supporter terms/community-goal promises; early-player and download rewards and launch dates; casino mechanics beyond no-real-money-gambling; login provider, privacy, age band, chat posture (default stays quick-chat only); moderation policy and terms of service for uploaded levels; final title + legal clearance; character and currency names; whether to keep CC BY-NC-SA art once monetization is approved. Work around them with placeholders and the delegated defaults in DECISIONS.md.

@@ -49,6 +49,14 @@ const URLS = byName(urlGlob);
 const JSONS = byName(jsonGlob);
 
 const CHUNK_COLS = 16;
+
+/** Tiles the terrain tileset knows. One-way platforms, spikes and doors are drawn by WorldObjects instead. */
+const TERRAIN = new Set(['#', 'B', '/', '\\']);
+
+/** A level view containing only terrain tiles, so the autotiler/decorator never turn '-', '^' or 'D' into ground. */
+export function terrainLevel(level: Level): Level {
+  return { ...level, tiles: level.tiles.map((row) => Array.from(row, (ch) => (TERRAIN.has(ch) ? ch : '.')).join('')) };
+}
 /** bounce pad: [frame, duration ms] then rest (TILE_ANIMS.bounce @60Hz: compress 3t, release 5t, settle 3t) */
 const BOUNCE_SEQ: [string, number][] = [
   ['bounce1', 50],
@@ -156,7 +164,8 @@ export class WorldArt {
     });
 
     // ---- tiles: bake 16-column chunks; animated tiles stay live sprites ----
-    const grid = autotile(level);
+    const terrain = terrainLevel(level);
+    const grid = autotile(terrain);
     const atlas: Record<string, Texture> = {};
     for (const id in tilesJson.tiles) atlas[id] = this.sub(tilesTex, tilesJson.tiles[id]);
     for (const id of ['bounce0', 'bounce1', 'bounce2']) this.bounceTex[id] = atlas[id];
@@ -199,7 +208,7 @@ export class WorldArt {
     const back: PropInst[] = [];
     const frontWater: PropInst[] = [];
     const front: PropInst[] = [];
-    for (const p of decorate(level, region)) {
+    for (const p of decorate(terrain, region)) {
       const d = defs[p.prop];
       if (!d) continue;
       const frames = d.frames.map(frameTex);

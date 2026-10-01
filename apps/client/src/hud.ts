@@ -34,10 +34,11 @@ export class Hud {
     const f = (n: number) => n.toFixed(2);
     this.el.textContent = [
       `fps ${this.fps.toFixed(0)}  ping ${this.net.ping.toFixed(0)}ms`,
-      `server tick ${g.serverTick}  players ${g.playerCount}`,
+      `level ${g.levelName}  server tick ${g.serverTick}  players ${g.playerCount}`,
       me ? `pos ${f(me.x)}, ${f(me.y)}` : 'pos -',
       me ? `vx ${f(me.vx)}  vy ${f(me.vy)}  ground ${me.onGround}` : '',
-      `pending ${g.pending.length}  corrections ${g.corrections}`,
+      `pending ${g.pending.length}  corrections ${g.corrections}  snaps ${g.snaps}`,
+      me ? `shards ${me.shards}  flag ${me.checkpoint}  deaths ${me.deaths}  invuln ${me.invuln}  crouch ${me.crouching}` : '',
       this.extra(),
       `sim lag ${this.net.opts.lagMs}ms  loss ${this.net.opts.lossPct}%`,
     ]

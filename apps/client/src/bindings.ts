@@ -2,15 +2,14 @@
 import { BTN } from '@sbh/sim';
 import type { PadTracker } from './gamepad';
 
-const B = BTN as unknown as Record<string, number | undefined>;
-/** The 6-bit input mask the sim understands. CROUCH/ACTION fall back to local values until @sbh/sim defines them. */
+/** The 6-bit input mask the sim understands (BTN_MASK = 63). */
 export const BIT = {
   LEFT: BTN.LEFT,
   RIGHT: BTN.RIGHT,
   JUMP: BTN.JUMP,
   RUN: BTN.RUN,
-  CROUCH: B.CROUCH ?? 16, // matches @sbh/sim BTN once merged
-  ACTION: B.ACTION ?? 32, // matches @sbh/sim BTN once merged
+  CROUCH: BTN.CROUCH,
+  ACTION: BTN.ACTION,
 } as const;
 
 export type ActionId = 'left' | 'right' | 'jump' | 'run' | 'crouch' | 'action' | 'creator' | 'menu';

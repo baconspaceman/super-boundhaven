@@ -59,6 +59,12 @@ export class Motion {
   private flashMs = 0;
   private running = false;
   private facing = 1;
+  private forceRespawn = false;
+
+  /** The respawn counter changed: show the respawn flash and emit a 'respawn' event on the next update (once). */
+  markRespawn(): void {
+    this.forceRespawn = true;
+  }
 
   /** The attacker's stomp-bounce: show the spin pose. */
   markStomp(): void {
@@ -76,8 +82,10 @@ export class Motion {
     const p = this.prev;
     this.facing = s.facing >= 0 ? 1 : -1;
 
+    const forced = this.forceRespawn;
+    this.forceRespawn = false;
     if (p) {
-      const teleport = Math.hypot(s.x - p.x, s.y - p.y) > TELEPORT_PX && s.vy === 0 && s.vx === 0;
+      const teleport = forced || (Math.hypot(s.x - p.x, s.y - p.y) > TELEPORT_PX && s.vy === 0 && s.vx === 0);
       if (teleport) {
         this.flashMs = RESPAWN_FLASH_MS;
         this.landMs = this.stompMs = this.hurtMs = 0;
@@ -98,6 +106,10 @@ export class Motion {
         if (skidding && this.skidMs <= 0) events.push({ k: 'skid' });
         if (skidding) this.skidMs = SKID_HOLD_MS;
       }
+    }
+    else if (forced) {
+      this.flashMs = RESPAWN_FLASH_MS;
+      events.push({ k: 'respawn' });
     }
     this.prev = { ...s };
 

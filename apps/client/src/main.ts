@@ -6,6 +6,8 @@ import { ControlsHint, ControlsScreen, PadDebug, PauseMenu } from './controls-ui
 import { Input } from './input';
 import { Net } from './net';
 import { Renderer } from './render';
+import { ActionPrompt } from './action-prompt';
+import { LocalWatch, leverInReach } from './scene-logic';
 import { EventDeriver, Rumble, gameEvents } from './rumble';
 import { UiNav, cycleTabs } from './ui-nav';
 import { REGIONS, isRegion, type RegionId } from './world-art';
@@ -45,6 +47,8 @@ const rumble = new Rumble(
 );
 rumble.attach();
 const deriver = new EventDeriver();
+const watch = new LocalWatch();
+const prompt = new ActionPrompt(input);
 const regionParam = params.get('region');
 const todParam = params.get('tod');
 const initialTod: TodId | null = isTod(todParam) ? todParam : null;
@@ -125,9 +129,12 @@ net.onStatus = (up) => {
 };
 net.onMessage = (m) => {
   switch (m.t) {
-    case 'welcome':
+    case 'welcome': {
       joined = true;
-      game.welcome(m.id);
+      const prevId = game.myId;
+      const levelChanged = game.welcome(m.id, m.level);
+      if (levelChanged || m.id !== prevId) watch.reset();
+      if (levelChanged) void renderer.setLevel(game.level);
       game.setLook(m.id, m.look);
       tryStore.set(LOOK_KEY, m.look);
       creator.close();
@@ -135,11 +142,12 @@ net.onMessage = (m) => {
       banner.style.display = 'none';
       hint.showFirstTime();
       break;
+    }
     case 'look':
       game.setLook(m.id, m.look);
       break;
     case 'snap':
-      game.onSnapshot(m.tick, m.players, performance.now());
+      game.onSnapshot(m.tick, m.players, performance.now(), m.world);
       break;
     case 'error':
       if (joined) showToast(m.message);
@@ -283,10 +291,27 @@ function frame(now: number): void {
     const seq = game.tick(buttons);
     if (seq !== null) {
       net.send({ t: 'input', seq, buttons });
+      // respawn counter / shard pickups first (hurt rumble wins the 60 ms debounce), then the motion heuristics
+      const ev = watch.observe(game.me, game.level);
+      if (ev.respawned) gameEvents.emit('hurt');
+      for (const id of ev.shards) {
+        gameEvents.emit('shard');
+        renderer.spawnShardGet(id);
+      }
       deriver.observe(game.me); // land / bounce / stomp / respawn -> rumble + window.__sbh.events
     }
   }
-  renderer.draw(game.drawables(now), game.me ? { x: game.me.x + game.errX } : null);
+  renderer.draw(game.drawables(now), game.me ? { x: game.me.x + game.errX } : null, {
+    level: game.level,
+    view: game.view,
+    me: game.me,
+    connected: game.connectedCount(),
+  });
+  for (const ev of renderer.events.splice(0)) {
+    if (ev.k === 'door' && ev.e === 'opened' && game.me && Math.abs(ev.x - game.me.x) < 192) gameEvents.emit('door');
+  }
+  const lever = joined && !input.captured ? leverInReach(game.level, game.me) : null;
+  prompt.update(lever ? renderer.worldToScreen(lever.col * 16 + 8, lever.row * 16 - 4) : null, lever?.reset ? 'Reset room' : 'Pull');
   hud.frame(now);
   requestAnimationFrame(frame);
 }
@@ -306,6 +331,8 @@ function frame(now: number): void {
   openEdit,
   params: Object.fromEntries(params),
   renderer,
+  watch,
+  prompt,
   setRegion: (id: RegionId) => renderer.setRegion(id),
   setTimeOfDay: (id: TodId | null) => renderer.setTimeOfDay(id),
   setTodPaused: (p: boolean) => renderer.setTodPaused(p),

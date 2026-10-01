@@ -146,6 +146,12 @@ export class FxLayer {
     }
   }
 
+  /** The frame textures of an FX animation (shared with fallbacks for object art). */
+  framesOf(anim: string): Texture[] {
+    const d = FX_ANIMS[anim];
+    return d ? d.frames.map((n) => this.tex[n]) : [];
+  }
+
   /** Spawn at world (x, y). Anchor is bottom-center when `ground`, else centered. */
   spawn(anim: string, x: number, y: number, opts: { ground?: boolean; flipX?: boolean } = {}): void {
     const def = FX_ANIMS[anim];

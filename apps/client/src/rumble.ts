@@ -5,7 +5,7 @@
 // player's state transitions (heuristics tuned to MOVEMENT in @sbh/sim: jumpVel 5.2, stompVel 4.6, padVel 6.6).
 import type { PadLike } from './gamepad';
 
-export type GameEventName = 'land' | 'stomp' | 'bounce' | 'hurt' | 'respawn';
+export type GameEventName = 'land' | 'stomp' | 'bounce' | 'hurt' | 'respawn' | 'shard' | 'door';
 
 export class GameEvents {
   private subs = new Map<string, Set<(name: GameEventName, detail?: unknown) => void>>();
@@ -80,6 +80,8 @@ export const PRESETS: Record<GameEventName, RumblePreset> = {
   bounce: { duration: 110, weak: 0.6, strong: 0.5 },
   hurt: { duration: 260, weak: 0.7, strong: 0.9 },
   respawn: { duration: 160, weak: 0.3, strong: 0.5 },
+  shard: { duration: 40, weak: 0.3, strong: 0.1 }, // tiny tick on pickup
+  door: { duration: 130, weak: 0.15, strong: 0.3 }, // soft thump when a gate opens
 };
 
 interface Actuator {

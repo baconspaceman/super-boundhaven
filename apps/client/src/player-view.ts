@@ -5,6 +5,7 @@ import { Container, Sprite, type Texture } from 'pixi.js';
 import { HERO_ANIMS, HERO_H } from './art';
 import type { Drawable } from './game';
 import { Motion, type MotionEvent } from './motion';
+import { deathsIncreased, flickerDim } from './scene-logic';
 import { makeLabel, type FxLayer, type Label, type LookLibrary, type LookTextures } from './sprites';
 
 /** One on-screen player. Swap `makePlayerView` (render.ts) to plug in another renderer. */
@@ -35,6 +36,10 @@ const LABEL_GAP = 2; // px between the head top and the name tag
 const HEAD_TOP = 1; // first opaque sprite row; the tag sits above it
 const NAME_COLOR = '#f6f3ff';
 const SELF_COLOR = '#ffd84a';
+const AWAY_COLOR = '#e4eeff';
+const AWAY_ALPHA = 0.5;
+const AWAY_TINT = 0xaec6ff;
+const CROUCH_FRAME = HERO_ANIMS.land.frames[0]; // no dedicated crouch frame yet: the deep land squash reads as a crouch
 
 export class SpritePlayerView implements PlayerView {
   root = new Container();
@@ -48,6 +53,9 @@ export class SpritePlayerView implements PlayerView {
   private lookCode: string;
   private labelName = '';
   private labelData: Label | null = null;
+  private tag = new Sprite();
+  private tagData: Label | null = null;
+  private lastDeaths: number | undefined;
 
   constructor(
     d: Drawable,
@@ -60,7 +68,9 @@ export class SpritePlayerView implements PlayerView {
     this.body.anchor.set(0.5, 1);
     this.label.anchor.set(0.5, 1);
     this.label.y = -(HERO_H - HEAD_TOP + LABEL_GAP);
-    this.root.addChild(this.shadow, this.body, this.label);
+    this.tag.anchor.set(0.5, 1);
+    this.tag.visible = false;
+    this.root.addChild(this.shadow, this.body, this.label, this.tag);
     if (d.local) {
       this.arrow = new Sprite(ctx.arrowTex);
       this.arrow.anchor.set(0.5, 1);
@@ -79,10 +89,21 @@ export class SpritePlayerView implements PlayerView {
     if (this.arrow) this.arrow.y = this.label.y - this.labelData.h + 1;
   }
 
+  /** "reconnecting" tag above the name for held-but-disconnected players. */
+  private setTag(on: boolean): void {
+    this.tag.visible = on;
+    if (!on || this.tagData) return;
+    this.tagData = makeLabel('reconnecting...', AWAY_COLOR);
+    this.tag.texture = this.tagData.tex;
+    this.tag.y = this.label.y - (this.labelData?.h ?? 8) + 1;
+  }
+
   destroy(): void {
     this.ctx.looks.release(this.lookCode);
     this.labelData?.tex.destroy(true);
     this.labelData = null;
+    this.tagData?.tex.destroy(true);
+    this.tagData = null;
     this.root.destroy({ children: true });
   }
 
@@ -101,10 +122,16 @@ export class SpritePlayerView implements PlayerView {
       this.lookCode = d.look;
     }
     this.setLabel(d.name, d.local);
+    const ghost = d.away || !d.connected;
+    this.setTag(ghost);
+    if (deathsIncreased(this.lastDeaths, d.deaths)) this.motion.markRespawn();
+    this.lastDeaths = d.deaths;
 
     const out = this.motion.update(now, d);
     this.events = out.events;
-    const name = HERO_ANIMS[out.anim].frames[out.frame];
+    let name = HERO_ANIMS[out.anim].frames[out.frame];
+    // crouch pose (hitbox is 16 tall): not while hurt/flashing/stomp-spinning
+    if (d.crouching && out.anim !== 'respawn' && out.anim !== 'hurt' && out.anim !== 'stomp') name = CROUCH_FRAME;
     this.body.texture = this.set.frames[name] ?? this.set.frames['hero/idle_0'];
     this.body.scale.x = out.flip ? -1 : 1;
 
@@ -117,7 +144,7 @@ export class SpritePlayerView implements PlayerView {
         else if (e.impact >= 1.2) this.ctx.fx.spawn('dust', x, y, { ground: true });
       } else if (e.k === 'skid') this.ctx.fx.spawn('dust', x - dir * 5, y, { ground: true, flipX: dir > 0 });
       else if (e.k === 'runstart') this.ctx.fx.spawn('dust', x - dir * 6, y, { ground: true, flipX: dir > 0 });
-      else if (e.k === 'respawn') this.ctx.fx.spawn('poof', x, y - 12);
+      else if (e.k === 'respawn' && !ghost) this.ctx.fx.spawn('poof', x, y - 12);
     }
 
     // blob shadow on the floor below; shrinks and fades with height
@@ -132,9 +159,10 @@ export class SpritePlayerView implements PlayerView {
       this.shadow.alpha = 0.85 * k;
     }
 
-    // dim when offline; respawn flash strobes
-    let alpha = d.connected ? 1 : 0.4;
-    if (out.flash && Math.floor(now / 70) % 2 === 0) alpha *= 0.55;
+    // away/offline players are translucent ghosts; invulnerability (after a respawn) strobes
+    let alpha = ghost ? AWAY_ALPHA : 1;
+    if (flickerDim(d.invuln, now)) alpha *= 0.45;
     this.root.alpha = alpha;
+    this.body.tint = ghost ? AWAY_TINT : 0xffffff;
   }
 }
