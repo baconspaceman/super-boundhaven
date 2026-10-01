@@ -1,0 +1,389 @@
+{
+  "image": "world_objects_meadow_sunset.png",
+  "width": 254,
+  "height": 99,
+  "frames": {
+    "obj/oneway_l": {
+      "x": 0,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/oneway_m": {
+      "x": 17,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/oneway_r": {
+      "x": 34,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/spike": {
+      "x": 51,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/spike_1": {
+      "x": 68,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_cap": {
+      "x": 85,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_mid": {
+      "x": 102,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_base": {
+      "x": 119,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_open_cap": {
+      "x": 136,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_open_0": {
+      "x": 153,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_open_1": {
+      "x": 170,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_open_2": {
+      "x": 187,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/door_open_3": {
+      "x": 204,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/plate_up": {
+      "x": 221,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/plate_down": {
+      "x": 238,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "obj/plate_glow_0": {
+      "x": 0,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/plate_glow_1": {
+      "x": 17,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/plate_glow_2": {
+      "x": 34,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/plate_glow_3": {
+      "x": 51,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_off": {
+      "x": 68,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_on": {
+      "x": 85,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_timer_0": {
+      "x": 102,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_timer_1": {
+      "x": 119,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_timer_2": {
+      "x": 136,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_timer_3": {
+      "x": 153,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_timer_4": {
+      "x": 170,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_timer_5": {
+      "x": 187,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/lever_reset": {
+      "x": 204,
+      "y": 17,
+      "w": 16,
+      "h": 16
+    },
+    "obj/flag_idle_0": {
+      "x": 221,
+      "y": 17,
+      "w": 16,
+      "h": 32
+    },
+    "obj/flag_idle_1": {
+      "x": 238,
+      "y": 17,
+      "w": 16,
+      "h": 32
+    },
+    "obj/flag_idle_2": {
+      "x": 0,
+      "y": 50,
+      "w": 16,
+      "h": 32
+    },
+    "obj/flag_idle_3": {
+      "x": 17,
+      "y": 50,
+      "w": 16,
+      "h": 32
+    },
+    "obj/flag_active_0": {
+      "x": 34,
+      "y": 50,
+      "w": 16,
+      "h": 32
+    },
+    "obj/flag_active_1": {
+      "x": 51,
+      "y": 50,
+      "w": 16,
+      "h": 32
+    },
+    "obj/flag_active_2": {
+      "x": 68,
+      "y": 50,
+      "w": 16,
+      "h": 32
+    },
+    "obj/flag_active_3": {
+      "x": 85,
+      "y": 50,
+      "w": 16,
+      "h": 32
+    },
+    "obj/shard_pickup_0": {
+      "x": 102,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_pickup_1": {
+      "x": 119,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_pickup_2": {
+      "x": 136,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_pickup_3": {
+      "x": 153,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_pickup_4": {
+      "x": 170,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_pickup_5": {
+      "x": 187,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_get_0": {
+      "x": 204,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_get_1": {
+      "x": 221,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_get_2": {
+      "x": 238,
+      "y": 50,
+      "w": 16,
+      "h": 16
+    },
+    "obj/shard_get_3": {
+      "x": 0,
+      "y": 83,
+      "w": 16,
+      "h": 16
+    },
+    "obj/link_dot_0": {
+      "x": 17,
+      "y": 83,
+      "w": 4,
+      "h": 4
+    },
+    "obj/link_dot_1": {
+      "x": 22,
+      "y": 83,
+      "w": 4,
+      "h": 4
+    }
+  },
+  "anims": {
+    "flag_idle": {
+      "frames": [
+        "obj/flag_idle_0",
+        "obj/flag_idle_1",
+        "obj/flag_idle_2",
+        "obj/flag_idle_3"
+      ],
+      "fps": 6,
+      "loop": true
+    },
+    "flag_active": {
+      "frames": [
+        "obj/flag_active_0",
+        "obj/flag_active_1",
+        "obj/flag_active_2",
+        "obj/flag_active_3"
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "shard_spin": {
+      "frames": [
+        "obj/shard_pickup_0",
+        "obj/shard_pickup_1",
+        "obj/shard_pickup_2",
+        "obj/shard_pickup_3",
+        "obj/shard_pickup_4",
+        "obj/shard_pickup_5"
+      ],
+      "fps": 10,
+      "loop": true
+    },
+    "shard_get": {
+      "frames": [
+        "obj/shard_get_0",
+        "obj/shard_get_1",
+        "obj/shard_get_2",
+        "obj/shard_get_3"
+      ],
+      "fps": 16,
+      "loop": false
+    },
+    "door_open": {
+      "frames": [
+        "obj/door_open_0",
+        "obj/door_open_1",
+        "obj/door_open_2",
+        "obj/door_open_3"
+      ],
+      "fps": 6,
+      "loop": true
+    },
+    "plate_glow": {
+      "frames": [
+        "obj/plate_glow_0",
+        "obj/plate_glow_1",
+        "obj/plate_glow_2",
+        "obj/plate_glow_3"
+      ],
+      "fps": 9,
+      "loop": true
+    },
+    "lever_timer": {
+      "frames": [
+        "obj/lever_timer_0",
+        "obj/lever_timer_1",
+        "obj/lever_timer_2",
+        "obj/lever_timer_3",
+        "obj/lever_timer_4",
+        "obj/lever_timer_5"
+      ],
+      "fps": 0,
+      "loop": false
+    },
+    "link_dot": {
+      "frames": [
+        "obj/link_dot_0",
+        "obj/link_dot_1"
+      ],
+      "fps": 4,
+      "loop": true
+    },
+    "spike_glint": {
+      "frames": [
+        "obj/spike",
+        "obj/spike",
+        "obj/spike",
+        "obj/spike_1"
+      ],
+      "fps": 3,
+      "loop": true
+    }
+  }
+}
