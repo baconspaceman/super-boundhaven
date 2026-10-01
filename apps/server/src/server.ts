@@ -7,13 +7,26 @@ import {
   MAX_NAME,
   PROTOCOL_VERSION,
   SNAPSHOT_EVERY,
+  SNAPSHOT_FULL_EVERY,
   SNAPSHOT_LOOK_EVERY,
+  createWorldEncoder,
   defaultLookCode,
   parseLookCode,
   type NetPlayer,
   type ServerMsg,
 } from '@sbh/protocol';
-import { BTN_MASK, PLAYGROUND, TICK_RATE, clonePlayer, createPlayer, createWorld, stepWorld, type World } from '@sbh/sim';
+import {
+  BTN_MASK,
+  DEFAULT_LEVEL,
+  TICK_RATE,
+  clonePlayer,
+  createPlayer,
+  createWorld,
+  getLevel,
+  stepWorld,
+  type Level,
+  type World,
+} from '@sbh/sim';
 
 export const MAX_PLAYERS = 16;
 const MAX_PAYLOAD = 1024;
@@ -30,12 +43,16 @@ export interface GameServerOptions {
   graceMs?: number; // how long a disconnected player is kept for token reattach
   waitlistFile?: string; // JSON-lines waitlist path (default: SBH_WAITLIST_FILE or apps/server/data/waitlist.jsonl)
   allowedOrigins?: string[]; // CORS allowlist (default: SBH_ALLOWED_ORIGINS or localhost dev origins)
+  levelName?: string; // key of sim LEVELS (default: 'playground'); unknown names reject
+  maxPlayers?: number; // capped at MAX_PLAYERS; default = the level's room.maxPlayers or MAX_PLAYERS
 }
 
 export interface GameServer {
   wss: WebSocketServer;
   port: number;
   world: World;
+  level: Level;
+  maxPlayers: number;
   close(): Promise<void>;
 }
 
@@ -51,6 +68,7 @@ interface Session {
   buttons: number; // last applied, reused when the queue runs dry
   ack: number;
   dropTimer: NodeJS.Timeout | null;
+  needFull: boolean; // next snapshot must carry the full world state (new or re-attached client)
 }
 
 const toInt = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? Math.trunc(v) : null);
@@ -68,7 +86,11 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
   const tickRate = opts.tickRate ?? TICK_RATE;
   const graceMs = opts.graceMs ?? 10_000;
   const stepMs = 1000 / tickRate;
-  const world = createWorld();
+  const level = getLevel(opts.levelName ?? DEFAULT_LEVEL);
+  if (!level) throw new Error(`unknown level: ${opts.levelName}`);
+  const maxPlayers = Math.max(1, Math.min(MAX_PLAYERS, opts.maxPlayers ?? level.room.maxPlayers ?? MAX_PLAYERS));
+  const world = createWorld(level);
+  const encoder = createWorldEncoder();
   const sessions = new Map<number, Session>();
   const byToken = new Map<string, Session>();
   let nextId = 1;
@@ -92,8 +114,14 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
     if (i >= 0) world.players.splice(i, 1);
   };
 
+  const setAway = (id: number, away: boolean): void => {
+    const p = world.players.find((q) => q.id === id);
+    if (p) p.away = away; // an away body is inert: it releases plates and cannot be hurt, pushed or stomped
+  };
+
   const detach = (s: Session): void => {
     s.ws = null;
+    setAway(s.id, true);
     s.queue.length = 0;
     s.dropTimer = setTimeout(() => dropSession(s), graceMs);
   };
@@ -103,12 +131,14 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
     if (s) {
       if (s.dropTimer) clearTimeout(s.dropTimer);
       s.dropTimer = null;
+      s.needFull = true;
+      setAway(s.id, false);
       const old = s.ws;
       s.ws = ws;
       s.queue.length = 0;
       old?.close(); // stale socket; its close handler sees it no longer owns the session
     } else {
-      if (sessions.size >= MAX_PLAYERS) {
+      if (sessions.size >= maxPlayers) {
         send(ws, { t: 'error', message: 'server full' });
         ws.close();
         return null;
@@ -126,12 +156,13 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
         buttons: 0,
         ack: 0,
         dropTimer: null,
+        needFull: true,
       };
       sessions.set(id, s);
       byToken.set(s.token, s);
-      world.players.push(createPlayer(id, PLAYGROUND)); // ids are monotonic, so the array stays sorted
+      world.players.push(createPlayer(id, level)); // ids are monotonic, so the array stays sorted
     }
-    send(ws, { t: 'welcome', id: s.id, token: s.token, tick: world.tick, level: PLAYGROUND.name, look: s.look, v: PROTOCOL_VERSION });
+    send(ws, { t: 'welcome', id: s.id, token: s.token, tick: world.tick, level: level.name, look: s.look, v: PROTOCOL_VERSION });
     // roster backfill: the joiner learns everyone's look now; everyone learns the joiner's look
     for (const o of sessions.values()) {
       send(ws, { t: 'look', id: o.id, look: o.look });
@@ -196,15 +227,26 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
     });
   });
 
-  const broadcast = (withLooks: boolean): void => {
+  const broadcast = (withLooks: boolean, fullFrame: boolean): void => {
     const players: NetPlayer[] = world.players.map((p) => {
       const s = sessions.get(p.id)!;
       const np: NetPlayer = { id: p.id, name: s.name, ack: s.ack, connected: s.ws !== null, state: clonePlayer(p) };
       if (withLooks) np.look = s.look;
       return np;
     });
-    const json = JSON.stringify({ t: 'snap', tick: world.tick, players } satisfies ServerMsg);
-    for (const s of sessions.values()) send(s.ws, json);
+    const delta = encoder.delta(world);
+    const json = JSON.stringify({ t: 'snap', tick: world.tick, players, world: fullFrame ? encoder.full(world) : delta } satisfies ServerMsg);
+    let fullJson: string | null = null;
+    for (const s of sessions.values()) {
+      if (s.needFull && !fullFrame) {
+        // a client that missed earlier deltas gets complete state this frame
+        fullJson ??= JSON.stringify({ t: 'snap', tick: world.tick, players, world: encoder.full(world) } satisfies ServerMsg);
+        send(s.ws, fullJson);
+      } else {
+        send(s.ws, json);
+      }
+      if (s.ws) s.needFull = false;
+    }
   };
 
   let snapCount = 0;
@@ -218,10 +260,10 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
       } else if (!s.ws) s.buttons = 0;
       inputs[s.id] = s.buttons;
     }
-    stepWorld(PLAYGROUND, world, inputs);
+    stepWorld(level, world, inputs);
     if (world.tick % SNAPSHOT_EVERY === 0) {
       snapCount++;
-      broadcast(snapCount % SNAPSHOT_LOOK_EVERY === 0);
+      broadcast(snapCount % SNAPSHOT_LOOK_EVERY === 0, snapCount % SNAPSHOT_FULL_EVERY === 0);
     }
   };
 
@@ -241,6 +283,8 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
     wss,
     port: (httpServer.address() as AddressInfo).port,
     world,
+    level,
+    maxPlayers,
     close: () =>
       new Promise<void>((resolve) => {
         clearInterval(loop);

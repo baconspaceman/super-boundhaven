@@ -9,6 +9,9 @@ export const SCREEN_H = 224;
 export interface MovementConfig {
   halfWidth: number;
   height: number;
+  crouchHeight: number; // hitbox height while crouching
+  crouchMax: number; // ground speed cap while crouching (slow slide under 1-tile gaps)
+  dropTicks: number; // ticks one-way platforms are ignored after a drop-through
 
   walkMax: number;
   runMax: number;
@@ -42,6 +45,9 @@ export interface MovementConfig {
 export const MOVEMENT: MovementConfig = {
   halfWidth: 7,
   height: 28, // humanoid 24x32 sprite: ~28px body, a few px of transparent headroom
+  crouchHeight: 16, // fits a 1-tile gap
+  crouchMax: 0.9,
+  dropTicks: 8,
 
   walkMax: 1.4,
   runMax: 2.6,
@@ -71,3 +77,21 @@ export const MOVEMENT: MovementConfig = {
   slopeSnap: 4,
   slopeInset: 10, // > halfWidth + top speed, so the leading edge doesn't clip the next 45° step
 };
+
+/** Rules constants (gameplay, not movement feel). Shared client/server; change = protocol-visible. */
+export const RULES = {
+  invulnTicks: 90, // flicker after a respawn (hurt or pit)
+  actionReachX: 20, // px: horizontal reach of the ACTION button
+  actionReachY: 24, // px: vertical reach (body center to lever center)
+  enemyRespawnTicks: 600, // a stomped enemy returns after 10 s
+  walkerSpeed: 0.5,
+  flyerSpeed: 0.6,
+  enemyHalfWidth: 6,
+  enemyHeight: 14,
+  enemyGravity: 0.3,
+  enemyMaxFall: 4,
+  stompWindow: 12, // px the feet may be below an enemy's top and still stomp it
+  stompSlack: 6, // px the previous feet may be below the enemy top
+  /** Default per-room rules; levels override via meta.room. */
+  defaultRoom: { minPlayers: 1, soloResetTicks: 600, emptyResetTicks: 600 },
+} as const;
