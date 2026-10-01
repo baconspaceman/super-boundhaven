@@ -23,6 +23,11 @@ In flight when this was written (check `git status` and each folder; agents may 
 4. Research DONE: recommendation E+ (hand-authored final, Blender as helper) adopted as working plan; see DECISIONS.md. Owner questions pending.
 5. Master GDD (`docs/design/`): unified design doc incl. skill tree/abilities/mounts/gear, consistency audit, decision queue.
 
+## PUBLISHED (2026-09-30)
+
+Public repo: https://github.com/baconspaceman/super-boundhaven (single clean root commit; author uses the GitHub no-reply email). Pages: https://baconspaceman.github.io/super-boundhaven/ (site), `/docs/` (docs portal), `/play/` (client; creator works offline, no hosted game server yet). `git push` to `main` auto-deploys via `.github/workflows/pages.yml` (runs tests first). The pre-publish audit (`node tools/audit/prepublish.mjs`) must show 0 FAIL before every push. The full private development history lives OUTSIDE the repo in `../sbh-private-history-2026-09-30.bundle` (contains old local paths and private-project mentions; never push it). License: none chosen, so all rights reserved; ask Anthony if he wants an open-source license.
+The project is ongoing and open-ended: keep iterating on the roadmap below; republish after meaningful milestones.
+
 ## Progress log (2026-09-30, later)
 
 Committed: world art (meadow / meadow_sunset / caverns) rendered in the client with region switcher; layered humanoid character system + enemies + 4 mounts + effects + font (packages/art/src/characters); Blender time-of-day backgrounds (dawn/day/sunset/night, 9 layers each) and 20 pre-rendered props (packages/art/assets/blender, manifest in packages/art/src/blender); Blender-to-2D research (hand-authored layers remain the final look); master GDD.
@@ -37,7 +42,7 @@ TODO next: hook Blender time-of-day scenes into the client (`?tod=dawn|day|sunse
 4. **Swap the site** (`apps/site`) to the real art (hero, regions, reel) and update copy to match the GDD consistency audit.
 5. **Align docs** with the GDD decision queue; update `DECISIONS.md` only with Anthony-accepted items.
 6. **Mount prototype** (frog first) per `docs/design/MOUNTS_AND_EXPLORATION.md` only after steps 1-3 and only as a proposal-labelled prototype unless Anthony accepted the mechanics.
-7. **FINAL: public GitHub presence (Anthony authorized on 2026-09-30: "make me a GitHub page for all of this, detailed out with everything, for me to always have it. Open the GitHub page to the public also.")** Do this only when steps 1-5 are done and tests pass:
+7. **DONE (see PUBLISHED above) — public GitHub presence (Anthony authorized on 2026-09-30: "make me a GitHub page for all of this, detailed out with everything, for me to always have it. Open the GitHub page to the public also.")** Do this only when steps 1-5 are done and tests pass:
    - Pre-publish audit: no secrets/tokens/.env files, no waitlist data, no personal email in files or git history (rewrite local unpublished history to the noreply author if needed), no ROMs/third-party copyrighted assets, license statement for assets/code (ask Anthony which license if not recorded; default to "all rights reserved" notice + no license file until he chooses), art provenance note, remove inert placeholder claims.
    - Create a public repo under `baconspaceman` named `super-boundhaven` with `gh`, push, enable GitHub Pages (GitHub Actions workflow building `apps/site` + a docs portal page listing GDD, decisions, art gallery/previews, roadmap, tech docs, prototype screenshots/GIFs). Pages must not promise dates/prices/rewards and must label proposals vs confirmed.
    - Report the public URLs to Anthony.
