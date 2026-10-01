@@ -13,7 +13,7 @@ Early prototype. Not a finished game. Everything below says plainly what exists 
 [Prototype (creator works offline)](https://baconspaceman.github.io/super-boundhaven/play/) ·
 [Feedback](https://github.com/baconspaceman/super-boundhaven/issues)
 
-`status: pre-alpha prototype` · `license: all rights reserved (for now)` · `stack: TypeScript, PixiJS, Node, WebSocket` · `art: original, procedural + hand-authored`
+`status: pre-alpha prototype` · `license: MIT (code) + CC BY-NC-SA 4.0 (art, content, docs)` · `stack: TypeScript, PixiJS, Node, WebSocket` · `art: original, procedural + hand-authored`
 
 </div>
 
@@ -210,4 +210,4 @@ Code contributions are **not being accepted yet**. Feedback, bug reports and ide
 
 ## License
 
-**All rights reserved for now.** The owner has not chosen a license. The code, art and documents are published for viewing and reference only; you may not copy, redistribute, or reuse them, or build derivative works, without permission. There is deliberately no `LICENSE` file; one will be added if and when the owner chooses it.
+Open source. **Code is MIT** (see [`LICENSE`](LICENSE)). **Art, characters, designs, lore and documentation are CC BY-NC-SA 4.0** (see [`LICENSE-ASSETS.md`](LICENSE-ASSETS.md) for exactly which files, and [`LICENSE-ASSETS.txt`](LICENSE-ASSETS.txt) for the full legal text): free to share and adapt with attribution, not for commercial use, adaptations share alike. The name and logo "Super BoundHaven" are not licensed for derivative products.

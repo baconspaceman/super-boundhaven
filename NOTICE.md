@@ -2,7 +2,7 @@
 
 ## Rights
 
-Super BoundHaven (SBH) is an independent project. **All rights reserved for now.** The owner has not chosen a license; the repository is published for viewing and reference only. No permission to copy, redistribute, modify or reuse the code, art, designs or documents is granted by their publication.
+Super BoundHaven (SBH) is an independent project. Code is MIT-licensed (`LICENSE`); art, characters, designs, lore and documents are CC BY-NC-SA 4.0 (`LICENSE-ASSETS.md`, `LICENSE-ASSETS.txt`). The name and logo are not licensed for derivative products.
 
 ## Trademarks and affiliation
 
