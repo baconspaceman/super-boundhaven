@@ -84,7 +84,7 @@ export class Creator {
   private raf = 0;
   private t0 = 0;
 
-  private el: HTMLElement;
+  readonly el: HTMLElement;
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
   private animName!: HTMLElement;
@@ -234,6 +234,7 @@ export class Creator {
     const rand = this.btn('Randomize');
     const reset = this.btn('Reset');
     this.cancelBtn = this.btn('Cancel');
+    this.cancelBtn.dataset.nav = 'back'; // gamepad B target (ui-nav)
     this.submitBtn = this.btn('Play', 'primary');
     actions.append(rand, reset, this.cancelBtn, this.submitBtn);
     this.status = this.h('div', { id: 'cc-status', class: 'cc-status', role: 'status' });

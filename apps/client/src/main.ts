@@ -2,9 +2,12 @@ import { decodeLook, encodeLook, randomLook } from './art';
 import { Creator } from './creator';
 import { Game } from './game';
 import { Hud } from './hud';
+import { ControlsHint, ControlsScreen, PadDebug, PauseMenu } from './controls-ui';
 import { Input } from './input';
 import { Net } from './net';
 import { Renderer } from './render';
+import { EventDeriver, Rumble, gameEvents } from './rumble';
+import { UiNav, cycleTabs } from './ui-nav';
 import { REGIONS, isRegion, type RegionId } from './world-art';
 import { TOD_ORDER, isTod, type TodId } from './tod-art';
 
@@ -36,6 +39,12 @@ const net = new Net({
 });
 const game = new Game();
 const input = new Input();
+const rumble = new Rumble(
+  () => input.pads.activeRaw,
+  () => input.store.cfg.settings.rumble,
+);
+rumble.attach();
+const deriver = new EventDeriver();
 const regionParam = params.get('region');
 const todParam = params.get('tod');
 const initialTod: TodId | null = isTod(todParam) ? todParam : null;
@@ -56,7 +65,7 @@ function cycleTod(dir: number): void {
   void renderer.setTimeOfDay(TOD_ORDER[(i + dir + TOD_ORDER.length) % TOD_ORDER.length]);
 }
 window.addEventListener('keydown', (e) => {
-  if (e.target instanceof HTMLInputElement || creator.isOpen) return;
+  if (e.target instanceof HTMLInputElement || creator.isOpen || input.captured) return;
   if (e.code === 'Comma') cycleTod(-1);
   else if (e.code === 'Period') cycleTod(1);
   if (e.code === 'BracketLeft') cycleRegion(-1);
@@ -124,6 +133,7 @@ net.onMessage = (m) => {
       creator.close();
       input.captured = false;
       banner.style.display = 'none';
+      hint.showFirstTime();
       break;
     case 'look':
       game.setLook(m.id, m.look);
@@ -179,11 +189,84 @@ function openEdit(): void {
   });
 }
 
-window.addEventListener('keydown', (e) => {
-  if (e.code !== 'KeyC' || e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
-  if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-  openEdit();
+// ---- controls: pause menu, remapping screen, hint, gamepad navigation of overlays ----------------
+const menu: PauseMenu = new PauseMenu({
+  input,
+  canEditLook: () => joined,
+  openCreator: () => openEdit(),
+  openControls: () => controls.open(),
+  cycleRegion: (d) => cycleRegion(d),
+  cycleTod: (d) => cycleTod(d),
+  regionLabel: () => renderer.region,
+  todLabel: () => renderer.todLabel,
 });
+const controls: ControlsScreen = new ControlsScreen(input, () => menu.controlsBtn.focus());
+const hint = new ControlsHint(input);
+const nav = new UiNav(input.pads, () => input.lastDevice === 'pad');
+const NAV_HINTS = [
+  { token: 'b0', text: 'Select' },
+  { token: 'b1', text: 'Back' },
+];
+nav.register({
+  id: 'creator',
+  root: creator.el,
+  isOpen: () => creator.isOpen,
+  priority: 10,
+  onBack: () => (creator.el.querySelector('[data-nav="back"]:not([hidden])') as HTMLElement | null)?.click(),
+  onTab: (d) => cycleTabs(creator.el, d),
+  hints: [...NAV_HINTS, { token: 'b4', text: 'Prev tab' }, { token: 'b5', text: 'Next tab' }, { token: 'b6', text: 'Option -' }, { token: 'b7', text: 'Option +' }],
+});
+nav.register({
+  id: 'menu',
+  root: menu.el,
+  isOpen: () => menu.isOpen,
+  priority: 20,
+  onBack: () => menu.close(),
+  startBack: true,
+  arrowKeys: true,
+  hints: [...NAV_HINTS, { token: 'b9', text: 'Resume' }],
+});
+nav.register({
+  id: 'controls',
+  root: controls.el,
+  isOpen: () => controls.isOpen,
+  priority: 30,
+  onBack: () => controls.back(),
+  arrowKeys: true,
+  busy: () => controls.busy,
+  hints: [...NAV_HINTS],
+});
+input.onTick.push((now) => {
+  nav.update(now);
+  controls.tick(now);
+});
+input.onSystem = (a) => {
+  if (a === 'menu') menu.open();
+  else if (a === 'creator') openEdit();
+};
+input.onDeviceChange = () => {
+  hint.refresh();
+  controls.refresh();
+};
+input.pads.onConnect = (p) => {
+  showToast(`Controller connected: ${p.name}`);
+  controls.refresh();
+  hint.refresh();
+};
+input.pads.onDisconnect = (p) => {
+  input.releaseAll();
+  showToast(`Controller disconnected: ${p.name}`);
+  controls.refresh();
+  hint.refresh();
+};
+input.pads.onActiveChange = () => {
+  controls.refresh();
+  hint.refresh();
+};
+if (params.get('pad') === 'debug') {
+  const dbg = new PadDebug(input);
+  input.onTick.push(() => dbg.tick());
+}
 
 let acc = 0;
 let last = performance.now();
@@ -194,10 +277,14 @@ function frame(now: number): void {
   acc += dt;
   while (acc >= STEP_MS) {
     acc -= STEP_MS;
+    // read() polls the pads every fixed tick and drives overlay navigation, so it runs even before we join
+    const buttons = input.read(now);
     if (!net.connected || !joined) continue;
-    const buttons = input.read();
     const seq = game.tick(buttons);
-    if (seq !== null) net.send({ t: 'input', seq, buttons });
+    if (seq !== null) {
+      net.send({ t: 'input', seq, buttons });
+      deriver.observe(game.me); // land / bounce / stomp / respawn -> rumble + window.__sbh.events
+    }
   }
   renderer.draw(game.drawables(now), game.me ? { x: game.me.x + game.errX } : null);
   hud.frame(now);
@@ -208,6 +295,13 @@ function frame(now: number): void {
   game,
   net,
   input,
+  pads: input.pads,
+  events: gameEvents,
+  controls: input.store,
+  menu,
+  hint,
+  rumble,
+  nav,
   creator,
   openEdit,
   params: Object.fromEntries(params),
