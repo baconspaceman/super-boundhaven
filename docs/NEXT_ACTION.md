@@ -28,6 +28,16 @@ In flight when this was written (check `git status` and each folder; agents may 
 Public repo: https://github.com/baconspaceman/super-boundhaven (single clean root commit; author uses the GitHub no-reply email). Pages: https://baconspaceman.github.io/super-boundhaven/ (site), `/docs/` (docs portal), `/play/` (client; creator works offline, no hosted game server yet). `git push` to `main` auto-deploys via `.github/workflows/pages.yml` (runs tests first). The pre-publish audit (`node tools/audit/prepublish.mjs`) must show 0 FAIL before every push. The full private development history lives OUTSIDE the repo in `../sbh-private-history-2026-09-30.bundle` (contains old local paths and private-project mentions; never push it). License: none chosen, so all rights reserved; ask Anthony if he wants an open-source license.
 The project is ongoing and open-ended: keep iterating on the roadmap below; republish after meaningful milestones.
 
+## Decisions Anthony made on 2026-10-01 (UTC rollover; late 9/30 PT) — see DECISIONS.md
+
+No wolf mount; challenging-but-fair, mounts easy to obtain; crouch + action buttons yes; skill points AND mastery-by-use with free respecs; raid size 8; front-facing creator faces to be tried; no third-party assets; rest of the 15-question queue delegated to Claude; open-source license applied (MIT code, CC BY-NC-SA 4.0 art/content/docs; name/logo reserved) and pushed. Controller support required (XInput/Xbox + other pads) for Anthony and all players.
+In flight (agents): (1) docs/decisions alignment, (2) Milestone 3 sim layer: crouch/action inputs, checkpoints, enemies, pickups, switches/doors, 'Twin Plates' co-op room, protocol v3, (3) controller support in apps/client (gamepad layer, remap UI, glyphs, rumble, pad-debug overlay).
+TODO after they land: client integration of M3 entities/crouch/action rendering with the existing art (enemies, shards, doors, plates, checkpoint flags, HUD), hero face front view in creator, restart server on 8080 after sim changes, re-run audit, push; real-controller test by Anthony via `?pad=debug`.
+
+## Waiting on Anthony (do NOT ask until he says everything is done)
+
+Anthony said (2026-09-30): he will provide these once everything is completely done, so keep building and do not nag: monetization model/prices/supporter terms/community-goal promises; early-player and download rewards and launch dates; casino mechanics beyond no-real-money-gambling; login provider, privacy, age band, chat posture (default stays quick-chat only); moderation policy and terms of service for uploaded levels; final title + legal clearance; character and currency names; whether to keep CC BY-NC-SA art once monetization is approved. Work around them with placeholders and the delegated defaults in DECISIONS.md.
+
 ## Progress log (2026-09-30, later)
 
 Committed: world art (meadow / meadow_sunset / caverns) rendered in the client with region switcher; layered humanoid character system + enemies + 4 mounts + effects + font (packages/art/src/characters); Blender time-of-day backgrounds (dawn/day/sunset/night, 9 layers each) and 20 pre-rendered props (packages/art/assets/blender, manifest in packages/art/src/blender); Blender-to-2D research (hand-authored layers remain the final look); master GDD.
