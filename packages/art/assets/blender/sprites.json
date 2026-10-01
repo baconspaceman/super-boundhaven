@@ -1,0 +1,611 @@
+{
+ "image": "sprites.png",
+ "w": 503,
+ "h": 245,
+ "frames": {
+  "tree_round_0": {
+   "x": 0,
+   "y": 0,
+   "w": 46,
+   "h": 55
+  },
+  "tree_pine_0": {
+   "x": 47,
+   "y": 0,
+   "w": 31,
+   "h": 54
+  },
+  "tree_palm_0": {
+   "x": 79,
+   "y": 0,
+   "w": 40,
+   "h": 62
+  },
+  "bush_0": {
+   "x": 120,
+   "y": 0,
+   "w": 39,
+   "h": 23
+  },
+  "flower_daisy_0": {
+   "x": 160,
+   "y": 0,
+   "w": 18,
+   "h": 29
+  },
+  "flower_tulip_0": {
+   "x": 179,
+   "y": 0,
+   "w": 20,
+   "h": 29
+  },
+  "rock_0": {
+   "x": 200,
+   "y": 0,
+   "w": 29,
+   "h": 18
+  },
+  "crystal_0": {
+   "x": 230,
+   "y": 0,
+   "w": 32,
+   "h": 34
+  },
+  "windmill_0": {
+   "x": 263,
+   "y": 0,
+   "w": 62,
+   "h": 74
+  },
+  "windmill_1": {
+   "x": 326,
+   "y": 0,
+   "w": 62,
+   "h": 74
+  },
+  "windmill_2": {
+   "x": 389,
+   "y": 0,
+   "w": 62,
+   "h": 74
+  },
+  "windmill_3": {
+   "x": 0,
+   "y": 75,
+   "w": 62,
+   "h": 74
+  },
+  "windmill_4": {
+   "x": 63,
+   "y": 75,
+   "w": 62,
+   "h": 74
+  },
+  "windmill_5": {
+   "x": 126,
+   "y": 75,
+   "w": 62,
+   "h": 74
+  },
+  "windmill_6": {
+   "x": 189,
+   "y": 75,
+   "w": 62,
+   "h": 74
+  },
+  "windmill_7": {
+   "x": 252,
+   "y": 75,
+   "w": 62,
+   "h": 74
+  },
+  "torch_0": {
+   "x": 315,
+   "y": 75,
+   "w": 15,
+   "h": 37
+  },
+  "torch_1": {
+   "x": 331,
+   "y": 75,
+   "w": 15,
+   "h": 37
+  },
+  "torch_2": {
+   "x": 347,
+   "y": 75,
+   "w": 15,
+   "h": 37
+  },
+  "torch_3": {
+   "x": 363,
+   "y": 75,
+   "w": 15,
+   "h": 37
+  },
+  "lantern_0": {
+   "x": 379,
+   "y": 75,
+   "w": 14,
+   "h": 35
+  },
+  "lantern_1": {
+   "x": 394,
+   "y": 75,
+   "w": 14,
+   "h": 35
+  },
+  "lantern_2": {
+   "x": 409,
+   "y": 75,
+   "w": 14,
+   "h": 35
+  },
+  "lantern_3": {
+   "x": 424,
+   "y": 75,
+   "w": 14,
+   "h": 35
+  },
+  "waterfall_0": {
+   "x": 439,
+   "y": 75,
+   "w": 40,
+   "h": 69
+  },
+  "waterfall_1": {
+   "x": 0,
+   "y": 150,
+   "w": 40,
+   "h": 69
+  },
+  "waterfall_2": {
+   "x": 41,
+   "y": 150,
+   "w": 40,
+   "h": 69
+  },
+  "waterfall_3": {
+   "x": 82,
+   "y": 150,
+   "w": 40,
+   "h": 69
+  },
+  "spring_0": {
+   "x": 123,
+   "y": 150,
+   "w": 30,
+   "h": 29
+  },
+  "spring_1": {
+   "x": 154,
+   "y": 150,
+   "w": 30,
+   "h": 29
+  },
+  "spring_2": {
+   "x": 185,
+   "y": 150,
+   "w": 30,
+   "h": 29
+  },
+  "spring_3": {
+   "x": 216,
+   "y": 150,
+   "w": 30,
+   "h": 29
+  },
+  "spring_4": {
+   "x": 247,
+   "y": 150,
+   "w": 30,
+   "h": 29
+  },
+  "sun_0": {
+   "x": 278,
+   "y": 150,
+   "w": 54,
+   "h": 54
+  },
+  "moon_0": {
+   "x": 333,
+   "y": 150,
+   "w": 46,
+   "h": 46
+  },
+  "cloud_a_0": {
+   "x": 380,
+   "y": 150,
+   "w": 69,
+   "h": 24
+  },
+  "cloud_b_0": {
+   "x": 450,
+   "y": 150,
+   "w": 53,
+   "h": 22
+  },
+  "cloud_c_0": {
+   "x": 0,
+   "y": 220,
+   "w": 86,
+   "h": 25
+  },
+  "butterfly_0": {
+   "x": 87,
+   "y": 220,
+   "w": 16,
+   "h": 13
+  },
+  "butterfly_1": {
+   "x": 104,
+   "y": 220,
+   "w": 16,
+   "h": 13
+  },
+  "butterfly_2": {
+   "x": 121,
+   "y": 220,
+   "w": 16,
+   "h": 13
+  },
+  "butterfly_3": {
+   "x": 138,
+   "y": 220,
+   "w": 16,
+   "h": 13
+  },
+  "bird_flock_0": {
+   "x": 155,
+   "y": 220,
+   "w": 44,
+   "h": 18
+  },
+  "bird_flock_1": {
+   "x": 200,
+   "y": 220,
+   "w": 44,
+   "h": 18
+  },
+  "bird_flock_2": {
+   "x": 245,
+   "y": 220,
+   "w": 44,
+   "h": 18
+  },
+  "bird_flock_3": {
+   "x": 290,
+   "y": 220,
+   "w": 44,
+   "h": 18
+  }
+ },
+ "sprites": {
+  "tree_round": {
+   "frames": [
+    "tree_round_0"
+   ],
+   "anchor": [
+    23,
+    54
+   ],
+   "fps": 0,
+   "size": [
+    46,
+    55
+   ],
+   "colors": 7
+  },
+  "tree_pine": {
+   "frames": [
+    "tree_pine_0"
+   ],
+   "anchor": [
+    15,
+    52
+   ],
+   "fps": 0,
+   "size": [
+    31,
+    54
+   ],
+   "colors": 7
+  },
+  "tree_palm": {
+   "frames": [
+    "tree_palm_0"
+   ],
+   "anchor": [
+    10,
+    60
+   ],
+   "fps": 0,
+   "size": [
+    40,
+    62
+   ],
+   "colors": 7
+  },
+  "bush": {
+   "frames": [
+    "bush_0"
+   ],
+   "anchor": [
+    20,
+    22
+   ],
+   "fps": 0,
+   "size": [
+    39,
+    23
+   ],
+   "colors": 11
+  },
+  "flower_daisy": {
+   "frames": [
+    "flower_daisy_0"
+   ],
+   "anchor": [
+    9,
+    28
+   ],
+   "fps": 0,
+   "size": [
+    18,
+    29
+   ],
+   "colors": 11
+  },
+  "flower_tulip": {
+   "frames": [
+    "flower_tulip_0"
+   ],
+   "anchor": [
+    10,
+    28
+   ],
+   "fps": 0,
+   "size": [
+    20,
+    29
+   ],
+   "colors": 7
+  },
+  "rock": {
+   "frames": [
+    "rock_0"
+   ],
+   "anchor": [
+    16,
+    15
+   ],
+   "fps": 0,
+   "size": [
+    29,
+    18
+   ],
+   "colors": 4
+  },
+  "crystal": {
+   "frames": [
+    "crystal_0"
+   ],
+   "anchor": [
+    16,
+    30
+   ],
+   "fps": 0,
+   "size": [
+    32,
+    34
+   ],
+   "colors": 9
+  },
+  "windmill": {
+   "frames": [
+    "windmill_0",
+    "windmill_1",
+    "windmill_2",
+    "windmill_3",
+    "windmill_4",
+    "windmill_5",
+    "windmill_6",
+    "windmill_7"
+   ],
+   "anchor": [
+    31,
+    73
+   ],
+   "fps": 6,
+   "size": [
+    62,
+    74
+   ],
+   "colors": 12
+  },
+  "torch": {
+   "frames": [
+    "torch_0",
+    "torch_1",
+    "torch_2",
+    "torch_3"
+   ],
+   "anchor": [
+    7,
+    36
+   ],
+   "fps": 8,
+   "size": [
+    15,
+    37
+   ],
+   "colors": 10
+  },
+  "lantern": {
+   "frames": [
+    "lantern_0",
+    "lantern_1",
+    "lantern_2",
+    "lantern_3"
+   ],
+   "anchor": [
+    2,
+    34
+   ],
+   "fps": 6,
+   "size": [
+    14,
+    35
+   ],
+   "colors": 11
+  },
+  "waterfall": {
+   "frames": [
+    "waterfall_0",
+    "waterfall_1",
+    "waterfall_2",
+    "waterfall_3"
+   ],
+   "anchor": [
+    20,
+    68
+   ],
+   "fps": 8,
+   "size": [
+    40,
+    69
+   ],
+   "colors": 9
+  },
+  "spring": {
+   "frames": [
+    "spring_0",
+    "spring_1",
+    "spring_2",
+    "spring_3",
+    "spring_4"
+   ],
+   "anchor": [
+    15,
+    28
+   ],
+   "fps": 14,
+   "size": [
+    30,
+    29
+   ],
+   "colors": 10
+  },
+  "sun": {
+   "frames": [
+    "sun_0"
+   ],
+   "anchor": [
+    27,
+    27
+   ],
+   "fps": 0,
+   "size": [
+    54,
+    54
+   ],
+   "colors": 4
+  },
+  "moon": {
+   "frames": [
+    "moon_0"
+   ],
+   "anchor": [
+    23,
+    23
+   ],
+   "fps": 0,
+   "size": [
+    46,
+    46
+   ],
+   "colors": 4
+  },
+  "cloud_a": {
+   "frames": [
+    "cloud_a_0"
+   ],
+   "anchor": [
+    34,
+    23
+   ],
+   "fps": 0,
+   "size": [
+    69,
+    24
+   ],
+   "colors": 4
+  },
+  "cloud_b": {
+   "frames": [
+    "cloud_b_0"
+   ],
+   "anchor": [
+    27,
+    21
+   ],
+   "fps": 0,
+   "size": [
+    53,
+    22
+   ],
+   "colors": 4
+  },
+  "cloud_c": {
+   "frames": [
+    "cloud_c_0"
+   ],
+   "anchor": [
+    43,
+    24
+   ],
+   "fps": 0,
+   "size": [
+    86,
+    25
+   ],
+   "colors": 4
+  },
+  "butterfly": {
+   "frames": [
+    "butterfly_0",
+    "butterfly_1",
+    "butterfly_2",
+    "butterfly_3"
+   ],
+   "anchor": [
+    8,
+    7
+   ],
+   "fps": 10,
+   "size": [
+    16,
+    13
+   ],
+   "colors": 7
+  },
+  "bird_flock": {
+   "frames": [
+    "bird_flock_0",
+    "bird_flock_1",
+    "bird_flock_2",
+    "bird_flock_3"
+   ],
+   "anchor": [
+    22,
+    12
+   ],
+   "fps": 6,
+   "size": [
+    44,
+    18
+   ],
+   "colors": 3
+  }
+ }
+}

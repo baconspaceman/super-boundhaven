@@ -1,0 +1,28 @@
+name: Feedback
+description: Share thoughts on the design, feel, art direction or documentation.
+labels: [feedback]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Feedback is welcome. Code and art pull requests are not being accepted yet (see CONTRIBUTING.md). Please do not include personal information. This project uses no tracking or telemetry.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Movement and feel
+        - Art and look
+        - Character creator
+        - Mounts and exploration
+        - Co-op and raids
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+    validations:
+      required: true

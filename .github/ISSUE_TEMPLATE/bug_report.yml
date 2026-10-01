@@ -1,0 +1,38 @@
+name: Bug report
+description: Something in the prototype, site or docs portal is broken.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please do not include personal information, passwords or tokens. This project uses no tracking or telemetry.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where?
+      options:
+        - Game prototype (local)
+        - Play page on the website
+        - Marketing site
+        - Docs portal
+        - Build / tooling
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Browser and OS
+      placeholder: e.g. Firefox 140 on Linux
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. ...\n2. ..."

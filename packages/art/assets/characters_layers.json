@@ -1,0 +1,990 @@
+{
+ "image": "characters_layers.png",
+ "size": {
+  "w": 396,
+  "h": 53
+ },
+ "frames": {
+  "layer/skull": {
+   "x": 0,
+   "y": 0,
+   "w": 11,
+   "h": 10,
+   "space": "skull",
+   "lx": 2,
+   "ly": 4
+  },
+  "layer/eyes/0_Dot": {
+   "x": 13,
+   "y": 0,
+   "w": 1,
+   "h": 2,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 5
+  },
+  "layer/eyes/1_Round": {
+   "x": 16,
+   "y": 0,
+   "w": 2,
+   "h": 3,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 4
+  },
+  "layer/eyes/2_Bright": {
+   "x": 20,
+   "y": 0,
+   "w": 2,
+   "h": 3,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 4
+  },
+  "layer/eyes/3_Sleepy": {
+   "x": 24,
+   "y": 0,
+   "w": 2,
+   "h": 2,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 5
+  },
+  "layer/eyes/4_Happy": {
+   "x": 28,
+   "y": 0,
+   "w": 3,
+   "h": 2,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 5
+  },
+  "layer/eyes/5_Anime": {
+   "x": 33,
+   "y": 0,
+   "w": 3,
+   "h": 4,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 4
+  },
+  "layer/eyes/6_Cat": {
+   "x": 38,
+   "y": 0,
+   "w": 3,
+   "h": 3,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 4
+  },
+  "layer/eyes/7_Lashes": {
+   "x": 43,
+   "y": 0,
+   "w": 3,
+   "h": 3,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 4
+  },
+  "layer/brows/0_Flat": {
+   "x": 48,
+   "y": 0,
+   "w": 3,
+   "h": 1,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/brows/1_Thin": {
+   "x": 53,
+   "y": 0,
+   "w": 3,
+   "h": 1,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/brows/2_Angled": {
+   "x": 58,
+   "y": 0,
+   "w": 3,
+   "h": 1,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/brows/3_Arched": {
+   "x": 63,
+   "y": 0,
+   "w": 3,
+   "h": 1,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/brows/4_Bushy": {
+   "x": 68,
+   "y": 0,
+   "w": 3,
+   "h": 1,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/brows/5_Dots": {
+   "x": 73,
+   "y": 0,
+   "w": 2,
+   "h": 1,
+   "space": "glyph",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/mouth/0_Smile": {
+   "x": 77,
+   "y": 0,
+   "w": 3,
+   "h": 2,
+   "space": "glyph",
+   "lx": 6,
+   "ly": 8
+  },
+  "layer/mouth/1_Tiny": {
+   "x": 82,
+   "y": 0,
+   "w": 3,
+   "h": 1,
+   "space": "glyph",
+   "lx": 6,
+   "ly": 8
+  },
+  "layer/mouth/2_Flat": {
+   "x": 87,
+   "y": 0,
+   "w": 3,
+   "h": 1,
+   "space": "glyph",
+   "lx": 6,
+   "ly": 8
+  },
+  "layer/mouth/3_Grin": {
+   "x": 92,
+   "y": 0,
+   "w": 3,
+   "h": 2,
+   "space": "glyph",
+   "lx": 6,
+   "ly": 8
+  },
+  "layer/mouth/4_Cat": {
+   "x": 97,
+   "y": 0,
+   "w": 5,
+   "h": 1,
+   "space": "glyph",
+   "lx": 5,
+   "ly": 8
+  },
+  "layer/mouth/5_Smirk": {
+   "x": 104,
+   "y": 0,
+   "w": 3,
+   "h": 2,
+   "space": "glyph",
+   "lx": 6,
+   "ly": 8
+  },
+  "layer/hair/1_Crop/front": {
+   "x": 109,
+   "y": 0,
+   "w": 16,
+   "h": 7,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hair/2_Side Part/front": {
+   "x": 127,
+   "y": 0,
+   "w": 16,
+   "h": 8,
+   "space": "head",
+   "lx": 0,
+   "ly": 1
+  },
+  "layer/hair/3_Spiky/front": {
+   "x": 145,
+   "y": 0,
+   "w": 16,
+   "h": 9,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hair/4_Long/front": {
+   "x": 163,
+   "y": 0,
+   "w": 16,
+   "h": 8,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hair/4_Long/back": {
+   "x": 181,
+   "y": 0,
+   "w": 16,
+   "h": 13,
+   "space": "head",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/hair/5_Ponytail/front": {
+   "x": 199,
+   "y": 0,
+   "w": 16,
+   "h": 7,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hair/5_Ponytail/back": {
+   "x": 217,
+   "y": 0,
+   "w": 16,
+   "h": 8,
+   "space": "head",
+   "lx": 0,
+   "ly": 5
+  },
+  "layer/hair/6_Top Bun/front": {
+   "x": 235,
+   "y": 0,
+   "w": 16,
+   "h": 10,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hair/7_Braids/front": {
+   "x": 253,
+   "y": 0,
+   "w": 16,
+   "h": 7,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hair/7_Braids/back": {
+   "x": 271,
+   "y": 0,
+   "w": 16,
+   "h": 8,
+   "space": "head",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/hair/8_Mohawk/front": {
+   "x": 289,
+   "y": 0,
+   "w": 16,
+   "h": 9,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hair/9_Afro/front": {
+   "x": 307,
+   "y": 0,
+   "w": 16,
+   "h": 6,
+   "space": "head",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/hair/9_Afro/back": {
+   "x": 325,
+   "y": 0,
+   "w": 16,
+   "h": 14,
+   "space": "head",
+   "lx": 0,
+   "ly": -1
+  },
+  "layer/hair/10_Bob/front": {
+   "x": 343,
+   "y": 0,
+   "w": 16,
+   "h": 8,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hair/10_Bob/back": {
+   "x": 361,
+   "y": 0,
+   "w": 16,
+   "h": 8,
+   "space": "head",
+   "lx": 0,
+   "ly": 5
+  },
+  "layer/hair/11_Curly/front": {
+   "x": 379,
+   "y": 0,
+   "w": 16,
+   "h": 7,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hair/11_Curly/back": {
+   "x": 0,
+   "y": 16,
+   "w": 16,
+   "h": 15,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hair/12_Pigtails/front": {
+   "x": 18,
+   "y": 16,
+   "w": 16,
+   "h": 12,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hair/12_Pigtails/back": {
+   "x": 36,
+   "y": 16,
+   "w": 16,
+   "h": 4,
+   "space": "head",
+   "lx": 0,
+   "ly": 4
+  },
+  "layer/hair/13_Pompadour/front": {
+   "x": 54,
+   "y": 16,
+   "w": 17,
+   "h": 9,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hair/14_Messy/front": {
+   "x": 73,
+   "y": 16,
+   "w": 16,
+   "h": 8,
+   "space": "head",
+   "lx": 0,
+   "ly": 1
+  },
+  "layer/hair/15_Twin Buns/front": {
+   "x": 91,
+   "y": 16,
+   "w": 16,
+   "h": 10,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hat/1_Cap/front": {
+   "x": 109,
+   "y": 16,
+   "w": 16,
+   "h": 7,
+   "space": "head",
+   "lx": 0,
+   "ly": 1
+  },
+  "layer/hat/2_Beanie/front": {
+   "x": 127,
+   "y": 16,
+   "w": 16,
+   "h": 7,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hat/3_Bucket Hat/front": {
+   "x": 145,
+   "y": 16,
+   "w": 16,
+   "h": 6,
+   "space": "head",
+   "lx": 0,
+   "ly": 1
+  },
+  "layer/hat/4_Wizard Hat/front": {
+   "x": 163,
+   "y": 16,
+   "w": 16,
+   "h": 7,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hat/5_Crown/front": {
+   "x": 181,
+   "y": 16,
+   "w": 16,
+   "h": 4,
+   "space": "head",
+   "lx": 0,
+   "ly": 1
+  },
+  "layer/hat/6_Headband/front": {
+   "x": 199,
+   "y": 16,
+   "w": 16,
+   "h": 2,
+   "space": "head",
+   "lx": 0,
+   "ly": 5
+  },
+  "layer/hat/6_Headband/back": {
+   "x": 217,
+   "y": 16,
+   "w": 16,
+   "h": 3,
+   "space": "head",
+   "lx": 0,
+   "ly": 6
+  },
+  "layer/hat/7_Bandana/front": {
+   "x": 235,
+   "y": 16,
+   "w": 16,
+   "h": 4,
+   "space": "head",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/hat/7_Bandana/back": {
+   "x": 253,
+   "y": 16,
+   "w": 16,
+   "h": 4,
+   "space": "head",
+   "lx": 0,
+   "ly": 5
+  },
+  "layer/hat/8_Cat Ears/front": {
+   "x": 271,
+   "y": 16,
+   "w": 16,
+   "h": 4,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hat/9_Bunny Ears/front": {
+   "x": 289,
+   "y": 16,
+   "w": 16,
+   "h": 6,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hat/10_Goggles/front": {
+   "x": 307,
+   "y": 16,
+   "w": 16,
+   "h": 3,
+   "space": "head",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/hat/11_Helmet/front": {
+   "x": 325,
+   "y": 16,
+   "w": 16,
+   "h": 10,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/hat/12_Straw Hat/front": {
+   "x": 343,
+   "y": 16,
+   "w": 16,
+   "h": 5,
+   "space": "head",
+   "lx": 0,
+   "ly": 2
+  },
+  "layer/hat/13_Flower Crown/front": {
+   "x": 361,
+   "y": 16,
+   "w": 16,
+   "h": 3,
+   "space": "head",
+   "lx": 0,
+   "ly": 3
+  },
+  "layer/hat/14_Coil Antenna/front": {
+   "x": 379,
+   "y": 16,
+   "w": 16,
+   "h": 5,
+   "space": "head",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/acc/Round Glasses": {
+   "x": 0,
+   "y": 33,
+   "w": 16,
+   "h": 4,
+   "space": "head",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/acc/Shades": {
+   "x": 18,
+   "y": 33,
+   "w": 16,
+   "h": 3,
+   "space": "head",
+   "lx": 0,
+   "ly": 8
+  },
+  "layer/acc/Eyepatch": {
+   "x": 36,
+   "y": 33,
+   "w": 16,
+   "h": 4,
+   "space": "head",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/acc/Freckles": {
+   "x": 54,
+   "y": 33,
+   "w": 16,
+   "h": 2,
+   "space": "head",
+   "lx": 0,
+   "ly": 11
+  },
+  "layer/acc/Face Mask": {
+   "x": 72,
+   "y": 33,
+   "w": 16,
+   "h": 3,
+   "space": "head",
+   "lx": 0,
+   "ly": 10
+  },
+  "layer/acc/Earring": {
+   "x": 90,
+   "y": 33,
+   "w": 16,
+   "h": 2,
+   "space": "head",
+   "lx": 0,
+   "ly": 10
+  },
+  "layer/acc/Scarf/0": {
+   "x": 108,
+   "y": 33,
+   "w": 6,
+   "h": 2,
+   "space": "torso",
+   "lx": 1,
+   "ly": 0
+  },
+  "layer/acc/Scarf/tail": {
+   "x": 116,
+   "y": 33,
+   "w": 2,
+   "h": 5,
+   "space": "torso",
+   "lx": -1,
+   "ly": 1
+  },
+  "layer/acc/Bow Tie/0": {
+   "x": 120,
+   "y": 33,
+   "w": 5,
+   "h": 3,
+   "space": "torso",
+   "lx": 2,
+   "ly": 1
+  },
+  "layer/acc/Necklace/0": {
+   "x": 127,
+   "y": 33,
+   "w": 5,
+   "h": 2,
+   "space": "torso",
+   "lx": 2,
+   "ly": 2
+  },
+  "layer/acc/Necklace/1": {
+   "x": 134,
+   "y": 33,
+   "w": 2,
+   "h": 1,
+   "space": "torso",
+   "lx": 3,
+   "ly": 4
+  },
+  "layer/top/0_Tee": {
+   "x": 138,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/1_Striped Tee": {
+   "x": 148,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/2_Tank": {
+   "x": 158,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/3_Hoodie": {
+   "x": 168,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/4_Jacket": {
+   "x": 178,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/5_Overalls": {
+   "x": 188,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/6_Tunic": {
+   "x": 198,
+   "y": 33,
+   "w": 8,
+   "h": 8,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/6_Tunic/over": {
+   "x": 208,
+   "y": 33,
+   "w": 10,
+   "h": 3,
+   "space": "torso",
+   "lx": -1,
+   "ly": 8
+  },
+  "layer/top/7_Sweater": {
+   "x": 220,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/8_Sailor": {
+   "x": 230,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/9_Armor": {
+   "x": 240,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/10_Wrap": {
+   "x": 250,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/top/11_Star Tee": {
+   "x": 260,
+   "y": 33,
+   "w": 8,
+   "h": 7,
+   "space": "torso",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/bottom/0_Jeans/hip": {
+   "x": 270,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/bottom/1_Shorts/hip": {
+   "x": 280,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/bottom/2_Capris/hip": {
+   "x": 290,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/bottom/3_Cargo/hip": {
+   "x": 300,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/bottom/4_Track Pants/hip": {
+   "x": 310,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/bottom/5_Skirt/hip": {
+   "x": 320,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/bottom/5_Skirt/over": {
+   "x": 330,
+   "y": 33,
+   "w": 10,
+   "h": 3,
+   "space": "torso",
+   "lx": -1,
+   "ly": 8
+  },
+  "layer/bottom/6_Kilt/hip": {
+   "x": 342,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/bottom/6_Kilt/over": {
+   "x": 352,
+   "y": 33,
+   "w": 10,
+   "h": 3,
+   "space": "torso",
+   "lx": -1,
+   "ly": 8
+  },
+  "layer/bottom/7_Stockings/hip": {
+   "x": 364,
+   "y": 33,
+   "w": 8,
+   "h": 2,
+   "space": "torso",
+   "lx": 0,
+   "ly": 7
+  },
+  "layer/shoes/0_Sneakers": {
+   "x": 374,
+   "y": 33,
+   "w": 6,
+   "h": 3,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/shoes/1_Boots": {
+   "x": 382,
+   "y": 33,
+   "w": 6,
+   "h": 3,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/shoes/2_Sandals": {
+   "x": 390,
+   "y": 33,
+   "w": 6,
+   "h": 3,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/shoes/3_Slippers": {
+   "x": 0,
+   "y": 43,
+   "w": 6,
+   "h": 3,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/shoes/4_Hi-Tops": {
+   "x": 8,
+   "y": 43,
+   "w": 6,
+   "h": 3,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/shoes/5_Barefoot": {
+   "x": 16,
+   "y": 43,
+   "w": 6,
+   "h": 3,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/shoes/6_Clogs": {
+   "x": 24,
+   "y": 43,
+   "w": 6,
+   "h": 3,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/shoes/7_Pogo Shoes": {
+   "x": 32,
+   "y": 43,
+   "w": 6,
+   "h": 4,
+   "space": "foot",
+   "lx": 0,
+   "ly": 0
+  },
+  "layer/back/1_Short Cape": {
+   "x": 40,
+   "y": 43,
+   "w": 4,
+   "h": 7,
+   "space": "torso",
+   "lx": -3,
+   "ly": 1
+  },
+  "layer/back/2_Long Cape": {
+   "x": 46,
+   "y": 43,
+   "w": 4,
+   "h": 10,
+   "space": "torso",
+   "lx": -3,
+   "ly": 1
+  },
+  "layer/back/3_Backpack": {
+   "x": 52,
+   "y": 43,
+   "w": 4,
+   "h": 7,
+   "space": "torso",
+   "lx": -4,
+   "ly": 2
+  },
+  "layer/back/4_Wings/wing0": {
+   "x": 58,
+   "y": 43,
+   "w": 5,
+   "h": 7,
+   "space": "torso",
+   "lx": -5,
+   "ly": 1
+  },
+  "layer/back/4_Wings/wing1": {
+   "x": 65,
+   "y": 43,
+   "w": 6,
+   "h": 7,
+   "space": "torso",
+   "lx": -6,
+   "ly": 0
+  },
+  "layer/back/4_Wings/wing2": {
+   "x": 73,
+   "y": 43,
+   "w": 8,
+   "h": 9,
+   "space": "torso",
+   "lx": -6,
+   "ly": -4
+  },
+  "layer/back/5_Tail": {
+   "x": 83,
+   "y": 43,
+   "w": 4,
+   "h": 5,
+   "space": "torso",
+   "lx": -5,
+   "ly": 5
+  },
+  "layer/back/6_Coil Pack": {
+   "x": 89,
+   "y": 43,
+   "w": 4,
+   "h": 7,
+   "space": "torso",
+   "lx": -5,
+   "ly": 2
+  }
+ }
+}

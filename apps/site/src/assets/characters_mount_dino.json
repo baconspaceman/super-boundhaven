@@ -1,0 +1,573 @@
+{
+ "image": "characters_mount_dino.png",
+ "size": {
+  "w": 257,
+  "h": 209
+ },
+ "frames": {
+  "mount_dino/idle_0": {
+   "x": 0,
+   "y": 0,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/idle_0": {
+   "x": 43,
+   "y": 0,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/idle_1": {
+   "x": 86,
+   "y": 0,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/idle_1": {
+   "x": 129,
+   "y": 0,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/trot_0": {
+   "x": 172,
+   "y": 0,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/trot_0": {
+   "x": 215,
+   "y": 0,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/trot_1": {
+   "x": 0,
+   "y": 35,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/trot_1": {
+   "x": 43,
+   "y": 35,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/trot_2": {
+   "x": 86,
+   "y": 35,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/trot_2": {
+   "x": 129,
+   "y": 35,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/trot_3": {
+   "x": 172,
+   "y": 35,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/trot_3": {
+   "x": 215,
+   "y": 35,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/jump_0": {
+   "x": 0,
+   "y": 70,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/jump_0": {
+   "x": 43,
+   "y": 70,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/fall_0": {
+   "x": 86,
+   "y": 70,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/fall_0": {
+   "x": 129,
+   "y": 70,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/land_0": {
+   "x": 172,
+   "y": 70,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/land_0": {
+   "x": 215,
+   "y": 70,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/land_1": {
+   "x": 0,
+   "y": 105,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/land_1": {
+   "x": 43,
+   "y": 105,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/charge_0": {
+   "x": 86,
+   "y": 105,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/charge_0": {
+   "x": 129,
+   "y": 105,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/charge_1": {
+   "x": 172,
+   "y": 105,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/charge_1": {
+   "x": 215,
+   "y": 105,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/pound_0": {
+   "x": 0,
+   "y": 140,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/pound_0": {
+   "x": 43,
+   "y": 140,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/pound_1": {
+   "x": 86,
+   "y": 140,
+   "w": 42,
+   "h": 34
+  },
+  "mountr_dino/pound_1": {
+   "x": 129,
+   "y": 140,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/summon_in_0": {
+   "x": 172,
+   "y": 140,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/summon_out_2": {
+   "x": 215,
+   "y": 140,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/summon_in_1": {
+   "x": 0,
+   "y": 175,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/summon_out_1": {
+   "x": 43,
+   "y": 175,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/summon_in_2": {
+   "x": 86,
+   "y": 175,
+   "w": 42,
+   "h": 34
+  },
+  "mount_dino/summon_out_0": {
+   "x": 129,
+   "y": 175,
+   "w": 42,
+   "h": 34
+  }
+ },
+ "anims": {
+  "idle": {
+   "frames": [
+    "mount_dino/idle_0",
+    "mount_dino/idle_1"
+   ],
+   "fps": 2,
+   "loop": true,
+   "ticks": [
+    30,
+    30
+   ]
+  },
+  "trot": {
+   "frames": [
+    "mount_dino/trot_0",
+    "mount_dino/trot_1",
+    "mount_dino/trot_2",
+    "mount_dino/trot_3"
+   ],
+   "fps": 8.6,
+   "loop": true,
+   "ticks": [
+    7,
+    7,
+    7,
+    7
+   ]
+  },
+  "jump": {
+   "frames": [
+    "mount_dino/jump_0"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "fall": {
+   "frames": [
+    "mount_dino/fall_0"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "land": {
+   "frames": [
+    "mount_dino/land_0",
+    "mount_dino/land_1"
+   ],
+   "fps": 10,
+   "loop": false,
+   "ticks": [
+    6,
+    6
+   ]
+  },
+  "charge": {
+   "frames": [
+    "mount_dino/charge_0",
+    "mount_dino/charge_1"
+   ],
+   "fps": 7.5,
+   "loop": true,
+   "ticks": [
+    8,
+    8
+   ]
+  },
+  "pound": {
+   "frames": [
+    "mount_dino/pound_0",
+    "mount_dino/pound_1"
+   ],
+   "fps": 7.5,
+   "loop": false,
+   "ticks": [
+    8,
+    8
+   ]
+  },
+  "summon_in": {
+   "frames": [
+    "mount_dino/summon_in_0",
+    "mount_dino/summon_in_1",
+    "mount_dino/summon_in_2"
+   ],
+   "fps": 12,
+   "loop": false,
+   "ticks": [
+    5,
+    5,
+    5
+   ]
+  },
+  "summon_out": {
+   "frames": [
+    "mount_dino/summon_out_0",
+    "mount_dino/summon_out_1",
+    "mount_dino/summon_out_2"
+   ],
+   "fps": 12,
+   "loop": false,
+   "ticks": [
+    5,
+    5,
+    5
+   ]
+  }
+ },
+ "anchors": {
+  "mount_dino/idle_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/idle_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_3": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_3": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/land_0": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/land_0": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/land_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/land_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/charge_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "lean"
+  },
+  "mountr_dino/charge_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "lean"
+  },
+  "mount_dino/charge_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "lean"
+  },
+  "mountr_dino/charge_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "lean"
+  },
+  "mount_dino/pound_0": {
+   "seat": [
+    15,
+    7
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/pound_0": {
+   "seat": [
+    15,
+    7
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/pound_1": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/pound_1": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_in_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_out_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_in_1": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_out_1": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_in_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_out_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  }
+ },
+ "riderHip": [
+  12,
+  22
+ ],
+ "facing": "right",
+ "note": "mount_<m>/ = bare, mountr_<m>/ = saddled. Place hero frame so its riderHip lands on anchors[frame].seat."
+}

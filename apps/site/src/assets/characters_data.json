@@ -1,0 +1,2633 @@
+{
+ "HERO_ANIMS": {
+  "idle": {
+   "frames": [
+    "hero/idle_0",
+    "hero/idle_1",
+    "hero/idle_2",
+    "hero/idle_3"
+   ],
+   "fps": 2.7,
+   "loop": true,
+   "ticks": [
+    52,
+    12,
+    10,
+    14
+   ]
+  },
+  "walk": {
+   "frames": [
+    "hero/walk_0",
+    "hero/walk_1",
+    "hero/walk_2",
+    "hero/walk_3",
+    "hero/walk_4",
+    "hero/walk_5"
+   ],
+   "fps": 10,
+   "loop": true,
+   "ticks": [
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ]
+  },
+  "run": {
+   "frames": [
+    "hero/run_0",
+    "hero/run_1",
+    "hero/run_2",
+    "hero/run_3",
+    "hero/run_4",
+    "hero/run_5",
+    "hero/run_6",
+    "hero/run_7"
+   ],
+   "fps": 15,
+   "loop": true,
+   "ticks": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "skid": {
+   "frames": [
+    "hero/skid"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "jump_start": {
+   "frames": [
+    "hero/jump_anticip"
+   ],
+   "fps": 10,
+   "loop": false,
+   "ticks": [
+    6
+   ]
+  },
+  "jump_rise": {
+   "frames": [
+    "hero/jump_rise"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "jump_apex": {
+   "frames": [
+    "hero/jump_apex"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "fall": {
+   "frames": [
+    "hero/fall"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "land": {
+   "frames": [
+    "hero/land_0",
+    "hero/land_1"
+   ],
+   "fps": 10,
+   "loop": false,
+   "ticks": [
+    5,
+    7
+   ]
+  },
+  "stomp": {
+   "frames": [
+    "hero/stomp_0",
+    "hero/stomp_1",
+    "hero/stomp_2",
+    "hero/stomp_3"
+   ],
+   "fps": 15,
+   "loop": true,
+   "ticks": [
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "hurt": {
+   "frames": [
+    "hero/hurt_0",
+    "hero/hurt_1"
+   ],
+   "fps": 10,
+   "loop": true,
+   "ticks": [
+    6,
+    6
+   ]
+  },
+  "respawn": {
+   "frames": [
+    "hero/flash_0",
+    "hero/flash_1"
+   ],
+   "fps": 20,
+   "loop": true,
+   "ticks": [
+    3,
+    3
+   ]
+  },
+  "ride_sit": {
+   "frames": [
+    "hero/ride_sit"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    60
+   ]
+  },
+  "ride_lean": {
+   "frames": [
+    "hero/ride_lean"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    60
+   ]
+  },
+  "ride_grip": {
+   "frames": [
+    "hero/ride_grip"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    60
+   ]
+  }
+ },
+ "ENEMY_ANIMS": {
+  "sprout_walk": {
+   "frames": [
+    "enemy/sprout_walk_0",
+    "enemy/sprout_walk_1",
+    "enemy/sprout_walk_2",
+    "enemy/sprout_walk_3"
+   ],
+   "fps": 7.5,
+   "loop": true,
+   "ticks": [
+    8,
+    8,
+    8,
+    8
+   ],
+   "stompable": true
+  },
+  "sprout_squash": {
+   "frames": [
+    "enemy/sprout_squash"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": true
+  },
+  "zip_fly": {
+   "frames": [
+    "enemy/zip_fly_0",
+    "enemy/zip_fly_1",
+    "enemy/zip_fly_2",
+    "enemy/zip_fly_3"
+   ],
+   "fps": 15,
+   "loop": true,
+   "ticks": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "stompable": true
+  },
+  "zip_down": {
+   "frames": [
+    "enemy/zip_down"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": true
+  },
+  "shard_walk": {
+   "frames": [
+    "enemy/shard_walk_0",
+    "enemy/shard_walk_1",
+    "enemy/shard_walk_2"
+   ],
+   "fps": 6,
+   "loop": true,
+   "ticks": [
+    10,
+    10,
+    10
+   ],
+   "stompable": false
+  },
+  "shard_curl": {
+   "frames": [
+    "enemy/shard_curl"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": false
+  },
+  "shard_defeat": {
+   "frames": [
+    "enemy/shard_defeat"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": false
+  }
+ },
+ "FX_ANIMS": {
+  "shard_spin": {
+   "frames": [
+    "fx/shard_0",
+    "fx/shard_1",
+    "fx/shard_2",
+    "fx/shard_3",
+    "fx/shard_4",
+    "fx/shard_5"
+   ],
+   "fps": 10,
+   "loop": true,
+   "ticks": [
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ]
+  },
+  "orb": {
+   "frames": [
+    "fx/orb_0",
+    "fx/orb_1"
+   ],
+   "fps": 4,
+   "loop": true,
+   "ticks": [
+    15,
+    15
+   ]
+  },
+  "dust": {
+   "frames": [
+    "fx/dust_0",
+    "fx/dust_1",
+    "fx/dust_2",
+    "fx/dust_3"
+   ],
+   "fps": 15,
+   "loop": false,
+   "ticks": [
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "land_ring": {
+   "frames": [
+    "fx/ring_0",
+    "fx/ring_1",
+    "fx/ring_2"
+   ],
+   "fps": 15,
+   "loop": false,
+   "ticks": [
+    4,
+    4,
+    4
+   ]
+  },
+  "bounce_burst": {
+   "frames": [
+    "fx/burst_0",
+    "fx/burst_1",
+    "fx/burst_2",
+    "fx/burst_3"
+   ],
+   "fps": 20,
+   "loop": false,
+   "ticks": [
+    3,
+    3,
+    3,
+    3
+   ]
+  },
+  "sparkle": {
+   "frames": [
+    "fx/sparkle_0",
+    "fx/sparkle_1",
+    "fx/sparkle_2",
+    "fx/sparkle_3"
+   ],
+   "fps": 15,
+   "loop": true,
+   "ticks": [
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "stomp_star": {
+   "frames": [
+    "fx/stomp_0",
+    "fx/stomp_1",
+    "fx/stomp_2"
+   ],
+   "fps": 20,
+   "loop": false,
+   "ticks": [
+    3,
+    3,
+    3
+   ]
+  },
+  "poof": {
+   "frames": [
+    "fx/poof_0",
+    "fx/poof_1",
+    "fx/poof_2",
+    "fx/poof_3",
+    "fx/poof_4"
+   ],
+   "fps": 15,
+   "loop": false,
+   "ticks": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ]
+  }
+ },
+ "MOUNT_ANIMS": {
+  "frog": {
+   "idle": {
+    "frames": [
+     "mount_frog/idle_0",
+     "mount_frog/idle_1"
+    ],
+    "fps": 2,
+    "loop": true,
+    "ticks": [
+     30,
+     30
+    ]
+   },
+   "hop": {
+    "frames": [
+     "mount_frog/hop_0",
+     "mount_frog/hop_1",
+     "mount_frog/hop_2",
+     "mount_frog/hop_3"
+    ],
+    "fps": 8.6,
+    "loop": true,
+    "ticks": [
+     7,
+     7,
+     7,
+     7
+    ]
+   },
+   "jump": {
+    "frames": [
+     "mount_frog/jump_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "fall": {
+    "frames": [
+     "mount_frog/fall_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "land": {
+    "frames": [
+     "mount_frog/land_0",
+     "mount_frog/land_1"
+    ],
+    "fps": 10,
+    "loop": false,
+    "ticks": [
+     6,
+     6
+    ]
+   },
+   "charge": {
+    "frames": [
+     "mount_frog/charge_0",
+     "mount_frog/charge_1"
+    ],
+    "fps": 7.5,
+    "loop": true,
+    "ticks": [
+     8,
+     8
+    ]
+   },
+   "superjump": {
+    "frames": [
+     "mount_frog/superjump_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "tongue": {
+    "frames": [
+     "mount_frog/tongue_0",
+     "mount_frog/tongue_1"
+    ],
+    "fps": 10,
+    "loop": false,
+    "ticks": [
+     6,
+     6
+    ]
+   },
+   "summon_in": {
+    "frames": [
+     "mount_frog/summon_in_0",
+     "mount_frog/summon_in_1",
+     "mount_frog/summon_in_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   },
+   "summon_out": {
+    "frames": [
+     "mount_frog/summon_out_0",
+     "mount_frog/summon_out_1",
+     "mount_frog/summon_out_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  "dino": {
+   "idle": {
+    "frames": [
+     "mount_dino/idle_0",
+     "mount_dino/idle_1"
+    ],
+    "fps": 2,
+    "loop": true,
+    "ticks": [
+     30,
+     30
+    ]
+   },
+   "trot": {
+    "frames": [
+     "mount_dino/trot_0",
+     "mount_dino/trot_1",
+     "mount_dino/trot_2",
+     "mount_dino/trot_3"
+    ],
+    "fps": 8.6,
+    "loop": true,
+    "ticks": [
+     7,
+     7,
+     7,
+     7
+    ]
+   },
+   "jump": {
+    "frames": [
+     "mount_dino/jump_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "fall": {
+    "frames": [
+     "mount_dino/fall_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "land": {
+    "frames": [
+     "mount_dino/land_0",
+     "mount_dino/land_1"
+    ],
+    "fps": 10,
+    "loop": false,
+    "ticks": [
+     6,
+     6
+    ]
+   },
+   "charge": {
+    "frames": [
+     "mount_dino/charge_0",
+     "mount_dino/charge_1"
+    ],
+    "fps": 7.5,
+    "loop": true,
+    "ticks": [
+     8,
+     8
+    ]
+   },
+   "pound": {
+    "frames": [
+     "mount_dino/pound_0",
+     "mount_dino/pound_1"
+    ],
+    "fps": 7.5,
+    "loop": false,
+    "ticks": [
+     8,
+     8
+    ]
+   },
+   "summon_in": {
+    "frames": [
+     "mount_dino/summon_in_0",
+     "mount_dino/summon_in_1",
+     "mount_dino/summon_in_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   },
+   "summon_out": {
+    "frames": [
+     "mount_dino/summon_out_0",
+     "mount_dino/summon_out_1",
+     "mount_dino/summon_out_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  "drake": {
+   "idle": {
+    "frames": [
+     "mount_drake/idle_0",
+     "mount_drake/idle_1"
+    ],
+    "fps": 2,
+    "loop": true,
+    "ticks": [
+     30,
+     30
+    ]
+   },
+   "flap": {
+    "frames": [
+     "mount_drake/flap_0",
+     "mount_drake/flap_1",
+     "mount_drake/flap_2",
+     "mount_drake/flap_3"
+    ],
+    "fps": 10,
+    "loop": true,
+    "ticks": [
+     6,
+     6,
+     6,
+     6
+    ]
+   },
+   "glide": {
+    "frames": [
+     "mount_drake/glide_0"
+    ],
+    "fps": 2,
+    "loop": false,
+    "ticks": [
+     30
+    ]
+   },
+   "jump": {
+    "frames": [
+     "mount_drake/jump_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "fall": {
+    "frames": [
+     "mount_drake/fall_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "land": {
+    "frames": [
+     "mount_drake/land_0",
+     "mount_drake/land_1"
+    ],
+    "fps": 10,
+    "loop": false,
+    "ticks": [
+     6,
+     6
+    ]
+   },
+   "summon_in": {
+    "frames": [
+     "mount_drake/summon_in_0",
+     "mount_drake/summon_in_1",
+     "mount_drake/summon_in_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   },
+   "summon_out": {
+    "frames": [
+     "mount_drake/summon_out_0",
+     "mount_drake/summon_out_1",
+     "mount_drake/summon_out_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  "cheetah": {
+   "idle": {
+    "frames": [
+     "mount_cheetah/idle_0",
+     "mount_cheetah/idle_1"
+    ],
+    "fps": 2,
+    "loop": true,
+    "ticks": [
+     30,
+     30
+    ]
+   },
+   "gallop": {
+    "frames": [
+     "mount_cheetah/gallop_0",
+     "mount_cheetah/gallop_1",
+     "mount_cheetah/gallop_2",
+     "mount_cheetah/gallop_3"
+    ],
+    "fps": 15,
+    "loop": true,
+    "ticks": [
+     4,
+     4,
+     4,
+     4
+    ]
+   },
+   "jump": {
+    "frames": [
+     "mount_cheetah/jump_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "fall": {
+    "frames": [
+     "mount_cheetah/fall_0"
+    ],
+    "fps": 4,
+    "loop": false,
+    "ticks": [
+     15
+    ]
+   },
+   "land": {
+    "frames": [
+     "mount_cheetah/land_0",
+     "mount_cheetah/land_1"
+    ],
+    "fps": 10,
+    "loop": false,
+    "ticks": [
+     6,
+     6
+    ]
+   },
+   "dash": {
+    "frames": [
+     "mount_cheetah/dash_0",
+     "mount_cheetah/dash_1"
+    ],
+    "fps": 15,
+    "loop": true,
+    "ticks": [
+     4,
+     4
+    ]
+   },
+   "summon_in": {
+    "frames": [
+     "mount_cheetah/summon_in_0",
+     "mount_cheetah/summon_in_1",
+     "mount_cheetah/summon_in_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   },
+   "summon_out": {
+    "frames": [
+     "mount_cheetah/summon_out_0",
+     "mount_cheetah/summon_out_1",
+     "mount_cheetah/summon_out_2"
+    ],
+    "fps": 12,
+    "loop": false,
+    "ticks": [
+     5,
+     5,
+     5
+    ]
+   }
+  }
+ },
+ "MOUNT_ANCHORS": {
+  "mount_frog/idle_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/idle_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_0": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_0": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_1": {
+   "seat": [
+    15,
+    11
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_1": {
+   "seat": [
+    15,
+    11
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_2": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_2": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_3": {
+   "seat": [
+    15,
+    12
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_3": {
+   "seat": [
+    15,
+    12
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/land_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/land_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/land_1": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/land_1": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/charge_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/charge_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/charge_1": {
+   "seat": [
+    15,
+    20
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/charge_1": {
+   "seat": [
+    15,
+    20
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/superjump_0": {
+   "seat": [
+    15,
+    6
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/superjump_0": {
+   "seat": [
+    15,
+    6
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/tongue_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/tongue_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/tongue_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/tongue_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_in_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_out_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_in_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_out_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_in_2": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_out_2": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/idle_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/idle_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/trot_3": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/trot_3": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/land_0": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/land_0": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/land_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/land_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/charge_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "lean"
+  },
+  "mountr_dino/charge_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "lean"
+  },
+  "mount_dino/charge_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "lean"
+  },
+  "mountr_dino/charge_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "lean"
+  },
+  "mount_dino/pound_0": {
+   "seat": [
+    15,
+    7
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/pound_0": {
+   "seat": [
+    15,
+    7
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/pound_1": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mountr_dino/pound_1": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_in_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_out_0": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_in_1": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_out_1": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_in_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_dino/summon_out_2": {
+   "seat": [
+    15,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/idle_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/idle_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/idle_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/idle_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_2": {
+   "seat": [
+    19,
+    16
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_2": {
+   "seat": [
+    19,
+    16
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_3": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_3": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/glide_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/glide_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/jump_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/jump_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/fall_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/fall_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/land_0": {
+   "seat": [
+    19,
+    17
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/land_0": {
+   "seat": [
+    19,
+    17
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/land_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/land_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/summon_in_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_out_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_in_1": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_out_1": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_in_2": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_out_2": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/idle_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mountr_cheetah/idle_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/idle_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_cheetah/idle_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/gallop_0": {
+   "seat": [
+    19,
+    12
+   ],
+   "rider": "lean"
+  },
+  "mountr_cheetah/gallop_0": {
+   "seat": [
+    19,
+    12
+   ],
+   "rider": "lean"
+  },
+  "mount_cheetah/gallop_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_cheetah/gallop_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/gallop_2": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_cheetah/gallop_2": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/gallop_3": {
+   "seat": [
+    19,
+    12
+   ],
+   "rider": "lean"
+  },
+  "mountr_cheetah/gallop_3": {
+   "seat": [
+    19,
+    12
+   ],
+   "rider": "lean"
+  },
+  "mount_cheetah/jump_0": {
+   "seat": [
+    19,
+    10
+   ],
+   "rider": "lean"
+  },
+  "mountr_cheetah/jump_0": {
+   "seat": [
+    19,
+    10
+   ],
+   "rider": "lean"
+  },
+  "mount_cheetah/fall_0": {
+   "seat": [
+    19,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mountr_cheetah/fall_0": {
+   "seat": [
+    19,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/land_0": {
+   "seat": [
+    19,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mountr_cheetah/land_0": {
+   "seat": [
+    19,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/land_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_cheetah/land_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/dash_0": {
+   "seat": [
+    19,
+    12
+   ],
+   "rider": "lean"
+  },
+  "mountr_cheetah/dash_0": {
+   "seat": [
+    19,
+    12
+   ],
+   "rider": "lean"
+  },
+  "mount_cheetah/dash_1": {
+   "seat": [
+    19,
+    11
+   ],
+   "rider": "lean"
+  },
+  "mountr_cheetah/dash_1": {
+   "seat": [
+    19,
+    11
+   ],
+   "rider": "lean"
+  },
+  "mount_cheetah/summon_in_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/summon_out_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/summon_in_1": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/summon_out_1": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/summon_in_2": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_cheetah/summon_out_2": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  }
+ },
+ "CHARACTER_OPTIONS": {
+  "categories": [
+   {
+    "key": "skin",
+    "label": "Skin",
+    "names": [
+     "Porcelain",
+     "Ivory",
+     "Peach",
+     "Sand",
+     "Honey",
+     "Tan",
+     "Caramel",
+     "Bronze",
+     "Cocoa",
+     "Espresso",
+     "Rosewood",
+     "Moss",
+     "Periwinkle",
+     "Orchid"
+    ],
+    "colorKeys": []
+   },
+   {
+    "key": "hair",
+    "label": "Hair Style",
+    "names": [
+     "Bald",
+     "Crop",
+     "Side Part",
+     "Spiky",
+     "Long",
+     "Ponytail",
+     "Top Bun",
+     "Braids",
+     "Mohawk",
+     "Afro",
+     "Bob",
+     "Curly",
+     "Pigtails",
+     "Pompadour",
+     "Messy",
+     "Twin Buns"
+    ],
+    "colorKeys": [
+     "hairColor"
+    ],
+    "colorTable": "hair"
+   },
+   {
+    "key": "hairTint",
+    "label": "Hair Tint",
+    "names": [
+     "None",
+     "Dip-Dye",
+     "Streak",
+     "Underlayer"
+    ],
+    "colorKeys": [
+     "hairTintColor"
+    ],
+    "colorTable": "hair"
+   },
+   {
+    "key": "eyes",
+    "label": "Eyes",
+    "names": [
+     "Dot",
+     "Round",
+     "Bright",
+     "Sleepy",
+     "Happy",
+     "Anime",
+     "Cat",
+     "Lashes"
+    ],
+    "colorKeys": [
+     "eyeColor"
+    ],
+    "colorTable": "eye"
+   },
+   {
+    "key": "brows",
+    "label": "Eyebrows",
+    "names": [
+     "Flat",
+     "Thin",
+     "Angled",
+     "Arched",
+     "Bushy",
+     "Dots"
+    ],
+    "colorKeys": []
+   },
+   {
+    "key": "mouth",
+    "label": "Mouth",
+    "names": [
+     "Smile",
+     "Tiny",
+     "Flat",
+     "Grin",
+     "Cat",
+     "Smirk"
+    ],
+    "colorKeys": []
+   },
+   {
+    "key": "top",
+    "label": "Top",
+    "names": [
+     "Tee",
+     "Striped Tee",
+     "Tank",
+     "Hoodie",
+     "Jacket",
+     "Overalls",
+     "Tunic",
+     "Sweater",
+     "Sailor",
+     "Armor",
+     "Wrap",
+     "Star Tee"
+    ],
+    "colorKeys": [
+     "topC1",
+     "topC2"
+    ],
+    "colorTable": "item"
+   },
+   {
+    "key": "bottom",
+    "label": "Bottom",
+    "names": [
+     "Jeans",
+     "Shorts",
+     "Capris",
+     "Cargo",
+     "Track Pants",
+     "Skirt",
+     "Kilt",
+     "Stockings"
+    ],
+    "colorKeys": [
+     "botC1",
+     "botC2"
+    ],
+    "colorTable": "item"
+   },
+   {
+    "key": "shoes",
+    "label": "Footwear",
+    "names": [
+     "Sneakers",
+     "Boots",
+     "Sandals",
+     "Slippers",
+     "Hi-Tops",
+     "Barefoot",
+     "Clogs",
+     "Pogo Shoes"
+    ],
+    "colorKeys": [
+     "shoeC1",
+     "shoeC2"
+    ],
+    "colorTable": "item"
+   },
+   {
+    "key": "hat",
+    "label": "Headwear",
+    "names": [
+     "None",
+     "Cap",
+     "Beanie",
+     "Bucket Hat",
+     "Wizard Hat",
+     "Crown",
+     "Headband",
+     "Bandana",
+     "Cat Ears",
+     "Bunny Ears",
+     "Goggles",
+     "Helmet",
+     "Straw Hat",
+     "Flower Crown",
+     "Coil Antenna"
+    ],
+    "colorKeys": [
+     "hatC1",
+     "hatC2"
+    ],
+    "colorTable": "item"
+   },
+   {
+    "key": "back",
+    "label": "Back Item",
+    "names": [
+     "None",
+     "Short Cape",
+     "Long Cape",
+     "Backpack",
+     "Wings",
+     "Tail",
+     "Coil Pack"
+    ],
+    "colorKeys": [
+     "backC1",
+     "backC2"
+    ],
+    "colorTable": "item"
+   },
+   {
+    "key": "acc",
+    "label": "Accessory",
+    "names": [
+     "None",
+     "Round Glasses",
+     "Shades",
+     "Eyepatch",
+     "Freckles",
+     "Face Mask",
+     "Scarf",
+     "Bow Tie",
+     "Necklace",
+     "Earring"
+    ],
+    "colorKeys": [
+     "accC1",
+     "accC2"
+    ],
+    "colorTable": "item"
+   }
+  ],
+  "skinTones": [
+   {
+    "name": "Porcelain"
+   },
+   {
+    "name": "Ivory"
+   },
+   {
+    "name": "Peach"
+   },
+   {
+    "name": "Sand"
+   },
+   {
+    "name": "Honey"
+   },
+   {
+    "name": "Tan"
+   },
+   {
+    "name": "Caramel"
+   },
+   {
+    "name": "Bronze"
+   },
+   {
+    "name": "Cocoa"
+   },
+   {
+    "name": "Espresso"
+   },
+   {
+    "name": "Rosewood"
+   },
+   {
+    "name": "Moss"
+   },
+   {
+    "name": "Periwinkle"
+   },
+   {
+    "name": "Orchid"
+   }
+  ],
+  "hairColors": [
+   {
+    "name": "Jet"
+   },
+   {
+    "name": "Espresso"
+   },
+   {
+    "name": "Chestnut"
+   },
+   {
+    "name": "Auburn"
+   },
+   {
+    "name": "Ginger"
+   },
+   {
+    "name": "Honey"
+   },
+   {
+    "name": "Platinum"
+   },
+   {
+    "name": "Silver"
+   },
+   {
+    "name": "Slate"
+   },
+   {
+    "name": "Cobalt"
+   },
+   {
+    "name": "Teal"
+   },
+   {
+    "name": "Mint"
+   },
+   {
+    "name": "Violet"
+   },
+   {
+    "name": "Bubblegum"
+   },
+   {
+    "name": "Crimson"
+   },
+   {
+    "name": "Lavender"
+   }
+  ],
+  "eyeColors": [
+   {
+    "name": "Brown"
+   },
+   {
+    "name": "Hazel"
+   },
+   {
+    "name": "Amber"
+   },
+   {
+    "name": "Green"
+   },
+   {
+    "name": "Teal"
+   },
+   {
+    "name": "Sky"
+   },
+   {
+    "name": "Blue"
+   },
+   {
+    "name": "Violet"
+   },
+   {
+    "name": "Rose"
+   },
+   {
+    "name": "Storm"
+   }
+  ],
+  "itemColors": [
+   {
+    "name": "Crimson"
+   },
+   {
+    "name": "Coral"
+   },
+   {
+    "name": "Orange"
+   },
+   {
+    "name": "Gold"
+   },
+   {
+    "name": "Lime"
+   },
+   {
+    "name": "Leaf"
+   },
+   {
+    "name": "Forest"
+   },
+   {
+    "name": "Mint"
+   },
+   {
+    "name": "Teal"
+   },
+   {
+    "name": "Sky"
+   },
+   {
+    "name": "Cobalt"
+   },
+   {
+    "name": "Indigo"
+   },
+   {
+    "name": "Violet"
+   },
+   {
+    "name": "Magenta"
+   },
+   {
+    "name": "Rose"
+   },
+   {
+    "name": "Plum"
+   },
+   {
+    "name": "Rust"
+   },
+   {
+    "name": "Brown"
+   },
+   {
+    "name": "Tan"
+   },
+   {
+    "name": "Cream"
+   },
+   {
+    "name": "Snow"
+   },
+   {
+    "name": "Stone"
+   },
+   {
+    "name": "Slate"
+   },
+   {
+    "name": "Midnight"
+   }
+  ],
+  "counts": {
+   "skin": 14,
+   "hair": 16,
+   "hairColor": 16,
+   "hairTint": 4,
+   "hairTintColor": 16,
+   "eyes": 8,
+   "eyeColor": 10,
+   "brows": 6,
+   "mouth": 6,
+   "top": 12,
+   "bottom": 8,
+   "shoes": 8,
+   "hat": 15,
+   "back": 7,
+   "acc": 10,
+   "topC1": 24,
+   "topC2": 24,
+   "botC1": 24,
+   "botC2": 24,
+   "shoeC1": 24,
+   "shoeC2": 24,
+   "hatC1": 24,
+   "hatC2": 24,
+   "backC1": 24,
+   "backC2": 24,
+   "accC1": 24,
+   "accC2": 24
+  }
+ },
+ "sampleLooks": [
+  {
+   "name": "default",
+   "code": "1IiFLEAqYtUAoA4AAwHA",
+   "look": {
+    "v": 1,
+    "skin": 2,
+    "hair": 2,
+    "hairColor": 2,
+    "hairTint": 0,
+    "hairTintColor": 5,
+    "eyes": 1,
+    "eyeColor": 6,
+    "brows": 1,
+    "mouth": 0,
+    "top": 0,
+    "topC1": 10,
+    "topC2": 19,
+    "bottom": 0,
+    "botC1": 22,
+    "botC2": 21,
+    "shoes": 0,
+    "shoeC1": 0,
+    "shoeC2": 20,
+    "hat": 0,
+    "hatC1": 3,
+    "hatC2": 16,
+    "back": 0,
+    "backC1": 0,
+    "backC2": 3,
+    "acc": 0,
+    "accC1": 3,
+    "accC2": 16
+   }
+  },
+  {
+   "name": "wizard",
+   "code": "1lHcoEMwdWMxkixpYwHA",
+   "look": {
+    "v": 1,
+    "skin": 9,
+    "hair": 4,
+    "hairColor": 7,
+    "hairTint": 1,
+    "hairTintColor": 12,
+    "eyes": 5,
+    "eyeColor": 0,
+    "brows": 1,
+    "mouth": 0,
+    "top": 6,
+    "topC1": 12,
+    "topC2": 3,
+    "bottom": 5,
+    "botC1": 11,
+    "botC2": 3,
+    "shoes": 1,
+    "shoeC1": 17,
+    "shoeC2": 18,
+    "hat": 4,
+    "hatC1": 11,
+    "hatC2": 3,
+    "back": 2,
+    "backC1": 11,
+    "backC2": 3,
+    "acc": 0,
+    "accC1": 3,
+    "accC2": 16
+   }
+  },
+  {
+   "name": "adventurer",
+   "code": "1ZRFQloWbjIxkcouEmAM",
+   "look": {
+    "v": 1,
+    "skin": 6,
+    "hair": 5,
+    "hairColor": 1,
+    "hairTint": 0,
+    "hairTintColor": 5,
+    "eyes": 2,
+    "eyeColor": 1,
+    "brows": 1,
+    "mouth": 3,
+    "top": 4,
+    "topC1": 5,
+    "topC2": 19,
+    "bottom": 3,
+    "botC1": 17,
+    "botC2": 18,
+    "shoes": 1,
+    "shoeC1": 17,
+    "shoeC2": 18,
+    "hat": 3,
+    "hatC1": 18,
+    "hatC2": 17,
+    "back": 3,
+    "backC1": 16,
+    "backC2": 18,
+    "acc": 6,
+    "accC1": 0,
+    "accC2": 3
+   }
+  },
+  {
+   "name": "punk",
+   "code": "1GNpLKlYEuCAoA4AAyuA",
+   "look": {
+    "v": 1,
+    "skin": 1,
+    "hair": 8,
+    "hairColor": 13,
+    "hairTint": 2,
+    "hairTintColor": 9,
+    "eyes": 1,
+    "eyeColor": 6,
+    "brows": 2,
+    "mouth": 5,
+    "top": 2,
+    "topC1": 22,
+    "topC2": 0,
+    "bottom": 4,
+    "botC1": 23,
+    "botC2": 0,
+    "shoes": 4,
+    "shoeC1": 0,
+    "shoeC2": 20,
+    "hat": 0,
+    "hatC1": 3,
+    "hatC2": 16,
+    "back": 0,
+    "backC1": 0,
+    "backC2": 3,
+    "acc": 2,
+    "accC1": 23,
+    "accC2": 0
+   }
+  },
+  {
+   "name": "sprite",
+   "code": "1v70hkUd2KegppXShwHA",
+   "look": {
+    "v": 1,
+    "skin": 11,
+    "hair": 15,
+    "hairColor": 11,
+    "hairTint": 3,
+    "hairTintColor": 4,
+    "eyes": 4,
+    "eyeColor": 3,
+    "brows": 1,
+    "mouth": 0,
+    "top": 10,
+    "topC1": 7,
+    "topC2": 14,
+    "bottom": 6,
+    "botC1": 5,
+    "botC2": 7,
+    "shoes": 5,
+    "shoeC1": 0,
+    "shoeC2": 20,
+    "hat": 13,
+    "hatC1": 5,
+    "hatC2": 14,
+    "back": 4,
+    "backC1": 20,
+    "backC2": 7,
+    "acc": 0,
+    "accC1": 3,
+    "accC2": 16
+   }
+  },
+  {
+   "name": "knight",
+   "code": "1QYF0kTUYtU2rdRkAwHA",
+   "look": {
+    "v": 1,
+    "skin": 4,
+    "hair": 1,
+    "hairColor": 8,
+    "hairTint": 0,
+    "hairTintColor": 5,
+    "eyes": 6,
+    "eyeColor": 9,
+    "brows": 1,
+    "mouth": 0,
+    "top": 9,
+    "topC1": 21,
+    "topC2": 3,
+    "bottom": 0,
+    "botC1": 22,
+    "botC2": 21,
+    "shoes": 1,
+    "shoeC1": 22,
+    "shoeC2": 21,
+    "hat": 11,
+    "hatC1": 21,
+    "hatC2": 3,
+    "back": 1,
+    "backC1": 0,
+    "backC2": 3,
+    "acc": 0,
+    "accC1": 3,
+    "accC2": 16
+   }
+  },
+  {
+   "name": "pilot",
+   "code": "1eiFLEKqblHgHUk4ckHA",
+   "look": {
+    "v": 1,
+    "skin": 7,
+    "hair": 10,
+    "hairColor": 2,
+    "hairTint": 0,
+    "hairTintColor": 5,
+    "eyes": 1,
+    "eyeColor": 6,
+    "brows": 1,
+    "mouth": 0,
+    "top": 5,
+    "topC1": 10,
+    "topC2": 19,
+    "bottom": 3,
+    "botC1": 18,
+    "botC2": 17,
+    "shoes": 7,
+    "shoeC1": 0,
+    "shoeC2": 3,
+    "hat": 10,
+    "hatC1": 18,
+    "hatC2": 9,
+    "back": 6,
+    "backC1": 3,
+    "backC2": 18,
+    "acc": 4,
+    "accC1": 3,
+    "accC2": 16
+   }
+  },
+  {
+   "name": "chef",
+   "code": "1PGF6ORRXVRAoA4AA3AM",
+   "look": {
+    "v": 1,
+    "skin": 3,
+    "hair": 12,
+    "hairColor": 6,
+    "hairTint": 0,
+    "hairTintColor": 5,
+    "eyes": 7,
+    "eyeColor": 4,
+    "brows": 3,
+    "mouth": 4,
+    "top": 8,
+    "topC1": 20,
+    "topC2": 10,
+    "bottom": 7,
+    "botC1": 10,
+    "botC2": 20,
+    "shoes": 2,
+    "shoeC1": 0,
+    "shoeC2": 20,
+    "hat": 0,
+    "hatC1": 3,
+    "hatC2": 16,
+    "back": 0,
+    "backC1": 0,
+    "backC2": 3,
+    "acc": 7,
+    "accC1": 0,
+    "accC2": 3
+   }
+  },
+  {
+   "name": "rand5",
+   "code": "1Sulh2o6rZFWRFLVZRcE",
+   "look": {
+    "v": 1,
+    "skin": 4,
+    "hair": 10,
+    "hairColor": 14,
+    "hairTint": 2,
+    "hairTintColor": 5,
+    "eyes": 4,
+    "eyeColor": 3,
+    "brows": 5,
+    "mouth": 5,
+    "top": 4,
+    "topC1": 14,
+    "topC2": 21,
+    "bottom": 3,
+    "botC1": 12,
+    "botC2": 17,
+    "shoes": 2,
+    "shoeC1": 22,
+    "shoeC2": 8,
+    "hat": 8,
+    "hatC1": 20,
+    "hatC2": 22,
+    "back": 5,
+    "backC1": 11,
+    "backC2": 5,
+    "acc": 1,
+    "accC1": 14,
+    "accC2": 1
+   }
+  },
+  {
+   "name": "rand17",
+   "code": "1qYIY1CClRMNuAYVapuk",
+   "look": {
+    "v": 1,
+    "skin": 10,
+    "hair": 9,
+    "hairColor": 8,
+    "hairTint": 0,
+    "hairTintColor": 8,
+    "eyes": 3,
+    "eyeColor": 1,
+    "brows": 5,
+    "mouth": 2,
+    "top": 1,
+    "topC1": 0,
+    "topC2": 20,
+    "bottom": 5,
+    "botC1": 8,
+    "botC2": 19,
+    "shoes": 0,
+    "shoeC1": 13,
+    "shoeC2": 23,
+    "hat": 0,
+    "hatC1": 1,
+    "hatC2": 16,
+    "back": 5,
+    "backC1": 11,
+    "backC2": 10,
+    "acc": 9,
+    "accC1": 23,
+    "accC2": 9
+   }
+  },
+  {
+   "name": "rand33",
+   "code": "1clFZxTVMEMEEchirnLI",
+   "look": {
+    "v": 1,
+    "skin": 7,
+    "hair": 2,
+    "hairColor": 5,
+    "hairTint": 0,
+    "hairTintColor": 5,
+    "eyes": 3,
+    "eyeColor": 3,
+    "brows": 4,
+    "mouth": 2,
+    "top": 9,
+    "topC1": 21,
+    "topC2": 9,
+    "bottom": 4,
+    "botC1": 2,
+    "botC2": 3,
+    "shoes": 0,
+    "shoeC1": 4,
+    "shoeC2": 2,
+    "hat": 3,
+    "hatC1": 18,
+    "hatC2": 3,
+    "back": 0,
+    "backC1": 21,
+    "backC2": 14,
+    "acc": 7,
+    "accC1": 5,
+    "accC2": 18
+   }
+  },
+  {
+   "name": "rand71",
+   "code": "1OpU4pyGocFRtFYElVdc",
+   "look": {
+    "v": 1,
+    "skin": 3,
+    "hair": 10,
+    "hairColor": 9,
+    "hairTint": 1,
+    "hairTintColor": 4,
+    "eyes": 7,
+    "eyeColor": 1,
+    "brows": 2,
+    "mouth": 3,
+    "top": 9,
+    "topC1": 1,
+    "topC2": 21,
+    "bottom": 0,
+    "botC1": 14,
+    "botC2": 1,
+    "shoes": 2,
+    "shoeC1": 17,
+    "shoeC2": 22,
+    "hat": 8,
+    "hatC1": 21,
+    "hatC2": 16,
+    "back": 1,
+    "backC1": 4,
+    "backC2": 21,
+    "acc": 5,
+    "accC1": 14,
+    "accC2": 23
+   }
+  }
+ ]
+}

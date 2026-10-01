@@ -1,0 +1,16 @@
+{
+  "name": "@sbh/art",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./world": "./src/world/index.ts"
+  },
+  "scripts": {
+    "build:art": "tsx scripts/build-art.ts",
+    "build:blender": "pwsh -NoProfile -File ../../tools/blender/build.ps1"
+  }
+}

@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Super BoundHaven | A 16-bit platforming MMO in development</title>
+    <meta
+      name="description"
+      content="Super BoundHaven is an in-development 16-bit, side-scrolling platforming MMO built around precision movement, a shared world, summonable mounts and cooperative challenges. Early browser prototype playable; no launch date."
+    />
+    <meta name="theme-color" content="#0b0b14" />
+    <meta name="color-scheme" content="dark" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Super BoundHaven" />
+    <meta property="og:title" content="Super BoundHaven | A 16-bit platforming MMO in development" />
+    <meta
+      property="og:description"
+      content="Precision movement, a shared world, original mounts and co-op that needs every bounce. Early prototype playable. In development."
+    />
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Super BoundHaven key art: pixel-art characters with different looks run across a sunset meadow with layered mountains and clouds."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Super BoundHaven" />
+    <meta name="twitter:description" content="A 16-bit platforming MMO in development. Early prototype playable. Join the waitlist." />
+    <meta name="twitter:image" content="/og.png" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230b0b14'/%3E%3Crect x='1' y='1' width='6' height='6' fill='%23ffd84a'/%3E%3Crect x='2' y='2' width='4' height='4' fill='%23ff4f7b'/%3E%3Crect x='2' y='3' width='1' height='2' fill='%23fff'/%3E%3Crect x='4' y='3' width='1' height='2' fill='%23fff'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav" id="site-nav">
+      <div class="wrap nav__inner">
+        <a class="brand" href="#top" aria-label="Super BoundHaven, back to top">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Super<span> BoundHaven</span></span>
+        </a>
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+          <span class="sr-only">Menu</span>
+          <span class="nav__bars" aria-hidden="true"></span>
+        </button>
+        <nav id="nav-menu" class="nav__menu" aria-label="Primary" data-open="false">
+          <ul>
+            <li><a href="#key-points">Features</a></li>
+            <li><a href="#gameplay">Gameplay</a></li>
+            <li><a href="#characters">Heroes</a></li>
+            <li><a href="#mounts">Mounts</a></li>
+            <li><a href="#world">World</a></li>
+            <li><a href="#raids">Co-op</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#build">Build log</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+          <a class="btn btn--primary btn--small" href="#signup">Sign Up</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <canvas
+          id="hero-art"
+          class="hero__art"
+          role="img"
+          aria-label="Key art, drawn live from the game's real art: a sunset meadow with layered mountains, a lake and clouds, and a row of pixel-art characters with different looks walking, running and jumping, one bouncing off a red pad."
+        ></canvas>
+        <div class="hero__scrim" aria-hidden="true"></div>
+        <div class="wrap hero__inner">
+          <p class="eyebrow">In development &middot; Browser first &middot; Steam later</p>
+          <h1 id="hero-title" class="logo">
+            <span class="logo__top">Super</span>
+            <span class="logo__main">BoundHaven</span>
+          </h1>
+          <p class="hero__tag">Bounce together. Master every jump.</p>
+          <p class="hero__sub">
+            A sharp 16-bit, side-scrolling platforming MMO where movement is the skill, the world is shared, and the hardest
+            challenges are meant to be beaten as a team.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" data-play href="%BASE_URL%play/">Play the prototype</a>
+            <a class="btn btn--ghost" href="#gameplay">Watch the gameplay reel</a>
+            <a class="btn btn--ghost" href="#signup">Join the waitlist</a>
+          </div>
+          <p class="hero__note">
+            <span class="chip chip--proto">Playable prototype</span>
+            Early and rough: a shared movement playground and a character creator. No launch date yet.
+          </p>
+        </div>
+      </section>
+
+      <!-- KEY POINTS -->
+      <section class="section" id="key-points" aria-labelledby="kp-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Why it&rsquo;s different</p>
+            <h2 id="kp-title">Built around how it feels to move</h2>
+            <p class="lede">
+              Inspired by the bold, readable essence of classic 16-bit platformers, made original from the ground up. Here is
+              what we are building, and honestly how far along each piece is.
+            </p>
+          </header>
+          <ul class="cards cards--kp">
+            <li class="card">
+              <span class="card__icon" data-icon="movement"></span>
+              <h3>Precision movement, real skill gap</h3>
+              <p>
+                Momentum, run-jumps, slopes and bounce pads tuned for feel, with short coyote-time and jump-buffer windows.
+                Easy to pick up, deep enough that mastery shows. How failure and checkpoints work is still being decided.
+              </p>
+              <span class="chip chip--proto">Playable prototype</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="players"></span>
+              <h3>A real-time shared world</h3>
+              <p>
+                Other players are visible as you play, and you physically bump, stomp and bounce off each other. Today that is
+                one small shared playground; larger regions and scale are still to be tested.
+              </p>
+              <span class="chip chip--proto">Playable prototype (small)</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="secrets"></span>
+              <h3>A big layered character creator</h3>
+              <p>
+                A layered humanoid look, built from skin, hair, face, clothes, hats, back items and more. Pick a look in the
+                prototype and everyone sees it.
+              </p>
+              <span class="chip chip--proto">Playable prototype</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="powerup"></span>
+              <h3>Summonable mounts &amp; Metroidvania exploration</h3>
+              <p>
+                Many original rideable animals, summoned in the open world whenever you like. Some places need a particular
+                mount, with secrets and hidden routes to find. Art exists; the mechanics are not built yet.
+              </p>
+              <span class="chip chip--planned">Planned</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="coop"></span>
+              <h3>Genuinely cooperative dungeons &amp; raids</h3>
+              <p>
+                Challenges that need coordinated bounces, switches and timing, so one player cannot simply carry everyone
+                else. The stomp-bounce that makes it possible already works in the prototype.
+              </p>
+              <span class="chip chip--planned">Planned</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="levels"></span>
+              <h3>Player-made levels &amp; weekly events</h3>
+              <p>
+                Build and share your own levels. A featured level each week, plus races and time-attack events on familiar
+                favorites.
+              </p>
+              <span class="chip chip--later">Later</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="powerup"></span>
+              <h3>Original powerups</h3>
+              <p>A growing toolbox of consumable powerups, all with their own designs and their own quirks.</p>
+              <span class="chip chip--planned">Planned</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="gear"></span>
+              <h3>Gear that does something</h3>
+              <p>
+                Functional equipment and loadouts that change how you play, plus tradeable items. Your base moveset still has
+                to be enough to clear hard content with exceptional skill.
+              </p>
+              <span class="chip chip--later">Later</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="secrets"></span>
+              <h3>Secrets &amp; Easter eggs</h3>
+              <p>Hidden routes, odd corners and subtle nods to the things we love, tucked away for the curious.</p>
+              <span class="chip chip--planned">Planned</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- GAMEPLAY -->
+      <section class="section section--alt" id="gameplay" aria-labelledby="gp-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Gameplay</p>
+            <h2 id="gp-title">Watch the real simulation run</h2>
+            <p class="lede">
+              This is not a video. It is the actual movement simulation from the prototype, driven by scripted button
+              presses and drawn live in your browser with the game&rsquo;s real tiles, backdrop and character sprites.
+            </p>
+          </header>
+
+          <div class="gameplay">
+            <div class="reel" id="reel">
+              <div class="reel__tabs" role="group" aria-label="Choose a gameplay clip">
+                <button type="button" data-clip="solo" aria-pressed="true">Precision run</button>
+                <button type="button" data-clip="coop" aria-pressed="false">Co-op wall bounce</button>
+              </div>
+              <div class="reel__screen">
+                <canvas
+                  id="reel-canvas"
+                  width="320"
+                  height="224"
+                  role="img"
+                  aria-label="Gameplay reel: a live replay of the simulation."
+                ></canvas>
+                <div class="reel__chips" aria-hidden="true">
+                  <span class="chip chip--reel" id="reel-chip">Precision run</span>
+                </div>
+              </div>
+              <div class="reel__bar">
+                <p class="reel__caption" id="reel-sub">Ramp, pit, bounce pad: one run, no mistakes.</p>
+                <div class="reel__controls">
+                  <button type="button" class="btn btn--small btn--ghost" id="reel-pause" aria-pressed="false">Pause</button>
+                  <button type="button" class="btn btn--small btn--ghost" id="reel-restart">Restart clip</button>
+                </div>
+              </div>
+              <p class="reel__status" id="reel-status">Loading replay...</p>
+              <noscript><p class="reel__status">The gameplay reel needs JavaScript to replay the simulation.</p></noscript>
+            </div>
+
+            <aside class="gameplay__side">
+              <div class="trailer" role="group" aria-label="Official trailer, coming soon">
+                <div class="trailer__frame" aria-hidden="true">
+                  <span class="trailer__play"></span>
+                </div>
+                <div>
+                  <h3>Official trailer</h3>
+                  <p>Coming soon. We would rather show you the real thing than fake one.</p>
+                </div>
+              </div>
+              <div class="play-card">
+                <h3>Try the prototype</h3>
+                <p>A rough movement playground with a character creator. Expect rough edges and frequent changes.</p>
+                <a class="btn btn--primary" data-play href="%BASE_URL%play/">Play the prototype</a>
+              </div>
+            </aside>
+          </div>
+
+          <ul class="facts" aria-label="What the prototype already does">
+            <li><strong>Momentum movement</strong><span>Walk, run and skid with weighty acceleration.</span></li>
+            <li><strong>Variable jumps</strong><span>Hold for height. Short coyote-time and input-buffer windows.</span></li>
+            <li><strong>Slopes &amp; bounce pads</strong><span>45-degree slopes, and pads that launch higher when you hold jump.</span></li>
+            <li><strong>Players are solid</strong><span>Stomp, bounce and push each other. The foundation of co-op.</span></li>
+          </ul>
+
+          <h3 class="sub-h">One run, frame by frame</h3>
+          <ol class="filmstrip" aria-label="Frames from the precision-run clip">
+            <li><canvas data-strip width="128" height="128" role="img" aria-label="Frame 1: a character sprints up the ramp."></canvas><span>Ramp</span></li>
+            <li><canvas data-strip width="128" height="128" role="img" aria-label="Frame 2: running along the plateau."></canvas><span>Plateau</span></li>
+            <li><canvas data-strip width="128" height="128" role="img" aria-label="Frame 3: mid-air over the pit."></canvas><span>Pit jump</span></li>
+            <li><canvas data-strip width="128" height="128" role="img" aria-label="Frame 4: landing on the far side."></canvas><span>Landing</span></li>
+            <li><canvas data-strip width="128" height="128" role="img" aria-label="Frame 5: launching off a red bounce pad."></canvas><span>Pad launch</span></li>
+            <li><canvas data-strip width="128" height="128" role="img" aria-label="Frame 6: standing on the high platform."></canvas><span>High platform</span></li>
+          </ol>
+
+          <h3 class="sub-h">Screenshots from the prototype</h3>
+          <ul class="shots" id="shots" aria-label="Screenshots from the playable prototype"></ul>
+          <p class="small">Captured from the live prototype build. Everything is early and will change.</p>
+        </div>
+      </section>
+
+      <!-- CHARACTER CREATOR -->
+      <section class="section" id="characters" aria-labelledby="char-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Heroes</p>
+            <h2 id="char-title">Make someone who is yours</h2>
+            <p class="lede">
+              A layered humanoid creator: stout, expressive characters with a big readable head and a chunky outline, assembled
+              from independent layers so every combination animates the same way. Not blocks or cubes.
+            </p>
+          </header>
+
+          <div class="creator" id="creator">
+            <div class="creator__stage">
+              <div class="creator__screen">
+                <canvas id="cc-canvas" width="40" height="40" role="img" aria-label="Character preview"></canvas>
+              </div>
+              <div class="creator__meta">
+                <p class="creator__name"><span class="small">Look</span> <b id="cc-name">default</b></p>
+                <p class="small">Look code <code id="cc-code"></code></p>
+              </div>
+              <div class="creator__controls">
+                <button type="button" class="btn btn--small btn--ghost" id="cc-prev" aria-label="Previous look">Prev</button>
+                <button type="button" class="btn btn--small btn--primary" id="cc-shuffle">Shuffle look</button>
+                <button type="button" class="btn btn--small btn--ghost" id="cc-next" aria-label="Next look">Next</button>
+                <button type="button" class="btn btn--small btn--ghost" id="cc-flip">Flip</button>
+              </div>
+              <div class="chipbar" id="cc-anims" role="group" aria-label="Preview animation"></div>
+            </div>
+
+            <div class="creator__side">
+              <h3>Twelve sample looks</h3>
+              <ul class="looks" id="cc-looks" aria-label="Pick a sample look"></ul>
+              <h3>What you can customize <span class="small" id="cc-total"></span></h3>
+              <ul class="cats" id="cc-cats" aria-label="Customization categories and option counts"></ul>
+              <p class="small">Counts are the real option lists in the current build. More is expected.</p>
+              <p>
+                <a class="btn btn--primary" data-play href="%BASE_URL%play/">Open the creator in the prototype</a>
+              </p>
+              <p class="small">
+                The prototype opens the creator first: pick a look, a name, and jump in. Press C in-game to change it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MOUNTS -->
+      <section class="section section--alt" id="mounts" aria-labelledby="mounts-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Mounts &amp; exploration</p>
+            <h2 id="mounts-title">Summon a ride. Reach somewhere new.</h2>
+            <p class="lede">
+              The direction is set: many different original rideable animals, summoned in the open world whenever you want,
+              with some areas that need a particular mount. The first four are below. The sprites are real; the
+              <strong>abilities shown are proposals</strong>, not final design, and none of this is playable yet.
+            </p>
+            <p>
+              <span class="chip chip--dir">Roster &amp; summon: confirmed direction</span>
+              <span class="chip chip--planned">Abilities: proposed</span>
+              <span class="chip chip--planned">Mechanics: planned</span>
+            </p>
+          </header>
+
+          <ul class="mounts">
+            <li class="mount" data-mount="frog">
+              <canvas width="72" height="64" role="img" aria-label="Animated pixel-art green frog mount with a rider, hopping and charging a super-hop."></canvas>
+              <div>
+                <h3>Frog</h3>
+                <p class="mount__now small">Now showing: <b data-now>Idle</b></p>
+                <p>
+                  A bouncy, amphibious hopper. <span class="prop">Proposed:</span> a charged super-hop, hopping across lily pads,
+                  and a tether-grab onto anchor points to cross wide gaps.
+                </p>
+              </div>
+            </li>
+            <li class="mount" data-mount="dino">
+              <canvas width="72" height="64" role="img" aria-label="Animated pixel-art terracotta dinosaur mount with a rider, trotting and ground-pounding."></canvas>
+              <div>
+                <h3>Dinosaur</h3>
+                <p class="mount__now small">Now showing: <b data-now>Idle</b></p>
+                <p>
+                  A sturdy ground bruiser. <span class="prop">Proposed:</span> a ground-pound that breaks cracked blocks and
+                  trips heavy switches.
+                </p>
+              </div>
+            </li>
+            <li class="mount" data-mount="drake">
+              <canvas width="72" height="64" role="img" aria-label="Animated pixel-art blue flying dinosaur mount with a rider, flapping and gliding."></canvas>
+              <div>
+                <h3>Flying dinosaur</h3>
+                <p class="mount__now small">Now showing: <b data-now>Idle</b></p>
+                <p>
+                  An airborne ride. <span class="prop">Proposed:</span> a stamina-limited flap and glide, riding updrafts toward
+                  sky islands and tall shafts.
+                </p>
+              </div>
+            </li>
+            <li class="mount" data-mount="cheetah">
+              <canvas width="72" height="64" role="img" aria-label="Animated pixel-art spotted cheetah mount with a rider, galloping and dashing."></canvas>
+              <div>
+                <h3>Cheetah</h3>
+                <p class="mount__now small">Now showing: <b data-now>Idle</b></p>
+                <p>
+                  The speed mount. <span class="prop">Proposed:</span> a sprint dash, steep-slope climbing and long leaps for
+                  speed gates and crumbling bridges.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <p class="small">
+            Still open: how mounts are earned, summon limits, whether they work in raids or races, and passengers. The plan is
+            that mounts add to your base moveset and never replace it. Mount names and designs are placeholders.
+          </p>
+        </div>
+      </section>
+
+      <!-- CREATURES -->
+      <section class="section" id="creatures" aria-labelledby="crea-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Creatures, pickups &amp; effects</p>
+            <h2 id="crea-title">A world with things in it</h2>
+            <p class="lede">
+              Cute-but-mischievous critters, shiny collectibles and juicy effects, all original and all animated from the real
+              sprite sheets. This is art only: how enemies behave, and what shards are for, has not been designed yet.
+            </p>
+          </header>
+          <figure class="creatures">
+            <canvas
+              id="creatures-canvas"
+              width="320"
+              height="112"
+              role="img"
+              aria-label="Three original creatures patrol a grassy strip: a plum sprout-creature that walks, a teal winged flier, and a slate spiky-backed crawler, with spinning cyan crystal shards floating above."
+            ></canvas>
+            <figcaption>
+              <ul class="legend">
+                <li><b>Sproutling</b> a plum leaf-sprouting walker, drawn with a squash frame.</li>
+                <li><b>Zipwing</b> a teal, striped flier.</li>
+                <li><b>Shardback</b> a slate crawler with magenta crystal spikes that curls up.</li>
+                <li><b>Bound Shards</b> the cyan crystal collectible (working name).</li>
+              </ul>
+            </figcaption>
+          </figure>
+          <ul class="fx" id="fx-list" aria-label="Effects and pickups"></ul>
+        </div>
+      </section>
+
+      <!-- WORLD -->
+      <section class="section section--alt" id="world" aria-labelledby="world-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">The world</p>
+            <h2 id="world-title">Fourteen regions to imagine, two to see</h2>
+            <p class="lede">
+              Two regions already have real art and run in the prototype. The rest are creative direction, not a launch
+              checklist: not every region will ship at once, and none have dates.
+            </p>
+          </header>
+
+          <div class="viewer" id="region-viewer">
+            <div class="viewer__tabs" role="group" aria-label="Choose a region">
+              <button type="button" data-rv="meadow" aria-pressed="true">Sunny Grassland</button>
+              <button type="button" data-rv="meadow_sunset" aria-pressed="false">Grassland at sunset</button>
+              <button type="button" data-rv="caverns" aria-pressed="false">Crystal Caves</button>
+            </div>
+            <figure class="viewer__main">
+              <img id="rv-img" width="768" height="672" alt="" decoding="async" />
+              <span class="chip chip--proto viewer__chip">Real art, in the prototype</span>
+              <figcaption id="rv-cap"></figcaption>
+            </figure>
+            <ul class="viewer__thumbs" id="rv-thumbs" aria-label="Scenes in this region"></ul>
+          </div>
+
+          <h3 class="sub-h">One world, any time of day</h3>
+          <p class="lede">
+            Backdrops are layered for gentle parallax and come in dawn, day, sunset and night variants. Move your pointer
+            across the scene to shift the layers.
+          </p>
+          <div class="tod">
+            <div class="tod__tabs" role="group" aria-label="Time of day">
+              <button type="button" data-tod="dawn" aria-pressed="false">Dawn</button>
+              <button type="button" data-tod="day" aria-pressed="false">Day</button>
+              <button type="button" data-tod="sunset" aria-pressed="true">Sunset</button>
+              <button type="button" data-tod="night" aria-pressed="false">Night</button>
+            </div>
+            <canvas
+              id="tod-canvas"
+              width="480"
+              height="224"
+              role="img"
+              aria-label="Time-of-day backdrop (sunset): layered pixel-art mountains, hills, lake and clouds under a sunset sky."
+            ></canvas>
+          </div>
+
+          <h3 class="sub-h">On the drawing board</h3>
+          <p class="lede">
+            Twelve more regions we are designing toward. These are rough procedural sketches, <strong>not final art</strong>,
+            and not in the prototype. The finished regions will match the style above.
+          </p>
+          <ul class="regions" id="region-grid" aria-label="Concept regions"></ul>
+        </div>
+      </section>
+
+      <!-- RAIDS -->
+      <section class="section" id="raids" aria-labelledby="raids-title">
+        <div class="wrap raids">
+          <div class="raids__copy">
+            <p class="eyebrow">Co-op raids</p>
+            <h2 id="raids-title">Some walls need a friend</h2>
+            <p class="lede">
+              The hardest content is designed so that nobody can carry everyone else. Success takes coordinated bounces,
+              switches and timing, with the whole team executing together.
+            </p>
+            <ul class="ticks">
+              <li>Stomp-bounces let one player boost another over terrain no solo jump can clear.</li>
+              <li>Switches and timed sequences that only work when several people hit them together.</li>
+              <li>
+                A difficulty ladder from friendly dungeons up to punishing raids. The hardest raids are intended to need
+                roughly six to eight players or more; exact sizes are undecided.
+              </li>
+            </ul>
+            <p><span class="chip chip--planned">Planned</span> The wall in the storyboard is real, from our test playground.</p>
+          </div>
+          <figure class="storyboard">
+            <ol class="storyboard__frames">
+              <li>
+                <canvas data-story width="160" height="160" role="img" aria-label="Frame 1: a player jumps toward another who is standing at the foot of a tall wall."></canvas>
+                <span>1. Approach</span>
+              </li>
+              <li>
+                <canvas data-story width="160" height="160" role="img" aria-label="Frame 2: the jumper lands on the standing player's head."></canvas>
+                <span>2. Stomp</span>
+              </li>
+              <li>
+                <canvas data-story width="160" height="160" role="img" aria-label="Frame 3: the jumper is launched upward, rising past the top of the wall."></canvas>
+                <span>3. Bounce</span>
+              </li>
+              <li>
+                <canvas data-story width="160" height="160" role="img" aria-label="Frame 4: the jumper is standing on top of the wall."></canvas>
+                <span>4. Clear</span>
+              </li>
+            </ol>
+            <figcaption>Real frames from the simulation: a six-tile wall, three players, one living stepping stone.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- COMMUNITY -->
+      <section class="section section--alt" id="community" aria-labelledby="comm-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Community &amp; creators</p>
+            <h2 id="comm-title">Made by players, too</h2>
+            <p class="lede">Everything here is planned, not built. There is no level editor or upload yet.</p>
+          </header>
+          <ul class="cards cards--three">
+            <li class="card">
+              <span class="card__icon" data-icon="levels"></span>
+              <h3>Upload your levels</h3>
+              <p>Design a level, share it, and let the community play it. Validation and moderation are being thought through first.</p>
+              <span class="chip chip--later">Later</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="calendar"></span>
+              <h3>Weekly featured level</h3>
+              <p>One standout level in the spotlight each week. How it is chosen is still to be decided.</p>
+              <span class="chip chip--later">Later</span>
+            </li>
+            <li class="card">
+              <span class="card__icon" data-icon="trophy"></span>
+              <h3>Races &amp; time attacks</h3>
+              <p>Beloved levels come back for races, time attacks and speedrun events, with fair rules for everyone.</p>
+              <span class="chip chip--later">Later</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ROADMAP -->
+      <section class="section" id="roadmap" aria-labelledby="road-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Roadmap</p>
+            <h2 id="road-title">Where we are, and where we&rsquo;re going</h2>
+            <p class="lede">
+              Order shows priority, not dates. Plans change as we learn, and we will mark things honestly as they move.
+            </p>
+          </header>
+          <ol class="timeline">
+            <li class="step step--now">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>M1 &middot; Movement playground</h3>
+                <p>
+                  Playable now, and still changing: a small shared playground with the core movement, solid players
+                  (stomp, bounce, push), a layered character creator with animated sprites, and two regions with real art
+                  and time-of-day backdrops.
+                </p>
+                <span class="chip chip--proto">Playable prototype</span>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>M2 &middot; A small shared region</h3>
+                <p>A small shared region with the first real content. How many players it holds, and whether it persists, is to be tested: lag and collisions first.</p>
+                <span class="chip chip--planned">Planned</span>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>M3 &middot; Co-op challenge</h3>
+                <p>One properly cooperative challenge that proves the team-play idea.</p>
+                <span class="chip chip--planned">Planned</span>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>Mounts &amp; exploration</h3>
+                <p>A first mount and a first mount-gated area to prove summoning, then the rest of the roster. Order and details are not final.</p>
+                <span class="chip chip--planned">Planned</span>
+              </div>
+            </li>
+            <li class="step step--later">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>Accounts &amp; saved progress</h3>
+                <p>Saving your look, unlocks and loadouts. How you sign in is undecided.</p>
+                <span class="chip chip--later">Later</span>
+              </div>
+            </li>
+            <li class="step step--later">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>Level editor &amp; weekly spotlight</h3>
+                <p>Player-made levels, a featured level each week, and community events.</p>
+                <span class="chip chip--later">Later</span>
+              </div>
+            </li>
+            <li class="step step--later">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>Economy, gear &amp; trading</h3>
+                <p>Useful items, functional loadouts and a way to trade them. Design is undecided.</p>
+                <span class="chip chip--later">Later</span>
+              </div>
+            </li>
+            <li class="step step--later">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>The cat-run construction site</h3>
+                <p>A much later story update: a construction site run by cats that eventually becomes a casino. Fictional lore only; see the teaser below.</p>
+                <span class="chip chip--later">Later</span>
+              </div>
+            </li>
+            <li class="step step--later">
+              <div class="step__dot" aria-hidden="true"></div>
+              <div class="step__body">
+                <h3>Steam &amp; cross-play</h3>
+                <p>Browser first, then Steam, with browser and Steam players able to play together.</p>
+                <span class="chip chip--later">Later</span>
+              </div>
+            </li>
+          </ol>
+
+          <aside class="lore" aria-labelledby="lore-title">
+            <span class="card__icon" data-icon="secrets" data-size="40"></span>
+            <div>
+              <h3 id="lore-title">Lore teaser: the construction site</h3>
+              <p>
+                One day a construction site appears, run entirely by cats. The foremen talk, then meow, then get distracted by
+                something shiny, and mostly care about getting paid. Their boss is a dog raised by cats who is completely sure
+                he is one of them. He inherited a huge fortune, spent all of it building something enormous, and never left.
+              </p>
+              <p class="small">
+                Pure fiction and story flavor for a far-off update. Real-money gambling is not part of the plan.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- HOW WE BUILD -->
+      <section class="section section--alt" id="build" aria-labelledby="build-title">
+        <div class="wrap">
+          <header class="section__head">
+            <p class="eyebrow">Development log</p>
+            <h2 id="build-title">How we build it</h2>
+            <p class="lede">
+              We would rather show the work than hype it. Here is how the pieces are made, and an honest status for each.
+            </p>
+          </header>
+          <ul class="cards cards--two">
+            <li class="card">
+              <h3>The movement simulation</h3>
+              <p>
+                One deterministic TypeScript simulation steps at 60 ticks per second and is shared by the browser and the
+                server, so everyone runs the same movement code. It covers momentum, variable-height jumps, slopes, bounce
+                pads and solid players. The gameplay reel above is this exact code, replaying scripted inputs.
+              </p>
+              <span class="chip chip--proto">Working prototype</span>
+            </li>
+            <li class="card">
+              <h3>Netcode: prediction plus authority</h3>
+              <p>
+                Your browser predicts your own movement immediately so it feels instant, while an authoritative server runs
+                the real simulation, sends snapshots about twenty times a second, and corrects any drift. Other players are
+                smoothed between snapshots. It has not been tested with large crowds yet.
+              </p>
+              <span class="chip chip--proto">Working prototype, small scale</span>
+            </li>
+            <li class="card">
+              <h3>Art pipeline</h3>
+              <p>
+                Characters, creatures, mounts and tiles are authored as layered pixel data, all original, with no
+                third-party assets. Backdrops are rendered from procedural 3D scenes in Blender, then reduced to a locked
+                palette so they sit with the hand-placed pixels. The aim is bold, readable, cheerful 16-bit. Much of it is
+                still waiting for a human pixel-artist polish pass.
+              </p>
+              <span class="chip chip--proto">In progress</span>
+            </li>
+            <li class="card">
+              <h3>Character creator</h3>
+              <p>
+                A look is a compact 20-character code describing every layer choice. The same code drives the live preview, the
+                network and the in-game sprite, and the server validates it. New options slot in without changing the creator
+                screen.
+              </p>
+              <span class="chip chip--proto">Playable prototype</span>
+            </li>
+          </ul>
+
+          <h3 class="sub-h">Design docs</h3>
+          <p class="lede">
+            The plans are written down. These live in the project repository (public links coming later). Every item is tagged
+            <b>Confirmed</b> (the project owner&rsquo;s own words), <b>Proposal</b> (a suggestion awaiting approval) or <b>Open</b>
+            (undecided), so you can see what is real direction and what is only an idea.
+          </p>
+          <ul class="docs" aria-label="Design documents">
+            <li><code>docs/design/GAME_DESIGN_DOCUMENT.md</code><span>Master design doc: pillars, movement, mounts, co-op, regions, progression, plus an audit of open questions.</span></li>
+            <li><code>docs/design/MOUNTS_AND_EXPLORATION.md</code><span>The confirmed mount and Metroidvania direction, with clearly marked proposals.</span></li>
+            <li><code>DECISIONS.md</code><span>The accepted-decisions log: what is confirmed, what is only an idea.</span></li>
+            <li><code>DESIGN_BRIEF.md</code><span>The original creator brief.</span></li>
+            <li><code>OPEN_QUESTIONS.md</code><span>What is still undecided.</span></li>
+            <li><code>docs/ART_NORTH_STAR.md</code><span>The art goal: the bold, cheerful essence of classic 16-bit, made original.</span></li>
+            <li><code>docs/ART_DIRECTION.md</code><span>Sprite rules: outlines, palettes, animation, and the original signature motifs.</span></li>
+            <li><code>docs/ART_BLENDER_PIPELINE.md</code><span>How the layered backdrops are rendered and pixelized.</span></li>
+            <li><code>docs/CHARACTER_CREATOR.md</code><span>How the creator, look codes and in-game sprites fit together.</span></li>
+            <li><code>docs/NETCODE.md</code><span>The network protocol: prediction, authority, snapshots.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- COMMUNITY GOALS -->
+      <section class="section" id="goals" aria-labelledby="goals-title">
+        <div class="wrap goals">
+          <div>
+            <p class="eyebrow">Community goals</p>
+            <h2 id="goals-title">An idea we are weighing</h2>
+            <p class="lede">
+              We are considering a community goals page where group milestones could unlock free features or events for
+              everyone, with optional supporter names. It is only an idea so far.
+            </p>
+            <p class="small">
+              Nothing is live. No goals, amounts, milestones, rewards or dates have been set, and nothing is for sale.
+            </p>
+          </div>
+          <div class="goalbar">
+            <div class="goalbar__label"><span class="chip chip--later">Idea</span> Not decided</div>
+            <div class="goalbar__track" role="img" aria-label="Community goals are not live and not decided. The progress bar is empty.">
+              <span></span>
+            </div>
+            <p class="small">This bar is a placeholder that shows where goals could one day live.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section section--alt" id="faq" aria-labelledby="faq-title">
+        <div class="wrap wrap--narrow">
+          <header class="section__head">
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title">Questions, answered honestly</h2>
+          </header>
+          <div class="faq">
+            <details>
+              <summary>Can I play it right now?</summary>
+              <p>
+                There is an early prototype: a shared movement playground and a character creator. It is rough, it changes
+                often and it is not the full game. The Play button opens it when a build is available.
+              </p>
+            </details>
+            <details>
+              <summary>When does it launch?</summary>
+              <p>
+                We have no launch date and will not guess at one. The roadmap above shows order and priority, not a schedule.
+              </p>
+            </details>
+            <details>
+              <summary>Which platforms?</summary>
+              <p>
+                Browser first. Steam later, with the goal of letting browser and Steam players share the same world. None of
+                that cross-play exists yet.
+              </p>
+            </details>
+            <details>
+              <summary>How much will it cost?</summary>
+              <p>
+                Pricing and monetization have not been decided. We will say so plainly before anything is sold.
+              </p>
+            </details>
+            <details>
+              <summary>Will there be mounts?</summary>
+              <p>
+                Yes, that is the direction: many original rideable animals you can summon in the open world, and some places
+                that need a particular one. The first four are a frog, a dinosaur, a flying dinosaur and a cheetah. What each
+                one can do, and how you get them, is still being designed.
+              </p>
+            </details>
+            <details>
+              <summary>Do I need an account?</summary>
+              <p>
+                The prototype does not use accounts, and accounts and saved progress are not built yet. The waitlist is only
+                for news.
+              </p>
+            </details>
+            <details>
+              <summary>Is it a copy of another game?</summary>
+              <p>
+                No. It is inspired by the bold, readable feel of classic 16-bit platformers, but the art, characters, mounts,
+                movement tuning and world are our own originals.
+              </p>
+            </details>
+            <details>
+              <summary>Is the art final?</summary>
+              <p>
+                No. It is original and playable, and we like where it is going, but much of it is early and will get a polish
+                pass. Regions marked Concept are rough sketches only.
+              </p>
+            </details>
+            <details>
+              <summary>What happens to my email?</summary>
+              <p>
+                It is stored only to send Super BoundHaven news, and you can ask to be removed at any time. Sign-ups may show
+                as &ldquo;not connected yet&rdquo; while the waitlist backend is still being built.
+              </p>
+            </details>
+            <details>
+              <summary>Is there gambling?</summary>
+              <p>
+                No. The casino idea is a fictional story beat for a much later update. Real-money gambling is not part of the
+                plan.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIGN UP -->
+      <section class="section signup" id="signup" aria-labelledby="signup-title">
+        <div class="wrap signup__inner">
+          <div class="signup__copy">
+            <p class="eyebrow">Sign up</p>
+            <h2 id="signup-title">Join the waitlist</h2>
+            <p class="lede">
+              Get news when there is something real to show: prototype updates, playtests and milestones. No spam, no
+              surprises.
+            </p>
+            <span class="card__icon" data-icon="heart" data-size="40"></span>
+          </div>
+
+          <form id="waitlist-form" class="form" novalidate autocomplete="on">
+            <div class="field">
+              <label for="wl-email">Email <span class="req">(required)</span></label>
+              <input
+                id="wl-email"
+                name="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                maxlength="254"
+                aria-describedby="err-email"
+                required
+              />
+              <p class="field__err" id="err-email" hidden></p>
+            </div>
+            <div class="field">
+              <label for="wl-name">Display name <span class="opt">(optional)</span></label>
+              <input id="wl-name" name="displayName" type="text" autocomplete="nickname" maxlength="32" aria-describedby="hint-name err-name" />
+              <p class="field__hint" id="hint-name">The name you would like to go by in the game.</p>
+              <p class="field__err" id="err-name" hidden></p>
+            </div>
+            <div class="field field--check">
+              <input id="wl-consent" name="consent" type="checkbox" aria-describedby="err-consent" required />
+              <label for="wl-consent">
+                I agree that Super BoundHaven may store my email address (and display name, if I add one) only to send me news
+                about the game. I can ask to be removed at any time.
+              </label>
+              <p class="field__err" id="err-consent" hidden></p>
+            </div>
+            <button class="btn btn--primary" type="submit">Join the waitlist</button>
+            <div aria-live="polite" class="form__live">
+              <p id="waitlist-status" class="form__status" data-kind="idle" hidden></p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer__inner">
+        <div>
+          <p class="brand__text footer__brand">Super<span> BoundHaven</span></p>
+          <p class="small">Working title. An independent project in development.</p>
+        </div>
+        <nav aria-label="Legal and info">
+          <ul class="footer__links">
+            <li><a href="#" data-placeholder>Privacy policy (placeholder)</a></li>
+            <li><a href="#" data-placeholder>Terms of use (placeholder)</a></li>
+            <li><a href="#" data-placeholder>Contact (placeholder)</a></li>
+          </ul>
+        </nav>
+        <p class="small footer__fine">
+          &copy; <span id="year">2026</span> Super BoundHaven. All art and code shown here is original. Not affiliated with or
+          endorsed by any other game or publisher.
+        </p>
+      </div>
+    </footer>
+
+    <noscript>
+      <p class="noscript">Super BoundHaven&rsquo;s pixel art and gameplay reel are drawn with JavaScript. The rest of this page works without it.</p>
+    </noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

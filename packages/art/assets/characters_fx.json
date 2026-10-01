@@ -1,0 +1,323 @@
+{
+ "image": "characters_fx.png",
+ "size": {
+  "w": 200,
+  "h": 116
+ },
+ "frames": {
+  "fx/shard_0": {
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 17
+  },
+  "fx/shard_1": {
+   "x": 17,
+   "y": 0,
+   "w": 16,
+   "h": 17
+  },
+  "fx/shard_2": {
+   "x": 34,
+   "y": 0,
+   "w": 16,
+   "h": 17
+  },
+  "fx/shard_3": {
+   "x": 51,
+   "y": 0,
+   "w": 16,
+   "h": 17
+  },
+  "fx/shard_4": {
+   "x": 68,
+   "y": 0,
+   "w": 16,
+   "h": 17
+  },
+  "fx/shard_5": {
+   "x": 85,
+   "y": 0,
+   "w": 16,
+   "h": 17
+  },
+  "fx/orb_0": {
+   "x": 102,
+   "y": 0,
+   "w": 20,
+   "h": 20
+  },
+  "fx/orb_1": {
+   "x": 123,
+   "y": 0,
+   "w": 20,
+   "h": 20
+  },
+  "fx/dust_0": {
+   "x": 144,
+   "y": 0,
+   "w": 28,
+   "h": 16
+  },
+  "fx/burst_0": {
+   "x": 173,
+   "y": 0,
+   "w": 27,
+   "h": 27
+  },
+  "fx/sparkle_0": {
+   "x": 0,
+   "y": 28,
+   "w": 11,
+   "h": 11
+  },
+  "fx/dust_1": {
+   "x": 12,
+   "y": 28,
+   "w": 28,
+   "h": 16
+  },
+  "fx/burst_1": {
+   "x": 41,
+   "y": 28,
+   "w": 27,
+   "h": 27
+  },
+  "fx/sparkle_1": {
+   "x": 69,
+   "y": 28,
+   "w": 11,
+   "h": 11
+  },
+  "fx/dust_2": {
+   "x": 81,
+   "y": 28,
+   "w": 28,
+   "h": 16
+  },
+  "fx/burst_2": {
+   "x": 110,
+   "y": 28,
+   "w": 27,
+   "h": 27
+  },
+  "fx/sparkle_2": {
+   "x": 138,
+   "y": 28,
+   "w": 11,
+   "h": 11
+  },
+  "fx/dust_3": {
+   "x": 150,
+   "y": 28,
+   "w": 28,
+   "h": 16
+  },
+  "fx/burst_3": {
+   "x": 0,
+   "y": 56,
+   "w": 27,
+   "h": 27
+  },
+  "fx/sparkle_3": {
+   "x": 28,
+   "y": 56,
+   "w": 11,
+   "h": 11
+  },
+  "fx/ring_0": {
+   "x": 40,
+   "y": 56,
+   "w": 32,
+   "h": 12
+  },
+  "fx/stomp_0": {
+   "x": 73,
+   "y": 56,
+   "w": 20,
+   "h": 20
+  },
+  "fx/ring_1": {
+   "x": 94,
+   "y": 56,
+   "w": 32,
+   "h": 12
+  },
+  "fx/stomp_1": {
+   "x": 127,
+   "y": 56,
+   "w": 20,
+   "h": 20
+  },
+  "fx/ring_2": {
+   "x": 148,
+   "y": 56,
+   "w": 32,
+   "h": 12
+  },
+  "fx/stomp_2": {
+   "x": 0,
+   "y": 84,
+   "w": 20,
+   "h": 20
+  },
+  "fx/poof_0": {
+   "x": 21,
+   "y": 84,
+   "w": 32,
+   "h": 32
+  },
+  "fx/poof_1": {
+   "x": 54,
+   "y": 84,
+   "w": 32,
+   "h": 32
+  },
+  "fx/poof_2": {
+   "x": 87,
+   "y": 84,
+   "w": 32,
+   "h": 32
+  },
+  "fx/poof_3": {
+   "x": 120,
+   "y": 84,
+   "w": 32,
+   "h": 32
+  },
+  "fx/poof_4": {
+   "x": 153,
+   "y": 84,
+   "w": 32,
+   "h": 32
+  }
+ },
+ "anims": {
+  "shard_spin": {
+   "frames": [
+    "fx/shard_0",
+    "fx/shard_1",
+    "fx/shard_2",
+    "fx/shard_3",
+    "fx/shard_4",
+    "fx/shard_5"
+   ],
+   "fps": 10,
+   "loop": true,
+   "ticks": [
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ]
+  },
+  "orb": {
+   "frames": [
+    "fx/orb_0",
+    "fx/orb_1"
+   ],
+   "fps": 4,
+   "loop": true,
+   "ticks": [
+    15,
+    15
+   ]
+  },
+  "dust": {
+   "frames": [
+    "fx/dust_0",
+    "fx/dust_1",
+    "fx/dust_2",
+    "fx/dust_3"
+   ],
+   "fps": 15,
+   "loop": false,
+   "ticks": [
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "land_ring": {
+   "frames": [
+    "fx/ring_0",
+    "fx/ring_1",
+    "fx/ring_2"
+   ],
+   "fps": 15,
+   "loop": false,
+   "ticks": [
+    4,
+    4,
+    4
+   ]
+  },
+  "bounce_burst": {
+   "frames": [
+    "fx/burst_0",
+    "fx/burst_1",
+    "fx/burst_2",
+    "fx/burst_3"
+   ],
+   "fps": 20,
+   "loop": false,
+   "ticks": [
+    3,
+    3,
+    3,
+    3
+   ]
+  },
+  "sparkle": {
+   "frames": [
+    "fx/sparkle_0",
+    "fx/sparkle_1",
+    "fx/sparkle_2",
+    "fx/sparkle_3"
+   ],
+   "fps": 15,
+   "loop": true,
+   "ticks": [
+    4,
+    4,
+    4,
+    4
+   ]
+  },
+  "stomp_star": {
+   "frames": [
+    "fx/stomp_0",
+    "fx/stomp_1",
+    "fx/stomp_2"
+   ],
+   "fps": 20,
+   "loop": false,
+   "ticks": [
+    3,
+    3,
+    3
+   ]
+  },
+  "poof": {
+   "frames": [
+    "fx/poof_0",
+    "fx/poof_1",
+    "fx/poof_2",
+    "fx/poof_3",
+    "fx/poof_4"
+   ],
+   "fps": 15,
+   "loop": false,
+   "ticks": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ]
+  }
+ }
+}

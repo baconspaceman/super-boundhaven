@@ -1,0 +1,32 @@
+{
+  "name": "super-boundhaven",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm run dev -w @sbh/server",
+    "dev:client": "npm run dev -w @sbh/client",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build:site": "npm run build -w @sbh/site",
+    "build:client": "npm run build -w @sbh/client",
+    "build:docs": "node tools/docs-site/build.mjs",
+    "build:pages": "node tools/docs-site/pages.mjs",
+    "serve:pages": "node tools/docs-site/serve.mjs",
+    "linkcheck": "node tools/docs-site/linkcheck.mjs",
+    "audit": "node tools/audit/prepublish.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "concurrently": "^10.0.5",
+    "marked": "^18.0.14",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}

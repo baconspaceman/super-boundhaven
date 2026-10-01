@@ -1,0 +1,195 @@
+{
+ "image": "characters_enemies.png",
+ "size": {
+  "w": 154,
+  "h": 70
+ },
+ "frames": {
+  "enemy/sprout_walk_0": {
+   "x": 0,
+   "y": 0,
+   "w": 20,
+   "h": 20
+  },
+  "enemy/sprout_walk_1": {
+   "x": 21,
+   "y": 0,
+   "w": 20,
+   "h": 20
+  },
+  "enemy/sprout_walk_2": {
+   "x": 42,
+   "y": 0,
+   "w": 20,
+   "h": 20
+  },
+  "enemy/sprout_walk_3": {
+   "x": 63,
+   "y": 0,
+   "w": 20,
+   "h": 20
+  },
+  "enemy/sprout_squash": {
+   "x": 84,
+   "y": 0,
+   "w": 20,
+   "h": 20
+  },
+  "enemy/zip_fly_0": {
+   "x": 105,
+   "y": 0,
+   "w": 24,
+   "h": 22
+  },
+  "enemy/zip_fly_1": {
+   "x": 130,
+   "y": 0,
+   "w": 24,
+   "h": 22
+  },
+  "enemy/zip_fly_2": {
+   "x": 0,
+   "y": 23,
+   "w": 24,
+   "h": 22
+  },
+  "enemy/zip_fly_3": {
+   "x": 25,
+   "y": 23,
+   "w": 24,
+   "h": 22
+  },
+  "enemy/zip_down": {
+   "x": 50,
+   "y": 23,
+   "w": 24,
+   "h": 22
+  },
+  "enemy/shard_walk_0": {
+   "x": 75,
+   "y": 23,
+   "w": 28,
+   "h": 22
+  },
+  "enemy/shard_walk_1": {
+   "x": 104,
+   "y": 23,
+   "w": 28,
+   "h": 22
+  },
+  "enemy/shard_walk_2": {
+   "x": 0,
+   "y": 46,
+   "w": 28,
+   "h": 22
+  },
+  "enemy/shard_curl": {
+   "x": 29,
+   "y": 46,
+   "w": 24,
+   "h": 24
+  },
+  "enemy/shard_defeat": {
+   "x": 54,
+   "y": 46,
+   "w": 28,
+   "h": 22
+  }
+ },
+ "anims": {
+  "sprout_walk": {
+   "frames": [
+    "enemy/sprout_walk_0",
+    "enemy/sprout_walk_1",
+    "enemy/sprout_walk_2",
+    "enemy/sprout_walk_3"
+   ],
+   "fps": 7.5,
+   "loop": true,
+   "ticks": [
+    8,
+    8,
+    8,
+    8
+   ],
+   "stompable": true
+  },
+  "sprout_squash": {
+   "frames": [
+    "enemy/sprout_squash"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": true
+  },
+  "zip_fly": {
+   "frames": [
+    "enemy/zip_fly_0",
+    "enemy/zip_fly_1",
+    "enemy/zip_fly_2",
+    "enemy/zip_fly_3"
+   ],
+   "fps": 15,
+   "loop": true,
+   "ticks": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "stompable": true
+  },
+  "zip_down": {
+   "frames": [
+    "enemy/zip_down"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": true
+  },
+  "shard_walk": {
+   "frames": [
+    "enemy/shard_walk_0",
+    "enemy/shard_walk_1",
+    "enemy/shard_walk_2"
+   ],
+   "fps": 6,
+   "loop": true,
+   "ticks": [
+    10,
+    10,
+    10
+   ],
+   "stompable": false
+  },
+  "shard_curl": {
+   "frames": [
+    "enemy/shard_curl"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": false
+  },
+  "shard_defeat": {
+   "frames": [
+    "enemy/shard_defeat"
+   ],
+   "fps": 1,
+   "loop": false,
+   "ticks": [
+    30
+   ],
+   "stompable": false
+  }
+ },
+ "facing": "left"
+}

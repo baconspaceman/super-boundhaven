@@ -1,0 +1,14 @@
+{
+  "name": "@sbh/site",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 5174 --strictPort"
+  },
+  "dependencies": {
+    "@sbh/sim": "*"
+  }
+}

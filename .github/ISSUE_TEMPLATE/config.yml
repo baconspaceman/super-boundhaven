@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation portal
+    url: https://baconspaceman.github.io/super-boundhaven/docs/
+    about: Read the design docs before filing design feedback.

@@ -1,0 +1,228 @@
+{
+  "meadow": [
+    {
+      "name": "sky",
+      "file": "world_bg_meadow_sky.png",
+      "parallax": 0,
+      "y": 0,
+      "tileX": true,
+      "w": 256,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "sun",
+      "file": "world_bg_meadow_sun.png",
+      "parallax": 0.02,
+      "y": 0,
+      "tileX": false,
+      "w": 256,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "clouds_far",
+      "file": "world_bg_meadow_clouds_far.png",
+      "parallax": 0.06,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 2,
+      "z": "back"
+    },
+    {
+      "name": "mountains",
+      "file": "world_bg_meadow_mountains.png",
+      "parallax": 0.12,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "clouds_near",
+      "file": "world_bg_meadow_clouds_near.png",
+      "parallax": 0.2,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 6,
+      "z": "back"
+    },
+    {
+      "name": "hills_mid",
+      "file": "world_bg_meadow_hills_mid.png",
+      "parallax": 0.32,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "hills_near",
+      "file": "world_bg_meadow_hills_near.png",
+      "parallax": 0.55,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "foreground",
+      "file": "world_bg_meadow_foreground.png",
+      "parallax": 1,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "front"
+    }
+  ],
+  "meadow_sunset": [
+    {
+      "name": "sky",
+      "file": "world_bg_meadow_sunset_sky.png",
+      "parallax": 0,
+      "y": 0,
+      "tileX": true,
+      "w": 256,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "sun",
+      "file": "world_bg_meadow_sunset_sun.png",
+      "parallax": 0.02,
+      "y": 0,
+      "tileX": false,
+      "w": 256,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "clouds_far",
+      "file": "world_bg_meadow_sunset_clouds_far.png",
+      "parallax": 0.06,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 2,
+      "z": "back"
+    },
+    {
+      "name": "mountains",
+      "file": "world_bg_meadow_sunset_mountains.png",
+      "parallax": 0.12,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "clouds_near",
+      "file": "world_bg_meadow_sunset_clouds_near.png",
+      "parallax": 0.2,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 6,
+      "z": "back"
+    },
+    {
+      "name": "hills_mid",
+      "file": "world_bg_meadow_sunset_hills_mid.png",
+      "parallax": 0.32,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "hills_near",
+      "file": "world_bg_meadow_sunset_hills_near.png",
+      "parallax": 0.55,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "foreground",
+      "file": "world_bg_meadow_sunset_foreground.png",
+      "parallax": 1,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "front"
+    }
+  ],
+  "caverns": [
+    {
+      "name": "deep",
+      "file": "world_bg_caverns_deep.png",
+      "parallax": 0.08,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "far",
+      "file": "world_bg_caverns_far.png",
+      "parallax": 0.22,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "mid",
+      "file": "world_bg_caverns_mid.png",
+      "parallax": 0.45,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "back"
+    },
+    {
+      "name": "near",
+      "file": "world_bg_caverns_near.png",
+      "parallax": 1,
+      "y": 0,
+      "tileX": true,
+      "w": 512,
+      "h": 224,
+      "drift": 0,
+      "z": "front"
+    }
+  ]
+}

@@ -1,0 +1,975 @@
+{
+  "image": "world_props_meadow_sunset.png",
+  "width": 383,
+  "height": 152,
+  "frames": {
+    "bush_s": {
+      "x": 0,
+      "y": 0,
+      "w": 22,
+      "h": 15
+    },
+    "bush_l": {
+      "x": 23,
+      "y": 0,
+      "w": 38,
+      "h": 24
+    },
+    "tree_s": {
+      "x": 62,
+      "y": 0,
+      "w": 44,
+      "h": 64
+    },
+    "tree_l": {
+      "x": 107,
+      "y": 0,
+      "w": 72,
+      "h": 104
+    },
+    "flower_red_0": {
+      "x": 180,
+      "y": 0,
+      "w": 10,
+      "h": 14
+    },
+    "flower_red_1": {
+      "x": 191,
+      "y": 0,
+      "w": 10,
+      "h": 14
+    },
+    "flower_yellow_0": {
+      "x": 202,
+      "y": 0,
+      "w": 10,
+      "h": 14
+    },
+    "flower_yellow_1": {
+      "x": 213,
+      "y": 0,
+      "w": 10,
+      "h": 14
+    },
+    "flower_blue_0": {
+      "x": 224,
+      "y": 0,
+      "w": 10,
+      "h": 14
+    },
+    "flower_blue_1": {
+      "x": 235,
+      "y": 0,
+      "w": 10,
+      "h": 14
+    },
+    "tuft_0_0": {
+      "x": 246,
+      "y": 0,
+      "w": 12,
+      "h": 9
+    },
+    "tuft_0_1": {
+      "x": 259,
+      "y": 0,
+      "w": 12,
+      "h": 9
+    },
+    "tuft_1_0": {
+      "x": 272,
+      "y": 0,
+      "w": 12,
+      "h": 9
+    },
+    "tuft_1_1": {
+      "x": 285,
+      "y": 0,
+      "w": 12,
+      "h": 9
+    },
+    "tuft_2_0": {
+      "x": 298,
+      "y": 0,
+      "w": 12,
+      "h": 9
+    },
+    "tuft_2_1": {
+      "x": 311,
+      "y": 0,
+      "w": 12,
+      "h": 9
+    },
+    "tall_grass_0": {
+      "x": 324,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "tall_grass_1": {
+      "x": 341,
+      "y": 0,
+      "w": 16,
+      "h": 16
+    },
+    "mush_violet": {
+      "x": 358,
+      "y": 0,
+      "w": 14,
+      "h": 14
+    },
+    "mush_teal": {
+      "x": 373,
+      "y": 0,
+      "w": 10,
+      "h": 10
+    },
+    "mush_cluster": {
+      "x": 0,
+      "y": 105,
+      "w": 26,
+      "h": 16
+    },
+    "rock_s": {
+      "x": 27,
+      "y": 105,
+      "w": 12,
+      "h": 8
+    },
+    "rock_m": {
+      "x": 40,
+      "y": 105,
+      "w": 20,
+      "h": 13
+    },
+    "rock_l": {
+      "x": 61,
+      "y": 105,
+      "w": 30,
+      "h": 20
+    },
+    "fence_l": {
+      "x": 92,
+      "y": 105,
+      "w": 16,
+      "h": 18
+    },
+    "fence_m": {
+      "x": 109,
+      "y": 105,
+      "w": 16,
+      "h": 18
+    },
+    "fence_r": {
+      "x": 126,
+      "y": 105,
+      "w": 16,
+      "h": 18
+    },
+    "fence_broken": {
+      "x": 143,
+      "y": 105,
+      "w": 16,
+      "h": 18
+    },
+    "signpost": {
+      "x": 160,
+      "y": 105,
+      "w": 24,
+      "h": 30
+    },
+    "bridge_l": {
+      "x": 185,
+      "y": 105,
+      "w": 16,
+      "h": 20
+    },
+    "bridge_m": {
+      "x": 202,
+      "y": 105,
+      "w": 16,
+      "h": 20
+    },
+    "bridge_r": {
+      "x": 219,
+      "y": 105,
+      "w": 16,
+      "h": 20
+    },
+    "vine_top_0": {
+      "x": 236,
+      "y": 105,
+      "w": 16,
+      "h": 16
+    },
+    "vine_top_1": {
+      "x": 253,
+      "y": 105,
+      "w": 16,
+      "h": 16
+    },
+    "vine_mid_0": {
+      "x": 270,
+      "y": 105,
+      "w": 16,
+      "h": 16
+    },
+    "vine_mid_1": {
+      "x": 287,
+      "y": 105,
+      "w": 16,
+      "h": 16
+    },
+    "vine_end_0": {
+      "x": 304,
+      "y": 105,
+      "w": 16,
+      "h": 16
+    },
+    "vine_end_1": {
+      "x": 321,
+      "y": 105,
+      "w": 16,
+      "h": 16
+    },
+    "log_mossy": {
+      "x": 338,
+      "y": 105,
+      "w": 36,
+      "h": 16
+    },
+    "water_top_0": {
+      "x": 0,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "water_top_1": {
+      "x": 17,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "water_top_2": {
+      "x": 34,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "water_top_3": {
+      "x": 51,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_0": {
+      "x": 68,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_1": {
+      "x": 85,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_2": {
+      "x": 102,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_3": {
+      "x": 119,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_top_0": {
+      "x": 136,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_top_1": {
+      "x": 153,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_top_2": {
+      "x": 170,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_mid_0": {
+      "x": 187,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_mid_1": {
+      "x": 204,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_mid_2": {
+      "x": 221,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_foot_0": {
+      "x": 238,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_foot_1": {
+      "x": 255,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "fall_foot_2": {
+      "x": 272,
+      "y": 136,
+      "w": 16,
+      "h": 16
+    },
+    "lily_0": {
+      "x": 289,
+      "y": 136,
+      "w": 12,
+      "h": 6
+    },
+    "lily_1": {
+      "x": 302,
+      "y": 136,
+      "w": 12,
+      "h": 6
+    }
+  },
+  "props": [
+    {
+      "id": "bush_s",
+      "region": "meadow_sunset",
+      "frames": [
+        "bush_s"
+      ],
+      "fps": 0,
+      "w": 22,
+      "h": 15,
+      "anchor": {
+        "x": 11,
+        "y": 15
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "bush_l",
+      "region": "meadow_sunset",
+      "frames": [
+        "bush_l"
+      ],
+      "fps": 0,
+      "w": 38,
+      "h": 24,
+      "anchor": {
+        "x": 19,
+        "y": 24
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "tree_s",
+      "region": "meadow_sunset",
+      "frames": [
+        "tree_s"
+      ],
+      "fps": 0,
+      "w": 44,
+      "h": 64,
+      "anchor": {
+        "x": 22,
+        "y": 64
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "tree_l",
+      "region": "meadow_sunset",
+      "frames": [
+        "tree_l"
+      ],
+      "fps": 0,
+      "w": 72,
+      "h": 104,
+      "anchor": {
+        "x": 36,
+        "y": 104
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "flower_red",
+      "region": "meadow_sunset",
+      "frames": [
+        "flower_red_0",
+        "flower_red_1"
+      ],
+      "fps": 2,
+      "w": 10,
+      "h": 14,
+      "anchor": {
+        "x": 5,
+        "y": 14
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "flower_yellow",
+      "region": "meadow_sunset",
+      "frames": [
+        "flower_yellow_0",
+        "flower_yellow_1"
+      ],
+      "fps": 2,
+      "w": 10,
+      "h": 14,
+      "anchor": {
+        "x": 5,
+        "y": 14
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "flower_blue",
+      "region": "meadow_sunset",
+      "frames": [
+        "flower_blue_0",
+        "flower_blue_1"
+      ],
+      "fps": 2,
+      "w": 10,
+      "h": 14,
+      "anchor": {
+        "x": 5,
+        "y": 14
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "tuft_0",
+      "region": "meadow_sunset",
+      "frames": [
+        "tuft_0_0",
+        "tuft_0_1"
+      ],
+      "fps": 2,
+      "w": 12,
+      "h": 9,
+      "anchor": {
+        "x": 6,
+        "y": 9
+      },
+      "placement": "ground",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "tuft_1",
+      "region": "meadow_sunset",
+      "frames": [
+        "tuft_1_0",
+        "tuft_1_1"
+      ],
+      "fps": 2,
+      "w": 12,
+      "h": 9,
+      "anchor": {
+        "x": 6,
+        "y": 9
+      },
+      "placement": "ground",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "tuft_2",
+      "region": "meadow_sunset",
+      "frames": [
+        "tuft_2_0",
+        "tuft_2_1"
+      ],
+      "fps": 2,
+      "w": 12,
+      "h": 9,
+      "anchor": {
+        "x": 6,
+        "y": 9
+      },
+      "placement": "ground",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "tall_grass",
+      "region": "meadow_sunset",
+      "frames": [
+        "tall_grass_0",
+        "tall_grass_1"
+      ],
+      "fps": 2,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 16
+      },
+      "placement": "ground",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "mush_violet",
+      "region": "meadow_sunset",
+      "frames": [
+        "mush_violet"
+      ],
+      "fps": 0,
+      "w": 14,
+      "h": 14,
+      "anchor": {
+        "x": 7,
+        "y": 14
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "mush_teal",
+      "region": "meadow_sunset",
+      "frames": [
+        "mush_teal"
+      ],
+      "fps": 0,
+      "w": 10,
+      "h": 10,
+      "anchor": {
+        "x": 5,
+        "y": 10
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "mush_cluster",
+      "region": "meadow_sunset",
+      "frames": [
+        "mush_cluster"
+      ],
+      "fps": 0,
+      "w": 26,
+      "h": 16,
+      "anchor": {
+        "x": 13,
+        "y": 16
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "rock_s",
+      "region": "meadow_sunset",
+      "frames": [
+        "rock_s"
+      ],
+      "fps": 0,
+      "w": 12,
+      "h": 8,
+      "anchor": {
+        "x": 6,
+        "y": 8
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "rock_m",
+      "region": "meadow_sunset",
+      "frames": [
+        "rock_m"
+      ],
+      "fps": 0,
+      "w": 20,
+      "h": 13,
+      "anchor": {
+        "x": 10,
+        "y": 13
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "rock_l",
+      "region": "meadow_sunset",
+      "frames": [
+        "rock_l"
+      ],
+      "fps": 0,
+      "w": 30,
+      "h": 20,
+      "anchor": {
+        "x": 15,
+        "y": 20
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "fence_l",
+      "region": "meadow_sunset",
+      "frames": [
+        "fence_l"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 18,
+      "anchor": {
+        "x": 8,
+        "y": 18
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "fence_m",
+      "region": "meadow_sunset",
+      "frames": [
+        "fence_m"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 18,
+      "anchor": {
+        "x": 8,
+        "y": 18
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "fence_r",
+      "region": "meadow_sunset",
+      "frames": [
+        "fence_r"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 18,
+      "anchor": {
+        "x": 8,
+        "y": 18
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "fence_broken",
+      "region": "meadow_sunset",
+      "frames": [
+        "fence_broken"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 18,
+      "anchor": {
+        "x": 8,
+        "y": 18
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "signpost",
+      "region": "meadow_sunset",
+      "frames": [
+        "signpost"
+      ],
+      "fps": 0,
+      "w": 24,
+      "h": 30,
+      "anchor": {
+        "x": 12,
+        "y": 30
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "bridge_l",
+      "region": "meadow_sunset",
+      "frames": [
+        "bridge_l"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 20,
+      "anchor": {
+        "x": 8,
+        "y": 10
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "bridge_m",
+      "region": "meadow_sunset",
+      "frames": [
+        "bridge_m"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 20,
+      "anchor": {
+        "x": 8,
+        "y": 10
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "bridge_r",
+      "region": "meadow_sunset",
+      "frames": [
+        "bridge_r"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 20,
+      "anchor": {
+        "x": 8,
+        "y": 10
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "vine_top",
+      "region": "meadow_sunset",
+      "frames": [
+        "vine_top_0",
+        "vine_top_1"
+      ],
+      "fps": 1.5,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "ceiling",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "vine_mid",
+      "region": "meadow_sunset",
+      "frames": [
+        "vine_mid_0",
+        "vine_mid_1"
+      ],
+      "fps": 1.5,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "ceiling",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "vine_end",
+      "region": "meadow_sunset",
+      "frames": [
+        "vine_end_0",
+        "vine_end_1"
+      ],
+      "fps": 1.5,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "ceiling",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "log_mossy",
+      "region": "meadow_sunset",
+      "frames": [
+        "log_mossy"
+      ],
+      "fps": 0,
+      "w": 36,
+      "h": 16,
+      "anchor": {
+        "x": 18,
+        "y": 16
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "water_top",
+      "region": "meadow_sunset",
+      "frames": [
+        "water_top_0",
+        "water_top_1",
+        "water_top_2",
+        "water_top_3"
+      ],
+      "fps": 6,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "water",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "water_body",
+      "region": "meadow_sunset",
+      "frames": [
+        "water_body_0",
+        "water_body_1",
+        "water_body_2",
+        "water_body_3"
+      ],
+      "fps": 6,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "water",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "fall_top",
+      "region": "meadow_sunset",
+      "frames": [
+        "fall_top_0",
+        "fall_top_1",
+        "fall_top_2"
+      ],
+      "fps": 9,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "fall_mid",
+      "region": "meadow_sunset",
+      "frames": [
+        "fall_mid_0",
+        "fall_mid_1",
+        "fall_mid_2"
+      ],
+      "fps": 9,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "fall_foot",
+      "region": "meadow_sunset",
+      "frames": [
+        "fall_foot_0",
+        "fall_foot_1",
+        "fall_foot_2"
+      ],
+      "fps": 9,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "free",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "lily",
+      "region": "meadow_sunset",
+      "frames": [
+        "lily_0",
+        "lily_1"
+      ],
+      "fps": 1,
+      "w": 12,
+      "h": 6,
+      "anchor": {
+        "x": 6,
+        "y": 0
+      },
+      "placement": "water",
+      "layer": "front",
+      "solid": false
+    }
+  ]
+}

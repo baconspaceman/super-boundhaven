@@ -1,0 +1,334 @@
+{
+ "sunset": [
+  {
+   "name": "sky",
+   "file": "bg_sunset_sky.png",
+   "parallax": 0.0,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "sun",
+   "file": "bg_sunset_sun.png",
+   "parallax": 0.02,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "clouds_a",
+   "file": "bg_sunset_clouds_a.png",
+   "parallax": 0.05,
+   "y": 31,
+   "tileX": true,
+   "width": 768,
+   "height": 65
+  },
+  {
+   "name": "clouds_b",
+   "file": "bg_sunset_clouds_b.png",
+   "parallax": 0.1,
+   "y": 34,
+   "tileX": true,
+   "width": 768,
+   "height": 72
+  },
+  {
+   "name": "mountains",
+   "file": "bg_sunset_mountains.png",
+   "parallax": 0.16,
+   "y": 88,
+   "tileX": true,
+   "width": 768,
+   "height": 114
+  },
+  {
+   "name": "lake",
+   "file": "bg_sunset_lake.png",
+   "parallax": 0.22,
+   "y": 162,
+   "tileX": true,
+   "width": 768,
+   "height": 62
+  },
+  {
+   "name": "ridges",
+   "file": "bg_sunset_ridges.png",
+   "parallax": 0.32,
+   "y": 143,
+   "tileX": true,
+   "width": 768,
+   "height": 81
+  },
+  {
+   "name": "hills",
+   "file": "bg_sunset_hills.png",
+   "parallax": 0.5,
+   "y": 124,
+   "tileX": true,
+   "width": 768,
+   "height": 100
+  },
+  {
+   "name": "fore",
+   "file": "bg_sunset_fore.png",
+   "parallax": 0.8,
+   "y": 188,
+   "tileX": true,
+   "width": 768,
+   "height": 36
+  }
+ ],
+ "dawn": [
+  {
+   "name": "sky",
+   "file": "bg_dawn_sky.png",
+   "parallax": 0.0,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "sun",
+   "file": "bg_dawn_sun.png",
+   "parallax": 0.02,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "clouds_a",
+   "file": "bg_dawn_clouds_a.png",
+   "parallax": 0.05,
+   "y": 31,
+   "tileX": true,
+   "width": 768,
+   "height": 65
+  },
+  {
+   "name": "clouds_b",
+   "file": "bg_dawn_clouds_b.png",
+   "parallax": 0.1,
+   "y": 34,
+   "tileX": true,
+   "width": 768,
+   "height": 72
+  },
+  {
+   "name": "mountains",
+   "file": "bg_dawn_mountains.png",
+   "parallax": 0.16,
+   "y": 88,
+   "tileX": true,
+   "width": 768,
+   "height": 114
+  },
+  {
+   "name": "lake",
+   "file": "bg_dawn_lake.png",
+   "parallax": 0.22,
+   "y": 162,
+   "tileX": true,
+   "width": 768,
+   "height": 62
+  },
+  {
+   "name": "ridges",
+   "file": "bg_dawn_ridges.png",
+   "parallax": 0.32,
+   "y": 143,
+   "tileX": true,
+   "width": 768,
+   "height": 81
+  },
+  {
+   "name": "hills",
+   "file": "bg_dawn_hills.png",
+   "parallax": 0.5,
+   "y": 124,
+   "tileX": true,
+   "width": 768,
+   "height": 100
+  },
+  {
+   "name": "fore",
+   "file": "bg_dawn_fore.png",
+   "parallax": 0.8,
+   "y": 188,
+   "tileX": true,
+   "width": 768,
+   "height": 36
+  }
+ ],
+ "day": [
+  {
+   "name": "sky",
+   "file": "bg_day_sky.png",
+   "parallax": 0.0,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "sun",
+   "file": "bg_day_sun.png",
+   "parallax": 0.02,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "clouds_a",
+   "file": "bg_day_clouds_a.png",
+   "parallax": 0.05,
+   "y": 31,
+   "tileX": true,
+   "width": 768,
+   "height": 65
+  },
+  {
+   "name": "clouds_b",
+   "file": "bg_day_clouds_b.png",
+   "parallax": 0.1,
+   "y": 34,
+   "tileX": true,
+   "width": 768,
+   "height": 72
+  },
+  {
+   "name": "mountains",
+   "file": "bg_day_mountains.png",
+   "parallax": 0.16,
+   "y": 88,
+   "tileX": true,
+   "width": 768,
+   "height": 114
+  },
+  {
+   "name": "lake",
+   "file": "bg_day_lake.png",
+   "parallax": 0.22,
+   "y": 162,
+   "tileX": true,
+   "width": 768,
+   "height": 62
+  },
+  {
+   "name": "ridges",
+   "file": "bg_day_ridges.png",
+   "parallax": 0.32,
+   "y": 143,
+   "tileX": true,
+   "width": 768,
+   "height": 81
+  },
+  {
+   "name": "hills",
+   "file": "bg_day_hills.png",
+   "parallax": 0.5,
+   "y": 124,
+   "tileX": true,
+   "width": 768,
+   "height": 100
+  },
+  {
+   "name": "fore",
+   "file": "bg_day_fore.png",
+   "parallax": 0.8,
+   "y": 188,
+   "tileX": true,
+   "width": 768,
+   "height": 36
+  }
+ ],
+ "night": [
+  {
+   "name": "sky",
+   "file": "bg_night_sky.png",
+   "parallax": 0.0,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "sun",
+   "file": "bg_night_sun.png",
+   "parallax": 0.02,
+   "y": 0,
+   "tileX": false,
+   "width": 256,
+   "height": 224
+  },
+  {
+   "name": "clouds_a",
+   "file": "bg_night_clouds_a.png",
+   "parallax": 0.05,
+   "y": 31,
+   "tileX": true,
+   "width": 768,
+   "height": 65
+  },
+  {
+   "name": "clouds_b",
+   "file": "bg_night_clouds_b.png",
+   "parallax": 0.1,
+   "y": 34,
+   "tileX": true,
+   "width": 768,
+   "height": 72
+  },
+  {
+   "name": "mountains",
+   "file": "bg_night_mountains.png",
+   "parallax": 0.16,
+   "y": 88,
+   "tileX": true,
+   "width": 768,
+   "height": 114
+  },
+  {
+   "name": "lake",
+   "file": "bg_night_lake.png",
+   "parallax": 0.22,
+   "y": 162,
+   "tileX": true,
+   "width": 768,
+   "height": 62
+  },
+  {
+   "name": "ridges",
+   "file": "bg_night_ridges.png",
+   "parallax": 0.32,
+   "y": 143,
+   "tileX": true,
+   "width": 768,
+   "height": 81
+  },
+  {
+   "name": "hills",
+   "file": "bg_night_hills.png",
+   "parallax": 0.5,
+   "y": 124,
+   "tileX": true,
+   "width": 768,
+   "height": 100
+  },
+  {
+   "name": "fore",
+   "file": "bg_night_fore.png",
+   "parallax": 0.8,
+   "y": 188,
+   "tileX": true,
+   "width": 768,
+   "height": 36
+  }
+ ]
+}

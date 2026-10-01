@@ -1,0 +1,609 @@
+{
+ "image": "characters_mount_frog.png",
+ "size": {
+  "w": 258,
+  "h": 185
+ },
+ "frames": {
+  "mount_frog/idle_0": {
+   "x": 0,
+   "y": 0,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/idle_0": {
+   "x": 37,
+   "y": 0,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/idle_1": {
+   "x": 74,
+   "y": 0,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/idle_1": {
+   "x": 111,
+   "y": 0,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/hop_0": {
+   "x": 148,
+   "y": 0,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/hop_0": {
+   "x": 185,
+   "y": 0,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/hop_1": {
+   "x": 222,
+   "y": 0,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/hop_1": {
+   "x": 0,
+   "y": 31,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/hop_2": {
+   "x": 37,
+   "y": 31,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/hop_2": {
+   "x": 74,
+   "y": 31,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/hop_3": {
+   "x": 111,
+   "y": 31,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/hop_3": {
+   "x": 148,
+   "y": 31,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/jump_0": {
+   "x": 185,
+   "y": 31,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/jump_0": {
+   "x": 222,
+   "y": 31,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/fall_0": {
+   "x": 0,
+   "y": 62,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/fall_0": {
+   "x": 37,
+   "y": 62,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/land_0": {
+   "x": 74,
+   "y": 62,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/land_0": {
+   "x": 111,
+   "y": 62,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/land_1": {
+   "x": 148,
+   "y": 62,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/land_1": {
+   "x": 185,
+   "y": 62,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/charge_0": {
+   "x": 222,
+   "y": 62,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/charge_0": {
+   "x": 0,
+   "y": 93,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/charge_1": {
+   "x": 37,
+   "y": 93,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/charge_1": {
+   "x": 74,
+   "y": 93,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/superjump_0": {
+   "x": 111,
+   "y": 93,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/superjump_0": {
+   "x": 148,
+   "y": 93,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/tongue_0": {
+   "x": 185,
+   "y": 93,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/tongue_0": {
+   "x": 222,
+   "y": 93,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/tongue_1": {
+   "x": 0,
+   "y": 124,
+   "w": 36,
+   "h": 30
+  },
+  "mountr_frog/tongue_1": {
+   "x": 37,
+   "y": 124,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/summon_in_0": {
+   "x": 74,
+   "y": 124,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/summon_out_2": {
+   "x": 111,
+   "y": 124,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/summon_in_1": {
+   "x": 148,
+   "y": 124,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/summon_out_1": {
+   "x": 185,
+   "y": 124,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/summon_in_2": {
+   "x": 222,
+   "y": 124,
+   "w": 36,
+   "h": 30
+  },
+  "mount_frog/summon_out_0": {
+   "x": 0,
+   "y": 155,
+   "w": 36,
+   "h": 30
+  }
+ },
+ "anims": {
+  "idle": {
+   "frames": [
+    "mount_frog/idle_0",
+    "mount_frog/idle_1"
+   ],
+   "fps": 2,
+   "loop": true,
+   "ticks": [
+    30,
+    30
+   ]
+  },
+  "hop": {
+   "frames": [
+    "mount_frog/hop_0",
+    "mount_frog/hop_1",
+    "mount_frog/hop_2",
+    "mount_frog/hop_3"
+   ],
+   "fps": 8.6,
+   "loop": true,
+   "ticks": [
+    7,
+    7,
+    7,
+    7
+   ]
+  },
+  "jump": {
+   "frames": [
+    "mount_frog/jump_0"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "fall": {
+   "frames": [
+    "mount_frog/fall_0"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "land": {
+   "frames": [
+    "mount_frog/land_0",
+    "mount_frog/land_1"
+   ],
+   "fps": 10,
+   "loop": false,
+   "ticks": [
+    6,
+    6
+   ]
+  },
+  "charge": {
+   "frames": [
+    "mount_frog/charge_0",
+    "mount_frog/charge_1"
+   ],
+   "fps": 7.5,
+   "loop": true,
+   "ticks": [
+    8,
+    8
+   ]
+  },
+  "superjump": {
+   "frames": [
+    "mount_frog/superjump_0"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "tongue": {
+   "frames": [
+    "mount_frog/tongue_0",
+    "mount_frog/tongue_1"
+   ],
+   "fps": 10,
+   "loop": false,
+   "ticks": [
+    6,
+    6
+   ]
+  },
+  "summon_in": {
+   "frames": [
+    "mount_frog/summon_in_0",
+    "mount_frog/summon_in_1",
+    "mount_frog/summon_in_2"
+   ],
+   "fps": 12,
+   "loop": false,
+   "ticks": [
+    5,
+    5,
+    5
+   ]
+  },
+  "summon_out": {
+   "frames": [
+    "mount_frog/summon_out_0",
+    "mount_frog/summon_out_1",
+    "mount_frog/summon_out_2"
+   ],
+   "fps": 12,
+   "loop": false,
+   "ticks": [
+    5,
+    5,
+    5
+   ]
+  }
+ },
+ "anchors": {
+  "mount_frog/idle_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/idle_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/idle_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_0": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_0": {
+   "seat": [
+    15,
+    18
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_1": {
+   "seat": [
+    15,
+    11
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_1": {
+   "seat": [
+    15,
+    11
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_2": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_2": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/hop_3": {
+   "seat": [
+    15,
+    12
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/hop_3": {
+   "seat": [
+    15,
+    12
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/jump_0": {
+   "seat": [
+    15,
+    9
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/fall_0": {
+   "seat": [
+    15,
+    10
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/land_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/land_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/land_1": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/land_1": {
+   "seat": [
+    15,
+    17
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/charge_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/charge_0": {
+   "seat": [
+    15,
+    19
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/charge_1": {
+   "seat": [
+    15,
+    20
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/charge_1": {
+   "seat": [
+    15,
+    20
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/superjump_0": {
+   "seat": [
+    15,
+    6
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/superjump_0": {
+   "seat": [
+    15,
+    6
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/tongue_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/tongue_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/tongue_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mountr_frog/tongue_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_in_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_out_0": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_in_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_out_1": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_in_2": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  },
+  "mount_frog/summon_out_2": {
+   "seat": [
+    15,
+    15
+   ],
+   "rider": "sit"
+  }
+ },
+ "riderHip": [
+  12,
+  22
+ ],
+ "facing": "right",
+ "note": "mount_<m>/ = bare, mountr_<m>/ = saddled. Place hero frame so its riderHip lands on anchors[frame].seat."
+}

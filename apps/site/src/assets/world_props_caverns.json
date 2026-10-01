@@ -1,0 +1,613 @@
+{
+  "image": "world_props_caverns.png",
+  "width": 366,
+  "height": 73,
+  "frames": {
+    "crystal_s_0": {
+      "x": 0,
+      "y": 0,
+      "w": 20,
+      "h": 18
+    },
+    "crystal_s_1": {
+      "x": 21,
+      "y": 0,
+      "w": 20,
+      "h": 18
+    },
+    "crystal_m_0": {
+      "x": 42,
+      "y": 0,
+      "w": 32,
+      "h": 28
+    },
+    "crystal_m_1": {
+      "x": 75,
+      "y": 0,
+      "w": 32,
+      "h": 28
+    },
+    "crystal_l_0": {
+      "x": 108,
+      "y": 0,
+      "w": 46,
+      "h": 44
+    },
+    "crystal_l_1": {
+      "x": 155,
+      "y": 0,
+      "w": 46,
+      "h": 44
+    },
+    "stalactite_s": {
+      "x": 202,
+      "y": 0,
+      "w": 7,
+      "h": 14
+    },
+    "stalactite_m": {
+      "x": 210,
+      "y": 0,
+      "w": 10,
+      "h": 24
+    },
+    "stalactite_l": {
+      "x": 221,
+      "y": 0,
+      "w": 14,
+      "h": 40
+    },
+    "stalagmite_s": {
+      "x": 236,
+      "y": 0,
+      "w": 7,
+      "h": 12
+    },
+    "stalagmite_m": {
+      "x": 244,
+      "y": 0,
+      "w": 10,
+      "h": 22
+    },
+    "stalagmite_l": {
+      "x": 255,
+      "y": 0,
+      "w": 14,
+      "h": 34
+    },
+    "drip_0": {
+      "x": 270,
+      "y": 0,
+      "w": 8,
+      "h": 28
+    },
+    "drip_1": {
+      "x": 279,
+      "y": 0,
+      "w": 8,
+      "h": 28
+    },
+    "drip_2": {
+      "x": 288,
+      "y": 0,
+      "w": 8,
+      "h": 28
+    },
+    "drip_3": {
+      "x": 297,
+      "y": 0,
+      "w": 8,
+      "h": 28
+    },
+    "lamp_s_0": {
+      "x": 306,
+      "y": 0,
+      "w": 16,
+      "h": 18
+    },
+    "lamp_s_1": {
+      "x": 323,
+      "y": 0,
+      "w": 16,
+      "h": 18
+    },
+    "lamp_l_0": {
+      "x": 340,
+      "y": 0,
+      "w": 26,
+      "h": 28
+    },
+    "lamp_l_1": {
+      "x": 0,
+      "y": 45,
+      "w": 26,
+      "h": 28
+    },
+    "water_top_0": {
+      "x": 27,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "water_top_1": {
+      "x": 44,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "water_top_2": {
+      "x": 61,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "water_top_3": {
+      "x": 78,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_0": {
+      "x": 95,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_1": {
+      "x": 112,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_2": {
+      "x": 129,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "water_body_3": {
+      "x": 146,
+      "y": 45,
+      "w": 16,
+      "h": 16
+    },
+    "mush_violet": {
+      "x": 163,
+      "y": 45,
+      "w": 14,
+      "h": 14
+    },
+    "mush_teal": {
+      "x": 178,
+      "y": 45,
+      "w": 10,
+      "h": 10
+    },
+    "mush_cluster": {
+      "x": 189,
+      "y": 45,
+      "w": 26,
+      "h": 16
+    },
+    "rock_s": {
+      "x": 216,
+      "y": 45,
+      "w": 12,
+      "h": 8
+    },
+    "rock_m": {
+      "x": 229,
+      "y": 45,
+      "w": 20,
+      "h": 13
+    },
+    "bridge_l": {
+      "x": 250,
+      "y": 45,
+      "w": 16,
+      "h": 20
+    },
+    "bridge_m": {
+      "x": 267,
+      "y": 45,
+      "w": 16,
+      "h": 20
+    },
+    "bridge_r": {
+      "x": 284,
+      "y": 45,
+      "w": 16,
+      "h": 20
+    }
+  },
+  "props": [
+    {
+      "id": "crystal_s",
+      "region": "caverns",
+      "frames": [
+        "crystal_s_0",
+        "crystal_s_1"
+      ],
+      "fps": 1.6,
+      "w": 20,
+      "h": 18,
+      "anchor": {
+        "x": 10,
+        "y": 18
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "crystal_m",
+      "region": "caverns",
+      "frames": [
+        "crystal_m_0",
+        "crystal_m_1"
+      ],
+      "fps": 1.6,
+      "w": 32,
+      "h": 28,
+      "anchor": {
+        "x": 16,
+        "y": 28
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "crystal_l",
+      "region": "caverns",
+      "frames": [
+        "crystal_l_0",
+        "crystal_l_1"
+      ],
+      "fps": 1.6,
+      "w": 46,
+      "h": 44,
+      "anchor": {
+        "x": 23,
+        "y": 44
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "stalactite_s",
+      "region": "caverns",
+      "frames": [
+        "stalactite_s"
+      ],
+      "fps": 0,
+      "w": 7,
+      "h": 14,
+      "anchor": {
+        "x": 3,
+        "y": 0
+      },
+      "placement": "ceiling",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "stalactite_m",
+      "region": "caverns",
+      "frames": [
+        "stalactite_m"
+      ],
+      "fps": 0,
+      "w": 10,
+      "h": 24,
+      "anchor": {
+        "x": 5,
+        "y": 0
+      },
+      "placement": "ceiling",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "stalactite_l",
+      "region": "caverns",
+      "frames": [
+        "stalactite_l"
+      ],
+      "fps": 0,
+      "w": 14,
+      "h": 40,
+      "anchor": {
+        "x": 7,
+        "y": 0
+      },
+      "placement": "ceiling",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "stalagmite_s",
+      "region": "caverns",
+      "frames": [
+        "stalagmite_s"
+      ],
+      "fps": 0,
+      "w": 7,
+      "h": 12,
+      "anchor": {
+        "x": 3,
+        "y": 12
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "stalagmite_m",
+      "region": "caverns",
+      "frames": [
+        "stalagmite_m"
+      ],
+      "fps": 0,
+      "w": 10,
+      "h": 22,
+      "anchor": {
+        "x": 5,
+        "y": 22
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "stalagmite_l",
+      "region": "caverns",
+      "frames": [
+        "stalagmite_l"
+      ],
+      "fps": 0,
+      "w": 14,
+      "h": 34,
+      "anchor": {
+        "x": 7,
+        "y": 34
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "drip",
+      "region": "caverns",
+      "frames": [
+        "drip_0",
+        "drip_1",
+        "drip_2",
+        "drip_3"
+      ],
+      "fps": 3,
+      "w": 8,
+      "h": 28,
+      "anchor": {
+        "x": 4,
+        "y": 0
+      },
+      "placement": "ceiling",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "lamp_s",
+      "region": "caverns",
+      "frames": [
+        "lamp_s_0",
+        "lamp_s_1"
+      ],
+      "fps": 1.3,
+      "w": 16,
+      "h": 18,
+      "anchor": {
+        "x": 8,
+        "y": 18
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "lamp_l",
+      "region": "caverns",
+      "frames": [
+        "lamp_l_0",
+        "lamp_l_1"
+      ],
+      "fps": 1.3,
+      "w": 26,
+      "h": 28,
+      "anchor": {
+        "x": 13,
+        "y": 28
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "water_top",
+      "region": "caverns",
+      "frames": [
+        "water_top_0",
+        "water_top_1",
+        "water_top_2",
+        "water_top_3"
+      ],
+      "fps": 6,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "water",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "water_body",
+      "region": "caverns",
+      "frames": [
+        "water_body_0",
+        "water_body_1",
+        "water_body_2",
+        "water_body_3"
+      ],
+      "fps": 6,
+      "w": 16,
+      "h": 16,
+      "anchor": {
+        "x": 8,
+        "y": 0
+      },
+      "placement": "water",
+      "layer": "front",
+      "solid": false
+    },
+    {
+      "id": "mush_violet",
+      "region": "caverns",
+      "frames": [
+        "mush_violet"
+      ],
+      "fps": 0,
+      "w": 14,
+      "h": 14,
+      "anchor": {
+        "x": 7,
+        "y": 14
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "mush_teal",
+      "region": "caverns",
+      "frames": [
+        "mush_teal"
+      ],
+      "fps": 0,
+      "w": 10,
+      "h": 10,
+      "anchor": {
+        "x": 5,
+        "y": 10
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "mush_cluster",
+      "region": "caverns",
+      "frames": [
+        "mush_cluster"
+      ],
+      "fps": 0,
+      "w": 26,
+      "h": 16,
+      "anchor": {
+        "x": 13,
+        "y": 16
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "rock_s",
+      "region": "caverns",
+      "frames": [
+        "rock_s"
+      ],
+      "fps": 0,
+      "w": 12,
+      "h": 8,
+      "anchor": {
+        "x": 6,
+        "y": 8
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "rock_m",
+      "region": "caverns",
+      "frames": [
+        "rock_m"
+      ],
+      "fps": 0,
+      "w": 20,
+      "h": 13,
+      "anchor": {
+        "x": 10,
+        "y": 13
+      },
+      "placement": "ground",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "bridge_l",
+      "region": "caverns",
+      "frames": [
+        "bridge_l"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 20,
+      "anchor": {
+        "x": 8,
+        "y": 10
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "bridge_m",
+      "region": "caverns",
+      "frames": [
+        "bridge_m"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 20,
+      "anchor": {
+        "x": 8,
+        "y": 10
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    },
+    {
+      "id": "bridge_r",
+      "region": "caverns",
+      "frames": [
+        "bridge_r"
+      ],
+      "fps": 0,
+      "w": 16,
+      "h": 20,
+      "anchor": {
+        "x": 8,
+        "y": 10
+      },
+      "placement": "free",
+      "layer": "back",
+      "solid": false
+    }
+  ]
+}

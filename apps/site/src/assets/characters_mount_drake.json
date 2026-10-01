@@ -1,0 +1,481 @@
+{
+ "image": "characters_mount_drake.png",
+ "size": {
+  "w": 234,
+  "h": 221
+ },
+ "frames": {
+  "mount_drake/idle_0": {
+   "x": 0,
+   "y": 0,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/idle_0": {
+   "x": 47,
+   "y": 0,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/idle_1": {
+   "x": 94,
+   "y": 0,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/idle_1": {
+   "x": 141,
+   "y": 0,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/flap_0": {
+   "x": 188,
+   "y": 0,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/flap_0": {
+   "x": 0,
+   "y": 37,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/flap_1": {
+   "x": 47,
+   "y": 37,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/flap_1": {
+   "x": 94,
+   "y": 37,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/flap_2": {
+   "x": 141,
+   "y": 37,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/flap_2": {
+   "x": 188,
+   "y": 37,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/flap_3": {
+   "x": 0,
+   "y": 74,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/flap_3": {
+   "x": 47,
+   "y": 74,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/glide_0": {
+   "x": 94,
+   "y": 74,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/glide_0": {
+   "x": 141,
+   "y": 74,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/jump_0": {
+   "x": 188,
+   "y": 74,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/jump_0": {
+   "x": 0,
+   "y": 111,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/fall_0": {
+   "x": 47,
+   "y": 111,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/fall_0": {
+   "x": 94,
+   "y": 111,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/land_0": {
+   "x": 141,
+   "y": 111,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/land_0": {
+   "x": 188,
+   "y": 111,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/land_1": {
+   "x": 0,
+   "y": 148,
+   "w": 46,
+   "h": 36
+  },
+  "mountr_drake/land_1": {
+   "x": 47,
+   "y": 148,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/summon_in_0": {
+   "x": 94,
+   "y": 148,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/summon_out_2": {
+   "x": 141,
+   "y": 148,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/summon_in_1": {
+   "x": 188,
+   "y": 148,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/summon_out_1": {
+   "x": 0,
+   "y": 185,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/summon_in_2": {
+   "x": 47,
+   "y": 185,
+   "w": 46,
+   "h": 36
+  },
+  "mount_drake/summon_out_0": {
+   "x": 94,
+   "y": 185,
+   "w": 46,
+   "h": 36
+  }
+ },
+ "anims": {
+  "idle": {
+   "frames": [
+    "mount_drake/idle_0",
+    "mount_drake/idle_1"
+   ],
+   "fps": 2,
+   "loop": true,
+   "ticks": [
+    30,
+    30
+   ]
+  },
+  "flap": {
+   "frames": [
+    "mount_drake/flap_0",
+    "mount_drake/flap_1",
+    "mount_drake/flap_2",
+    "mount_drake/flap_3"
+   ],
+   "fps": 10,
+   "loop": true,
+   "ticks": [
+    6,
+    6,
+    6,
+    6
+   ]
+  },
+  "glide": {
+   "frames": [
+    "mount_drake/glide_0"
+   ],
+   "fps": 2,
+   "loop": false,
+   "ticks": [
+    30
+   ]
+  },
+  "jump": {
+   "frames": [
+    "mount_drake/jump_0"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "fall": {
+   "frames": [
+    "mount_drake/fall_0"
+   ],
+   "fps": 4,
+   "loop": false,
+   "ticks": [
+    15
+   ]
+  },
+  "land": {
+   "frames": [
+    "mount_drake/land_0",
+    "mount_drake/land_1"
+   ],
+   "fps": 10,
+   "loop": false,
+   "ticks": [
+    6,
+    6
+   ]
+  },
+  "summon_in": {
+   "frames": [
+    "mount_drake/summon_in_0",
+    "mount_drake/summon_in_1",
+    "mount_drake/summon_in_2"
+   ],
+   "fps": 12,
+   "loop": false,
+   "ticks": [
+    5,
+    5,
+    5
+   ]
+  },
+  "summon_out": {
+   "frames": [
+    "mount_drake/summon_out_0",
+    "mount_drake/summon_out_1",
+    "mount_drake/summon_out_2"
+   ],
+   "fps": 12,
+   "loop": false,
+   "ticks": [
+    5,
+    5,
+    5
+   ]
+  }
+ },
+ "anchors": {
+  "mount_drake/idle_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/idle_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/idle_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/idle_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_2": {
+   "seat": [
+    19,
+    16
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_2": {
+   "seat": [
+    19,
+    16
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/flap_3": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/flap_3": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/glide_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/glide_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/jump_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/jump_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/fall_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/fall_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/land_0": {
+   "seat": [
+    19,
+    17
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/land_0": {
+   "seat": [
+    19,
+    17
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/land_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mountr_drake/land_1": {
+   "seat": [
+    19,
+    15
+   ],
+   "rider": "grip"
+  },
+  "mount_drake/summon_in_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_out_0": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_in_1": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_out_1": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_in_2": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  },
+  "mount_drake/summon_out_2": {
+   "seat": [
+    19,
+    14
+   ],
+   "rider": "sit"
+  }
+ },
+ "riderHip": [
+  12,
+  22
+ ],
+ "facing": "right",
+ "note": "mount_<m>/ = bare, mountr_<m>/ = saddled. Place hero frame so its riderHip lands on anchors[frame].seat."
+}
