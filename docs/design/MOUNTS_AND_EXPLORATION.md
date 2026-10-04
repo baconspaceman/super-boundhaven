@@ -17,7 +17,7 @@ Status legend: **Confirmed** = Anthony's words (2026-09-30). **Proposal** = Clau
 
 | Mount | Identity | Possible signature ability | Possible gate use |
 |---|---|---|---|
-| Frog | Bouncy, amphibious | Charged super-jump, swim/lily-pad hopping, sticky-tongue grab on anchor points | Wide water/pit gaps, underwater passages, tongue-anchor ledges |
+| Frog | Bouncy, amphibious | Charged super-jump, swim/lily-pad hopping, tongue-style tether to anchor points (an anchor swing, not a Yoshi-like enemy grab) | Wide water/pit gaps, underwater passages, tongue-anchor ledges |
 | Dinosaur | Sturdy ground bruiser | Ground-pound / horn charge that breaks cracked blocks and stuns; survives one hit | Breakable walls, heavy switches, thorny hazards |
 | Flying dinosaur | Airborne | Limited flap-glide/flight (stamina meter), updraft riding | Sky islands, tall shafts, cloud-region access |
 | Cheetah | Speed | Sprint dash with a higher top speed, run up steep slopes, long leaps | Speed gates/timed doors, crumbling bridges, steep slopes |

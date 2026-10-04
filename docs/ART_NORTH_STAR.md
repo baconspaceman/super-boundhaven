@@ -1,5 +1,9 @@
 # SBH art north star: the Super Mario World essence, made original
 
+<!-- core:start -->
+**Core summary.** Owner direction: SBH should look like Super Mario World in bones and essence, with 100% original designs. Judge every art decision (hand-pixeled or Blender-assisted) against this first. Essence to keep: bold, cheerful, instantly readable colors; chunky simple strong shapes and unmistakable silhouettes; dark hue-matched outlines (never pure black) on characters, creatures and props; small stout expressive humanoid characters (about 2-3 heads tall, never cubes) with few animation frames and strong poses; flat-shaded 16x16 tile language where standable surfaces are solid and high-contrast; friendly layered parallax backgrounds with one mood color per world; juice (squash/stretch, dust, sparkles). Allowed additions: richer parallax, time-of-day variants, animated water/foliage, extra tone steps, ambient particles, a large layered creator. Forbidden: copying any Nintendo or other designs, tiles, logos, enemies, music or levels; clone-adjacent designs; realistic/painterly/glossy-3D rendering, heavy noise, pure-black fills, mixed pixel scales, tiny illegible detail. Blender or 3D pipelines must be tuned to imitate hand-pixeled flat/toon output (2-3 tones, strong outlines, palette-locked, cleaned up). Study references for principles only.
+<!-- core:end -->
+
 Owner direction (2026-09-30): "I still want it to look like Super Mario World — the bones, the essence, the inspiration." Every art decision (hand-pixeled or Blender-rendered) is judged against this page first. More detail and richer depth are welcome, but never at the cost of the essence below.
 
 ## The essence (what SMW actually does, which we keep)

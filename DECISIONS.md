@@ -1,5 +1,9 @@
 # Confirmed direction versus proposals
 
+<!-- core:start -->
+**Core summary.** This file is the decisions log. Tags matter: CONFIRMED means Anthony said it; ACCEPTED-DELEGATED means Anthony said "you decide" and Claude's recommendation was adopted (binding for development, revisable by Anthony at any time); PROPOSAL means awaiting Anthony (money, legal exposure, real-world risk and public promises always stay proposals until he decides); OPEN means unanswered. Confirmed direction: provisional name "Super BoundHaven" (no Bacon/Spaceman branding); independent platforming MMO; browser first, Steam later, cross-play intended; polished 16-bit side-scrolling look; precise movement with a strong skill gap; original mounts (frog, dinosaur, flying dinosaur, cheetah; no wolf); crouch and action buttons; skill points plus mastery-by-use with free respecs; raids of 8; challenging but fair, with mounts easy to obtain; no third-party assets; controller support required; open-source license applied (MIT code, CC BY-NC-SA 4.0 art/content/docs). Ideas not decided: microtransactions, monthly support, funding goals, early-player rewards, Steam funding target. Never state a date, price, reward amount or monetization term as decided. Add new decisions to the log with a date and tag; never silently rewrite a CONFIRMED entry.
+<!-- core:end -->
+
 “Confirmed” means present in Anthony's supplied brief, not technically validated or guaranteed for launch.
 
 ## Confirmed direction

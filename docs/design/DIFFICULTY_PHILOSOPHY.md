@@ -1,5 +1,9 @@
 # Super BoundHaven: difficulty philosophy
 
+<!-- core:start -->
+**Core summary.** Anthony's statement (CONFIRMED): things should be challenging, but when too challenging, do not make them too difficult; getting mounts in particular must not be hard. Pillars: D1 challenging but fair (every failure is readable, no invisible requirements); D2 mounts are approachable (a short, friendly, non-punishing questline per mount; never behind raids, never sold, never in the skill tree); D3 the hardest content is optional (raids, Kaizo-style trials and mastery chases live in optional and endgame tiers; the required path is clearable by an average player); D4 retry is cheap (instant retry, short rewind, no lives); D5 assists exist and are honestly labelled, never hidden inside leaderboards; D6 the skill ceiling stays high (optional hard variants and Classic boards); D7 gear and mounts ease but never replace base-clearable routes. When content is too hard, make the hardest part optional or add an assist; never make everyone pay for it. Targets are internal design goals, not public promises.
+<!-- core:end -->
+
 Status 2026-09-30. Tags: **[CONFIRMED]** = Anthony's own words; **[ACCEPTED-DELEGATED]** = Claude's design, delegated by Anthony, revisable any time. Targets below are internal design goals, not public promises.
 
 ## 1. The owner statement **[CONFIRMED]**

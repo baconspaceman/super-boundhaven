@@ -62,4 +62,4 @@ Do not import monetization or beta rules from any other project into SBH.
 
 ## Implementation status
 
-No implementation located in the searches documented here. A multi-model coding workflow is imagined, but the engine, stack, network architecture, account system, security model, hosting, and MVP scope are not fixed. The recommended first proof is movement, a small shared region, and one coordinated challenge; see `CLAUDE_HANDOFF.md`.
+As of 2026-10, a playable prototype exists (see `README.md` and `docs/NEXT_ACTION.md`); this brief records the original requirements. A multi-model coding workflow is imagined, but the engine, stack, network architecture, account system, security model, hosting, and MVP scope are not fixed. The recommended first proof is movement, a small shared region, and one coordinated challenge; see `CLAUDE_HANDOFF.md`.

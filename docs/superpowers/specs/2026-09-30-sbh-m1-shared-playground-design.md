@@ -37,7 +37,7 @@ Accounts, persistence, items, economy, level editor/upload, co-op challenge room
 
 ## Known limitations
 
-- Client predicts only the local player against static level geometry; bounces off other players appear after server correction (smoothed).
+- The client predicts only the local player: static geometry plus doors (dynamic state), crouch, one-way platforms, spikes, checkpoints and shards. Enemies and other players are not predicted, so bounces off other players appear after server correction (smoothed). Inputs are a six-bit mask (LEFT, RIGHT, JUMP, RUN, CROUCH, ACTION; `BTN_MASK` 63).
 - JSON messages, no delta compression.
 - Input queue overflow drops inputs (corrected by reconciliation).
 

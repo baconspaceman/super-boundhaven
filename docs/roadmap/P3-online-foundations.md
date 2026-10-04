@@ -1,0 +1,25 @@
+<!-- core:start -->
+**P3 Online foundations (M7 and infrastructure).** Goal: make SBH safely playable online by strangers, without spending money or collecting accounts before Anthony approves. Scope: hosting research (options only), containerising the server, metrics and structured logs, a reusable headless bot client, server authority hardening (input rate limits, schema validation, connection caps), secrets and dependency hygiene, persistence behind an interface (local file/SQLite first, nothing hosted), guest tokens now and account linking later, the quick-chat-only social default, anti-cheat via replay re-simulation, protocol versioning policy, channel/instance architecture. Entry: P1 exit for envelope tests; P2 RM-033 for multi-room. Exit: a staging deployment plan Anthony can approve, server survives a bot swarm without crash or unbounded memory, persistence round-trips look/unlocks/loadouts on guest identity, security checklist passes. Blocked on Anthony: any spend, hosting account, login provider, privacy/age posture, domain. Work proceeds with placeholders (guest tokens, local DB, localhost). Risks: security regressions in a hand-rolled server; PII in waitlist data. Leads: Codex (primary), Grokbot (bots, observability dashboards), Claude (protocol design, interfaces). Size: XL.
+<!-- core:end -->
+
+# P3 Online foundations
+
+| ID | Item | Status | Owner | Size | Acceptance |
+|---|---|---|---|---|---|
+| RM-050 | Hosting options research: compare container PaaS, VPS, Cloudflare/edge for WebSocket + static; cost described qualitatively; recommendation only | Next | Codex | M | Doc in `docs/`; no accounts created, no spend; Anthony picks |
+| RM-051 | Server Dockerfile + `/metrics` (Prometheus-style text) beside `/healthz`; tick-time, player count, snapshot bytes, dropped-input counters | Next | Codex | M | `docker build` works locally (if Docker present; Docker Desktop is installed but unused); endpoint test |
+| RM-052 | Headless bot client library (`tools/bots`, built on `@sbh/protocol` + `ws`) | Next | Grokbot | M | Bot joins, ping RTT measured, sends inputs, survives disconnect; unit test |
+| RM-053 | Production server config: WSS behind proxy, origin allowlist for WebSocket (waitlist already has CORS allowlist), graceful shutdown, env-based config | Later | Codex | M | Config doc; shutdown test closes sockets cleanly |
+| RM-054 | Staging deployment pipeline | Blocked (Anthony: spend/account) | Codex | M | Workflow file drafted but disabled; Anthony enables |
+| RM-055 | Persistence layer behind an interface; local SQLite or JSON-lines first (Node 24 built-in `node:sqlite` availability unverified; check before use); schema for look, unlocks, loadouts | Later | Codex | L | Round-trip tests; migration mechanism; no secrets/data committed (`apps/server/data/` stays ignored) |
+| RM-056 | Guest identity (token already in `welcome`) then account linking | Blocked (login provider) | Codex | L | Guest persistence works; link flow is stubbed behind interface until provider chosen |
+| RM-057 | Quick-chat-only social default (preset phrases, no free text) wired end to end | Later | Claude + Codex | M | Protocol message with enum ids, server validates, client wheel; no free-text path exists |
+| RM-058 | Authority hardening: per-connection input rate limit, strict message schema validation, join-flood and per-IP connection cap, oversize/unknown message handling | Next | Codex | M | Tests send malformed/flood traffic; server stays up; legitimate play unaffected |
+| RM-059 | Anti-cheat: server-only truth for pickups/state, profile hash, replay re-sim of claimed results | Later | Codex | L | Tampered client (speed/teleport inputs) rejected in tests; uses RM-040 |
+| RM-060 | Security hygiene: dependency audit, secrets scan in CI, `npm audit` triage policy, SBOM generation | Next | Codex | S | CI step added; policy note |
+| RM-061 | Observability: structured logs, dashboards for bot-run reports and server metrics | Later | Grokbot + Codex | M | Static dashboard generated from metrics/report JSON (Kimi may build) |
+| RM-062 | Backup/restore and data retention policy for persistence | Later | Codex | M | Restore drill documented and tested |
+| RM-063 | Waitlist abuse and data-handling review (rate limit exists; retention/deletion policy needs Anthony) | Next | Codex | S | Findings doc; policy decision in DECISIONS_NEEDED |
+| RM-064 | Protocol versioning and compatibility policy; evaluate binary encoding and snapshot delta compression (JSON today, 1 KB cap) | Later | Codex + Claude | M | Policy doc; `v` mismatch test; size benchmark at 8 players |
+| RM-065 | Channels/instances per region architecture (cap measured, not guessed) | Later | Codex | XL | Design doc then implementation; load-test evidence from P10 bots |
+| RM-066 | Telemetry and analytics (privacy-respecting: aggregate, no PII, opt-in where required; none exist today) | Later | Grokbot + Codex | L | Event schema doc, no third-party trackers, retention stated; Anthony approves before any collection ships |

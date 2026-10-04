@@ -1,5 +1,9 @@
 # SBH: next action / autonomous continuation file
 
+<!-- core:start -->
+**Core summary.** This is the live handoff file: any session, human or AI, starts here, then reads `AGENTS.md` and the art north star. It holds the standing rules (long-term passion project; SMW-essence art with original designs; no promises of dates/prices/rewards; never commit secrets or `apps/server/data/`; verify with tests, typecheck and a real browser check before claiming done; commit as the GitHub no-reply identity), the state at last update, and what to do next. Milestone 3 is done and committed: crouch/action inputs, one-way platforms, spikes, checkpoints, shards, enemies, levers, plates, doors, the "Twin Plates" co-op room, protocol v3, controller support, gameplay-object art and client integration (241 tests passing at last update). Known polish items: no dedicated crouch frame, low-contrast levers, grey idle flag, ACTION prompt overlapping the name tag, enemy hitbox smaller than its sprite, stomp kills not predicted. The public repo and GitHub Pages site are live; every push to `main` deploys after tests, and `npm run audit` must show 0 FAIL first. The private development history bundle lives outside the repo and must never be pushed. Update this file before ending any session (see `docs/ai-team/PROTOCOL.md` for the handoff note format).
+<!-- core:end -->
+
 Updated: 2026-09-30. Any session (including the scheduled task) starts HERE, then `docs/ART_NORTH_STAR.md`, `DECISIONS.md` (accepted decisions log), and `docs/design/GAME_DESIGN_DOCUMENT.md` once it exists. Claude acts as head of development and delegates to sub-agents with disjoint file ownership. Update this file before ending any session.
 
 ## Standing rules
@@ -25,7 +29,7 @@ In flight when this was written (check `git status` and each folder; agents may 
 
 ## PUBLISHED (2026-09-30)
 
-Public repo: https://github.com/baconspaceman/super-boundhaven (single clean root commit; author uses the GitHub no-reply email). Pages: https://baconspaceman.github.io/super-boundhaven/ (site), `/docs/` (docs portal), `/play/` (client; creator works offline, no hosted game server yet). `git push` to `main` auto-deploys via `.github/workflows/pages.yml` (runs tests first). The pre-publish audit (`node tools/audit/prepublish.mjs`) must show 0 FAIL before every push. The full private development history lives OUTSIDE the repo in `../sbh-private-history-2026-09-30.bundle` (contains old local paths and private-project mentions; never push it). License: none chosen, so all rights reserved; ask Anthony if he wants an open-source license.
+Public repo: https://github.com/baconspaceman/super-boundhaven (single clean root commit; author uses the GitHub no-reply email). Pages: https://baconspaceman.github.io/super-boundhaven/ (site), `/docs/` (docs portal), `/play/` (client; creator works offline, no hosted game server yet). `git push` to `main` auto-deploys via `.github/workflows/pages.yml` (runs tests first). The pre-publish audit (`node tools/audit/prepublish.mjs`) must show 0 FAIL before every push. The full private development history lives OUTSIDE the repo in `../sbh-private-history-2026-09-30.bundle` (contains old local paths and private-project mentions; never push it). License: MIT for code, CC BY-NC-SA 4.0 for art, content and docs (see LICENSE and LICENSE-ASSETS.md); name/logo reserved.
 The project is ongoing and open-ended: keep iterating on the roadmap below; republish after meaningful milestones.
 
 ## Decisions Anthony made on 2026-10-01 (UTC rollover; late 9/30 PT) — see DECISIONS.md

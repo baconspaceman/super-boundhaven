@@ -1,5 +1,9 @@
 # Controls
 
+<!-- core:start -->
+**Core summary.** SBH plays with keyboard or any common gamepad (Xbox/XInput, DualShock 4, DualSense, Switch Pro, most generic pads) through the browser Gamepad API; both can be used at once and feed the same 6-bit input mask (LEFT 1, RIGHT 2, JUMP 4, RUN 8, CROUCH 16, ACTION 32). Defaults: move with arrows or A/D or stick/D-pad; jump with Space, Z, K, Up or W (bottom face button); run (hold, or toggle by setting) with Shift, X or J; crouch/drop with S or Down; action/activate with E, F or Enter; character creator with C; pause with Esc. Debug keys exist for cycling region and time of day and for the debug HUD (F1). Controller support is a confirmed requirement for all players: remapping, glyphs per pad family, rumble and a `?pad=debug` overlay exist. Gamepad names follow standard-layout position (A = bottom). Any new input must be added to the mask documentation, `docs/NETCODE.md`, the remap UI and the tests together.
+<!-- core:end -->
+
 Super Boundhaven plays with keyboard or any common gamepad (Xbox / XInput, PlayStation DualShock 4 and DualSense, Switch Pro, most generic pads). The browser's Gamepad API is used, so there is nothing to install. Keyboard and gamepad can be used at the same time; both feed the same 6-bit input mask (`LEFT 1, RIGHT 2, JUMP 4, RUN 8, CROUCH 16, ACTION 32`).
 
 ## Default bindings

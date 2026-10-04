@@ -1,0 +1,44 @@
+name: Bug (engineering report with repro)
+description: A reproducible defect with expected versus actual behavior and a verification plan.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For quick player-style reports use "Bug report". This form is for contributors who can give a reproduction. No secrets or personal data.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps or failing test
+      description: Commands, test names, level, seed, client/server versions.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Sim
+        - Protocol / netcode
+        - Server
+        - Client / controls
+        - Art / creator
+        - Site / docs portal
+        - Tooling / CI / bundle builder
+  - type: textarea
+    id: verify
+    attributes:
+      label: How to verify the fix
+      description: Test to add or run, browser check, audit.

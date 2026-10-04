@@ -19,7 +19,12 @@
     "build:pages": "node tools/docs-site/pages.mjs",
     "serve:pages": "node tools/docs-site/serve.mjs",
     "linkcheck": "node tools/docs-site/linkcheck.mjs",
-    "audit": "node tools/audit/prepublish.mjs"
+    "audit": "node tools/audit/prepublish.mjs",
+    "bundle:ai": "node tools/ai-bundle/build.mjs",
+    "bundle:ai:check": "node tools/ai-bundle/build.mjs --check",
+    "bundle:shared": "node tools/ai-bundle/build.mjs --shared",
+    "docs:mechanics": "tsx tools/mechanics/gen-numbers.mjs",
+    "docs:mechanics:check": "tsx tools/mechanics/gen-numbers.mjs --check"
   },
   "devDependencies": {
     "@types/node": "^26.6.3",

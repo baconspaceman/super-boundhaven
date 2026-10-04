@@ -19,6 +19,10 @@ Early prototype. Not a finished game. Everything below says plainly what exists 
 
 ---
 
+<!-- core:start -->
+**Core summary.** Super BoundHaven (SBH) is an independent, long-term passion project: a side-scrolling 16-bit platforming MMO with precise, learnable movement, original rideable mounts, Metroidvania-style secrets and co-op that genuinely needs co-op. Status: pre-alpha prototype. Working today: a deterministic shared movement simulation (60 Hz, identical on client and server), an authoritative Node/WebSocket server with a 20 Hz snapshot stream, a PixiJS client with prediction/reconciliation, a layered humanoid character creator, three art regions, keyboard and gamepad controls, the "Twin Plates" co-op room, and a marketing site. Art-only or planned: mounts gameplay, skill tree, gear/economy, raids, player-made levels, accounts and persistence, Steam build. No hosted game server exists yet. Stack: TypeScript, PixiJS, Node, `ws`, Vite, vitest. Licenses: MIT (code), CC BY-NC-SA 4.0 (art, content, docs); the name and logo are reserved. Nothing about dates, prices, rewards or monetization has been decided or may be promised. Entry points for contributors: `AGENTS.md` (rules and reading order), `docs/NEXT_ACTION.md` (current task), `docs/design/GAME_DESIGN_DOCUMENT.md` (design), `DECISIONS.md` (what is confirmed).
+<!-- core:end -->
+
 ## What is SBH?
 
 Super BoundHaven is an independent, long-term passion project: a side-scrolling 16-bit platformer set in a shared online open world. The goals are tight, learnable movement with a real skill gap; a friendly, chunky, readable look; many original rideable creatures; Metroidvania-style exploration with secrets; and cooperative challenges that require players to coordinate (bounces, switches, timing).
@@ -38,7 +42,10 @@ Super BoundHaven is an independent, long-term passion project: a side-scrolling 
 | Mounts (frog, dinosaur, flying drake, cheetah) | **Art only** | Sprite sheets exist. Mount gameplay is **Planned**, not built. |
 | Skill tree, abilities, powerups | **Planned** | Full design proposals in the GDD; none implemented. |
 | Gear, economy, trading | **Planned** | Design only. |
-| Co-op dungeons and raids | **Planned** | Design only. Exact sizes are an open question. |
+| Co-op rooms (2-4 players) | **Prototype** | "Twin Plates" room: plates, timed lever, stomp-bounce ledge; proven by bot tests to need teamwork. Start the server with `SBH_LEVEL=coopRoom`. |
+| Raids (8 players) | **Planned** | Design only. Raid size is decided: 8. |
+| Crouch, action button, checkpoints, shards, enemies | **Prototype** | Playable in the shared playground and the co-op room. |
+| Controller support | **Working** | Xbox/XInput and other pads, remapping and rumble (real-hardware test pending). |
 | Player-made levels, weekly featured level, events | **Planned** | Design only. |
 | Accounts, persistence, Steam build | **Planned** | Not started. |
 | Hosted online server | **Not available** | The public Pages build has no game server. Run it locally. |
