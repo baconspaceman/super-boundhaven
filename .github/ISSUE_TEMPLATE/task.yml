@@ -1,0 +1,64 @@
+name: Task (team work item)
+description: A unit of work for the AI team or contributors. Canonical board entry.
+labels: [task]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, personal data or private roadmap/revenue material. Roles and rules: `AGENTS.md`, `docs/ai-team/CHARTER.md`.
+  - type: input
+    id: roadmap
+    attributes:
+      label: Roadmap or board ID
+      placeholder: RM-052 or T-0042
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: One or two sentences.
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      options:
+        - Game design / canon (proposal only)
+        - Art direction / image
+        - Sim / protocol
+        - Client
+        - Server / infra / CI / security
+        - Bots / ops / community tooling / analytics
+        - Docs
+        - Release / publishing
+    validations:
+      required: true
+  - type: dropdown
+    id: owner
+    attributes:
+      label: Proposed owner
+      options:
+        - Claude (Lead)
+        - Codex (Second Lead)
+        - Grokbot (Second Lead)
+        - Kimi (support)
+        - Unassigned
+  - type: textarea
+    id: files
+    attributes:
+      label: Files likely touched
+      description: Repo paths. Respect the ownership map in AGENTS.md.
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: Observable checks, tests, screenshots.
+    validations:
+      required: true
+  - type: checkboxes
+    id: needs
+    attributes:
+      label: Needs
+      options:
+        - label: Anthony's decision (money, accounts, public text, legal, canon)
+        - label: Lead review before merge

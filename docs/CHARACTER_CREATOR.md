@@ -1,5 +1,9 @@
 # Character creator and in-game players
 
+<!-- core:start -->
+**Core summary.** The creator (`apps/client/src/creator.ts`) opens full-screen on page load and builds a layered humanoid paper-doll look: tabs per option category, steppers, swatches from real color tables, live animated preview (idle/walk/run/jump/stomp/hurt), randomize, reset and shareable 20-character look codes (`encodeLook`/`decodeLook`). Name and look persist in `localStorage` (always in try/catch); `?name=` and `?look=` allow test auto-join. In game, press C to reopen it; apply sends `setLook`. Preview and game share `getLookSheet(code)`, which composes a sprite sheet from `packages/art`. Sprites are 24x32, bottom-center anchored, drawn by `SpritePlayerView` with a pure, unit-tested motion state machine (`motion.ts`). The server validates looks with `decodeLook`/`validateLook`, so adding options needs no server change. Adding options: add art in `packages/art` and a name in `OPTION_NAMES`; if the bit width crosses a power of two, bump `CharacterLook.v` and keep old decoding. Characters must obey the art north star: humanoid, stout, original, never cubes.
+<!-- core:end -->
+
 ## Flow
 - Page load: the creator (`apps/client/src/creator.ts`, `creator.css`) opens full-screen. Name and look are stored in `localStorage` (`sbh.name`, `sbh.look`, all access in try/catch). First visit gets a random look.
 - `?name=Bob` joins immediately; `?look=<code>` overrides the stored look (ignored if invalid). `?name` + `?look` = test auto-join. Note a live `sessionStorage` token re-attaches the old session and keeps its old name/look.

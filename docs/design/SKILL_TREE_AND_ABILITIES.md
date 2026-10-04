@@ -6,7 +6,7 @@ Companion to `GAME_DESIGN_DOCUMENT.md` (sections 2, 3, 4, 6).
 
 Badges: **[CONFIRMED]** = Anthony's own words (brief, decisions log, 2026-09-30 answers); **[ACCEPTED-DELEGATED]** = Claude chose by Anthony's delegation, revisable any time; **[PROPOSAL]** = Claude's design suggestion; **[OPEN]** = unresolved.
 
-Reference numbers come from `packages/sim/src/config.ts` (60 Hz, 16 px tiles, hitbox 12x16). Heights and distances are continuous-physics approximations derived from those values; verify against sim tests before tuning anything to them.
+Reference numbers come from `packages/sim/src/config.ts` (60 Hz, 16 px tiles, hitbox 14x28 standing, 16 tall crouching). Measured jump figures (held apex standing/walking/running 58.9/62.2/65.0 px, tap 32.0 px) live in `docs/mechanics/generated/NUMBERS.md`; heights and distances elsewhere in this page are approximations, so verify against the measured numbers before tuning to them.
 
 ---
 
@@ -75,8 +75,8 @@ See GDD section 2 for the numbers. Summary of the **proposed growth of the base*
 | Walk/run, accel, skid, friction | **Exists in sim** | L0 |
 | Variable jump, run-speed jump bonus, coyote (5 t), buffer (6 t) | **Exists in sim**; coyote/buffer kept as permanent base for everyone **[ACCEPTED-DELEGATED]** 2026-09-30 | L0 |
 | Slopes, bounce pads, stomp-bounce, player push | **Exists in sim** | L0 |
-| Crouch / drop through semi-solids (DOWN) | **[CONFIRMED]** 2026-09-30, to be added to sim (M4) | L0; semi-solids appear in the art north star |
-| ACTION / Activate button (interact with switches, summon/dismount mount, use powerup, mount ability) | **[CONFIRMED]** 2026-09-30, to be added to sim (M4) | Interact is part of the base; mount/powerup uses are L2/L3. Never required for pure base-only movement routes except level-provided switches |
+| Crouch / drop through semi-solids (DOWN) | **[CONFIRMED]** 2026-09-30; **implemented in sim** (Milestone 3, hitbox 14x16 crouched, CROUCH bit 16) | L0; semi-solids appear in the art north star |
+| ACTION / Activate button (interact with switches, summon/dismount mount, use powerup, mount ability) | **[CONFIRMED]** 2026-09-30; **implemented in sim** (Milestone 3, ACTION bit 32, rising edge, pulls levers; mount/powerup uses still to come) | Interact is part of the base; mount/powerup uses are L2/L3. Never required for pure base-only movement routes except level-provided switches |
 | Swim / water movement | **[PROPOSAL]** | zone-provided, same for all |
 
 ---

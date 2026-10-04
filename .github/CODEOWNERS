@@ -1,0 +1,57 @@
+# CODEOWNERS for Super BoundHaven.
+# Every path is owned by the repo owner (@baconspaceman) as a placeholder; the comment on each
+# block names the responsible AI lead. AI agents act through PRs; the owner merges or authorizes merges.
+# Roles are defined in docs/ai-team/CHARTER.md.
+
+# Default: owner
+*                                   @baconspaceman
+
+# Canon and design: Lead (Claude). Only Anthony approves canon.
+/DECISIONS.md                       @baconspaceman
+/OPEN_QUESTIONS.md                  @baconspaceman
+/DESIGN_BRIEF.md                    @baconspaceman
+/docs/design/                       @baconspaceman
+/docs/bible/                        @baconspaceman
+/docs/mechanics/                    @baconspaceman
+/docs/ART_NORTH_STAR.md             @baconspaceman
+
+# Art direction and image pipeline: Lead (Claude); pipeline code Codex/Grokbot
+/packages/art/                      @baconspaceman
+/tools/blender/                     @baconspaceman
+/tools/blender-character/           @baconspaceman
+
+# Sim, protocol, client: Lead (rules, client), Codex (implementation, review)
+/packages/sim/                      @baconspaceman
+/packages/protocol/                 @baconspaceman
+/apps/client/                       @baconspaceman
+
+# Server, infra, CI, hosting, persistence, security: Codex
+/apps/server/                       @baconspaceman
+/.github/workflows/                 @baconspaceman
+/tools/audit/                       @baconspaceman
+
+# Bots, ops, analytics, community tooling: Grokbot (Lead reviews)
+/tools/bots/                        @baconspaceman
+/tools/ops-bot/                     @baconspaceman
+
+# Site and docs portal: Lead
+/apps/site/                         @baconspaceman
+/tools/docs-site/                   @baconspaceman
+
+# Roadmap and team operations: Lead (Codex reviews)
+/docs/ROADMAP.md                    @baconspaceman
+/docs/roadmap/                      @baconspaceman
+/docs/ai-team/                      @baconspaceman
+/tools/ai-bundle/                   @baconspaceman
+/AGENTS.md                          @baconspaceman
+/CLAUDE.md                          @baconspaceman
+/.github/CODEOWNERS                 @baconspaceman
+/.github/pull_request_template.md   @baconspaceman
+/.github/ISSUE_TEMPLATE/            @baconspaceman
+
+# Licenses, money, legal, public statements: Anthony only
+/LICENSE                            @baconspaceman
+/LICENSE-ASSETS.md                  @baconspaceman
+/LICENSE-ASSETS.txt                 @baconspaceman
+/NOTICE.md                          @baconspaceman
+/README.md                          @baconspaceman

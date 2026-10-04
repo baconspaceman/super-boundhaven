@@ -1,5 +1,9 @@
 # Co-op room "Twin Plates" and the Milestone 3 rules layer
 
+<!-- core:start -->
+**Core summary.** Milestone 3 added a rules layer to `@sbh/sim` and the first co-op room, "Twin Plates" (level `coopRoom`, selected on the server with `SBH_LEVEL=coopRoom`). Two new inputs: CROUCH (bit 16; hitbox 28 to 16, slow slide, cannot stand under low ceilings, drops through one-way platforms) and ACTION (bit 32; rising edge, pulls the nearest lever). Level ASCII legend adds one-way platforms (`-`), spikes (`^`), doors/gates (`D`, solid while closed), plus markers for checkpoints, shards, enemies, levers and pressure plates; marker ids are assigned in reading order and door state lives in `world.dynamic[doorId]`. Twin Plates (190 x 16 tiles, 2-4 players) needs real co-op: doors open when enough plates are held (or a lever is on) and linger open for 5-6 s so plate holders are never locked out, a solo player can never clear the first gate, fewer than two connected players for 10 s hard-resets progress (shards kept), and checkpoints keep retries cheap. Rules: challenging but fair, generous checkpoints, instant retries, never punishing. Implemented in `levels/coopRoom.ts`, `player.ts` and `entities.ts`; tested in `packages/sim/test/m3.test.ts` and `coop.test.ts`. Everything is original SBH design.
+<!-- core:end -->
+
 Status: implemented in `@sbh/sim` (`levels/coopRoom.ts`, `player.ts`, `entities.ts`), tested in `packages/sim/test/{m3,coop}.test.ts`. Everything here is original SBH design. Philosophy: challenging but fair, generous checkpoints, instant retries, never punishing.
 
 ## 1. New base-moveset inputs (6 bits)
@@ -56,7 +60,7 @@ Level `coopRoom` (190 x 16 tiles, 2-4 players; `LEVELS.coopRoom`, server option 
 |---|---------|----------|-------|
 | 1 | Entrance (cols 2-40) | Plate A (col 11) and plate B (col 36) are 25 tiles apart; both held opens gate 0 and keeps it open 300 ticks (5 s) after release so the plate holders can run through. A one-way staircase leads to a patrol shelf (walker `e`) with a shard; a spike pair to hop. | 2 players |
 | 2 | Corridor (cols 41-105) | A 5 s timed lever at col 45; the door is at col 105, 60 tiles (about 6.5 s of running) away. Partner waits at the door, the puller pulls, the partner sprints through and pulls a **latch** lever (col 108) on the far side that holds the door open for the puller. Spikes to hop, a one-way ledge with a shard, a flyer overhead. | 2 players |
-| 3 | Stomp ledge (cols 106-131) | A floating slab 6 tiles (96 px) above the floor at cols 118-124 carries a lever. Solo jump apex is about 68 px, a pad-less held stomp-bounce off a grounded partner's head reaches about 115 px. The lever opens gate 2 (toggle, stays). | 2 players |
+| 3 | Stomp ledge (cols 106-131) | A floating slab 6 tiles (96 px) above the floor at cols 118-124 carries a lever. Best solo jump apex is 65.0 px (running held jump), a pad-less held stomp-bounce off a grounded partner reaches 112.3 px above their feet (measured). The lever opens gate 2 (toggle, stays). | 2 players |
 | 4 | Final (cols 133-186) | Four plates (floor, one on a one-way platform 3 tiles up, two floor); any 3 held opens the final gate (linger 360 ticks). A spiky patroller on a shelf, spikes between plates. Goal alcove with 6 shards and a checkpoint. | 3 players (tuned for up to 4) |
 
 Reset levers sit at the entrance and beside checkpoints b and c.
@@ -66,7 +70,7 @@ Reset levers sit at the entrance and beside checkpoints b and c.
 `packages/sim/test/coop.test.ts` scripts inputs for 2, 3 and 4 players with simple bots:
 
 - Gate 0: a solo player never has more than one plate pressed (sweeps every x in the entrance), and a solo run never opens it. 2 players do.
-- Timed corridor: a solo player who pulls the lever and sprints for 400 ticks never reaches the door (about 1 s of running short, even with no obstacles); with a waiting partner it passes and the latch keeps it open past the 300 tick timer.
+- Timed corridor: a solo player who pulls the lever and sprints for 400 ticks never reaches the door (best-case run is 384 ticks, 84 ticks = 1.4 s short of the 300-tick timer, even with no obstacles); with a waiting partner it passes and the latch keeps it open past the 300 tick timer.
 - Stomp ledge: solo, no timing of any run-jump over several start points and 90 jump timings gets its feet higher than 8 px below the ledge top (feet y 120 vs top 112); with a partner the stomp-bounce lands on it (about 20 of 90 jump timings succeed when the partner stands 3 tiles left of the ledge, so the window is generous, about 0.3 s).
 - Final gate: any two of the three floor plates held by two players keeps it closed (max pressed = 2 < need 3). 3 and 4 players clear the whole room from spawn to the goal checkpoint.
 

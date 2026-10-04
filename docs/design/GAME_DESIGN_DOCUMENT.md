@@ -1,5 +1,9 @@
 # Super BoundHaven (SBH): Master Game Design Document
 
+<!-- core:start -->
+**Core summary.** The GDD is the single design document aligning the brief, the decisions log, mounts/exploration, the art north star and the site. Every item carries a badge: CONFIRMED (Anthony's words), ACCEPTED-DELEGATED (Anthony said "you decide"; binding, revisable), PROPOSAL (awaiting approval; money, legal, real-world risk and public promises stay here), OPEN (unanswered). Never treat a PROPOSAL as decided. Sections: 1 vision and pillars; 2 core movement and base moveset; 3 abilities and powerups; 4 skill tree (points plus mastery-by-use, free respecs); 5 mounts and Metroidvania exploration (frog, dinosaur, flying dinosaur, cheetah; mounts are approachable and never sold or raid-gated); 6 gear and cosmetics; 7 co-op dungeons and raids (raid size 8); 8 levels, regions, community levels and events; 9 economy and items (no real-money gambling); 10 social; 11 progression; 12 technical implications and roadmap; 13 consistency audit; 14 resolved decision log. Pillars: movement is the skill; challenging but fair; the hardest content is optional; retry is cheap; honest assists; gear and mounts ease but never replace base-clearable routes; co-op that genuinely needs co-op. Everything is original; scope is open-ended ("no feature too big, no addition too small"), so systems are designed to be extended.
+<!-- core:end -->
+
 Version 0.2, 2026-09-30 (owner answers recorded). Working title; independent project, unrelated to Anthony's other projects. This is the single document that aligns the brief, the decisions log, the mounts/exploration doc, the art north star, the M1 spec and the public site.
 
 ## How to read this document
@@ -84,7 +88,7 @@ SBH is an independent 16-bit-style side-scrolling **platforming MMO**: precise m
 Audience: players who like precise platformers and social games; references for *feel and community* are MapleStory, PokeMMO, Club Penguin, WoW (not content reuse) **[CONFIRMED]**. Age band and chat posture **[OPEN, needs Anthony]** (decision 15; interim development default is quick-chat only); accessibility follows `DIFFICULTY_PHILOSOPHY.md` assists. Tone: bright, friendly, quirky humor (e.g. the cat-staff lore) **[CONFIRMED]** in lore; danger is in the platforming, not grimness (art north star: "nothing muddy, nothing grim").
 
 ### 1.5 Platform plan
-Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack accepted 2026-09-30: TypeScript end to end, Vite + PixiJS client, Node + `ws` authoritative server, shared deterministic `@sbh/sim`; client prediction + server authority + reconciliation, remote interpolation **[CONFIRMED]** (decisions log). Input devices **[ACCEPTED-DELEGATED]** 2026-09-30: keyboard first, then gamepad; touch/mobile is not a launch target (M1 spec lists touch out of scope). Six inputs (section 2.2). Steam cross-play design constraints: no browser-only assumptions in protocol; stable account linking **[OPEN]**.
+Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack accepted 2026-09-30: TypeScript end to end, Vite + PixiJS client, Node + `ws` authoritative server, shared deterministic `@sbh/sim`; client prediction + server authority + reconciliation, remote interpolation **[CONFIRMED]** (decisions log). Input devices **[ACCEPTED-DELEGATED]** 2026-09-30: keyboard and gamepad both implemented; touch/mobile is not a launch target (M1 spec lists touch out of scope). Six inputs (section 2.2). Steam cross-play design constraints: no browser-only assumptions in protocol; stable account linking **[OPEN]**.
 
 ### 1.6 Art north star pointer
 `docs/ART_NORTH_STAR.md` governs all visual decisions: SMW essence, dark hue-matched outlines, flat 2-3 tone shading, stout humanoid characters (no cubes), 16x16 tile language, 256x224 native with integer scaling (placeholder art accepted). Signature motifs to invent: spring/coil/bounce-ring, "haven shards". Every powerup/mount/gear concept below must pass that page.
@@ -96,25 +100,25 @@ Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack 
 **Status:** M1 movement is implemented in `packages/sim` **[CONFIRMED]** as accepted direction; numbers are original tuning (config.ts: "no third-party game data used"). Final feel **[OPEN]** until Anthony playtests.
 
 ### 2.1 Simulation facts (from `packages/sim/src/config.ts` and `step.ts`)
-Tick 60 Hz, tile 16 px, screen 256x224 (16x14 tiles), hitbox 14x28, position units px, inputs = 4 bits today (LEFT, RIGHT, JUMP, RUN); target is six (adds DOWN and ACTION, section 2.2; sim work in M4).
+Tick 60 Hz, tile 16 px, screen 256x224 (16x14 tiles), hitbox 14x28, position units px, inputs = 6 bits (LEFT, RIGHT, JUMP, RUN, CROUCH, ACTION; mask 63, section 2.2). Heights below are measured on the real sim (`docs/mechanics/generated/NUMBERS.md`), not closed-form estimates.
 
-| Quantity | Value in config | Derived (approx., continuous physics) |
+| Quantity | Value in config | Derived / measured |
 |---|---|---|
 | Walk max | 1.4 px/tick | 84 px/s, about 5.3 tiles/s |
 | Run max | 2.6 px/tick | 156 px/s, about 9.8 tiles/s |
 | Ground accel / skid / friction | 0.07 / 0.22 / 0.10 | Walk speed reached in about 0.33 s; run speed in about 0.6 s; reversal skids hard |
 | Air accel | 0.06 | Momentum mostly preserved; limited air steering |
-| Jump velocity | 5.2 + 0.1 x \|vx\| | Standing full-hold apex about 61 px (about 3.8 tiles); at run speed about 68 px (about 4.2 tiles) |
-| Gravity held (rising, jump held) / fall or released | 0.22 / 0.42 | Tap jump apex about 32 px (about 2 tiles): variable jump range about 2 to 4.2 tiles |
+| Jump velocity | 5.2 + 0.1 x \|vx\| | Held-jump apex (measured) standing 58.9 px (3.68 tiles), walking 62.2 px, running 65.0 px (4.07 tiles) |
+| Gravity held (rising, jump held) / fall or released | 0.22 / 0.42 | Tap jump apex 32.0 px standing (2.0 tiles): variable jump range about 2 to 4.1 tiles |
 | Max fall | 5.5 px/tick | 330 px/s |
 | Coyote / buffer | 5 ticks (83 ms) / 6 ticks (100 ms) | Config values "to A/B"; adoption as permanent base **[OPEN]** |
-| Bounce pad | 6.6 (8.2 with jump held) | about 3 tiles tap / about 9.5 tiles held (continuous approximation) |
-| Player stomp bounce | 4.6 (6.2 held), victim pushed down 1.5 | about 1.6 tiles / about 5.4 tiles |
+| Bounce pad | 6.6 (8.2 with jump held) | apex above the pad 48.6 px tap (3.0 tiles) / 148.7 px held (9.3 tiles), measured |
+| Player stomp bounce | 4.6 (6.2 held), victim pushed down 1.5 | apex above a grounded standing partner's feet 50.9 px tap / 112.3 px held (rise above their head 22.9 / 84.3 px); held stomp off a walker enemy 98.3 px above its feet |
 | Player push | max 1.5 px/tick separation | Soft side push between players |
-| Run-jump distance | | Airtime about 41 to 43 ticks: about 3.6 tiles walking, about 6.5 to 7 tiles at run speed |
+| Run-jump distance | | Airtime about 41 to 43 ticks: about 59 px (3.7 tiles) walking, about 112 px (7 tiles) at run speed |
 | Slopes | 45 degrees, snap-down 4 px | Keeps speed smooth on ramps |
 
-Playground gates built from these: 5-tile pit needs a run-jump; 4-tile wall needs a run-jump (about 64 px vs about 68 px run apex); 6-tile wall (96 px) cannot be cleared solo but can with a friend's held-jump stomp (friend's head plus about 87 px). Fall off level = respawn at spawn (no checkpoints yet).
+Playground gates built from these: 5-tile pit needs a run-jump; 4-tile wall needs a run-jump (64 px vs 65.0 px run apex, cleared by a whisker); 6-tile wall (96 px) cannot be cleared solo but can with a friend's held-jump stomp (feet apex 112.3 px above the partner's feet). Falling off the level or being hurt respawns you at your last checkpoint (the level spawn if none).
 
 ### 2.2 Base moveset (what every player always has) [CONFIRMED that one exists; exact list PROPOSAL where marked]
 
@@ -130,11 +134,12 @@ Playground gates built from these: 5-tile pit needs a run-jump; 4-tile wall need
 | Bounce pads (held-jump boost) | Yes | |
 | Stomp-bounce on players (held-jump boost) | Yes | The co-op primitive |
 | Soft push between players | Yes | |
-| Crouch / drop-through semi-solids (DOWN) | Not yet (M4) | **[CONFIRMED]** 2026-09-30; semi-solids exist in the tile language |
-| Action / Activate (ACTION) | Not yet (M4) | **[CONFIRMED]** 2026-09-30; interact with switches, summon/dismount mount, use powerup, trigger mount ability. Pure movement routes never require it beyond level-provided switches |
+| Crouch / drop-through semi-solids (CROUCH) | Yes (Milestone 3 sim layer, shipped); hitbox 16 tall crouched | **[CONFIRMED]** 2026-09-30; semi-solids exist in the tile language |
+| Action / Activate (ACTION) | Yes, rising edge pulls levers (M3, shipped); mount/powerup uses come later | **[CONFIRMED]** 2026-09-30; interact with switches, summon/dismount mount, use powerup, trigger mount ability. Pure movement routes never require it beyond level-provided switches |
+| Checkpoints, shards, spikes, enemies (stompable patrollers/flyers), levers, plates, doors | Yes (Milestone 3 sim layer, shipped) | See `docs/design/COOP_ROOM_M3.md` |
 | Swim | No | **[PROPOSAL]**, zone-provided |
 
-**Six inputs [CONFIRMED]:** LEFT, RIGHT, JUMP, RUN, DOWN (crouch), ACTION. The input byte widens from 4 to 6 bits; the server validates the mask per ruleset (section 12.1).
+**Six inputs [CONFIRMED]:** LEFT, RIGHT, JUMP, RUN, DOWN (crouch), ACTION. The input byte is 6 bits wide (done); the server masks every input with `BTN_MASK` 63 and can validate per ruleset (section 12.1). Keyboard and gamepad are both implemented.
 
 **Reference provenance [CONFIRMED]:** SMW movement study is intended only to understand behavior; no Nintendo code, assets, ROMs or extracted data go into SBH; any reference study is logged in the M1 spec provenance. Original tuning stays in `config.ts`.
 
@@ -528,7 +533,7 @@ Beyond: regional mastery, raid progression, Classic boards, crafting, creator re
 ### 12.1 What each system needs
 | System | `packages/sim` | `packages/protocol` | Server authority | Persistence | Anti-cheat |
 |---|---|---|---|---|---|
-| Base moves (DOWN/ACTION, six inputs) | Extend `BTN` from 4 to 6 bits and step | Input byte widened | Validates mask | none | Input mask per ruleset |
+| Base moves (CROUCH/ACTION, six inputs) | Implemented: `BTN` is 6 bits, stepped in `stepPlayer` | Input byte is 6 bits | Masks with `BTN_MASK` | none | Input mask per ruleset |
 | MovementProfile | Per-player `cfg` (stepPlayer already takes `cfg`) | Profile in join/snapshot, hash | Resolves profile; clamps budget | Loadout on account | Profile hash; recompute server-side |
 | Mounts | `mount` state on `PlayerState`, per-mount configs | Mount events | Summon rules, cooldowns | Roster, unlocks | Server state only |
 | Powerups | Timed effect state | Use/expiry events | Charges/timers authoritative | Inventory counts | Server-spawned pickups only |
@@ -538,15 +543,15 @@ Beyond: regional mastery, raid progression, Classic boards, crafting, creator re
 | Creator levels | Versioned `Level` format | Upload API | Validator, proof sim | Level DB | Replay re-sim |
 | Economy | none | Trade messages | Transactional trades, ledger | DB with ledger | Idempotency, dupe detection |
 
-Known sim limitation today: the client predicts only the local player against static geometry; player bounces appear after server correction (M1 spec). Raid sync needs fairness validation before relying on stomp chains under higher latency.
+Known sim limitation today: the client predicts only the local player (static geometry, doors, crouch, one-way platforms, spikes, checkpoints, shards); enemies, other players, levers and plates come from the server, so player bounces appear after server correction (M1 spec). Raid sync needs fairness validation before relying on stomp chains under higher latency.
 
 ### 12.2 Phased roadmap **[PROPOSAL]** (aligned with site roadmap: M1, M2, M3, editor, economy, cat site, Steam)
 | Phase | Scope | Entry | Exit |
 |---|---|---|---|
 | **M1** Movement playground (in progress) | Shared 60 Hz sim, prediction, stomp/push | Accepted 2026-09-30 | Anthony playtest signs off feel; tuning doc; tests green |
 | **M2** Small shared region | Polished region, latency/jitter/loss tests, reconnect | M1 exit | Coherent motion for N clients at agreed latency; no state corruption |
-| **M3** Coordinated challenge | One co-op room (switches + bounce), disconnect rule | M2 exit | Solution requires coordination; retry cost acceptable; fair at tested latency |
-| **M4** Base moveset additions | DOWN (crouch/drop-through) and ACTION (six inputs), semi-solids, checkpoints, per-player cfg | M3 learnings | New moves regression-tested; feel playtested |
+| **M3** Coordinated challenge (sim layer shipped) | One co-op room (switches + bounce), disconnect rule; crouch, action, checkpoints, enemies, shards, spikes, levers, plates, doors implemented | M2 exit | Solution requires coordination; retry cost acceptable; fair at tested latency |
+| **M4** Base moveset additions (mostly shipped with M3) | CROUCH and ACTION (six inputs), semi-solids and checkpoints are implemented; remaining: per-player cfg | M3 learnings | New moves regression-tested; feel playtested |
 | **M5** Mount prototype (frog) | Summon, mount physics, one gate, loaner | M4 | Frog gate is fun and never hard-locks; determinism tests |
 | **M6** Abilities foundation | Powerups (3 to 4), MovementProfile + rulesets, gear stub | M5 | Fairness tests, Classic board works |
 | **M7** Persistence/accounts | Accounts, DB, unlocks, loadouts, looks | Accounts decision | Safe logins; restores state; ledger stub |
@@ -592,8 +597,8 @@ Mismatches or tensions between the brief, decisions log, open questions, public 
 | 8 | Site hero "round mint-green mount" | Art north star bans clone-adjacent (green saddle dinosaur) | Re-design mount silhouette/color; run through rights review |
 | 9 | MOUNTS doc "sticky-tongue grab" (frog) | Yoshi-like signature | Reframe as a tether/anchor swing; avoid enemy-eating |
 | 10 | Brief "base moveset makes hard content possible" vs co-op 6-tile wall | Solo-impossible by design | Define co-op base-clearable as team base (section 2.3) |
-| 11 | Sim inputs only LEFT/RIGHT/JUMP/RUN | Abilities/mounts/crouch need buttons; devices/mobile undecided | **RESOLVED 2026-09-30 [CONFIRMED]:** six inputs, DOWN and ACTION added (sim work in M4) |
-| 12 | Sim respawns at spawn only | Brief leaves checkpoints undecided | **RESOLVED 2026-09-30 [ACCEPTED-DELEGATED]:** instant retry, checkpoints on long levels, raids by segment (sim work in M4) |
+| 11 | Sim inputs only LEFT/RIGHT/JUMP/RUN | Abilities/mounts/crouch need buttons; devices/mobile undecided | **RESOLVED 2026-09-30 [CONFIRMED]:** six inputs, DOWN and ACTION added (implemented, M3 sim layer) |
+| 12 | Sim respawns at spawn only | Brief leaves checkpoints undecided | **RESOLVED 2026-09-30 [ACCEPTED-DELEGATED]:** instant retry, checkpoints on long levels, raids by segment (per-player checkpoints implemented in M3; raid segments later) |
 | 13 | Skill tree not on the site | Good, tentative per brief | Keep off public copy until approved |
 | 14 | Layered creator / "Terraria-style" | In art north star (owner direction), absent from DECISIONS | **RESOLVED 2026-09-30:** logged in DECISIONS with date |
 | 15 | Cosmetic vs equipment slot separation | Brief: proposal not confirmed, art north star treats it as direction | **RESOLVED 2026-09-30 [ACCEPTED-DELEGATED]** with launch counts (section 6.1) |
