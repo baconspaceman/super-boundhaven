@@ -17,6 +17,8 @@ interface Sample {
   invuln: number;
   away: boolean;
   deaths: number;
+  pound: number;
+  slam: number;
 }
 
 export interface Remote {
@@ -42,6 +44,8 @@ export interface Drawable {
   invuln: number; // >0 => respawn flicker
   away: boolean; // disconnected-but-held ghost
   deaths: number; // respawn counter: a change means a respawn happened (poof fx)
+  pound: number; // ground pound: 0 none, below RULES.poundWindup hanging, otherwise diving
+  slam: number; // landing recovery ticks left (> 0 = just slammed)
 }
 
 /** Client-side game state: prediction, reconciliation, remote interpolation. No DOM/Pixi here. */
@@ -72,6 +76,7 @@ export class Game {
     v.epoch = 0;
     for (const k of Object.keys(v.dynamic)) delete v.dynamic[Number(k)];
     for (const k of Object.keys(v.plates)) delete v.plates[Number(k)];
+    for (const k of Object.keys(v.buttons)) delete v.buttons[Number(k)];
     v.levers.clear();
     v.enemies.clear();
   }
@@ -178,6 +183,8 @@ export class Game {
         invuln: np.state.invuln,
         away: np.state.away,
         deaths: np.state.deaths,
+        pound: np.state.pound ?? 0,
+        slam: np.state.slam ?? 0,
       });
       if (r.buf.length > 40) r.buf.shift();
     }
@@ -270,6 +277,8 @@ export class Game {
         invuln: st.invuln,
         away: st.away,
         deaths: st.deaths,
+        pound: st.pound,
+        slam: st.slam,
       });
     }
     if (this.me) {
@@ -289,6 +298,8 @@ export class Game {
         invuln: this.me.invuln,
         away: this.me.away,
         deaths: this.me.deaths,
+        pound: this.me.pound,
+        slam: this.me.slam,
       });
     }
     return out;

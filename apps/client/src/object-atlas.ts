@@ -180,6 +180,16 @@ function paintFallback(name: string): Texture {
         g.fill();
       });
     }
+    case 'button_up':
+    case 'button_lit':
+      return canvasTex(32, 16, (g) => {
+        const lit = stem === 'button_lit';
+        rect(g, 0, 12, 32, 4, INK);
+        rect(g, 1, 13, 30, 2, '#9a9ec8');
+        rect(g, 3, lit ? 9 : 4, 26, lit ? 3 : 8, INK);
+        rect(g, 4, lit ? 10 : 5, 24, lit ? 2 : 7, lit ? '#24cfdb' : '#ffb02e');
+        if (lit) rect(g, 4 + (idx % 6) * 4, 5, 24 - (idx % 6) * 4, 2, '#5fddbf');
+      });
     case 'shard_pickup':
     case 'shard_get':
       return canvasTex(14, 15, (g) => {

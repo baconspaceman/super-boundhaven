@@ -73,6 +73,10 @@ export const HERO_POSES: Record<string, Pose> = {
   crouch_1: P({ fit: true, dy: 5, torsoDx: 1, tilt: 2, near: { dx: 4, lift: 0 }, far: { dx: -3, lift: 0 }, armNear: [3, 5], armFar: [0, 5], back: 1 }),
   crouch_2: P({ fit: true, dy: 5, torsoDx: 1, tilt: 2, headDy: 1, near: { dx: 4, lift: 0 }, far: { dx: -3, lift: 0 }, armNear: [3, 5], armFar: [0, 5], back: 0, eyes: 'blink' }),
 
+  // ground pound: a tucked hang (fists up, knees together), then a straight dive head-first-ish with fists overhead
+  pound_0: P({ dy: 2, torsoExtra: -1, near: { dx: 1, lift: 3 }, far: { dx: -1, lift: 3 }, armNear: [3, -3], armFar: [-3, -3], eyes: 'wide', mouth: 'grit', brows: 'angry', back: 2 }),
+  pound_1: P({ torsoExtra: 1, near: { dx: 1, lift: 0 }, far: { dx: -1, lift: 0 }, armNear: [2, -3], armFar: [-2, -3], eyes: 'shut', mouth: 'grit', brows: 'angry', look: 1, back: 2 }),
+
   hurt_0: P({ torsoDx: -1, tilt: -2, near: { dx: 3, lift: 1 }, far: { dx: -1, lift: 0 }, armNear: [5, -2], armFar: [-3, -2], eyes: 'wince', mouth: 'wail', brows: 'worry', back: 2 }),
   hurt_1: P({ dy: 1, torsoDx: -1, tilt: -2, near: { dx: 4, lift: 0 }, far: { dx: 1, lift: 0 }, armNear: [5, -1], armFar: [-2, -1], eyes: 'wince', mouth: 'wail', brows: 'worry', back: 1 }),
 
@@ -129,6 +133,8 @@ export const HERO_ANIMS: Record<string, AnimDef> = {
   land: anim('land', 2, [5, 7], false),
   // entry (crouch_0) is played once, then crouch_1 / crouch_2 alternate as a slow breath
   crouch: anim('crouch', 3, [5, 40, 40], false),
+  // pound_0 while hanging, pound_1 while diving (picked by the client from the player's pound state)
+  pound: anim('pound', 2, [8, 8], false),
   stomp: anim('stomp', 4, 4, true),
   hurt: anim('hurt', 2, [6, 6], true),
   respawn: anim('flash', 2, 3, true),

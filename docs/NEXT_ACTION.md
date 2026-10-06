@@ -71,3 +71,7 @@ Anthony wants work to keep going whenever usage comes back. A scheduled task (`s
 
 Done: action prompt moved above the name tag; enemy hitbox now 16x16 (was 12x14); `raidRoom` ("Eight Gates", 8-player prototype, proposal-labelled, see `docs/design/RAID_ROOM.md`) with sim + server tests (248 tests pass).
 Still open polish: dedicated hero crouch frame, lever/flag/spike/open-gate art contrast, stomp-kill prediction (50 ms hitch). Next: real 8-person playtest, front-facing creator face, frog mount proposal, hosting research, real-controller test (`?pad=debug`).
+
+## 2026-10-06 (later): ground pound + big buttons
+
+Done: DOWN-in-air ground pound, 2-tile big buttons lit for 3 s, `buttons` door links (all lit at once), `poundRoom` "Slam Dunk", protocol v4, art (button, pound poses), regenerated `world_objects_*` atlases (this also ships the earlier lever/flag/spike/open-gate art). See `docs/design/GROUND_POUND.md`. Open: buttons in the raid room, rumble on slam, real-player tuning of the 3 s window.

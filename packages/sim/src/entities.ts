@@ -15,6 +15,7 @@ function tryStomp(a: PlayerState, b: PlayerState, cfg: MovementConfig): boolean 
   if (a.y < bTop || a.y - bTop > cfg.stompWindow) return false;
   if (a.prevY > b.prevY - hb + cfg.stompTolerance) return false;
   a.vy = -(a.jumpHeld ? cfg.stompHeldVel : cfg.stompVel);
+  a.pound = 0;
   a.y = bTop;
   a.onGround = false;
   a.coyote = 0;
@@ -161,6 +162,7 @@ export function stompsEnemy(p: PlayerState, e: { x: number; y: number; kind: num
 /** The bounce a stomp gives the player. */
 export function applyEnemyStomp(p: PlayerState, e: { y: number }, cfg: MovementConfig = MOVEMENT): void {
   p.vy = -(p.jumpHeld ? cfg.stompHeldVel : cfg.stompVel);
+  p.pound = 0;
   p.y = e.y - RULES.enemyHeight;
   p.onGround = false;
   p.coyote = 0;
@@ -242,6 +244,23 @@ function updatePlates(level: Level, world: World): void {
   }
 }
 
+/** Big buttons: count the lit timers down, then light any button a player's slam lands on this very tick. */
+function updateButtons(level: Level, world: World, cfg: MovementConfig): void {
+  const lit = world.buttons;
+  for (let i = 0; i < lit.length; i++) if (lit[i] > 0) lit[i]--;
+  for (const p of world.players) {
+    if (p.away || p.slam !== RULES.slamTicks || !p.onGround) continue;
+    for (const b of level.buttons) {
+      const floorY = (b.row + 1) * TILE;
+      if (Math.abs(p.y - floorY) > 1) continue;
+      const reach = RULES.buttonReach;
+      if (p.x + cfg.halfWidth <= b.col * TILE - reach || p.x - cfg.halfWidth >= (b.col + b.w) * TILE + reach) continue;
+      lit[b.id] = b.ticks;
+      world.room.progress = true;
+    }
+  }
+}
+
 function doorOccupied(level: Level, world: World, id: number): boolean {
   const hw = MOVEMENT.halfWidth;
   for (const [c, r] of level.doors[id].tiles) {
@@ -265,6 +284,7 @@ function updateDoors(level: Level, world: World): void {
       cond = n >= (l.need ?? l.plates.length);
     }
     if (!cond && l.levers) for (const id of l.levers) if (world.levers[id].on) cond = true;
+    if (!cond && l.buttons && l.buttons.length) cond = l.buttons.every((id) => world.buttons[id] > 0);
     let open: boolean;
     if (cond) {
       world.linger[i] = l.linger ?? 0;
@@ -291,6 +311,8 @@ export function resetRoom(level: Level, world: World, first: boolean): void {
   for (const d of level.doors) world.dynamic[d.id] = false;
   world.plates.length = 0;
   for (let i = 0; i < level.plates.length; i++) world.plates.push(false);
+  world.buttons.length = 0;
+  for (let i = 0; i < level.buttons.length; i++) world.buttons.push(0);
   world.levers.length = 0;
   for (const l of level.levers) world.levers.push({ id: l.id, on: false, t: 0 });
   world.enemies.length = 0;
@@ -341,6 +363,7 @@ export function createWorld(level?: Level): World {
     levelName: '',
     dynamic: {},
     plates: [],
+    buttons: [],
     levers: [],
     enemies: [],
     linger: [],
@@ -366,6 +389,7 @@ export function stepWorld(
   enemyContacts(level, world, cfg);
   pressLevers(level, world);
   updatePlates(level, world);
+  updateButtons(level, world, cfg);
   updateDoors(level, world);
   roomRules(level, world);
   world.tick++;

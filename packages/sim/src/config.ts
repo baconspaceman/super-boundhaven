@@ -92,6 +92,13 @@ export const RULES = {
   enemyMaxFall: 4,
   stompWindow: 12, // px the feet may be below an enemy's top and still stomp it
   stompSlack: 6, // px the previous feet may be below the enemy top
+  // ---- ground pound (DOWN pressed in the air): hang, dive straight down, slam on landing ----
+  poundWindup: 6, // ticks hanging in place before the dive (a visible tell, and a little time to line up)
+  poundVel: 8, // px/tick dive speed
+  slamTicks: 14, // ticks of recovery after landing; the slam itself is felt on the first
+  /** Big buttons: a slam lights one for this long, so partners may be this far apart in time (generous on purpose). */
+  buttonTicks: 180,
+  buttonReach: 3, // px a slam may land beyond a big button's edge and still press it
   /** Default per-room rules; levels override via meta.room. */
   defaultRoom: { minPlayers: 1, soloResetTicks: 600, emptyResetTicks: 600 },
 } as const;

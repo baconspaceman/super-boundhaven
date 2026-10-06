@@ -1,7 +1,7 @@
 import type { PlayerState } from '@sbh/sim';
 import type { NetWorld } from './world';
 
-export const PROTOCOL_VERSION = 3;
+export const PROTOCOL_VERSION = 4; // v4: ground pound state on players, big buttons in the world snapshot
 export const SERVER_PORT = 8080;
 export const SNAPSHOT_EVERY = 3; // ticks (20 Hz at 60 Hz tick)
 export const MAX_NAME = 16;

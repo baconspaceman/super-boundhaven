@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BTN, COOP_IDS, COOP_ROOM as L, createPlayer, createWorld, stepWorld, type World } from '@sbh/sim';
+import { BTN, COOP_IDS, COOP_ROOM as L, POUND_ROOM, createPlayer, createWorld, stepWorld, type World } from '@sbh/sim';
 import {
   PROTOCOL_VERSION,
   applyNetWorld,
@@ -14,6 +14,7 @@ const q = (v: number) => Math.round(v * 8) / 8;
 function expectViewMatches(view: ReturnType<typeof createWorldView>, w: World) {
   for (const d of L.doors) expect(!!view.dynamic[d.id]).toBe(!!w.dynamic[d.id]);
   for (let i = 0; i < w.plates.length; i++) expect(!!view.plates[i]).toBe(w.plates[i]);
+  for (let i = 0; i < w.buttons.length; i++) expect(!!view.buttons[i]).toBe(w.buttons[i] > 0);
   for (const l of w.levers) expect(view.levers.get(l.id)).toEqual({ on: l.on, t: l.t });
   for (const e of w.enemies) {
     const v = view.enemies.get(e.id)!;
@@ -24,9 +25,9 @@ function expectViewMatches(view: ReturnType<typeof createWorldView>, w: World) {
 /** Over-the-wire: every frame goes through JSON like the real server. */
 const wire = (nw: NetWorld | undefined): NetWorld | undefined => (nw ? (JSON.parse(JSON.stringify(nw)) as NetWorld) : undefined);
 
-describe('protocol v3', () => {
-  it('is version 3', () => {
-    expect(PROTOCOL_VERSION).toBe(3);
+describe('protocol v4', () => {
+  it('is version 4', () => {
+    expect(PROTOCOL_VERSION).toBe(4);
   });
 
   it('delta frames rebuild the world on a client, including a late full frame', () => {
@@ -98,5 +99,27 @@ describe('protocol v3', () => {
     expect(back.t === 'snap' && back.world!.enemies!.length).toBe(L.enemies.length);
     expect(back.t === 'snap' && back.players[0].state.crouching).toBe(false);
     expect(BTN.CROUCH | BTN.ACTION).toBe(48);
+  });
+});
+
+describe('big buttons on the wire', () => {
+  it('lit buttons ride the snapshot as a list and clear when the timer runs out', () => {
+    const w = createWorld(POUND_ROOM);
+    const enc = createWorldEncoder();
+    const view = createWorldView();
+    applyNetWorld(view, wire(enc.delta(w))!); // first frame is full
+    expect(view.buttons).toEqual({});
+    w.buttons[0] = 3;
+    const lit = wire(enc.delta(w))!;
+    expect(lit.buttons).toEqual([0]);
+    applyNetWorld(view, lit);
+    expect(view.buttons[0]).toBe(true);
+    expect(enc.delta(w)).toBeUndefined(); // unchanged while still lit
+    w.buttons[0] = 0;
+    const dark = wire(enc.delta(w))!;
+    expect(dark.buttons).toEqual([]);
+    applyNetWorld(view, dark);
+    expect(view.buttons[0]).toBeUndefined();
+    expect(wire(enc.full(w))!.buttons).toEqual([]);
   });
 });

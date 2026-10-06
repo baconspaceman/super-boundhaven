@@ -398,6 +398,56 @@ function flag(pal: Palette, active: boolean, f: number): Canvas {
   return c;
 }
 
+// ---------------------------------------------------------------- big button (32x16, ground-pound it)
+const BTN_W = 32;
+const BTN_SLAB = [
+  'OxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyO',
+  'OxyyyyyyyyyyyyyyyyyyyyyyyyyyyyzO',
+  'OyyyyyyyyyyyyyyyyyyyyyyyyyyyzzzO',
+  'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO',
+];
+/** Dome of `h` rows standing on the slab (slab starts at row 12). */
+function buttonDome(c: Canvas, h: number, ramp: [string, string, string, string]): void {
+  for (let x = 3; x <= 28; x++) {
+    const n = (x + 0.5 - BTN_W / 2) / 12.8;
+    const dh = Math.round(h * Math.sqrt(Math.max(0, 1 - n * n)));
+    for (let k = 0; k < dh; k++) {
+      const y = 11 - k;
+      const t = dh <= 1 ? 0 : k / (dh - 1); // 0 at the base, 1 at the crown
+      c.px(x, y, t > 0.8 ? ramp[0] : t > 0.45 ? ramp[1] : t > 0.15 ? ramp[2] : ramp[3]);
+    }
+  }
+}
+/** Waiting: a tall gold dome with a "pound here" chevron. */
+function buttonUp(pal: Palette): Canvas {
+  const c = sheet(pal, BTN_W, S);
+  c.stamp(0, 12, BTN_SLAB);
+  buttonDome(c, 9, ['t', 's', 'S', 'A']);
+  // down chevron, dark amber
+  const chev: [number, number][] = [[12, 4], [13, 5], [14, 6], [15, 7], [16, 7], [17, 6], [18, 5], [19, 4], [13, 4], [18, 4]];
+  for (const [x, y] of chev) c.px(x, y, 'R');
+  outlineOuter(c, 'O', (_x, y) => y <= 11);
+  return c;
+}
+/** Lit: pressed flat and cyan, with a 6-segment bar above that drains as the timer runs out (k = sixths elapsed). */
+function buttonLit(pal: Palette, k: number): Canvas {
+  const c = sheet(pal, BTN_W, S);
+  c.stamp(0, 12, BTN_SLAB);
+  buttonDome(c, 3, ['a', 'a', 'b', 'k']);
+  outlineOuter(c, 'O', (_x, y) => y <= 11);
+  for (let i = 0; i < 6; i++) {
+    const on = i < 6 - k;
+    const x0 = 3 + i * 4.5;
+    for (let x = 0; x < 4; x++) {
+      const px = Math.round(x0 + x);
+      c.px(px, 5, on ? (k >= 4 ? 'r' : 'a') : 'w');
+      c.px(px, 6, on ? (k >= 4 ? 'R' : 'b') : 'w');
+    }
+  }
+  outlineOuter(c, 'O', (_x, y) => y >= 4 && y <= 7);
+  return c;
+}
+
 // ---------------------------------------------------------------- shards
 function shardGet(f: number): Canvas {
   const c = new Canvas(S, S, FX_PAL);
@@ -456,6 +506,7 @@ export const OBJECT_ANIMS: Record<string, ObjectAnim> = {
   door_open: { frames: seq('door_open', 4), fps: 6, loop: true },
   plate_glow: { frames: seq('plate_glow', 4), fps: 9, loop: true },
   lever_timer: { frames: seq('lever_timer', 6), fps: 0, loop: false },
+  button_lit: { frames: seq('button_lit', 6), fps: 0, loop: false }, // value-driven like lever_timer
   link_dot: { frames: seq('link_dot', 2), fps: 4, loop: true },
   spike_glint: { frames: ['obj/spike', 'obj/spike', 'obj/spike', 'obj/spike_1'], fps: 3, loop: true },
 };
@@ -484,6 +535,8 @@ export const OBJECT_FRAME_NAMES: string[] = [
   ...seq('shard_pickup', 6),
   ...seq('shard_get', 4),
   ...seq('link_dot', 2),
+  'obj/button_up',
+  ...seq('button_lit', 6),
 ];
 
 function toBitmaps(frames: Record<string, Canvas>): Record<string, Bitmap> {
@@ -528,6 +581,8 @@ export function buildObjectFrames(region: RegionId): Record<string, Bitmap> {
     f[`obj/shard_get_${i}`] = shardGet(i);
   }
   for (let i = 0; i < 2; i++) f[`obj/link_dot_${i}`] = linkDot(pal, i);
+  f['obj/button_up'] = buttonUp(pal);
+  for (let i = 0; i < 6; i++) f[`obj/button_lit_${i}`] = buttonLit(pal, i);
   const bm = toBitmaps(f as Record<string, Canvas>);
   // shard pickups: crop the character-fx shard so the pickup is pixel-identical to the fx shard
   const fx = buildFxFrames();

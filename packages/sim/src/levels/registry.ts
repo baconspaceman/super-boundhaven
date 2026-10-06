@@ -1,5 +1,6 @@
 import type { Level } from '../level';
 import { COOP_ROOM } from './coopRoom';
+import { POUND_ROOM } from './poundRoom';
 import { RAID_ROOM } from './raidRoom';
 import { PLAYGROUND } from './playground';
 
@@ -10,6 +11,7 @@ export const LEVELS: Readonly<Record<string, Level>> = {
   [PLAYGROUND.name]: PLAYGROUND,
   [COOP_ROOM.name]: COOP_ROOM,
   [RAID_ROOM.name]: RAID_ROOM,
+  [POUND_ROOM.name]: POUND_ROOM,
 };
 
 export function getLevel(name: string): Level | undefined {

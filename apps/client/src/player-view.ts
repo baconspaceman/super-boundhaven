@@ -2,6 +2,7 @@
 // pixel-font name tag, "you" marker, run/land/skid dust. Anchor = bottom-center of the 24x32 frame on the
 // sim feet position (frame pixel row 31 is the ground row; verified against the composed bitmaps).
 import { Container, Sprite, type Texture } from 'pixi.js';
+import { RULES } from '@sbh/sim';
 import { HERO_ANIMS, HERO_H } from './art';
 import type { Drawable } from './game';
 import { Motion, type MotionEvent } from './motion';
@@ -143,6 +144,9 @@ export class SpritePlayerView implements PlayerView {
       if (this.crouchStart < 0) this.crouchStart = now;
       name = crouchFrame(now - this.crouchStart);
     } else this.crouchStart = -1;
+    // ground pound: tucked hang, then the dive; the slam itself reuses the deep landing squash
+    if (d.pound > 0) name = HERO_ANIMS.pound.frames[d.pound >= RULES.poundWindup ? 1 : 0];
+    else if (d.slam > 0 && d.slam >= RULES.slamTicks - 8) name = HERO_ANIMS.land.frames[0];
     this.body.texture = this.set.frames[name] ?? this.set.frames['hero/idle_0'];
     this.body.scale.x = out.flip ? -1 : 1;
 

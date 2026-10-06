@@ -28,6 +28,9 @@ export function createPlayer(id: number, level: Level): PlayerState {
     invuln: 0,
     deaths: 0,
     away: false,
+    prevCrouch: false,
+    pound: 0,
+    slam: 0,
   };
 }
 
@@ -53,6 +56,8 @@ export function placeAtCheckpoint(level: Level, p: PlayerState): void {
   p.buffer = 0;
   p.crouching = false;
   p.drop = 0;
+  p.pound = 0;
+  p.slam = 0;
 }
 
 /** Hurt / pit: back to the last checkpoint with brief invulnerability. No other penalty (shards are kept). */
@@ -245,11 +250,22 @@ export function stepPlayer(
   p.act = action && !p.prevAction;
   p.prevAction = action;
   p.prevY = p.y;
+  const crouchPressed = crouchBtn && !p.prevCrouch;
+  p.prevCrouch = crouchBtn;
+  if (p.slam > 0) p.slam--;
   if (p.invuln > 0) p.invuln--;
   if (p.drop > 0) p.drop--;
 
+  // ground pound: a fresh DOWN press in the air (not holding it from before the jump) starts the hang
+  if (crouchPressed && !p.onGround && p.pound === 0 && p.slam === 0 && !p.away) {
+    p.pound = 1;
+    p.vx = 0;
+    p.vy = 0;
+  }
+  const pounding = p.pound > 0;
+
   // crouch: held, or kept while a low ceiling blocks standing up
-  if (crouchBtn) p.crouching = true;
+  if (crouchBtn || pounding) p.crouching = true;
   else if (p.crouching && canStand(level, p, cfg, dynamic)) p.crouching = false;
 
   let wasGround = p.onGround;
@@ -262,8 +278,10 @@ export function stepPlayer(
   }
   const maxSpeed = p.crouching && p.onGround ? cfg.crouchMax : run ? cfg.runMax : cfg.walkMax;
 
-  // horizontal control
-  if (dir !== 0) {
+  // horizontal control (none while pounding; a short recovery after the slam)
+  if (pounding) {
+    p.vx = 0;
+  } else if (dir !== 0 && p.slam === 0) {
     p.facing = dir;
     if (p.vx * dir < 0) {
       p.vx += dir * (p.onGround ? cfg.skid : cfg.airAccel);
@@ -291,9 +309,18 @@ export function stepPlayer(
     p.buffer = 0;
   }
 
-  // gravity
-  const g = p.vy < 0 && jump ? cfg.gravityHeld : cfg.gravityFall;
-  p.vy = Math.min(p.vy + g, cfg.maxFall);
+  // gravity (a pound hangs, then dives at a fixed speed)
+  if (pounding) {
+    if (p.pound < RULES.poundWindup) {
+      p.vy = 0;
+      p.pound++;
+    } else {
+      p.vy = RULES.poundVel;
+    }
+  } else {
+    const g = p.vy < 0 && jump ? cfg.gravityHeld : cfg.gravityFall;
+    p.vy = Math.min(p.vy + g, cfg.maxFall);
+  }
 
   // move
   p.onGround = false;
@@ -301,6 +328,15 @@ export function stepPlayer(
   // a grounded walker leaves a slope's top edge up to slopeSnap below the flat tile top it reaches
   moveY(level, p, p.vy, wasGround ? cfg.slopeSnap : 0, cfg, dynamic);
   applySlope(level, p, wasGround, cfg);
+
+  if (pounding) {
+    if (p.onGround && p.pound >= RULES.poundWindup) {
+      p.slam = RULES.slamTicks; // landed from the dive: stepWorld checks big buttons on this exact tick
+      p.pound = 0;
+    } else if (p.onGround || p.vy < 0) {
+      p.pound = 0; // cancelled (bounce pad, landed in the hang)
+    }
+  }
 
   if (p.y > (level.height + 3) * TILE) {
     respawn(level, p);

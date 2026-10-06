@@ -10,6 +10,7 @@ import { RULES, TILE } from './config';
  * Markers (become '.'):
  *  'S' spawn   'C' checkpoint flag   'o' shard   'l' lever   'p' pressure plate
  *  'e' ground patroller   'z' sine flyer   'k' spiky patroller (cannot be stomped)
+ *  'M' big button (ground-pound it; neighbouring M tiles in a row form one wider button)
  * Ids of every marker kind are assigned in reading order (row by row, left to right).
  */
 export interface Point {
@@ -31,6 +32,14 @@ export interface PlateDef {
   row: number;
 }
 
+export interface ButtonDef {
+  id: number;
+  col: number; // leftmost tile
+  row: number; // the tile row it sits in (it stands on the floor below)
+  w: number; // width in tiles
+  ticks: number; // how long a slam keeps it lit
+}
+
 export interface LeverDef {
   id: number;
   col: number;
@@ -48,6 +57,7 @@ export interface DoorLink {
   door: number;
   plates?: number[];
   levers?: number[];
+  buttons?: number[]; // opens while ALL of these are lit at once (slams within `ticks` of each other)
   need?: number; // plates that must be held at once (default: all listed)
   linger?: number; // ticks the door stays open after its condition lapses (time to run through)
 }
@@ -63,6 +73,7 @@ export interface RoomMeta {
 export interface LevelMeta {
   links?: DoorLink[];
   levers?: Record<number, { ticks?: number; reset?: boolean }>;
+  buttons?: Record<number, { ticks?: number }>;
   enemies?: Record<number, { range?: number }>;
   room?: RoomMeta;
 }
@@ -78,6 +89,7 @@ export interface Level {
   enemies: EnemyDef[];
   plates: PlateDef[];
   levers: LeverDef[];
+  buttons: ButtonDef[];
   doors: DoorDef[];
   doorAt: Int16Array; // width*height, door id or -1
   links: DoorLink[];
@@ -85,7 +97,7 @@ export interface Level {
   room: RoomMeta;
 }
 
-const MARKERS = 'SClpoezk';
+const MARKERS = 'SClpoezkM';
 
 export function parseLevel(name: string, rows: string[], metaIn?: LevelMeta | string): Level {
   const meta: LevelMeta = typeof metaIn === 'string' ? (JSON.parse(metaIn) as LevelMeta) : (metaIn ?? {});
@@ -97,6 +109,7 @@ export function parseLevel(name: string, rows: string[], metaIn?: LevelMeta | st
   const enemies: EnemyDef[] = [];
   const plates: PlateDef[] = [];
   const levers: LeverDef[] = [];
+  const buttons: ButtonDef[] = [];
 
   const tiles = rows.map((row, r) => {
     const padded = row.padEnd(width, '.');
@@ -127,6 +140,12 @@ export function parseLevel(name: string, rows: string[], metaIn?: LevelMeta | st
           const id = levers.length;
           const m = meta.levers?.[id];
           levers.push({ id, col: c, row: r, ticks: m?.ticks ?? 0, reset: m?.reset ?? false });
+          break;
+        }
+        case 'M': {
+          const prev = buttons[buttons.length - 1];
+          if (prev && prev.row === r && prev.col + prev.w === c) prev.w++;
+          else buttons.push({ id: buttons.length, col: c, row: r, w: 1, ticks: meta.buttons?.[buttons.length]?.ticks ?? RULES.buttonTicks });
           break;
         }
         default: {
@@ -171,6 +190,7 @@ export function parseLevel(name: string, rows: string[], metaIn?: LevelMeta | st
     if (!doors[l.door]) throw new Error(`${name}: link to missing door ${l.door}`);
     for (const p of l.plates ?? []) if (!plates[p]) throw new Error(`${name}: link to missing plate ${p}`);
     for (const v of l.levers ?? []) if (!levers[v]) throw new Error(`${name}: link to missing lever ${v}`);
+    for (const b of l.buttons ?? []) if (!buttons[b]) throw new Error(`${name}: link to missing button ${b}`);
   }
 
   return {
@@ -184,6 +204,7 @@ export function parseLevel(name: string, rows: string[], metaIn?: LevelMeta | st
     enemies,
     plates,
     levers,
+    buttons,
     doors,
     doorAt,
     links,
