@@ -66,3 +66,8 @@ TODO next: hook Blender time-of-day scenes into the client (`?tod=dawn|day|sunse
 ## Continuation protocol (usage limits)
 
 Anthony wants work to keep going whenever usage comes back. A scheduled task (`sbh-autonomous-continue`) (fires at 4:12 PM, 9:12 PM, 2:12 AM, 7:12 AM, 12:12 PM local, just after Anthon's usage reset at 4:10 PM and each 5-hour window) starts fresh sessions that read this file and continue the next unfinished step. Each run: inspect state, pick the next unfinished step, delegate/do it, verify, commit, update this file, then stop. When every step above is done (including the public GitHub step), disable the scheduled task and tell Anthony.
+
+## 2026-10-06 update (cloud session)
+
+Done: action prompt moved above the name tag; enemy hitbox now 16x16 (was 12x14); `raidRoom` ("Eight Gates", 8-player prototype, proposal-labelled, see `docs/design/RAID_ROOM.md`) with sim + server tests (248 tests pass).
+Still open polish: dedicated hero crouch frame, lever/flag/spike/open-gate art contrast, stomp-kill prediction (50 ms hitch). Next: real 8-person playtest, front-facing creator face, frog mount proposal, hosting research, real-controller test (`?pad=debug`).

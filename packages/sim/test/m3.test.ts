@@ -601,7 +601,7 @@ describe('level registry and metadata', () => {
     expect(getLevel('coopRoom')).toBe(COOP_ROOM);
     expect(getLevel('nope')).toBeUndefined();
     expect(getLevel('__proto__')).toBeUndefined();
-    expect(Object.keys(LEVELS)).toEqual(['playground', 'coopRoom']);
+    expect(Object.keys(LEVELS)).toEqual(['playground', 'coopRoom', 'raidRoom']);
     const lv = parseLevel('j', ['S.p.l.D', '#######'], JSON.stringify({ links: [{ door: 0, plates: [0], levers: [0] }] }));
     expect(lv.links).toHaveLength(1);
     expect(lv.plates).toHaveLength(1);

@@ -311,7 +311,7 @@ function frame(now: number): void {
     if (ev.k === 'door' && ev.e === 'opened' && game.me && Math.abs(ev.x - game.me.x) < 192) gameEvents.emit('door');
   }
   const lever = joined && !input.captured ? leverInReach(game.level, game.me) : null;
-  prompt.update(lever ? renderer.worldToScreen(lever.col * 16 + 8, lever.row * 16 - 4) : null, lever?.reset ? 'Reset room' : 'Pull');
+  prompt.update(lever ? renderer.worldToScreen(lever.col * 16 + 8, lever.row * 16 - 52) : null, lever?.reset ? 'Reset room' : 'Pull');
   hud.frame(now);
   requestAnimationFrame(frame);
 }

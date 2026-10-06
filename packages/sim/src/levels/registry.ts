@@ -1,5 +1,6 @@
 import type { Level } from '../level';
 import { COOP_ROOM } from './coopRoom';
+import { RAID_ROOM } from './raidRoom';
 import { PLAYGROUND } from './playground';
 
 export const DEFAULT_LEVEL = PLAYGROUND.name;
@@ -8,6 +9,7 @@ export const DEFAULT_LEVEL = PLAYGROUND.name;
 export const LEVELS: Readonly<Record<string, Level>> = {
   [PLAYGROUND.name]: PLAYGROUND,
   [COOP_ROOM.name]: COOP_ROOM,
+  [RAID_ROOM.name]: RAID_ROOM,
 };
 
 export function getLevel(name: string): Level | undefined {

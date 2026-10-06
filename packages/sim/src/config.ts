@@ -86,8 +86,8 @@ export const RULES = {
   enemyRespawnTicks: 600, // a stomped enemy returns after 10 s
   walkerSpeed: 0.5,
   flyerSpeed: 0.6,
-  enemyHalfWidth: 6,
-  enemyHeight: 14,
+  enemyHalfWidth: 8, // 16 px body: matches the 18 px sprite minus its transparent margin
+  enemyHeight: 16,
   enemyGravity: 0.3,
   enemyMaxFall: 4,
   stompWindow: 12, // px the feet may be below an enemy's top and still stomp it
