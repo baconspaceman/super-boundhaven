@@ -58,7 +58,7 @@ describe('look sync', () => {
     server = await createGameServer({ port: 0 });
     const a = await joined({ name: 'a', look: A });
     expect(a.look).toBe(A);
-    expect(a.c.welcome()!.v).toBe(4); // PROTOCOL_VERSION bumped for ground pound
+    expect(a.c.welcome()!.v).toBe(5); // PROTOCOL_VERSION bumped for accounts
   });
 
   it.each([

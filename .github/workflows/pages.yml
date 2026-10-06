@@ -31,6 +31,9 @@ jobs:
         run: npm run build:pages
         env:
           VITE_BASE: /super-boundhaven/
+          # Set the repository variable SBH_SERVER_URL (Settings > Secrets and variables > Actions > Variables) to your
+          # game server, e.g. wss://sbh.example.com, to make the public /play/ page join it. Empty = offline creator only.
+          SBH_SERVER_URL: ${{ vars.SBH_SERVER_URL }}
       - name: Check links in built output
         run: npm run linkcheck
       - uses: actions/configure-pages@v5

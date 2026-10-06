@@ -1,4 +1,5 @@
 import type { ClientMsg, ServerMsg } from '@sbh/protocol';
+import { getClaim } from './identity';
 
 export interface NetOptions {
   url: string;
@@ -18,15 +19,17 @@ export class Net {
   private ws: WebSocket | null = null;
   private name = '';
   private look = '';
+  private pass: string | undefined;
   private wanted = false;
   private retry: ReturnType<typeof setTimeout> | null = null;
   private pingTimer: ReturnType<typeof setInterval> | null = null;
 
   constructor(readonly opts: NetOptions) {}
 
-  connect(name: string, look: string): void {
+  connect(name: string, look: string, pass?: string): void {
     this.name = name;
     this.look = look;
+    this.pass = pass || undefined;
     this.wanted = true;
     this.open();
     if (!this.pingTimer) {
@@ -52,7 +55,7 @@ export class Net {
       } catch {
         /* storage unavailable */
       }
-      this.rawSend({ t: 'join', name: this.name, token, look: this.look });
+      this.rawSend({ t: 'join', name: this.name, token, look: this.look, claim: getClaim(this.name), pass: this.pass });
       this.onStatus(true);
     };
     ws.onmessage = (ev) => {
@@ -79,7 +82,7 @@ export class Net {
       const was = this.connected;
       this.ws = null;
       this.connected = false;
-      if (was) this.onStatus(false);
+      if (was && this.wanted) this.onStatus(false); // a deliberate stop() is not a lost connection
       this.scheduleRetry();
     };
     ws.onerror = () => {

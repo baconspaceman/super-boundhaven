@@ -8,6 +8,8 @@ import { Net } from './net';
 import { Renderer } from './render';
 import { ActionPrompt } from './action-prompt';
 import { PROTOCOL_VERSION } from '@sbh/protocol';
+import { DevConsole } from './dev-console';
+import { saveClaim } from './identity';
 import { LocalWatch, leverInReach, versionProblem } from './scene-logic';
 import { EventDeriver, Rumble, gameEvents } from './rumble';
 import { UiNav, cycleTabs } from './ui-nav';
@@ -42,6 +44,7 @@ const net = new Net({
 });
 const game = new Game();
 const input = new Input();
+const devConsole = new DevConsole(net, input);
 const rumble = new Rumble(
   () => input.pads.activeRaw,
   () => input.store.cfg.settings.rumble,
@@ -140,6 +143,10 @@ net.onMessage = (m) => {
         break;
       }
       joined = true;
+      if (m.claimToken) saveClaim(m.name ?? game.myName, m.claimToken);
+      devConsole.setReady(m.role ?? 'player');
+      if (m.role === 'admin') showToast('Developer account. Press ` for the console.');
+      else if (m.claim?.kind === 'guest' && m.claimToken) showToast('Name claimed for 7 days. Press ` then /register to keep it.');
       const prevId = game.myId;
       const levelChanged = game.welcome(m.id, m.level);
       if (levelChanged || m.id !== prevId) watch.reset();
@@ -158,21 +165,31 @@ net.onMessage = (m) => {
     case 'snap':
       game.onSnapshot(m.tick, m.players, performance.now(), m.world);
       break;
+    case 'info':
+      devConsole.print(m.lines.join('\n'));
+      if (!devConsole.isOpen) for (const l of m.lines) showToast(l);
+      break;
+    case 'account':
+      devConsole.print(m.claim?.kind === 'account' ? 'Your name is now on a registered account.' : m.claim ? 'Claim updated.' : 'No claim.');
+      break;
     case 'error':
       if (joined) showToast(m.message);
-      else creator.setStatus(m.message, true);
+      else {
+        net.stop(); // a refused join (name taken, wrong password) must not retry in a loop
+        creator.setStatus(m.message, true);
+      }
       break;
   }
 };
 
-function join(name: string, code: string): void {
+function join(name: string, code: string, pass?: string): void {
   name = name.trim().slice(0, 16);
   if (!name) return;
   tryStore.set(NAME_KEY, name);
   tryStore.set(LOOK_KEY, code);
   if (!SERVER_URL) return creator.setStatus(NO_SERVER_MSG, true);
   creator.setStatus('Connecting...');
-  net.connect(name, code);
+  net.connect(name, code, pass);
 }
 
 /** Look for this session: ?look= (validated) > saved > a fresh random one. */

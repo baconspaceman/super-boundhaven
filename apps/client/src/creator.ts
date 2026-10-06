@@ -67,7 +67,7 @@ export interface CreatorOpenOpts {
   mode: 'join' | 'edit';
   name: string;
   code: string;
-  onSubmit(name: string, code: string): void;
+  onSubmit(name: string, code: string, pass?: string): void;
   onCancel?(): void;
 }
 
@@ -94,6 +94,8 @@ export class Creator {
   private nameInput!: HTMLInputElement;
   private codeInput!: HTMLInputElement;
   private status!: HTMLElement;
+  private passField!: HTMLElement;
+  private passInput!: HTMLInputElement;
   private submitBtn!: HTMLButtonElement;
   private cancelBtn!: HTMLButtonElement;
   private title!: HTMLElement;
@@ -120,6 +122,7 @@ export class Creator {
     this.look = parsed ?? { ...DEFAULT_LOOK };
     this.nameInput.value = opts.name;
     this.nameInput.readOnly = opts.mode === 'edit';
+    this.passField.hidden = opts.mode === 'edit';
     this.title.textContent = opts.mode === 'join' ? 'Create your hero' : 'Change your look';
     this.sub.textContent =
       opts.mode === 'join'
@@ -221,6 +224,10 @@ export class Creator {
     nf.append(this.h('label', { for: 'cc-name' }, 'Name'));
     this.nameInput = this.h('input', { id: 'cc-name', maxlength: '16', autocomplete: 'off', placeholder: 'Your name', spellcheck: 'false' });
     nf.append(this.nameInput);
+    this.passField = this.h('div', { class: 'cc-field' });
+    this.passField.append(this.h('label', { for: 'cc-pass' }, 'Password (only for registered names)'));
+    this.passInput = this.h('input', { id: 'cc-pass', type: 'password', maxlength: '128', autocomplete: 'current-password', placeholder: 'leave empty if unsure' });
+    this.passField.append(this.passInput);
     const cf = this.h('div', { class: 'cc-field' });
     cf.append(this.h('label', { for: 'cc-code' }, 'Look code (copy / paste to share)'));
     const cw = this.h('div', { class: 'cc-codewrap' });
@@ -229,7 +236,7 @@ export class Creator {
     copy.addEventListener('click', () => void this.copyCode());
     cw.append(this.codeInput, copy);
     cf.append(cw);
-    fields.append(nf, cf);
+    fields.append(nf, this.passField, cf);
     const actions = this.h('div', { class: 'cc-actions' });
     const rand = this.btn('Randomize');
     const reset = this.btn('Reset');
@@ -259,9 +266,11 @@ export class Creator {
     this.codeInput.addEventListener('paste', () => setTimeout(() => this.onCodeInput(), 0));
     this.submitBtn.addEventListener('click', () => this.submit());
     this.cancelBtn.addEventListener('click', () => this.cancel());
-    this.nameInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') this.submit();
-    });
+    for (const inp of [this.nameInput, this.passInput]) {
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') this.submit();
+      });
+    }
     el.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.opts?.mode === 'edit') {
         e.preventDefault();
@@ -282,7 +291,7 @@ export class Creator {
     }
     const problems = validateLook(this.look);
     if (problems.length) return this.setStatus(problems[0], true);
-    this.opts.onSubmit(name, this.code);
+    this.opts.onSubmit(name, this.code, this.passInput.value || undefined);
   }
 
   private cancel(): void {

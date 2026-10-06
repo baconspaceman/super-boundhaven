@@ -25,9 +25,9 @@ function expectViewMatches(view: ReturnType<typeof createWorldView>, w: World) {
 /** Over-the-wire: every frame goes through JSON like the real server. */
 const wire = (nw: NetWorld | undefined): NetWorld | undefined => (nw ? (JSON.parse(JSON.stringify(nw)) as NetWorld) : undefined);
 
-describe('protocol v4', () => {
-  it('is version 4', () => {
-    expect(PROTOCOL_VERSION).toBe(4);
+describe('protocol v5', () => {
+  it('is version 5', () => {
+    expect(PROTOCOL_VERSION).toBe(5);
   });
 
   it('delta frames rebuild the world on a client, including a late full frame', () => {

@@ -19,6 +19,6 @@ function run(cmd, env = {}) {
 }
 
 run('npm run build -w @sbh/site', { VITE_BASE: base, VITE_PLAY_URL: './play/' });
-run('npm run build -w @sbh/client -- --outDir ../site/dist/play --emptyOutDir', { VITE_CLIENT_BASE: base + 'play/', VITE_SERVER_URL: '' });
+run('npm run build -w @sbh/client -- --outDir ../site/dist/play --emptyOutDir', { VITE_CLIENT_BASE: base + 'play/', VITE_SERVER_URL: process.env.SBH_SERVER_URL ?? '' });
 run('node tools/docs-site/build.mjs');
 console.log(`\nPages artifact ready: apps/site/dist (base ${base})`);
