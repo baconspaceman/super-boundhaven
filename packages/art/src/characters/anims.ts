@@ -17,6 +17,7 @@ export interface LegPose {
 
 export interface Pose {
   dy?: number; // whole-body drop (+ = lower), for bob / crouch
+  fit?: boolean; // clamp dy so tall shoes (e.g. Pogo Shoes) never sink below the ground line
   torsoExtra?: number; // +1 stretch, -1/-2 squash
   torsoDx?: number; // lean (whole upper body)
   headDx?: number;
@@ -66,6 +67,11 @@ export const HERO_POSES: Record<string, Pose> = {
 
   land_0: P({ dy: 4, torsoExtra: -2, near: { dx: 4, lift: 0 }, far: { dx: -4, lift: 0 }, armNear: [4, 1], armFar: [-4, 1], eyes: 'shut', mouth: 'o', back: 1 }),
   land_1: P({ dy: 2, torsoExtra: -1, near: { dx: 2, lift: 0 }, far: { dx: -2, lift: 0 }, armNear: [2, 3], armFar: [-2, 3], back: 0 }),
+
+  // crouch: head and torso keep their proportions (no squash); the body lowers over bent, spread legs and leans forward
+  crouch_0: P({ fit: true, dy: 3, torsoDx: 1, tilt: 1, near: { dx: 3, lift: 0 }, far: { dx: -2, lift: 0 }, armNear: [2, 4], armFar: [-1, 4], back: 1 }),
+  crouch_1: P({ fit: true, dy: 5, torsoDx: 1, tilt: 2, near: { dx: 4, lift: 0 }, far: { dx: -3, lift: 0 }, armNear: [3, 5], armFar: [0, 5], back: 1 }),
+  crouch_2: P({ fit: true, dy: 5, torsoDx: 1, tilt: 2, headDy: 1, near: { dx: 4, lift: 0 }, far: { dx: -3, lift: 0 }, armNear: [3, 5], armFar: [0, 5], back: 0, eyes: 'blink' }),
 
   hurt_0: P({ torsoDx: -1, tilt: -2, near: { dx: 3, lift: 1 }, far: { dx: -1, lift: 0 }, armNear: [5, -2], armFar: [-3, -2], eyes: 'wince', mouth: 'wail', brows: 'worry', back: 2 }),
   hurt_1: P({ dy: 1, torsoDx: -1, tilt: -2, near: { dx: 4, lift: 0 }, far: { dx: 1, lift: 0 }, armNear: [5, -1], armFar: [-2, -1], eyes: 'wince', mouth: 'wail', brows: 'worry', back: 1 }),
@@ -121,6 +127,8 @@ export const HERO_ANIMS: Record<string, AnimDef> = {
   jump_apex: { frames: ['hero/jump_apex'], fps: 4, loop: false, ticks: [15] },
   fall: { frames: ['hero/fall'], fps: 4, loop: false, ticks: [15] },
   land: anim('land', 2, [5, 7], false),
+  // entry (crouch_0) is played once, then crouch_1 / crouch_2 alternate as a slow breath
+  crouch: anim('crouch', 3, [5, 40, 40], false),
   stomp: anim('stomp', 4, 4, true),
   hurt: anim('hurt', 2, [6, 6], true),
   respawn: anim('flash', 2, 3, true),

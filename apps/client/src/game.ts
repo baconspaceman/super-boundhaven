@@ -1,5 +1,5 @@
 import { applyNetWorld, createWorldView, defaultLookCode, type NetPlayer, type NetWorld, type WorldView } from '@sbh/protocol';
-import { DEFAULT_LEVEL, clonePlayer, getLevel, stepPlayer, type Level, type PlayerState } from '@sbh/sim';
+import { DEFAULT_LEVEL, applyEnemyStomp, clonePlayer, getLevel, stepPlayer, stompsEnemy, type Level, type PlayerState } from '@sbh/sim';
 
 export const INTERP_DELAY_MS = 100;
 export const MAX_PENDING = 120;
@@ -120,12 +120,30 @@ export class Game {
     const seq = ++this.seq;
     this.pending.push({ seq, buttons });
     if (this.pending.length > MAX_PENDING) this.pending.shift();
-    stepPlayer(this.level, me, buttons, undefined, this.view.dynamic);
+    this.stepMe(me, buttons);
     this.errX *= 0.9;
     this.errY *= 0.9;
     if (Math.abs(this.errX) < 0.01) this.errX = 0;
     if (Math.abs(this.errY) < 0.01) this.errY = 0;
     return seq;
+  }
+
+  /**
+   * One predicted tick for the local player: movement, then the stomp bounce off any live enemy in the last snapshot,
+   * using the sim's own rule. The server confirms (or corrects) it in a later snapshot; without this the bounce
+   * only appeared after a round trip as a small hitch.
+   */
+  private stepMe(me: PlayerState, buttons: number): void {
+    stepPlayer(this.level, me, buttons, undefined, this.view.dynamic);
+    if (me.away) return;
+    for (const [id, e] of this.view.enemies) {
+      if (!e.alive) continue;
+      const def = this.level.enemies[id];
+      if (def && stompsEnemy(me, { x: e.x, y: e.y, kind: def.kind })) {
+        applyEnemyStomp(me, e);
+        break;
+      }
+    }
   }
 
   onSnapshot(tick: number, players: NetPlayer[], now: number, world?: NetWorld): void {
@@ -180,7 +198,7 @@ export class Game {
 
     const me = clonePlayer(np.state);
     this.pending = this.pending.filter((p) => p.seq > np.ack);
-    for (const p of this.pending) stepPlayer(this.level, me, p.buttons, undefined, this.view.dynamic);
+    for (const p of this.pending) this.stepMe(me, p.buttons);
     this.me = me;
 
     if (Math.hypot(me.x - prevX, me.y - prevY) > 0.5) this.corrections++;

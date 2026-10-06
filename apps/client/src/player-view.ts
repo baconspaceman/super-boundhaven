@@ -39,7 +39,13 @@ const SELF_COLOR = '#ffd84a';
 const AWAY_COLOR = '#e4eeff';
 const AWAY_ALPHA = 0.5;
 const AWAY_TINT = 0xaec6ff;
-const CROUCH_FRAME = HERO_ANIMS.land.frames[0]; // no dedicated crouch frame yet: the deep land squash reads as a crouch
+const CROUCH_MS = HERO_ANIMS.crouch.ticks.map((t) => (t * 1000) / 60);
+/** crouch_0 once as the entry, then crouch_1 / crouch_2 alternate as a slow breath. */
+function crouchFrame(heldMs: number): string {
+  const f = HERO_ANIMS.crouch.frames;
+  if (heldMs < CROUCH_MS[0]) return f[0];
+  return Math.floor((heldMs - CROUCH_MS[0]) / CROUCH_MS[1]) % 2 === 0 ? f[1] : f[2];
+}
 
 export class SpritePlayerView implements PlayerView {
   root = new Container();
@@ -49,6 +55,7 @@ export class SpritePlayerView implements PlayerView {
   private label = new Sprite();
   private arrow: Sprite | null = null;
   private motion = new Motion();
+  private crouchStart = -1; // `now` when the current crouch began (-1 = not crouching)
   private set: LookTextures;
   private lookCode: string;
   private labelName = '';
@@ -131,7 +138,11 @@ export class SpritePlayerView implements PlayerView {
     this.events = out.events;
     let name = HERO_ANIMS[out.anim].frames[out.frame];
     // crouch pose (hitbox is 16 tall): not while hurt/flashing/stomp-spinning
-    if (d.crouching && out.anim !== 'respawn' && out.anim !== 'hurt' && out.anim !== 'stomp') name = CROUCH_FRAME;
+    const crouchPose = d.crouching && out.anim !== 'respawn' && out.anim !== 'hurt' && out.anim !== 'stomp';
+    if (crouchPose) {
+      if (this.crouchStart < 0) this.crouchStart = now;
+      name = crouchFrame(now - this.crouchStart);
+    } else this.crouchStart = -1;
     this.body.texture = this.set.frames[name] ?? this.set.frames['hero/idle_0'];
     this.body.scale.x = out.flip ? -1 : 1;
 

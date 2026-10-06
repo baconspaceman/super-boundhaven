@@ -145,6 +145,27 @@ function stepEnemies(level: Level, world: World): void {
   }
 }
 
+/**
+ * Does player `p` (already stepped this tick) land on top of enemy `e`? Shared by the server sim and the client's
+ * stomp prediction so both agree on the rule. Spiky walkers (kind 2) are never stompable.
+ */
+export function stompsEnemy(p: PlayerState, e: { x: number; y: number; kind: number }, cfg: MovementConfig = MOVEMENT): boolean {
+  const ehw = RULES.enemyHalfWidth;
+  const top = e.y - RULES.enemyHeight;
+  if (e.kind === 2) return false;
+  if (p.x + cfg.halfWidth <= e.x - ehw || p.x - cfg.halfWidth >= e.x + ehw) return false;
+  if (p.y <= top || p.y - bodyHeight(p, cfg) >= e.y) return false;
+  return p.y > p.prevY && p.y - top <= RULES.stompWindow && p.prevY - top <= RULES.stompSlack;
+}
+
+/** The bounce a stomp gives the player. */
+export function applyEnemyStomp(p: PlayerState, e: { y: number }, cfg: MovementConfig = MOVEMENT): void {
+  p.vy = -(p.jumpHeld ? cfg.stompHeldVel : cfg.stompVel);
+  p.y = e.y - RULES.enemyHeight;
+  p.onGround = false;
+  p.coyote = 0;
+}
+
 function enemyContacts(level: Level, world: World, cfg: MovementConfig): void {
   const ehw = RULES.enemyHalfWidth;
   const eh = RULES.enemyHeight;
@@ -155,14 +176,10 @@ function enemyContacts(level: Level, world: World, cfg: MovementConfig): void {
       if (!e.alive) continue;
       if (p.x + cfg.halfWidth <= e.x - ehw || p.x - cfg.halfWidth >= e.x + ehw) continue;
       if (p.y <= e.y - eh || p.y - hp >= e.y) continue;
-      const top = e.y - eh;
-      if (e.kind !== 2 && p.y > p.prevY && p.y - top <= RULES.stompWindow && p.prevY - top <= RULES.stompSlack) {
+      if (stompsEnemy(p, e, cfg)) {
         e.alive = false;
         e.t = RULES.enemyRespawnTicks;
-        p.vy = -(p.jumpHeld ? cfg.stompHeldVel : cfg.stompVel);
-        p.y = top;
-        p.onGround = false;
-        p.coyote = 0;
+        applyEnemyStomp(p, e, cfg);
         world.room.progress = true;
       } else if (p.invuln === 0) {
         respawn(level, p);

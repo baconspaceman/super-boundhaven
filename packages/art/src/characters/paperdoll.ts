@@ -187,8 +187,10 @@ export function renderCharacter(look: CharacterLook, pose: Pose): Rendered {
   const back = BACKS[look.back];
   const accName = CHARACTER_OPTIONS.categories.find((k) => k.key === 'acc')!.names[look.acc];
 
-  const dy = pose.dy ?? 0;
   const extra = pose.torsoExtra ?? 0;
+  const shoeRows = shoe.rows.length;
+  // `fit` poses (crouch) lower the body only as far as the shoes still end on the ground line (30)
+  const dy = pose.fit ? Math.min(pose.dy ?? 0, 17 - (9 + extra) - shoeRows) : (pose.dy ?? 0);
   const tdx = pose.torsoDx ?? 0;
   const torsoX = 8 + tdx;
   const torsoY = 14 + dy;
