@@ -2,6 +2,7 @@
 // pixel-font name tag, "you" marker, run/land/skid dust. Anchor = bottom-center of the 24x32 frame on the
 // sim feet position (frame pixel row 31 is the ground row; verified against the composed bitmaps).
 import { Container, Sprite, type Texture } from 'pixi.js';
+import { RULES } from '@sbh/sim';
 import { HERO_ANIMS, HERO_H } from './art';
 import type { Drawable } from './game';
 import { Motion, type MotionEvent } from './motion';
@@ -39,7 +40,13 @@ const SELF_COLOR = '#ffd84a';
 const AWAY_COLOR = '#e4eeff';
 const AWAY_ALPHA = 0.5;
 const AWAY_TINT = 0xaec6ff;
-const CROUCH_FRAME = HERO_ANIMS.land.frames[0]; // no dedicated crouch frame yet: the deep land squash reads as a crouch
+const CROUCH_MS = HERO_ANIMS.crouch.ticks.map((t) => (t * 1000) / 60);
+/** crouch_0 once as the entry, then crouch_1 / crouch_2 alternate as a slow breath. */
+function crouchFrame(heldMs: number): string {
+  const f = HERO_ANIMS.crouch.frames;
+  if (heldMs < CROUCH_MS[0]) return f[0];
+  return Math.floor((heldMs - CROUCH_MS[0]) / CROUCH_MS[1]) % 2 === 0 ? f[1] : f[2];
+}
 
 export class SpritePlayerView implements PlayerView {
   root = new Container();
@@ -49,6 +56,7 @@ export class SpritePlayerView implements PlayerView {
   private label = new Sprite();
   private arrow: Sprite | null = null;
   private motion = new Motion();
+  private crouchStart = -1; // `now` when the current crouch began (-1 = not crouching)
   private set: LookTextures;
   private lookCode: string;
   private labelName = '';
@@ -131,7 +139,14 @@ export class SpritePlayerView implements PlayerView {
     this.events = out.events;
     let name = HERO_ANIMS[out.anim].frames[out.frame];
     // crouch pose (hitbox is 16 tall): not while hurt/flashing/stomp-spinning
-    if (d.crouching && out.anim !== 'respawn' && out.anim !== 'hurt' && out.anim !== 'stomp') name = CROUCH_FRAME;
+    const crouchPose = d.crouching && out.anim !== 'respawn' && out.anim !== 'hurt' && out.anim !== 'stomp';
+    if (crouchPose) {
+      if (this.crouchStart < 0) this.crouchStart = now;
+      name = crouchFrame(now - this.crouchStart);
+    } else this.crouchStart = -1;
+    // ground pound: tucked hang, then the dive; the slam itself reuses the deep landing squash
+    if (d.pound > 0) name = HERO_ANIMS.pound.frames[d.pound >= RULES.poundWindup ? 1 : 0];
+    else if (d.slam > 0 && d.slam >= RULES.slamTicks - 8) name = HERO_ANIMS.land.frames[0];
     this.body.texture = this.set.frames[name] ?? this.set.frames['hero/idle_0'];
     this.body.scale.x = out.flip ? -1 : 1;
 

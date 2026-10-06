@@ -176,7 +176,7 @@ describe('game server', () => {
     await until(() => b.c.player(a.id)?.connected === false);
     await until(() => b.c.last('snap')?.players.length === 1);
     expect(server.world.players.map((p) => p.id)).toEqual([b.id]);
-    const again = await joined('a', a.token); // token is dead: fresh id
+    const again = await joined('a2', a.token); // token is dead: fresh id
     expect(again.id).not.toBe(a.id);
   });
 

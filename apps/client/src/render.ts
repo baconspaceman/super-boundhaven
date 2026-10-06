@@ -1,6 +1,8 @@
 import { Application, Container, Graphics } from 'pixi.js';
 import type { WorldView } from '@sbh/protocol';
-import { MOVEMENT, SCREEN_H, SCREEN_W, TILE, isSemiSolid, isSlope, isSolid, slopeFloor, tileAt, type Level, type PlayerState } from '@sbh/sim';
+import { MOVEMENT, TILE, isSemiSolid, isSlope, isSolid, slopeFloor, tileAt, type Level, type PlayerState } from '@sbh/sim';
+import { FollowCamera } from './camera';
+import { UNDERGROUND_ROWS, VIEW_H, VIEW_W, pickScale } from './viewport';
 import { SpritePlayerView, type PlayerView, type ViewCtx } from './player-view';
 import { FxLayer, LookLibrary, makeArrowTexture, makeShadowTexture } from './sprites';
 import type { Drawable } from './game';
@@ -48,13 +50,21 @@ export class Renderer {
   private ctx: ViewCtx;
   private lastDraw = 0;
   private levelW: number;
+  private levelH: number;
   private art: WorldArt | null = null;
   private objects: WorldObjects | null = null;
   private enemies: EnemyLayer | null = null;
   private status = new StatusPanel();
   private doorTracker = new DoorTracker();
   private scene: SceneState | null = null;
-  private cam = 0;
+  private cam = 0; // left edge of the view at zoom 1 (backdrop parallax)
+  private zoomNow = 1;
+  private readonly camera = new FollowCamera();
+  private fixedCam = false;
+  /** Current camera (world centre and zoom), for debugging and tests. */
+  get cameraState(): { cx: number; cy: number; zoom: number } {
+    return { cx: this.camera.cx, cy: this.camera.cy, zoom: this.zoomNow };
+  }
   /** Drained by the game each frame (door open/close pulses). */
   readonly events: RenderEvent[] = [];
   private loading = 0;
@@ -74,6 +84,7 @@ export class Renderer {
   ) {
     this.todId = tod;
     this.levelW = level.width * TILE;
+    this.levelH = level.height * TILE;
     this.region = region;
     this.ctx = {
       looks: this.looks,
@@ -119,13 +130,16 @@ export class Renderer {
       resolution: 1,
     });
     document.body.prepend(this.app.canvas);
-    const mask = new Graphics().rect(0, 0, SCREEN_W, SCREEN_H).fill(0xffffff);
+    const mask = new Graphics().rect(0, 0, VIEW_W, VIEW_H).fill(0xffffff);
     this.enemies = new EnemyLayer(this.fx);
     this.slotEnemies.addChild(this.enemies.container);
     this.world.addChild(this.slotBack, this.slotObjects, this.slotEnemies, this.slotPlayers, this.fx.container, this.slotFront);
     this.view.addChild(this.slotBgBack, this.slotTod, this.world, this.slotBgFront, this.status.root, mask);
     this.view.mask = mask;
     this.app.stage.addChild(this.view);
+    const q = new URLSearchParams(location.search);
+    this.fixedCam = q.get('cam') === 'fixed';
+    this.camera.zoomEnabled = q.get('zoom') !== 'off';
     window.addEventListener('resize', () => this.resize());
     this.resize();
     await this.setRegion(this.region);
@@ -136,10 +150,10 @@ export class Renderer {
     const w = window.innerWidth;
     const h = window.innerHeight;
     this.app.renderer.resize(w, h);
-    const k = Math.max(1, Math.floor(Math.min(w / SCREEN_W, h / SCREEN_H)));
+    const k = pickScale(w, h, VIEW_W, VIEW_H);
     this.view.scale.set(k);
-    this.view.x = Math.floor((w - SCREEN_W * k) / 2);
-    this.view.y = Math.floor((h - SCREEN_H * k) / 2);
+    this.view.x = Math.floor((w - VIEW_W * k) / 2);
+    this.view.y = Math.floor((h - VIEW_H * k) / 2);
   }
 
   /** Swap tileset + parallax + props. Old textures are destroyed once the new set is ready. */
@@ -181,6 +195,7 @@ export class Renderer {
     if (level === this.level) return;
     this.level = level;
     this.levelW = level.width * TILE;
+    this.levelH = level.height * TILE;
     this.enemies?.clear();
     this.doorTracker.reset();
     await this.setRegion(this.region);
@@ -194,7 +209,8 @@ export class Renderer {
 
   /** Screen-space (canvas px) position of a world point, for DOM overlays such as the ACTION prompt. */
   worldToScreen(x: number, y: number): { x: number; y: number } {
-    return { x: this.view.x + (x - this.cam) * this.view.scale.x, y: this.view.y + y * this.view.scale.y };
+    const k = this.view.scale.x;
+    return { x: this.view.x + (this.world.x + x * this.zoomNow) * k, y: this.view.y + (this.world.y + y * this.zoomNow) * k };
   }
 
   /** Tileset that matches a time of day: sunset uses meadow_sunset, everything else meadow. */
@@ -245,7 +261,7 @@ export class Renderer {
     }
   }
 
-  draw(list: Drawable[], focus: { x: number } | null, scene: SceneState | null = null): void {
+  draw(list: Drawable[], focus: { x: number; y?: number; vx?: number; onGround?: boolean } | null, scene: SceneState | null = null): void {
     this.scene = scene;
     const now = performance.now();
     const dt = this.lastDraw ? Math.min(100, now - this.lastDraw) : 0;
@@ -311,12 +327,54 @@ export class Renderer {
         this.prev.delete(id);
       }
     }
-    let cam = 0;
-    if (focus) cam = Math.max(0, Math.min(this.levelW - SCREEN_W, Math.round(focus.x - SCREEN_W / 2)));
-    if (this.camOverride !== null) cam = Math.max(0, Math.min(this.levelW - SCREEN_W, Math.round(this.camOverride)));
-    this.world.x = -cam;
+    // camera: follow the local player (smooth, only zooms out for teammates); debug overrides keep the old fixed one
+    let cx = this.camera.cx;
+    let cy = this.camera.cy;
+    let zoom = 1;
+    if (this.camOverride !== null) {
+      cx = Math.max(VIEW_W / 2, Math.min(this.levelW - VIEW_W / 2, this.camOverride + VIEW_W / 2));
+      cy = this.levelH + UNDERGROUND_ROWS * TILE - VIEW_H / 2;
+    } else if (focus) {
+      const others: { x: number; y: number }[] = [];
+      for (const d of list) if (!d.local && d.connected && !d.away) others.push({ x: d.x, y: d.y });
+      const input = {
+        px: focus.x,
+        py: focus.y ?? 0,
+        vx: focus.vx ?? 0,
+        onGround: focus.onGround ?? true,
+        others,
+        levelW: this.levelW,
+        levelH: this.levelH,
+        viewW: VIEW_W,
+        viewH: VIEW_H,
+      };
+      if (this.fixedCam) {
+        this.camera.zoomEnabled = false;
+        this.camera.snap(input);
+        cx = Math.max(VIEW_W / 2, Math.min(this.levelW - VIEW_W / 2, focus.x));
+        cy = this.levelH + UNDERGROUND_ROWS * TILE - VIEW_H / 2;
+      } else {
+        const s = this.camera.update(dt, input);
+        cx = s.cx;
+        cy = s.cy;
+        zoom = s.zoom;
+      }
+    }
+    this.zoomNow = zoom;
+    const cxr = zoom === 1 ? Math.round(cx) : cx;
+    const cyr = zoom === 1 ? Math.round(cy) : cy;
+    this.world.scale.set(zoom);
+    this.world.x = VIEW_W / 2 - cxr * zoom;
+    this.world.y = VIEW_H / 2 - cyr * zoom;
+    if (zoom === 1) {
+      this.world.x = Math.round(this.world.x);
+      this.world.y = Math.round(this.world.y);
+    }
+    const visW = VIEW_W / zoom;
+    const visL = cxr - visW / 2;
+    const cam = Math.max(0, Math.round(cxr - VIEW_W / 2)); // backdrop parallax reference
     this.cam = cam;
-    art?.update(cam, now);
+    art?.update(cam, now, visL, visW);
     if (scene && this.objects) {
       this.objects.update(
         {
@@ -325,13 +383,15 @@ export class Renderer {
           me: scene.me,
           doors: this.doorTracker,
           cam,
+          visL,
+          visW,
           now,
           onDoor: (e, id) => this.events.push({ k: 'door', e, x: (scene.level.doors[id]?.tiles[0]?.[0] ?? 0) * TILE }),
         },
         dt,
       );
     }
-    if (scene && this.enemies) this.enemies.update(scene.level, scene.view, dt, cam, SCREEN_W);
+    if (scene && this.enemies) this.enemies.update(scene.level, scene.view, dt, visL, visW);
     if (scene) this.status.set(hudLines(scene.level, scene.me, scene.connected));
     if (this.tod) {
       this.tod.update(cam, now);

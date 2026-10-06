@@ -21,3 +21,6 @@ Preview and game share `getLookSheet(code)` (`look-sheet.ts`): `composeSheet(loo
 2. If the bit width changes (count crosses a power of two), `encodeLook` codes change; bump `CharacterLook.v` per look.ts rules and keep old decode.
 3. A new category: add to `CHARACTER_OPTIONS.categories` and `LOOK_FIELDS`; the creator and validation pick it up automatically (no UI change). The server validates via `decodeLook`/`validateLook`, so it needs no change either.
 4. New animations: add to `HERO_ANIMS` (they are packed into every sheet), then map state to it in `motion.ts`.
+
+## Developer-only pieces (2026-10-06)
+Three pieces exist only for the developer account: hat **Dev Crown**, back item **Comet Cape**, accessory **Bacon Badge** (the last option of each category, so no existing look code changed; `packages/art/src/characters/look.ts` has `DEV_ONLY`). The server strips them from anyone else's look on join and on every change; the creator only lists them for the developer (or when the look already uses them). The developer account starts with a signature look using all three and its look is saved on the account (so it follows the login to any browser). Registered players' looks are saved the same way; guests' are not.

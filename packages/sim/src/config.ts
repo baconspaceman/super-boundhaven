@@ -3,8 +3,10 @@
 
 export const TICK_RATE = 60;
 export const TILE = 16;
-export const SCREEN_W = 256;
-export const SCREEN_H = 224;
+// Default view of the client in native pixels (16:9). The simulation never uses these; apps/client/src/viewport.ts
+// is the live source (and honours ?view=WxH).
+export const SCREEN_W = 480;
+export const SCREEN_H = 270;
 
 export interface MovementConfig {
   halfWidth: number;
@@ -86,12 +88,19 @@ export const RULES = {
   enemyRespawnTicks: 600, // a stomped enemy returns after 10 s
   walkerSpeed: 0.5,
   flyerSpeed: 0.6,
-  enemyHalfWidth: 6,
-  enemyHeight: 14,
+  enemyHalfWidth: 8, // 16 px body: matches the 18 px sprite minus its transparent margin
+  enemyHeight: 16,
   enemyGravity: 0.3,
   enemyMaxFall: 4,
   stompWindow: 12, // px the feet may be below an enemy's top and still stomp it
   stompSlack: 6, // px the previous feet may be below the enemy top
+  // ---- ground pound (DOWN pressed in the air): hang, dive straight down, slam on landing ----
+  poundWindup: 6, // ticks hanging in place before the dive (a visible tell, and a little time to line up)
+  poundVel: 8, // px/tick dive speed
+  slamTicks: 14, // ticks of recovery after landing; the slam itself is felt on the first
+  /** Big buttons: a slam lights one for this long, so partners may be this far apart in time (generous on purpose). */
+  buttonTicks: 180,
+  buttonReach: 3, // px a slam may land beyond a big button's edge and still press it
   /** Default per-room rules; levels override via meta.room. */
   defaultRoom: { minPlayers: 1, soloResetTicks: 600, emptyResetTicks: 600 },
 } as const;

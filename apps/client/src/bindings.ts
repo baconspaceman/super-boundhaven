@@ -28,7 +28,7 @@ export const ACTIONS: readonly ActionDef[] = [
   { id: 'right', label: 'Move Right', bit: BIT.RIGHT },
   { id: 'jump', label: 'Jump', bit: BIT.JUMP },
   { id: 'run', label: 'Run', bit: BIT.RUN },
-  { id: 'crouch', label: 'Crouch / Drop', bit: BIT.CROUCH },
+  { id: 'crouch', label: 'Crouch / Drop / Pound (in air)', bit: BIT.CROUCH },
   { id: 'action', label: 'Action', bit: BIT.ACTION },
   { id: 'creator', label: 'Character Creator', system: true },
   { id: 'menu', label: 'Pause Menu', system: true },

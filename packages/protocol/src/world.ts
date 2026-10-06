@@ -18,6 +18,7 @@ export interface NetWorld {
   epoch: number;
   doors?: number[];
   plates?: number[];
+  buttons?: number[]; // lit big-button ids
   levers?: NetLever[];
   enemies?: NetEnemy[];
 }
@@ -36,6 +37,12 @@ function pressedPlates(w: World): number[] {
   return out;
 }
 
+function litButtons(w: World): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < w.buttons.length; i++) if (w.buttons[i] > 0) out.push(i);
+  return out;
+}
+
 const enemyTuple = (e: World['enemies'][number]): NetEnemy => [e.id, q(e.x), q(e.y), (e.alive ? 1 : 0) | (e.dir > 0 ? 2 : 0)];
 const leverTuple = (l: World['levers'][number]): NetLever => [l.id, l.on ? 1 : 0, l.t];
 const sameTuple = (a: number[], b: number[]): boolean => a.length === b.length && a.every((v, i) => v === b[i]);
@@ -51,6 +58,7 @@ export function createWorldEncoder(): WorldEncoder {
   let lastEpoch = -1;
   let lastDoors = '';
   let lastPlates = '';
+  let lastButtons = '';
   const lastEnemy: NetEnemy[] = [];
   const lastLever: NetLever[] = [];
 
@@ -59,6 +67,7 @@ export function createWorldEncoder(): WorldEncoder {
     epoch: world.room.resets,
     doors: openDoors(world),
     plates: pressedPlates(world),
+    buttons: litButtons(world),
     levers: world.levers.map(leverTuple),
     enemies: world.enemies.map(enemyTuple),
   });
@@ -70,10 +79,13 @@ export function createWorldEncoder(): WorldEncoder {
       const plates = pressedPlates(world);
       const doorsKey = doors.join(',');
       const platesKey = plates.join(',');
+      const buttons = litButtons(world);
+      const buttonsKey = buttons.join(',');
       if (world.room.resets !== lastEpoch) {
         lastEpoch = world.room.resets;
         lastDoors = doorsKey;
         lastPlates = platesKey;
+        lastButtons = buttonsKey;
         lastEnemy.length = 0;
         lastLever.length = 0;
         const f = full(world);
@@ -91,6 +103,11 @@ export function createWorldEncoder(): WorldEncoder {
       if (platesKey !== lastPlates) {
         out.plates = plates;
         lastPlates = platesKey;
+        changed = true;
+      }
+      if (buttonsKey !== lastButtons) {
+        out.buttons = buttons;
+        lastButtons = buttonsKey;
         changed = true;
       }
       for (const l of world.levers) {
@@ -117,12 +134,13 @@ export interface WorldView {
   epoch: number;
   dynamic: Record<number, boolean>; // door id -> open
   plates: Record<number, boolean>; // plate id -> pressed
+  buttons: Record<number, boolean>; // big button id -> lit
   levers: Map<number, { on: boolean; t: number }>;
   enemies: Map<number, { x: number; y: number; dir: number; alive: boolean }>;
 }
 
 export function createWorldView(): WorldView {
-  return { epoch: 0, dynamic: {}, plates: {}, levers: new Map(), enemies: new Map() };
+  return { epoch: 0, dynamic: {}, plates: {}, buttons: {}, levers: new Map(), enemies: new Map() };
 }
 
 function setSet(target: Record<number, boolean>, ids: number[]): void {
@@ -138,6 +156,7 @@ export function applyNetWorld(view: WorldView, nw: NetWorld): void {
   view.epoch = nw.epoch;
   if (nw.doors) setSet(view.dynamic, nw.doors);
   if (nw.plates) setSet(view.plates, nw.plates);
+  if (nw.buttons) setSet(view.buttons, nw.buttons);
   if (nw.levers) for (const [id, on, t] of nw.levers) view.levers.set(id, { on: on === 1, t });
   if (nw.enemies) {
     for (const [id, x, y, f] of nw.enemies) view.enemies.set(id, { x, y, dir: f & 2 ? 1 : -1, alive: (f & 1) !== 0 });

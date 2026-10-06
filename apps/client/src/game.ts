@@ -1,5 +1,5 @@
 import { applyNetWorld, createWorldView, defaultLookCode, type NetPlayer, type NetWorld, type WorldView } from '@sbh/protocol';
-import { DEFAULT_LEVEL, clonePlayer, getLevel, stepPlayer, type Level, type PlayerState } from '@sbh/sim';
+import { DEFAULT_LEVEL, applyEnemyStomp, clonePlayer, getLevel, stepPlayer, stompsEnemy, type Level, type PlayerState } from '@sbh/sim';
 
 export const INTERP_DELAY_MS = 100;
 export const MAX_PENDING = 120;
@@ -17,6 +17,8 @@ interface Sample {
   invuln: number;
   away: boolean;
   deaths: number;
+  pound: number;
+  slam: number;
 }
 
 export interface Remote {
@@ -42,6 +44,8 @@ export interface Drawable {
   invuln: number; // >0 => respawn flicker
   away: boolean; // disconnected-but-held ghost
   deaths: number; // respawn counter: a change means a respawn happened (poof fx)
+  pound: number; // ground pound: 0 none, below RULES.poundWindup hanging, otherwise diving
+  slam: number; // landing recovery ticks left (> 0 = just slammed)
 }
 
 /** Client-side game state: prediction, reconciliation, remote interpolation. No DOM/Pixi here. */
@@ -72,6 +76,7 @@ export class Game {
     v.epoch = 0;
     for (const k of Object.keys(v.dynamic)) delete v.dynamic[Number(k)];
     for (const k of Object.keys(v.plates)) delete v.plates[Number(k)];
+    for (const k of Object.keys(v.buttons)) delete v.buttons[Number(k)];
     v.levers.clear();
     v.enemies.clear();
   }
@@ -120,12 +125,30 @@ export class Game {
     const seq = ++this.seq;
     this.pending.push({ seq, buttons });
     if (this.pending.length > MAX_PENDING) this.pending.shift();
-    stepPlayer(this.level, me, buttons, undefined, this.view.dynamic);
+    this.stepMe(me, buttons);
     this.errX *= 0.9;
     this.errY *= 0.9;
     if (Math.abs(this.errX) < 0.01) this.errX = 0;
     if (Math.abs(this.errY) < 0.01) this.errY = 0;
     return seq;
+  }
+
+  /**
+   * One predicted tick for the local player: movement, then the stomp bounce off any live enemy in the last snapshot,
+   * using the sim's own rule. The server confirms (or corrects) it in a later snapshot; without this the bounce
+   * only appeared after a round trip as a small hitch.
+   */
+  private stepMe(me: PlayerState, buttons: number): void {
+    stepPlayer(this.level, me, buttons, undefined, this.view.dynamic);
+    if (me.away) return;
+    for (const [id, e] of this.view.enemies) {
+      if (!e.alive) continue;
+      const def = this.level.enemies[id];
+      if (def && stompsEnemy(me, { x: e.x, y: e.y, kind: def.kind })) {
+        applyEnemyStomp(me, e);
+        break;
+      }
+    }
   }
 
   onSnapshot(tick: number, players: NetPlayer[], now: number, world?: NetWorld): void {
@@ -160,6 +183,8 @@ export class Game {
         invuln: np.state.invuln,
         away: np.state.away,
         deaths: np.state.deaths,
+        pound: np.state.pound ?? 0,
+        slam: np.state.slam ?? 0,
       });
       if (r.buf.length > 40) r.buf.shift();
     }
@@ -180,7 +205,7 @@ export class Game {
 
     const me = clonePlayer(np.state);
     this.pending = this.pending.filter((p) => p.seq > np.ack);
-    for (const p of this.pending) stepPlayer(this.level, me, p.buttons, undefined, this.view.dynamic);
+    for (const p of this.pending) this.stepMe(me, p.buttons);
     this.me = me;
 
     if (Math.hypot(me.x - prevX, me.y - prevY) > 0.5) this.corrections++;
@@ -252,6 +277,8 @@ export class Game {
         invuln: st.invuln,
         away: st.away,
         deaths: st.deaths,
+        pound: st.pound,
+        slam: st.slam,
       });
     }
     if (this.me) {
@@ -271,6 +298,8 @@ export class Game {
         invuln: this.me.invuln,
         away: this.me.away,
         deaths: this.me.deaths,
+        pound: this.me.pound,
+        slam: this.me.slam,
       });
     }
     return out;

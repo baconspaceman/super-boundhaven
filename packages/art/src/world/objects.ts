@@ -26,9 +26,9 @@ const ACCENT: Palette = {
   a: '#5fddbf', // cyan light  (matches the shard ramp)
   b: '#24cfdb', // cyan mid
   k: '#165f79', // cyan dark
-  u: '#a8b2dc', // idle banner light
-  v: '#7e88b8', // idle banner mid
-  m: '#4a5088', // idle banner dark
+  u: '#c9b8ff', // idle banner light (indigo: clearly not grey, clearly not the gold of an active flag)
+  v: '#8a74f0', // idle banner mid
+  m: '#4d3bb8', // idle banner dark
 };
 
 const OBJ_PAL: Record<'meadow' | 'caverns', Palette> = {
@@ -115,16 +115,18 @@ function spike(pal: Palette, glint: boolean): Canvas {
   const c = sheet(pal);
   const tops = 1;
   const base = 12;
+  // slate-steel blades (not white): lit left edge, dark right edge, coral tips so the hazard reads at a glance
   for (const cx of [2.5, 8.5, 13.5]) {
     for (let y = tops; y < base; y++) {
       const hw = Math.min(2.5, 0.5 + (y - tops) * 0.22);
       for (let x = 0; x < S; x++) {
         const d = x + 0.5 - cx;
-        if (Math.abs(d) <= hw) c.px(x, y, d < -0.1 ? 'e' : d > 0.6 ? 'f' : 'e');
+        if (Math.abs(d) > hw) continue;
+        c.px(x, y, d < -0.6 ? 'f' : d > 0.4 ? 'g' : 'y');
       }
     }
-    for (let y = tops + 3; y < base; y++) c.px(Math.round(cx + 1.5), y, 'g');
-    c.px(Math.floor(cx), tops, 't');
+    for (let y = tops; y < tops + 3; y++) c.px(Math.floor(cx), y, y === tops ? 't' : 'r');
+    c.px(Math.floor(cx) + 1, tops + 2, 'R');
   }
   outlineOuter(c, 'O');
   // hazard base: coral stripes
@@ -136,7 +138,7 @@ function spike(pal: Palette, glint: boolean): Canvas {
   }
   if (glint) {
     // moving glint: highlight streak down the second spike + tiny sparkle
-    for (let y = 3; y <= 6; y++) c.px(8, y, 't');
+    for (let y = 4; y <= 7; y++) c.px(8, y, 'e');
     plus(c, 8, 0, 1, 't');
   }
   return c;
@@ -198,9 +200,25 @@ function doorBase(pal: Palette): Canvas {
   ];
   return ascii(pal, rows);
 }
-/** Open gate: the lintel stays up with the coil lock turned cyan ("unlocked"), the body is a dotted ghost frame. */
-function doorOpen(pal: Palette, shimmer: number): Canvas {
-  const rows = [
+/** Stone pillars either side of an open passage, lit by a cyan seam; `y0..y1` rows. */
+function openPillars(c: Canvas, y0: number, y1: number): void {
+  for (let y = y0; y <= y1; y++) {
+    c.px(0, y, 'O');
+    c.px(1, y, 'x');
+    c.px(2, y, 'y');
+    c.px(3, y, 'O');
+    c.px(4, y, 'k');
+    c.px(11, y, 'k');
+    c.px(12, y, 'O');
+    c.px(13, y, 'y');
+    c.px(14, y, 'z');
+    c.px(15, y, 'O');
+  }
+}
+
+/** Open gate, top tile: the lintel keeps its lock (turned cyan = unlocked) over an empty passage, the raised bars show as teeth. */
+function doorOpenCap(pal: Palette): Canvas {
+  const c = ascii(pal, [
     '.OOOOOOOOOOOOOO.',
     'OxxxxxxxxxxxxxyO',
     'OxyyyyyyyyyyyyzO',
@@ -210,18 +228,26 @@ function doorOpen(pal: Palette, shimmer: number): Canvas {
     'OxyyyOkkkkOyyzzO',
     'OxyyyOOOOOOyyzzO',
     'OzzzzzzzzzzzzzzO',
-    'OOOOOOOOOOOOOOOO',
-  ];
-  const c = ascii(pal, rows);
-  const cols = [0, 3, 12, 15];
-  for (let y = 10; y < S; y++) if (y % 2 === 0) for (const x of cols) c.px(x, y, 'y');
-  if (shimmer >= 0) {
-    const ry = 10 + shimmer * 2;
-    for (const x of cols) c.px(x, ry, 't');
-    // lock sparkle cycles through its corners
-    const sp: [number, number][] = [[6, 4], [9, 4], [9, 6], [6, 6]];
-    c.px(sp[shimmer][0], sp[shimmer][1], 't');
+  ]);
+  openPillars(c, 9, 15);
+  for (const x of [5, 7, 9, 11]) {
+    c.px(x, 9, 'z');
+    c.px(x, 10, 'O');
   }
+  return c;
+}
+
+/** Open gate, every other tile: just the two pillars and the cyan seams, with light drifting up the passage. */
+function doorOpen(pal: Palette, shimmer: number): Canvas {
+  const c = sheet(pal);
+  openPillars(c, 0, 15);
+  const ry = (15 - shimmer * 4) & 15;
+  for (const x of [4, 11]) {
+    c.px(x, ry, 'a');
+    c.px(x, (ry + 1) & 15, 'b');
+  }
+  c.px(6 + (shimmer % 2) * 3, (ry + 6) & 15, 'a');
+  c.px(9 - (shimmer % 2) * 3, (ry + 11) & 15, 'b');
   return c;
 }
 
@@ -257,23 +283,31 @@ function plateGlow(pal: Palette, f: number): Canvas {
 function leverBase(pal: Palette): Canvas {
   const c = sheet(pal);
   c.stamp(0, 11, [
-    '....OOOOOOOO....',
-    '...OxxxxxxxyO...',
-    '..OxyyyyyyyyzO..',
-    '..OyyyyyyyyzzO..',
-    '..OOOOOOOOOOOO..',
+    '...OOOOOOOOOO...',
+    '..OxxxxxxxxxyO..',
+    '.OxyyyyyyyyyyzO.',
+    '.OyyyyyyyyyyzzO.',
+    '.OOOOOOOOOOOOOO.',
   ]);
-  c.px(8, 12, 'S');
+  // gold pivot plate
+  c.stamp(6, 12, ['OOOO', 'OtsO', 'OSAO']);
   return c;
 }
-function leverArm(pal: Palette, tipX: number, tipY: number): Canvas {
+/** `on`: knob cyan ("powered", same language as plates and gates); off: coral. */
+function leverArm(pal: Palette, tipX: number, tipY: number, on: boolean): Canvas {
   const c = leverBase(pal);
-  // arm (2px) from the pivot up to the knob
-  c.line(8, 11, tipX, tipY + 2, 'f');
-  c.line(9, 11, tipX + 1, tipY + 2, 'g');
-  c.line(7, 11, tipX - 1, tipY + 2, 'f');
-  // knob 4x4 coral ball
-  c.stamp(tipX - 2, tipY - 1, ['.tr.', 'trrr', 'rrrR', '.RR.']);
+  // chunky 3 px arm from the pivot up to the knob: dark rim, lit core
+  const ax = tipX + 1;
+  const ay = tipY + 3;
+  c.line(8, 11, ax, ay, 'g');
+  c.line(7, 11, ax - 1, ay, 'f');
+  c.line(9, 11, ax + 1, ay, 'g');
+  c.line(8, 10, ax, ay - 1, 'e');
+  // knob 6x6 ball with a bright highlight
+  const k = on
+    ? ['..tabb.', '.tabbbk', 'abbbbbk', 'bbbbbkk', 'bbbbkkk', '.bkkkk.', '..kkk..']
+    : ['..ttrr.', '.trrrrR', 'trrrrrR', 'rrrrrRR', 'rrrrRRR', '.rRRRR.', '..RRR..'];
+  c.stamp(ax - 3, tipY - 3, k);
   outlineOuter(c, 'O', (_x, y) => y <= 10);
   return c;
 }
@@ -364,6 +398,56 @@ function flag(pal: Palette, active: boolean, f: number): Canvas {
   return c;
 }
 
+// ---------------------------------------------------------------- big button (32x16, ground-pound it)
+const BTN_W = 32;
+const BTN_SLAB = [
+  'OxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyO',
+  'OxyyyyyyyyyyyyyyyyyyyyyyyyyyyyzO',
+  'OyyyyyyyyyyyyyyyyyyyyyyyyyyyzzzO',
+  'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO',
+];
+/** Dome of `h` rows standing on the slab (slab starts at row 12). */
+function buttonDome(c: Canvas, h: number, ramp: [string, string, string, string]): void {
+  for (let x = 3; x <= 28; x++) {
+    const n = (x + 0.5 - BTN_W / 2) / 12.8;
+    const dh = Math.round(h * Math.sqrt(Math.max(0, 1 - n * n)));
+    for (let k = 0; k < dh; k++) {
+      const y = 11 - k;
+      const t = dh <= 1 ? 0 : k / (dh - 1); // 0 at the base, 1 at the crown
+      c.px(x, y, t > 0.8 ? ramp[0] : t > 0.45 ? ramp[1] : t > 0.15 ? ramp[2] : ramp[3]);
+    }
+  }
+}
+/** Waiting: a tall gold dome with a "pound here" chevron. */
+function buttonUp(pal: Palette): Canvas {
+  const c = sheet(pal, BTN_W, S);
+  c.stamp(0, 12, BTN_SLAB);
+  buttonDome(c, 9, ['t', 's', 'S', 'A']);
+  // down chevron, dark amber
+  const chev: [number, number][] = [[12, 4], [13, 5], [14, 6], [15, 7], [16, 7], [17, 6], [18, 5], [19, 4], [13, 4], [18, 4]];
+  for (const [x, y] of chev) c.px(x, y, 'R');
+  outlineOuter(c, 'O', (_x, y) => y <= 11);
+  return c;
+}
+/** Lit: pressed flat and cyan, with a 6-segment bar above that drains as the timer runs out (k = sixths elapsed). */
+function buttonLit(pal: Palette, k: number): Canvas {
+  const c = sheet(pal, BTN_W, S);
+  c.stamp(0, 12, BTN_SLAB);
+  buttonDome(c, 3, ['a', 'a', 'b', 'k']);
+  outlineOuter(c, 'O', (_x, y) => y <= 11);
+  for (let i = 0; i < 6; i++) {
+    const on = i < 6 - k;
+    const x0 = 3 + i * 4.5;
+    for (let x = 0; x < 4; x++) {
+      const px = Math.round(x0 + x);
+      c.px(px, 5, on ? (k >= 4 ? 'r' : 'a') : 'w');
+      c.px(px, 6, on ? (k >= 4 ? 'R' : 'b') : 'w');
+    }
+  }
+  outlineOuter(c, 'O', (_x, y) => y >= 4 && y <= 7);
+  return c;
+}
+
 // ---------------------------------------------------------------- shards
 function shardGet(f: number): Canvas {
   const c = new Canvas(S, S, FX_PAL);
@@ -422,6 +506,7 @@ export const OBJECT_ANIMS: Record<string, ObjectAnim> = {
   door_open: { frames: seq('door_open', 4), fps: 6, loop: true },
   plate_glow: { frames: seq('plate_glow', 4), fps: 9, loop: true },
   lever_timer: { frames: seq('lever_timer', 6), fps: 0, loop: false },
+  button_lit: { frames: seq('button_lit', 6), fps: 0, loop: false }, // value-driven like lever_timer
   link_dot: { frames: seq('link_dot', 2), fps: 4, loop: true },
   spike_glint: { frames: ['obj/spike', 'obj/spike', 'obj/spike', 'obj/spike_1'], fps: 3, loop: true },
 };
@@ -450,6 +535,8 @@ export const OBJECT_FRAME_NAMES: string[] = [
   ...seq('shard_pickup', 6),
   ...seq('shard_get', 4),
   ...seq('link_dot', 2),
+  'obj/button_up',
+  ...seq('button_lit', 6),
 ];
 
 function toBitmaps(frames: Record<string, Canvas>): Record<string, Bitmap> {
@@ -479,13 +566,13 @@ export function buildObjectFrames(region: RegionId): Record<string, Bitmap> {
   f['obj/door_cap'] = doorCap(pal);
   f['obj/door_mid'] = doorMid(pal);
   f['obj/door_base'] = doorBase(pal);
-  f['obj/door_open_cap'] = doorOpen(pal, -1);
+  f['obj/door_open_cap'] = doorOpenCap(pal);
   for (let i = 0; i < 4; i++) f[`obj/door_open_${i}`] = doorOpen(pal, i);
   f['obj/plate_up'] = plateUp(pal);
   f['obj/plate_down'] = plateDown(pal);
   for (let i = 0; i < 4; i++) f[`obj/plate_glow_${i}`] = plateGlow(pal, i);
-  f['obj/lever_off'] = leverArm(pal, 4, 3);
-  f['obj/lever_on'] = leverArm(pal, 12, 3);
+  f['obj/lever_off'] = leverArm(pal, 4, 4, false);
+  f['obj/lever_on'] = leverArm(pal, 12, 4, true);
   for (let i = 0; i < 6; i++) f[`obj/lever_timer_${i}`] = leverTimer(pal, i);
   f['obj/lever_reset'] = leverReset(pal);
   for (let i = 0; i < 4; i++) {
@@ -494,6 +581,8 @@ export function buildObjectFrames(region: RegionId): Record<string, Bitmap> {
     f[`obj/shard_get_${i}`] = shardGet(i);
   }
   for (let i = 0; i < 2; i++) f[`obj/link_dot_${i}`] = linkDot(pal, i);
+  f['obj/button_up'] = buttonUp(pal);
+  for (let i = 0; i < 6; i++) f[`obj/button_lit_${i}`] = buttonLit(pal, i);
   const bm = toBitmaps(f as Record<string, Canvas>);
   // shard pickups: crop the character-fx shard so the pickup is pixel-identical to the fx shard
   const fx = buildFxFrames();

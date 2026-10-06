@@ -5,7 +5,7 @@ import { createGameServer } from '../../server/src/server';
 
 const levelName = process.argv[2] ?? process.env.SBH_LEVEL ?? 'coopRoom';
 const port = Number(process.env.PORT ?? SERVER_PORT);
-const server = await createGameServer({ port, levelName });
+const server = await createGameServer({ port, levelName, accountsFile: process.env.SBH_ACCOUNTS_FILE || null });
 console.log(`sbh server listening on :${server.port} level=${levelName}`);
 const shutdown = (): void => void server.close().then(() => process.exit(0));
 process.on('SIGINT', shutdown);

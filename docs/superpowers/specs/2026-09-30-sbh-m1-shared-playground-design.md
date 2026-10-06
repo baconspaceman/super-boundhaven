@@ -1,6 +1,6 @@
 # SBH Milestone 1: shared movement playground — design
 
-Status: approved by Anthony 2026-09-30 (conversation). Scope: Milestone 1+2 hybrid from `CLAUDE_HANDOFF.md` — movement playground that is shared/real-time from day one.
+Status: approved by Bacon Spaceman 2026-09-30 (conversation). Scope: Milestone 1+2 hybrid from `CLAUDE_HANDOFF.md` — movement playground that is shared/real-time from day one.
 
 ## Accepted decisions
 

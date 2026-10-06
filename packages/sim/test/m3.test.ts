@@ -119,6 +119,7 @@ describe('crouch', () => {
     });
     const jumpApex = (crouch: boolean) => {
       const p = at(lv, 100);
+      stepPlayer(lv, p, 0); // land first: a DOWN press while airborne would start a ground pound
       let minY = Infinity;
       for (let t = 0; t < 40; t++) {
         stepPlayer(lv, p, BTN.JUMP | (crouch ? BTN.CROUCH : 0));
@@ -601,7 +602,7 @@ describe('level registry and metadata', () => {
     expect(getLevel('coopRoom')).toBe(COOP_ROOM);
     expect(getLevel('nope')).toBeUndefined();
     expect(getLevel('__proto__')).toBeUndefined();
-    expect(Object.keys(LEVELS)).toEqual(['playground', 'coopRoom']);
+    expect(Object.keys(LEVELS)).toEqual(['playground', 'coopRoom', 'raidRoom', 'poundRoom']);
     const lv = parseLevel('j', ['S.p.l.D', '#######'], JSON.stringify({ links: [{ door: 0, plates: [0], levers: [0] }] }));
     expect(lv.links).toHaveLength(1);
     expect(lv.plates).toHaveLength(1);

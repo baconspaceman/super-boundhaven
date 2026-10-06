@@ -20,6 +20,10 @@ Please do not include personal information, passwords or tokens in issues. The p
 
 See "Run it locally" in the [README](README.md#run-it-locally). Before reporting a bug, `npm test` and `npm run typecheck` should pass on a clean checkout.
 
+## Commits and AI credit
+
+Commits are authored as `baconspaceman` (GitHub noreply address). Commits with substantial AI work keep a `Co-Authored-By:` line naming the assistant. See [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
+
 ## Conduct
 
 Be kind and constructive. Critique ideas, not people.

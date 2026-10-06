@@ -1,10 +1,10 @@
 # Super BoundHaven: difficulty philosophy
 
-Status 2026-09-30. Tags: **[CONFIRMED]** = Anthony's own words; **[ACCEPTED-DELEGATED]** = Claude's design, delegated by Anthony, revisable any time. Targets below are internal design goals, not public promises.
+Status 2026-09-30. Tags: **[CONFIRMED]** = Bacon Spaceman's own words; **[ACCEPTED-DELEGATED]** = Claude's design, delegated by Bacon Spaceman, revisable any time. Targets below are internal design goals, not public promises.
 
 ## 1. The owner statement **[CONFIRMED]**
 
-Anthony: "I want things to be challenging, but when it's too challenging, don't make it too difficult." Specifically, **getting mounts must not be too difficult.**
+Bacon Spaceman: "I want things to be challenging, but when it's too challenging, don't make it too difficult." Specifically, **getting mounts must not be too difficult.**
 
 Reading: challenge is the point of the game (pillar P1, "movement is the skill"), but there is a ceiling on friction. When a piece of content is hard, the answer is to make the *hardest* part optional, or to add an assist, never to make everyone pay for it.
 
@@ -87,4 +87,4 @@ Mount questlines have a dedicated gate: no mount ships until at least 9 of 10 av
 ## 8. Relationship to other docs
 
 - Pillars P2 and P8 in GDD section 1.2; failure and checkpoints in GDD 8.5 and 7.4; mount acquisition in `MOUNTS_AND_EXPLORATION.md` and GDD 5.3; skill-model fairness in `SKILL_TREE_AND_ABILITIES.md`.
-- Anything here may be revised by Anthony at any time.
+- Anything here may be revised by Bacon Spaceman at any time.

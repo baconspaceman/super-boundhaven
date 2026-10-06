@@ -18,6 +18,7 @@ import {
   leverVisual,
   roomStatus,
   smoothToward,
+  versionProblem,
 } from '../src/scene-logic';
 import { Game } from '../src/game';
 import { BIT } from '../src/bindings';
@@ -324,5 +325,50 @@ describe('Game: levels, world view, prediction against doors / crouch', () => {
     expect(g.view.enemies.size).toBe(0);
     expect(g.view.dynamic[0]).toBeUndefined();
     expect(g.view.epoch).toBe(0);
+  });
+});
+
+describe('Game: predicted stomp bounce', () => {
+  /** A walker from the co-op room (kind 0), the player dropped just above it. */
+  function setup(kind: number) {
+    const g = new Game();
+    g.welcome(1, 'coopRoom');
+    const def = COOP_ROOM.enemies.find((e) => e.kind === kind)!;
+    g.view.enemies.set(def.id, { x: def.x, y: def.y, dir: 1, alive: true });
+    const p = createPlayer(1, COOP_ROOM);
+    p.x = def.x;
+    p.y = def.y - 16 - 4; // feet 4 px above the enemy's top, falling
+    p.prevY = p.y;
+    p.vy = 3;
+    p.onGround = false;
+    g.me = p;
+    return { g, p, def };
+  }
+
+  it('bounces on the very tick the feet reach a live walker, without waiting for the server', () => {
+    const { g, p } = setup(0);
+    for (let i = 0; i < 4 && p.vy > 0; i++) g.tick(0);
+    expect(p.vy).toBeLessThan(0);
+    expect(p.onGround).toBe(false);
+  });
+
+  it('does not bounce off a spiky walker, a defeated enemy or an empty view', () => {
+    const spiky = setup(2);
+    for (let i = 0; i < 4; i++) spiky.g.tick(0);
+    expect(spiky.p.vy).toBeGreaterThanOrEqual(0);
+
+    const dead = setup(0);
+    dead.g.view.enemies.get(dead.def.id)!.alive = false;
+    for (let i = 0; i < 4; i++) dead.g.tick(0);
+    expect(dead.p.vy).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('protocol version check', () => {
+  it('accepts a matching server and explains an older or newer one', () => {
+    expect(versionProblem(4, 4)).toBeNull();
+    expect(versionProblem(3, 4)).toMatch(/older version/);
+    expect(versionProblem(undefined, 4)).toMatch(/older version/);
+    expect(versionProblem(5, 4)).toMatch(/newer version/);
   });
 });

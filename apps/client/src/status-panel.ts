@@ -1,7 +1,7 @@
 // In-game mini-status in the pixel font (top-right of the 256x224 playfield): shards, flag, deaths, players in the
 // room, and "NEEDS n PLAYERS" while a co-op room lacks its minimum. Rebuilt only when the text changes.
 import { Container, Graphics, Sprite } from 'pixi.js';
-import { SCREEN_W } from '@sbh/sim';
+import { VIEW_W } from './viewport';
 import { makeLabel, type Label } from './sprites';
 
 const PAD = 3;
@@ -42,14 +42,14 @@ export class StatusPanel {
       const label = makeLabel(warn ? ln.slice(1) : ln, warn ? COLORS.warn : COLORS.default);
       const sprite = new Sprite(label.tex);
       sprite.anchor.set(1, 0);
-      sprite.position.set(SCREEN_W - PAD - 2, PAD + 1 + i * LINE_H);
+      sprite.position.set(VIEW_W - PAD - 2, PAD + 1 + i * LINE_H);
       this.root.addChild(sprite);
       this.rows.push({ sprite, label });
       w = Math.max(w, label.w);
     });
     const h = lines.length * LINE_H + 2;
     this.bg
-      .roundRect(SCREEN_W - PAD - w - 6, PAD - 1, w + 6, h + 1, 2)
+      .roundRect(VIEW_W - PAD - w - 6, PAD - 1, w + 6, h + 1, 2)
       .fill({ color: 0x14102a, alpha: 0.55 });
     this.root.addChild(this.bg);
     for (const r of this.rows) this.root.addChild(r.sprite);

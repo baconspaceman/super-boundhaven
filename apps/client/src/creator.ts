@@ -10,11 +10,12 @@ import {
   decodeLook,
   encodeLook,
   randomLook,
+  usesDevItems,
   validateLook,
   type CharacterLook,
 } from './art';
 import { getLookSheet } from './look-sheet';
-import { colorTable, countOf, stepField, type ColorTable } from './look-ui';
+import { colorTable, countOf, optionCount, stepField, type ColorTable } from './look-ui';
 import { TICK_MS } from './motion';
 
 type Key = Exclude<keyof CharacterLook, 'v'>;
@@ -67,7 +68,9 @@ export interface CreatorOpenOpts {
   mode: 'join' | 'edit';
   name: string;
   code: string;
-  onSubmit(name: string, code: string): void;
+  onSubmit(name: string, code: string, pass?: string): void;
+  /** the developer account: show the developer-only pieces (also shown when the look already uses them) */
+  dev?: boolean;
   onCancel?(): void;
 }
 
@@ -77,6 +80,7 @@ const CANVAS_H = 300;
 
 export class Creator {
   private look: CharacterLook = { ...DEFAULT_LOOK };
+  private dev = false;
   private tab: Key = 'skin';
   private seq = 0;
   private flip = false;
@@ -94,6 +98,8 @@ export class Creator {
   private nameInput!: HTMLInputElement;
   private codeInput!: HTMLInputElement;
   private status!: HTMLElement;
+  private passField!: HTMLElement;
+  private passInput!: HTMLInputElement;
   private submitBtn!: HTMLButtonElement;
   private cancelBtn!: HTMLButtonElement;
   private title!: HTMLElement;
@@ -118,8 +124,10 @@ export class Creator {
     this.opts = opts;
     const parsed = decodeLook(opts.code);
     this.look = parsed ?? { ...DEFAULT_LOOK };
+    this.dev = !!opts.dev || usesDevItems(this.look);
     this.nameInput.value = opts.name;
     this.nameInput.readOnly = opts.mode === 'edit';
+    this.passField.hidden = opts.mode === 'edit';
     this.title.textContent = opts.mode === 'join' ? 'Create your hero' : 'Change your look';
     this.sub.textContent =
       opts.mode === 'join'
@@ -221,6 +229,10 @@ export class Creator {
     nf.append(this.h('label', { for: 'cc-name' }, 'Name'));
     this.nameInput = this.h('input', { id: 'cc-name', maxlength: '16', autocomplete: 'off', placeholder: 'Your name', spellcheck: 'false' });
     nf.append(this.nameInput);
+    this.passField = this.h('div', { class: 'cc-field' });
+    this.passField.append(this.h('label', { for: 'cc-pass' }, 'Password (only for registered names)'));
+    this.passInput = this.h('input', { id: 'cc-pass', type: 'password', maxlength: '128', autocomplete: 'current-password', placeholder: 'leave empty if unsure' });
+    this.passField.append(this.passInput);
     const cf = this.h('div', { class: 'cc-field' });
     cf.append(this.h('label', { for: 'cc-code' }, 'Look code (copy / paste to share)'));
     const cw = this.h('div', { class: 'cc-codewrap' });
@@ -229,7 +241,7 @@ export class Creator {
     copy.addEventListener('click', () => void this.copyCode());
     cw.append(this.codeInput, copy);
     cf.append(cw);
-    fields.append(nf, cf);
+    fields.append(nf, this.passField, cf);
     const actions = this.h('div', { class: 'cc-actions' });
     const rand = this.btn('Randomize');
     const reset = this.btn('Reset');
@@ -259,9 +271,11 @@ export class Creator {
     this.codeInput.addEventListener('paste', () => setTimeout(() => this.onCodeInput(), 0));
     this.submitBtn.addEventListener('click', () => this.submit());
     this.cancelBtn.addEventListener('click', () => this.cancel());
-    this.nameInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') this.submit();
-    });
+    for (const inp of [this.nameInput, this.passInput]) {
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') this.submit();
+      });
+    }
     el.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.opts?.mode === 'edit') {
         e.preventDefault();
@@ -282,7 +296,7 @@ export class Creator {
     }
     const problems = validateLook(this.look);
     if (problems.length) return this.setStatus(problems[0], true);
-    this.opts.onSubmit(name, this.code);
+    this.opts.onSubmit(name, this.code, this.passInput.value || undefined);
   }
 
   private cancel(): void {
@@ -342,7 +356,7 @@ export class Creator {
   }
 
   private step(key: Key, dir: number): void {
-    this.look = stepField(this.look, key, dir);
+    this.look = stepField(this.look, key, dir, this.dev);
     this.refresh();
   }
 
@@ -372,7 +386,7 @@ export class Creator {
   private renderPanel(): void {
     const cat = CHARACTER_OPTIONS.categories.find((c) => c.key === this.tab)!;
     const key = cat.key as Key;
-    const n = cat.names.length;
+    const n = optionCount(key, this.dev);
     const cur = this.look[key];
     const focusedStep = document.activeElement?.getAttribute('data-step');
     const frag = document.createDocumentFragment();

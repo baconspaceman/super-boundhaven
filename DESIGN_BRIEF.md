@@ -1,16 +1,16 @@
 # Super BoundHaven — design brief
 
-Source: Anthony's supplied project requirements, organized on 2026-09-30. The long-term vision below is not a mandatory launch feature list.
+Source: Bacon Spaceman's supplied project requirements, organized on 2026-09-30. The long-term vision below is not a mandatory launch feature list.
 
 ## Identity and platform
 
-The provisional working title is **Super BoundHaven (SBH)**. Keep “Super” in the name; no Bacon or Spaceman public branding. Preliminary name searches are not legal clearance. This is an independent platforming MMO, unrelated to Anthony's other projects.
+The provisional working title is **Super BoundHaven (SBH)**. Keep “Super” in the name; no Bacon or Spaceman public branding. Preliminary name searches are not legal clearance. This is an independent platforming MMO, unrelated to Bacon Spaceman's other projects.
 
 Browser first; Steam later, with browser/Steam cross-play. Aim for polished, sharp 16-bit visuals in a side-scrolling open world with other players visible and interacting in real time. Social inspirations include MapleStory, PokeMMO, Club Penguin, and WoW. These are references for feel and community, not permission to reuse protected content.
 
 ## Movement, challenge, and replayability
 
-Precise SMW-like movement should create a meaningful skill gap. Anthony wants study of SMW movement and recompilation data to understand movement behavior; this does not imply permission to copy Nintendo code, assets, or ROMs. Build an original movement system and document reference provenance.
+Precise SMW-like movement should create a meaningful skill gap. Bacon Spaceman wants study of SMW movement and recompilation data to understand movement behavior; this does not imply permission to copy Nintendo code, assets, or ROMs. Build an original movement system and document reference provenance.
 
 The game should be challenging, fair, forgiving enough to encourage retries, and highly replayable. Challenge comes chiefly from precision platforming and timing, with selective enemies and puzzle bosses instead of repetitive three-hit boss patterns. Checkpoint, failure, recovery, and accessibility details remain undecided.
 
@@ -56,7 +56,7 @@ Include secrets and Easter eggs, with subtle anime, Minecraft, and pop-culture-i
 
 Ideas include microtransactions, optional monthly tiers/contributions, and a community goals page whose goals unlock free features, events, or rewards, with optional supporter names. Cosmetics-only monetization is a recommendation, not a confirmed rule.
 
-The first funding goal was roughly the Steam $100 app fee plus applicable tax. Treat this as Anthony's planning estimate, not a verified current fee or purchase authorization. Hypothetical milestones include a currency gift at 1,000 downloads and an early-player cosmetic/token at one million players. Amounts, terms, definitions, eligibility, and timing are undecided; do not promise them publicly.
+The first funding goal was roughly the Steam $100 app fee plus applicable tax. Treat this as Bacon Spaceman's planning estimate, not a verified current fee or purchase authorization. Hypothetical milestones include a currency gift at 1,000 downloads and an early-player cosmetic/token at one million players. Amounts, terms, definitions, eligibility, and timing are undecided; do not promise them publicly.
 
 Do not import monetization or beta rules from any other project into SBH.
 

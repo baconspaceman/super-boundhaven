@@ -4,7 +4,8 @@
 // shards are all derived from level data + the synced WorldView; nothing here is authoritative.
 import { Container, Rectangle, Sprite, Texture, type Renderer as PixiRenderer } from 'pixi.js';
 import type { WorldView } from '@sbh/protocol';
-import { SCREEN_W, TILE, hasShard, type Level, type PlayerState } from '@sbh/sim';
+import { TILE, hasShard, type Level, type PlayerState } from '@sbh/sim';
+import { VIEW_W } from './viewport';
 import { ObjectAtlas } from './object-atlas';
 import {
   DoorTracker,
@@ -23,6 +24,8 @@ export interface ObjScene {
   me: PlayerState | null;
   doors: DoorTracker;
   cam: number;
+  visL?: number; // visible world rectangle (differs from cam/VIEW_W when the camera is zoomed out)
+  visW?: number;
   now: number;
   onDoor?: (e: DoorEvent, id: number) => void;
 }
@@ -62,6 +65,7 @@ export class WorldObjects {
   private culls: Cull[] = [];
   private doors = new Map<number, DoorTile[]>();
   private plates: { id: number; sprite: Sprite; glow: Sprite }[] = [];
+  private buttons: { id: number; sprite: Sprite; litSince: number }[] = [];
   private levers: { id: number; sprite: Sprite; ring: Sprite; cull: Cull }[] = [];
   private flags: { idx: number; sprite: Sprite; cull: Cull }[] = [];
   private shards: { id: number; sprite: Sprite; cull: Cull; phase: number }[] = [];
@@ -73,6 +77,7 @@ export class WorldObjects {
   private shimmer: Texture[];
   private glow: Texture[];
   private timer: Texture[];
+  private buttonLit: Texture[];
 
   private constructor(
     private level: Level,
@@ -88,6 +93,7 @@ export class WorldObjects {
     this.shimmer = a.seq('obj/door_open_', 4);
     this.glow = a.seq('obj/plate_glow_', 4);
     this.timer = a.seq('obj/lever_timer_', 6);
+    this.buttonLit = a.seq('obj/button_lit_', 6);
     this.build(level);
   }
 
@@ -146,6 +152,15 @@ export class WorldObjects {
       this.place(s, p.col * TILE + TILE / 2, (p.row + 1) * TILE);
       this.place(g, p.col * TILE + TILE / 2, (p.row + 1) * TILE);
       this.plates.push({ id: p.id, sprite: s, glow: g });
+    }
+
+    // big buttons (ground-pound them): art is 2 tiles wide, stretched for other widths
+    for (const b of level.buttons) {
+      const s = new Sprite(a.get('obj/button_up'));
+      s.anchor.set(0.5, 1);
+      s.scale.x = (b.w * TILE) / 32;
+      this.place(s, (b.col + b.w / 2) * TILE, (b.row + 1) * TILE, b.w * TILE);
+      this.buttons.push({ id: b.id, sprite: s, litSince: -1 });
     }
 
     // levers
@@ -208,8 +223,8 @@ export class WorldObjects {
 
   update(sc: ObjScene, dtMs: number): void {
     const { view, me, now, cam } = sc;
-    const l = cam - 24;
-    const r = cam + SCREEN_W + 24;
+    const l = (sc.visL ?? cam) - 24;
+    const r = (sc.visL ?? cam) + (sc.visW ?? VIEW_W) + 24;
     for (const c of this.culls) c.sprite.visible = c.x1 > l && c.x0 < r;
 
     // doors
@@ -237,6 +252,20 @@ export class WorldObjects {
       p.sprite.texture = this.atlas.get(pressed ? 'obj/plate_down' : 'obj/plate_up');
       p.glow.visible = pressed && p.sprite.visible;
       if (pressed) p.glow.texture = this.glow[frameIdx(now, GLOW_FPS, this.glow.length)];
+    }
+
+    // big buttons: gold while waiting; cyan and pressed flat while lit, with a bar that drains over the lit window
+    for (const b of this.buttons) {
+      const lit = view.buttons[b.id] === true;
+      if (!lit) {
+        b.litSince = -1;
+        b.sprite.texture = this.atlas.get('obj/button_up');
+        continue;
+      }
+      if (b.litSince < 0) b.litSince = now;
+      const total = (this.level.buttons[b.id].ticks * 1000) / 60;
+      const k = Math.min(this.buttonLit.length - 1, Math.floor(((now - b.litSince) / total) * this.buttonLit.length));
+      b.sprite.texture = this.buttonLit[Math.max(0, k)];
     }
 
     // levers

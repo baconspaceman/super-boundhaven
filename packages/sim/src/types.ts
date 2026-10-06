@@ -34,6 +34,10 @@ export interface PlayerState {
   invuln: number; // ticks of respawn invulnerability left
   deaths: number; // respawn counter (client fx hook: it changes when a respawn happens)
   away: boolean; // disconnected-but-held: inert (no plates, hazards, pushes, stomps)
+  // ---- ground pound ----
+  prevCrouch: boolean; // CROUCH held on the previous step (a new press in the air starts a pound)
+  pound: number; // 0 = none; 1..poundWindup-1 = hanging; >= poundWindup = diving
+  slam: number; // ticks left of landing recovery; == RULES.slamTicks on the tick the slam lands
 }
 
 export interface EnemyState {
@@ -67,6 +71,7 @@ export interface World {
   /** door id -> open. Absent/false = closed. Pass to stepPlayer (5th arg) for client prediction. */
   dynamic: Record<number, boolean>;
   plates: boolean[]; // pressed, by plate id
+  buttons: number[]; // big buttons, by id: ticks left lit after a slam (0 = unlit)
   levers: LeverState[]; // by lever id
   enemies: EnemyState[]; // by enemy id
   linger: number[]; // per door link: ticks the door stays open after its condition lapses

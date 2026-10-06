@@ -16,6 +16,7 @@ function colors(b: Bitmap): number {
 function sizeOf(name: string): [number, number] {
   if (name.startsWith('obj/flag_')) return [16, 32];
   if (name.startsWith('obj/link_dot')) return [4, 4];
+  if (name.startsWith('obj/button_')) return [32, 16];
   return [16, 16];
 }
 

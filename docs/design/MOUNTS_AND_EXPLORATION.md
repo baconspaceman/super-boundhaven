@@ -1,11 +1,11 @@
 # Mounts and Metroidvania exploration
 
-Status legend: **Confirmed** = Anthony's words (2026-09-30). **Proposal** = Claude's suggestion, not accepted until Anthony says so.
+Status legend: **Confirmed** = Bacon Spaceman's words (2026-09-30). **Proposal** = Claude's suggestion, not accepted until Bacon Spaceman says so.
 
 ## Confirmed
 
 - Rideable mounts are not one creature. They are many different animals, each doing different things.
-- Roster: **frog**, **dinosaur**, **flying dinosaur**, **cheetah**. More animals may come later, but **no wolf is planned** (Anthony, 2026-09-30: the "wolves" in the voice note was not an intended mount).
+- Roster: **frog**, **dinosaur**, **flying dinosaur**, **cheetah**. More animals may come later, but **no wolf is planned** (Bacon Spaceman, 2026-09-30: the "wolves" in the voice note was not an intended mount).
 - **Difficulty (2026-09-30, [CONFIRMED]):** getting mounts must not be too difficult. See `DIFFICULTY_PHILOSOPHY.md`. Mounts are obtainable with moderate effort by an average player: no brutal gates, never behind raids.
 - The **Action/Activate button** (confirmed 2026-09-30) summons and dismounts mounts and triggers the mount's signature ability.
 - Players can **summon** a mount in the open world **anytime** they want.
