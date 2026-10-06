@@ -2,7 +2,9 @@
 // and parallax backgrounds, all sourced from @sbh/art's exported PNG/JSON assets.
 // Built once per region; `update()` is allocation-free. `destroy()` frees every texture it made.
 import { Assets, Container, Rectangle, RenderTexture, Sprite, Texture, TilingSprite, type Renderer as PixiRenderer } from 'pixi.js';
-import { SCREEN_W, TILE, type Level } from '@sbh/sim';
+import { TILE, type Level } from '@sbh/sim';
+import { topCap, transparentBand } from './bg-fit';
+import { BG_SHIFT, VIEW_W } from './viewport';
 // Relative imports: the @sbh/art package.json `exports` map only exposes the package root.
 import { autotile } from '../../../packages/art/src/world/autotile';
 import { decorate } from '../../../packages/art/src/world/decor';
@@ -66,6 +68,7 @@ const BOUNCE_SEQ: [string, number][] = [
 interface BgLayer {
   def: BgLayerDef;
   node: TilingSprite | Sprite;
+  baseX: number; // resting x of a non-tiling layer
 }
 interface PropInst {
   sprite: Sprite;
@@ -155,12 +158,38 @@ export class WorldArt {
     // ---- parallax layers ----
     bgDefs.forEach((def, i) => {
       const tex = bgTex[i];
+      // a foreground layer with a clear gap (canopy at the top, grass at the bottom) is cut there: the top piece stays
+      // on the top edge of the screen, the bottom piece moves down with the ground
+      const gap = def.z === 'front' && def.tileX && BG_SHIFT > 0 ? transparentBand(tex) : null;
+      if (gap) {
+        const pieces: [number, number, number][] = [
+          [0, gap.start, 0],
+          [gap.end, def.h, gap.end + BG_SHIFT],
+        ];
+        for (const [y0, y1, y] of pieces) {
+          if (y1 <= y0) continue;
+          const sub = new Texture({ source: tex.source, frame: new Rectangle(0, y0, tex.frame.width, y1 - y0) });
+          this.owned.push(sub);
+          const piece = new TilingSprite({ texture: sub, width: VIEW_W, height: y1 - y0 });
+          piece.y = def.y + y;
+          this.bgFront.addChild(piece);
+          this.bgs.push({ def, node: piece, baseX: 0 });
+        }
+        return;
+      }
       const node: TilingSprite | Sprite = def.tileX
-        ? new TilingSprite({ texture: tex, width: SCREEN_W, height: def.h })
+        ? new TilingSprite({ texture: tex, width: VIEW_W, height: def.h })
         : new Sprite(tex);
-      node.y = def.y;
-      (def.z === 'front' ? this.bgFront : this.bgBack).addChild(node);
-      this.bgs.push({ def, node });
+      // authored for a 224 px frame: sit on the ground line of the taller view, extend an opaque top row upward
+      node.y = def.y + BG_SHIFT;
+      const baseX = def.tileX ? 0 : Math.floor((VIEW_W - def.w) / 2); // the one non-tiling layer (sun) is centred
+      const layer = def.z === 'front' ? this.bgFront : this.bgBack;
+      if (def.tileX && def.y === 0) {
+        const cap = topCap(tex, VIEW_W, BG_SHIFT);
+        if (cap) layer.addChild(cap);
+      }
+      layer.addChild(node);
+      this.bgs.push({ def, node, baseX });
     });
 
     // ---- tiles: bake 16-column chunks; animated tiles stay live sprites ----
@@ -265,10 +294,10 @@ export class WorldArt {
     for (const b of this.bgs) {
       const off = Math.floor(camX * b.def.parallax + b.def.drift * sec);
       if (b.def.tileX) (b.node as TilingSprite).tilePosition.x = -off;
-      else b.node.x = -off;
+      else b.node.x = b.baseX - off;
     }
     const l = camX - 32;
-    const r = camX + SCREEN_W + 32;
+    const r = camX + VIEW_W + 32;
     for (const c of this.chunks) c.sprite.visible = c.x1 > l && c.x0 < r;
     for (const p of this.props) {
       const vis = p.x1 > l && p.x0 < r;

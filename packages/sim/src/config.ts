@@ -3,8 +3,10 @@
 
 export const TICK_RATE = 60;
 export const TILE = 16;
-export const SCREEN_W = 256;
-export const SCREEN_H = 224;
+// Default view of the client in native pixels (16:9). The simulation never uses these; apps/client/src/viewport.ts
+// is the live source (and honours ?view=WxH).
+export const SCREEN_W = 480;
+export const SCREEN_H = 270;
 
 export interface MovementConfig {
   halfWidth: number;

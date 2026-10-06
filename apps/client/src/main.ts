@@ -327,7 +327,7 @@ function frame(now: number): void {
       deriver.observe(game.me); // land / bounce / stomp / respawn -> rumble + window.__sbh.events
     }
   }
-  renderer.draw(game.drawables(now), game.me ? { x: game.me.x + game.errX } : null, {
+  renderer.draw(game.drawables(now), game.me ? { x: game.me.x + game.errX, y: game.me.y + game.errY } : null, {
     level: game.level,
     view: game.view,
     me: game.me,

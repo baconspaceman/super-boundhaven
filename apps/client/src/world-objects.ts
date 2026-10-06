@@ -4,7 +4,8 @@
 // shards are all derived from level data + the synced WorldView; nothing here is authoritative.
 import { Container, Rectangle, Sprite, Texture, type Renderer as PixiRenderer } from 'pixi.js';
 import type { WorldView } from '@sbh/protocol';
-import { SCREEN_W, TILE, hasShard, type Level, type PlayerState } from '@sbh/sim';
+import { TILE, hasShard, type Level, type PlayerState } from '@sbh/sim';
+import { VIEW_W } from './viewport';
 import { ObjectAtlas } from './object-atlas';
 import {
   DoorTracker,
@@ -221,7 +222,7 @@ export class WorldObjects {
   update(sc: ObjScene, dtMs: number): void {
     const { view, me, now, cam } = sc;
     const l = cam - 24;
-    const r = cam + SCREEN_W + 24;
+    const r = cam + VIEW_W + 24;
     for (const c of this.culls) c.sprite.visible = c.x1 > l && c.x0 < r;
 
     // doors

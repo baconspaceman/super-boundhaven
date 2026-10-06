@@ -3,7 +3,8 @@
 // Nearest-neighbour, integer-pixel layers like world-art.ts; animated decor + critters come from the
 // pre-rendered sprite atlas. Built once, `update()` is allocation-free, `destroy()` frees every texture.
 import { Assets, Container, Rectangle, Sprite, Texture, TilingSprite } from 'pixi.js';
-import { SCREEN_W } from '@sbh/sim';
+import { topCap } from './bg-fit';
+import { BG_SHIFT, VIEW_W } from './viewport';
 import {
   BLENDER_BACKGROUNDS,
   BLENDER_SPRITES,
@@ -70,7 +71,8 @@ async function loadTex(url: string): Promise<Texture> {
 
 interface LayerNode {
   layer: BlenderLayer;
-  node: TilingSprite | Sprite;
+  node: Container;
+  baseX: number; // resting x of the container (0: the centring is inside it)
 }
 type DecorKind = 'plane' | 'fly' | 'bird';
 interface Decor {
@@ -116,7 +118,7 @@ export class TodArt {
     readonly id: TodId,
     levelPx: number,
   ) {
-    this.maxCam = Math.max(1, levelPx - SCREEN_W);
+    this.maxCam = Math.max(1, levelPx - VIEW_W);
   }
 
   static async create(id: TodId, levelPx: number): Promise<TodArt> {
@@ -251,12 +253,38 @@ export class TodArt {
     };
     defs.forEach((layer, i) => {
       const tex = texs[i];
-      const node: TilingSprite | Sprite = layer.tileX
-        ? new TilingSprite({ texture: tex, width: SCREEN_W, height: layer.height })
-        : new Sprite(tex);
-      node.y = layer.y;
+      // The sky and sun are fixed 256 px frames (the sun's glow is baked into the sky, so the sky cannot tile): keep them
+      // centred and together, stretch the sky's first/last pixel column out to the screen edges, and cap it upward.
+      let node: Container;
+      let baseX = 0;
+      if (layer.tileX) {
+        node = new TilingSprite({ texture: tex, width: VIEW_W, height: layer.height });
+      } else {
+        baseX = Math.floor((VIEW_W - layer.width) / 2);
+        node = new Container();
+        const main = new Sprite(tex);
+        main.x = baseX; // (the per-frame parallax shift moves the whole container; baseX is applied here once)
+        if (layer.name === 'sky' && baseX > 0) {
+          const edge = (x0: number, x: number, w: number): void => {
+            const s = new Sprite(new Texture({ source: tex.source, frame: new Rectangle(x0, 0, 1, layer.height) }));
+            s.x = x;
+            s.width = w;
+            node.addChild(s);
+          };
+          edge(0, 0, baseX);
+          edge(layer.width - 1, baseX + layer.width, VIEW_W - baseX - layer.width);
+          const cap = topCap(tex, VIEW_W, BG_SHIFT);
+          if (cap) {
+            cap.y = -BG_SHIFT;
+            node.addChild(cap);
+          }
+        }
+        node.addChild(main);
+        baseX = 0;
+      }
+      node.y = layer.y + BG_SHIFT;
       root.addChild(node);
-      stack.layers.push({ layer, node });
+      stack.layers.push({ layer, node, baseX });
       after[layer.name]?.();
     });
     return stack;
@@ -306,7 +334,7 @@ export class TodArt {
       if (l.layer.tileX) {
         const off = Math.floor(camX * l.layer.parallax + (DRIFT[l.layer.name] ?? 0) * sec);
         (n as TilingSprite).tilePosition.x = -off;
-      } else n.x = l.layer.parallax > 0 ? -sunK : 0;
+      } else n.x = l.baseX + (l.layer.parallax > 0 ? -sunK : 0);
     }
     for (const d of s.decor) {
       const sp = d.sprite;
@@ -326,7 +354,7 @@ export class TodArt {
       } else {
         const off = Math.floor(camX * d.parallax);
         x = mod(d.baseX - off, d.period);
-        if (x > SCREEN_W + 64) x -= d.period;
+        if (x > VIEW_W + 64) x -= d.period;
         if (d.kind === 'fly') {
           x += Math.floor(20 * Math.sin(sec * 0.7 + d.phase * 1.7));
           y += Math.floor(9 * Math.sin(sec * 1.3 + d.phase));
@@ -334,8 +362,8 @@ export class TodArt {
       }
       const px = Math.round(x - d.ax);
       sp.x = px;
-      sp.y = Math.round(y - d.ay);
-      sp.visible = px + d.w > 0 && px < SCREEN_W;
+      sp.y = Math.round(y - d.ay) + BG_SHIFT;
+      sp.visible = px + d.w > 0 && px < VIEW_W;
     }
   }
 

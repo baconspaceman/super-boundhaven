@@ -43,6 +43,7 @@ No recommendation above becomes a confirmed decision until Bacon Spaceman accept
 
 Format: date — decision — rationale — status.
 
+- 2026-10-06 — View is 16:9 widescreen, 480x270 native (30 x 16.9 tiles), integer-scaled where it fits (1080p = 4x); the hero sprite stays 24x32 so characters look ~17% smaller and the world bigger — Bacon Spaceman's playtest request; `?view=WxH` (e.g. 576x324) lets him compare sizes — accepted.
 - 2026-10-06 — Interim names/accounts: a name can be taken; a guest keeps it 7 days and must renew; registering with an email (and password) keeps it for good; `baconspaceman` is a reserved developer account with in-game developer commands — Bacon Spaceman asked for it because there is no login provider yet; email verification and a real login provider stay open (see OPEN_QUESTIONS) — accepted as interim.
 - 2026-09-30 — First proof is a shared (multiplayer) playground from day one, not local-only — Bacon Spaceman chose it over the recommended local-first path — accepted.
 - 2026-09-30 — TypeScript end to end: Vite + PixiJS client, Node + `ws` authoritative server, shared deterministic `@sbh/sim` — browser-first delivery, fast iteration, one movement implementation for client and server — accepted.

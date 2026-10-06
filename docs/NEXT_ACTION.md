@@ -79,3 +79,7 @@ Done: DOWN-in-air ground pound, 2-tile big buttons lit for 3 s, `buttons` door l
 ## 2026-10-06 (accounts)
 
 Done: name claims (guest 7 days, /renew), `/register` accounts (scrypt), reserved developer name `baconspaceman` with a server-side console (`docs/ACCOUNTS_AND_ADMIN.md`), protocol v5, Pages workflow variable `SBH_SERVER_URL` for pointing `/play/` at a hosted server. Open: host a real server (needs the owner's hosting account), email verification/reset (needs a mail service), item catalogue beyond shards, fly/noclip.
+
+## 2026-10-06 (view)
+
+Done: 16:9 view, 480x270 native (was 256x224), `?view=WxH` override, vertical camera, backdrops refitted (`apps/client/src/viewport.ts`, `bg-fit.ts`). Next after playtest feedback: tune the size (576x324 is one parameter away), taller levels now that the camera can follow vertically.
