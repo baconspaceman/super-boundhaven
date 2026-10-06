@@ -83,3 +83,7 @@ Done: name claims (guest 7 days, /renew), `/register` accounts (scrypt), reserve
 ## 2026-10-06 (view)
 
 Done: 16:9 view, 480x270 native (was 256x224), `?view=WxH` override, vertical camera, backdrops refitted (`apps/client/src/viewport.ts`, `bg-fit.ts`). Next after playtest feedback: tune the size (576x324 is one parameter away), taller levels now that the camera can follow vertically.
+
+## 2026-10-06 (camera + dev items)
+
+Done: follow camera with zoom (`docs/CAMERA.md`, tests), underground rows below levels, developer-only items and account-saved looks. Open: tune camera feel after playtest, redeploy the hosted server (protocol unchanged at 5, but the server code is new), name-tag DEV marker (optional).

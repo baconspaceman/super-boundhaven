@@ -30,16 +30,8 @@ export const VIEW_H = v.h;
 /** px the 224-tall backdrop layers move down (>= 0; a view shorter than 224 cannot happen: clamped). */
 export const BG_SHIFT = VIEW_H - BG_FRAME_H;
 
-/**
- * Vertical camera (world y shown at the top of the screen).
- * A level no taller than the view is pinned to the bottom (the extra height is open sky above it);
- * a taller level follows the player, keeping them ~60% down the screen, clamped to the level.
- */
-export function cameraY(levelPx: number, viewH: number, focusY: number | null): number {
-  const bottom = levelPx - viewH;
-  if (bottom <= 0 || focusY === null) return bottom;
-  return Math.max(0, Math.min(bottom, Math.round(focusY - viewH * 0.6)));
-}
+/** Rows of plain ground drawn under every level (client art only) so the camera can frame the ground high enough on screen. */
+export const UNDERGROUND_ROWS = 6;
 
 /**
  * Scale from view pixels to window pixels: whole numbers when they fit well (crisp pixels), otherwise the exact fit

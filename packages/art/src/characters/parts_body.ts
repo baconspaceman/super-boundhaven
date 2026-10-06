@@ -175,6 +175,12 @@ export const BACKS: BackDef[] = [
     kind: 'rigid',
     layer: { x: -5, y: 2, rows: ['.22.', '1111', '.22.', '1111', '.22.', '1111', '2222'] },
   },
+  {
+    // developer only: a long cape with a hem of colour 2 and a sprinkle of stars
+    name: 'Comet Cape',
+    kind: 'cape',
+    layer: { x: -3, y: 1, rows: ['..11', '.111', '.121', '1111', '1112', '1111', '2111', '1111', '1121', '2222'] },
+  },
 ];
 
 // torso-space accessories (digits 1=acc primary, 2=acc secondary)
@@ -183,6 +189,8 @@ export const ACC_TORSO: Record<string, { layers: MaskLayer[]; tail?: MaskLayer }
     layers: [{ x: 1, y: 0, rows: ['111111', '112211'] }],
     tail: { x: -1, y: 1, rows: ['11', '11', '12', '12', '22'] },
   },
+  // developer only: a bacon strip pinned to the chest (colour 1 = meat, 2 = fat)
+  'Bacon Badge': { layers: [{ x: 4, y: 3, rows: ['1212', '2121'] }] },
   'Bow Tie': { layers: [{ x: 2, y: 1, rows: ['1.2.1', '11211', '1.2.1'] }] },
   Necklace: {
     layers: [

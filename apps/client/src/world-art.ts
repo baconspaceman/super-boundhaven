@@ -4,7 +4,7 @@
 import { Assets, Container, Rectangle, RenderTexture, Sprite, Texture, TilingSprite, type Renderer as PixiRenderer } from 'pixi.js';
 import { TILE, type Level } from '@sbh/sim';
 import { topCap, transparentBand } from './bg-fit';
-import { BG_SHIFT, VIEW_W } from './viewport';
+import { BG_SHIFT, UNDERGROUND_ROWS, VIEW_W } from './viewport';
 // Relative imports: the @sbh/art package.json `exports` map only exposes the package root.
 import { autotile } from '../../../packages/art/src/world/autotile';
 import { decorate } from '../../../packages/art/src/world/decor';
@@ -194,16 +194,19 @@ export class WorldArt {
 
     // ---- tiles: bake 16-column chunks; animated tiles stay live sprites ----
     const terrain = terrainLevel(level);
-    const grid = autotile(terrain);
+    // plain ground continues below the level so the camera can frame the ground high on the screen
+    const deep = terrain.tiles[terrain.height - 1].replace(/[B/\\]/g, '#');
+    const ext: Level = { ...terrain, height: terrain.height + UNDERGROUND_ROWS, tiles: [...terrain.tiles, ...Array<string>(UNDERGROUND_ROWS).fill(deep)] };
+    const grid = autotile(ext);
     const atlas: Record<string, Texture> = {};
     for (const id in tilesJson.tiles) atlas[id] = this.sub(tilesTex, tilesJson.tiles[id]);
     for (const id of ['bounce0', 'bounce1', 'bounce2']) this.bounceTex[id] = atlas[id];
     this.restTex = atlas.bounce0;
-    const H = level.height * TILE;
+    const H = ext.height * TILE;
     for (let c0 = 0; c0 < level.width; c0 += CHUNK_COLS) {
       const c1 = Math.min(level.width, c0 + CHUNK_COLS);
       const tmp = new Container();
-      for (let r = 0; r < level.height; r++)
+      for (let r = 0; r < ext.height; r++)
         for (let c = c0; c < c1; c++) {
           const t = grid[r][c];
           if (!t) continue;
@@ -289,15 +292,15 @@ export class WorldArt {
   }
 
   /** Per-frame: parallax, culling, animation. camX is an integer; now in ms. No allocation. */
-  update(camX: number, now: number): void {
+  update(camX: number, now: number, visL = camX, visW = VIEW_W): void {
     const sec = now / 1000;
     for (const b of this.bgs) {
       const off = Math.floor(camX * b.def.parallax + b.def.drift * sec);
       if (b.def.tileX) (b.node as TilingSprite).tilePosition.x = -off;
       else b.node.x = b.baseX - off;
     }
-    const l = camX - 32;
-    const r = camX + VIEW_W + 32;
+    const l = visL - 32;
+    const r = visL + visW + 32;
     for (const c of this.chunks) c.sprite.visible = c.x1 > l && c.x0 < r;
     for (const p of this.props) {
       const vis = p.x1 > l && p.x0 < r;

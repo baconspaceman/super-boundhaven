@@ -144,7 +144,8 @@ net.onMessage = (m) => {
       }
       joined = true;
       if (m.claimToken) saveClaim(m.name ?? game.myName, m.claimToken);
-      devConsole.setReady(m.role ?? 'player');
+      myRole = m.role ?? 'player';
+      devConsole.setReady(myRole);
       if (m.role === 'admin') showToast('Developer account. Press ` for the console.');
       else if (m.claim?.kind === 'guest' && m.claimToken) showToast('Name claimed for 7 days. Press ` then /register to keep it.');
       const prevId = game.myId;
@@ -205,11 +206,14 @@ function openJoin(name: string, code: string): void {
   creator.open({ mode: 'join', name, code, onSubmit: join });
 }
 
+let myRole = 'player';
+
 function openEdit(): void {
   if (!joined || creator.isOpen) return;
   input.captured = true;
   creator.open({
     mode: 'edit',
+    dev: myRole === 'admin',
     name: game.myName,
     code: game.lookOf(game.myId),
     onSubmit: (_name, code) => {
@@ -327,7 +331,7 @@ function frame(now: number): void {
       deriver.observe(game.me); // land / bounce / stomp / respawn -> rumble + window.__sbh.events
     }
   }
-  renderer.draw(game.drawables(now), game.me ? { x: game.me.x + game.errX, y: game.me.y + game.errY } : null, {
+  renderer.draw(game.drawables(now), game.me ? { x: game.me.x + game.errX, y: game.me.y + game.errY, vx: game.me.vx, onGround: game.me.onGround } : null, {
     level: game.level,
     view: game.view,
     me: game.me,

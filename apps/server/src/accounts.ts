@@ -26,6 +26,7 @@ interface Account {
   hash: string;
   created: number;
   role: Role;
+  look?: string; // canonical look code, kept for the account (guests are not saved)
 }
 interface Claim {
   name: string;
@@ -208,6 +209,22 @@ export class AccountStore {
     delete this.data.claims[key];
     this.save();
     return { kind: 'account', expiresAt: null };
+  }
+
+  /** The look saved on an account (undefined for guests and accounts that never saved one). */
+  getLook(key: string): string | undefined {
+    return this.data.accounts[key]?.look;
+  }
+
+  /** Save a look on an account; false for guests. */
+  setLook(key: string, code: string): boolean {
+    const a = this.data.accounts[key];
+    if (!a) return false;
+    if (a.look !== code) {
+      a.look = code;
+      this.save();
+    }
+    return true;
   }
 
   /** Admin: let a name go (guest claim or non-admin account). */

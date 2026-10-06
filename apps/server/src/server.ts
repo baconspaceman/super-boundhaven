@@ -13,8 +13,11 @@ import {
   SNAPSHOT_FULL_EVERY,
   SNAPSHOT_LOOK_EVERY,
   createWorldEncoder,
+  DEV_SIGNATURE_LOOK,
   defaultLookCode,
+  encodeLook,
   parseLookCode,
+  stripDevCode,
   type ClaimInfo,
   type NetPlayer,
   type Role,
@@ -85,6 +88,7 @@ interface Session {
   dropTimer: NodeJS.Timeout | null;
   needFull: boolean; // next snapshot must carry the full world state (new or re-attached client)
   key: string; // nameKey of the name ('' = anonymous guest with no claim)
+  account: boolean; // joined as a registered account (admin included): the look is saved
   role: Role;
   god: boolean;
   cmdTokens: number;
@@ -227,11 +231,20 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
         }
         ({ name, role, claim, claimToken, key } = r);
       }
+      // look: an account's saved look wins (the developer account starts with its signature look); otherwise the one the
+      // client sent. Developer-only pieces are stripped for everyone else, and account looks are saved.
+      const sent = parseLookCode(msg.look) ?? defaultLookCode(id);
+      let look = sent;
+      if (claim?.kind === 'account') {
+        look = accounts.getLook(key) ?? (role === 'admin' ? encodeLook(DEV_SIGNATURE_LOOK) : sent);
+      }
+      if (role !== 'admin') look = stripDevCode(look);
+      if (claim?.kind === 'account') accounts.setLook(key, look);
       s = {
         id,
         token: randomUUID(),
         name,
-        look: parseLookCode(msg.look) ?? defaultLookCode(id),
+        look,
         lookTokens: LOOK_BURST,
         lookRefillAt: Date.now(),
         ws,
@@ -241,6 +254,7 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
         dropTimer: null,
         needFull: true,
         key,
+        account: claim?.kind === 'account',
         role,
         god: false,
         cmdTokens: CMD_BURST,
@@ -299,8 +313,16 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
         }
         case 'setLook': {
           if (!sess) break;
-          const look = parseLookCode(m.look);
-          if (!look) return send(ws, { t: 'error', message: 'bad look' });
+          const parsed = parseLookCode(m.look);
+          if (!parsed) return send(ws, { t: 'error', message: 'bad look' });
+          let look = parsed;
+          if (sess.role !== 'admin') {
+            look = stripDevCode(parsed);
+            if (look !== parsed) {
+              send(ws, { t: 'info', lines: ['Some of those pieces are developer-only and were removed.'] });
+              send(ws, { t: 'look', id: sess.id, look }); // correct the requester's optimistic copy
+            }
+          }
           const now = Date.now();
           const gained = Math.floor((now - sess.lookRefillAt) / LOOK_REFILL_MS);
           if (gained > 0) {
@@ -311,6 +333,7 @@ export async function createGameServer(opts: GameServerOptions): Promise<GameSer
           sess.lookTokens--;
           if (look === sess.look) break;
           sess.look = look;
+          if (sess.account) accounts.setLook(sess.key, look);
           const out = JSON.stringify({ t: 'look', id: sess.id, look } satisfies ServerMsg);
           for (const o of sessions.values()) send(o.ws, out);
           break;

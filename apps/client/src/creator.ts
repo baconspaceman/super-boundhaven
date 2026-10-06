@@ -10,11 +10,12 @@ import {
   decodeLook,
   encodeLook,
   randomLook,
+  usesDevItems,
   validateLook,
   type CharacterLook,
 } from './art';
 import { getLookSheet } from './look-sheet';
-import { colorTable, countOf, stepField, type ColorTable } from './look-ui';
+import { colorTable, countOf, optionCount, stepField, type ColorTable } from './look-ui';
 import { TICK_MS } from './motion';
 
 type Key = Exclude<keyof CharacterLook, 'v'>;
@@ -68,6 +69,8 @@ export interface CreatorOpenOpts {
   name: string;
   code: string;
   onSubmit(name: string, code: string, pass?: string): void;
+  /** the developer account: show the developer-only pieces (also shown when the look already uses them) */
+  dev?: boolean;
   onCancel?(): void;
 }
 
@@ -77,6 +80,7 @@ const CANVAS_H = 300;
 
 export class Creator {
   private look: CharacterLook = { ...DEFAULT_LOOK };
+  private dev = false;
   private tab: Key = 'skin';
   private seq = 0;
   private flip = false;
@@ -120,6 +124,7 @@ export class Creator {
     this.opts = opts;
     const parsed = decodeLook(opts.code);
     this.look = parsed ?? { ...DEFAULT_LOOK };
+    this.dev = !!opts.dev || usesDevItems(this.look);
     this.nameInput.value = opts.name;
     this.nameInput.readOnly = opts.mode === 'edit';
     this.passField.hidden = opts.mode === 'edit';
@@ -351,7 +356,7 @@ export class Creator {
   }
 
   private step(key: Key, dir: number): void {
-    this.look = stepField(this.look, key, dir);
+    this.look = stepField(this.look, key, dir, this.dev);
     this.refresh();
   }
 
@@ -381,7 +386,7 @@ export class Creator {
   private renderPanel(): void {
     const cat = CHARACTER_OPTIONS.categories.find((c) => c.key === this.tab)!;
     const key = cat.key as Key;
-    const n = cat.names.length;
+    const n = optionCount(key, this.dev);
     const cur = this.look[key];
     const focusedStep = document.activeElement?.getAttribute('data-step');
     const frag = document.createDocumentFragment();

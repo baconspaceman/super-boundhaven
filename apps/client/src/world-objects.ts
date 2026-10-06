@@ -24,6 +24,8 @@ export interface ObjScene {
   me: PlayerState | null;
   doors: DoorTracker;
   cam: number;
+  visL?: number; // visible world rectangle (differs from cam/VIEW_W when the camera is zoomed out)
+  visW?: number;
   now: number;
   onDoor?: (e: DoorEvent, id: number) => void;
 }
@@ -221,8 +223,8 @@ export class WorldObjects {
 
   update(sc: ObjScene, dtMs: number): void {
     const { view, me, now, cam } = sc;
-    const l = cam - 24;
-    const r = cam + VIEW_W + 24;
+    const l = (sc.visL ?? cam) - 24;
+    const r = (sc.visL ?? cam) + (sc.visW ?? VIEW_W) + 24;
     for (const c of this.culls) c.sprite.visible = c.x1 > l && c.x0 < r;
 
     // doors

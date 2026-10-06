@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { packSheet, type Bitmap } from '../src/core';
 import { countColors } from '../src/characters/compose';
 import { HERO_ANIMS, HERO_FRAME_NAMES, HERO_H, HERO_W, RIDER_HIP } from '../src/characters/anims';
-import { CHARACTER_OPTIONS, DEFAULT_LOOK, decodeLook, encodeLook, looksEqual, randomLook, sanitizeLook, validateLook } from '../src/characters/look';
+import { CHARACTER_OPTIONS, DEFAULT_LOOK, DEV_ONLY, DEV_SIGNATURE_LOOK, decodeLook, encodeLook, looksEqual, randomLook, sanitizeLook, stripDevItems, usesDevItems, validateLook } from '../src/characters/look';
 import { composeFrame, composeFrameInfo, composeNamedFrame, composeSheet } from '../src/characters/paperdoll';
 import { buildLayerSheet } from '../src/characters/layersheet';
 import { buildEnemyFrames, ENEMY_ANIMS } from '../src/characters/enemies';
@@ -89,6 +89,29 @@ describe('hero paper-doll', () => {
         expect(components(info.bitmap), `${encodeLook(look)} ${f} components`).toBe(1);
       }
     }
+  });
+  it('developer-only pieces: render clean on 50 looks, never come from randomLook, and did not change any existing look code', () => {
+    expect(encodeLook(DEFAULT_LOOK)).toBe('1IiFLEAqYtUAoA4AAwHA'); // locked: adding options must not move saved codes
+    expect(encodeLook(randomLook(7))).toBe('1Fr4oSw1YvL0EpQywyfY');
+    expect(DEV_ONLY).toEqual({ hat: [15], back: [7], acc: [10] });
+    expect(CHARACTER_OPTIONS.counts.hat).toBe(16);
+    expect(CHARACTER_OPTIONS.counts.back).toBe(8);
+    expect(CHARACTER_OPTIONS.counts.acc).toBe(11);
+    for (let seed = 1; seed <= 300; seed++) expect(usesDevItems(randomLook(seed))).toBe(false);
+    for (let s = 1; s <= 50; s++) {
+      const look = { ...randomLook(s * 104729), hat: 15, back: 7, acc: 10 };
+      expect(validateLook(look)).toEqual([]);
+      expect(decodeLook(encodeLook(look))).toEqual(look);
+      for (const f of HERO_FRAME_NAMES) {
+        const info = composeNamedFrame(look, f);
+        expect(info.clipped, `${encodeLook(look)} ${f} clipped`).toBe(false);
+        expect(components(info.bitmap), `${encodeLook(look)} ${f} components`).toBe(1);
+      }
+    }
+    const stripped = stripDevItems(DEV_SIGNATURE_LOOK);
+    expect(usesDevItems(DEV_SIGNATURE_LOOK)).toBe(true);
+    expect(usesDevItems(stripped)).toBe(false);
+    expect([stripped.hat, stripped.back, stripped.acc]).toEqual([0, 0, 0]);
   });
   it('feet land on the last rows in grounded frames', () => {
     for (const f of ['hero/idle_0', 'hero/walk_0', 'hero/run_0', 'hero/skid', 'hero/land_0']) {

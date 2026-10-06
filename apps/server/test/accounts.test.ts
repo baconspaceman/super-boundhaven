@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import WebSocket from 'ws';
-import { GUEST_CLAIM_MS, type ServerMsg } from '@sbh/protocol';
+import { DEFAULT_LOOK, DEV_SIGNATURE_LOOK, GUEST_CLAIM_MS, decodeLook, encodeLook, usesDevItems, type ServerMsg } from '@sbh/protocol';
 import { AccountStore, nameKey } from '../src/accounts';
 import { createGameServer, type GameServer } from '../src/server';
 
@@ -263,5 +263,60 @@ describe('developer account', () => {
     await until(() => d.infoText().includes('Released'));
     const other = await connect({ name: 'wario' });
     expect(other.last('welcome')).toBeTruthy();
+  });
+});
+
+describe('developer-only looks and saved looks', () => {
+  const dev = { ...DEFAULT_LOOK, hat: 15, back: 7, acc: 10 };
+  const devCode = encodeLook(dev);
+  const plainCode = encodeLook({ ...DEFAULT_LOOK, hair: 5 });
+  const lookOf = (c: Client, id: number) => {
+    const m = [...c.msgs].reverse().find((x) => x.t === 'look' && x.id === id) as Extract<ServerMsg, { t: 'look' }> | undefined;
+    return m ? decodeLook(m.look) : null;
+  };
+
+  it('a normal player cannot wear developer pieces (join and change are both stripped); the developer can', async () => {
+    await start();
+    const p = await connect({ name: 'Normie', look: devCode });
+    const id = p.last('welcome')!.id;
+    expect(usesDevItems(decodeLook(p.last('welcome')!.look)!)).toBe(false);
+    p.send({ t: 'setLook', look: devCode });
+    await until(() => p.infoText().includes('developer-only'));
+    expect(usesDevItems(lookOf(p, id)!)).toBe(false);
+
+    const d = await connect({ name: 'baconspaceman', pass: 'a-very-long-dev-password', look: plainCode });
+    d.send({ t: 'setLook', look: devCode });
+    await until(() => !!lookOf(d, d.last('welcome')!.id) && usesDevItems(lookOf(d, d.last('welcome')!.id)!));
+  });
+
+  it('the developer account starts with its signature look and then keeps whatever it saved', async () => {
+    await start();
+    const first = await connect({ name: 'baconspaceman', pass: 'a-very-long-dev-password', look: plainCode });
+    expect(decodeLook(first.last('welcome')!.look)).toEqual(DEV_SIGNATURE_LOOK);
+    first.send({ t: 'setLook', look: devCode });
+    await until(() => server.accounts.getLook('baconspaceman') === devCode);
+    first.ws.close();
+    await until(() => first.closed);
+    const again = await connect({ name: 'BaconSpaceman', pass: 'a-very-long-dev-password', look: plainCode });
+    expect(again.last('welcome')!.look).toBe(devCode); // the saved look wins over what the browser sent
+  });
+
+  it('a registered player keeps their look across logins; guests are not saved', async () => {
+    await start();
+    const g = await connect({ name: 'Guesty', look: plainCode });
+    expect(g.last('welcome')!.look).toBe(plainCode);
+    expect(server.accounts.getLook('guesty')).toBeUndefined();
+
+    const a = await connect({ name: 'Savey', look: plainCode });
+    a.send({ t: 'cmd', line: '/register savey@example.com super-secret-1' });
+    await until(() => !!a.last('account'));
+    a.ws.close();
+    const b = await connect({ name: 'Savey', pass: 'super-secret-1', look: devCode }); // a dev look sent by a normal account is stripped
+    expect(usesDevItems(decodeLook(b.last('welcome')!.look)!)).toBe(false);
+    const want = encodeLook({ ...DEFAULT_LOOK, hair: 7 });
+    b.send({ t: 'setLook', look: want });
+    await until(() => server.accounts.getLook('savey') === want);
+    const c = await connect({ name: 'Savey', pass: 'super-secret-1', look: plainCode });
+    expect(c.last('welcome')!.look).toBe(want);
   });
 });

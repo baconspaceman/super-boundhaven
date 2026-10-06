@@ -55,9 +55,9 @@ export const OPTION_NAMES = {
   top: ['Tee', 'Striped Tee', 'Tank', 'Hoodie', 'Jacket', 'Overalls', 'Tunic', 'Sweater', 'Sailor', 'Armor', 'Wrap', 'Star Tee'],
   bottom: ['Jeans', 'Shorts', 'Capris', 'Cargo', 'Track Pants', 'Skirt', 'Kilt', 'Stockings'],
   shoes: ['Sneakers', 'Boots', 'Sandals', 'Slippers', 'Hi-Tops', 'Barefoot', 'Clogs', 'Pogo Shoes'],
-  hat: ['None', 'Cap', 'Beanie', 'Bucket Hat', 'Wizard Hat', 'Crown', 'Headband', 'Bandana', 'Cat Ears', 'Bunny Ears', 'Goggles', 'Helmet', 'Straw Hat', 'Flower Crown', 'Coil Antenna'],
-  back: ['None', 'Short Cape', 'Long Cape', 'Backpack', 'Wings', 'Tail', 'Coil Pack'],
-  acc: ['None', 'Round Glasses', 'Shades', 'Eyepatch', 'Freckles', 'Face Mask', 'Scarf', 'Bow Tie', 'Necklace', 'Earring'],
+  hat: ['None', 'Cap', 'Beanie', 'Bucket Hat', 'Wizard Hat', 'Crown', 'Headband', 'Bandana', 'Cat Ears', 'Bunny Ears', 'Goggles', 'Helmet', 'Straw Hat', 'Flower Crown', 'Coil Antenna', 'Dev Crown'],
+  back: ['None', 'Short Cape', 'Long Cape', 'Backpack', 'Wings', 'Tail', 'Coil Pack', 'Comet Cape'],
+  acc: ['None', 'Round Glasses', 'Shades', 'Eyepatch', 'Freckles', 'Face Mask', 'Scarf', 'Bow Tie', 'Necklace', 'Earring', 'Bacon Badge'],
 } as const;
 
 export const CHARACTER_OPTIONS: {
@@ -164,6 +164,52 @@ export function sanitizeLook(look: Partial<CharacterLook> | null | undefined): C
   return out;
 }
 
+/**
+ * Pieces only the developer account may wear (they are the LAST option of their category, so adding them did not change
+ * any existing look code: hats stay within 4 bits, back items within 3, accessories within 4). The server enforces it;
+ * the creator hides them for everyone else.
+ */
+export const DEV_ONLY: Readonly<Partial<Record<'hat' | 'back' | 'acc', readonly number[]>>> = {
+  hat: [15], // Dev Crown
+  back: [7], // Comet Cape
+  acc: [10], // Bacon Badge
+};
+
+export function usesDevItems(look: Pick<CharacterLook, 'hat' | 'back' | 'acc'>): boolean {
+  return (['hat', 'back', 'acc'] as const).some((k) => DEV_ONLY[k]?.includes(look[k]));
+}
+
+/** The look with every developer-only piece replaced by "none". */
+export function stripDevItems(look: CharacterLook): CharacterLook {
+  const out = { ...look };
+  for (const k of ['hat', 'back', 'acc'] as const) if (DEV_ONLY[k]?.includes(out[k])) out[k] = 0;
+  return out;
+}
+
+/** The look the developer account starts with: crown, comet cape and bacon badge over a dark jacket. */
+export const DEV_SIGNATURE_LOOK: CharacterLook = {
+  ...DEFAULT_LOOK,
+  hair: 3,
+  top: 4,
+  topC1: 10,
+  topC2: 3,
+  shoes: 4,
+  hat: 15,
+  hatC1: 3,
+  hatC2: 7,
+  back: 7,
+  backC1: 10,
+  backC2: 3,
+  acc: 10,
+  accC1: 0,
+  accC2: 22,
+};
+
+/** Number of options a player may pick from in a category (everything except the developer-only tail). */
+export function publicCount(key: 'hat' | 'back' | 'acc'): number {
+  return CHARACTER_OPTIONS.counts[key] - (DEV_ONLY[key]?.length ?? 0);
+}
+
 // mulberry32
 function rng(seed: number): () => number {
   let a = seed >>> 0;
@@ -181,7 +227,8 @@ export function randomLook(seed: number): CharacterLook {
   const r = rng(seed * 2654435761 + 12345);
   const pick = (n: number) => Math.floor(r() * n);
   const out = { ...DEFAULT_LOOK } as CharacterLook;
-  for (const k of LOOK_FIELDS) out[k] = pick(CHARACTER_OPTIONS.counts[k]);
+  // (developer-only pieces are never rolled; counting without them also keeps every old seed's result unchanged)
+  for (const k of LOOK_FIELDS) out[k] = pick(k === 'hat' || k === 'back' || k === 'acc' ? publicCount(k) : CHARACTER_OPTIONS.counts[k]);
   // readable pairs: secondary must differ from primary
   const pairs: [NumKey, NumKey][] = [['topC1', 'topC2'], ['botC1', 'botC2'], ['shoeC1', 'shoeC2'], ['hatC1', 'hatC2'], ['backC1', 'backC2'], ['accC1', 'accC2']];
   for (const [a, b] of pairs) if (out[a] === out[b]) out[b] = (out[b] + 7) % CHARACTER_OPTIONS.counts[b];

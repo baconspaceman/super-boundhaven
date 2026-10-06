@@ -8,6 +8,7 @@ Every document in the repository, grouped as in the docs portal. Status words ar
 - [NOTICE](../NOTICE.md): rights, trademarks, originality
 - [CONTRIBUTING](../CONTRIBUTING.md): feedback welcome, code contributions not yet
 - [Names, accounts and the developer account](ACCOUNTS_AND_ADMIN.md): name claims, /register, developer commands, going live
+- [Camera](CAMERA.md): the follow/zoom camera, tunables and URL switches
 - [Hosting handoff](HOSTING_HANDOFF.md): step-by-step to run the public game server
 - [AI disclosure](AI_DISCLOSURE.md): who makes SBH and how (human-directed, AI-assisted)
 - [PLACEMENT_AND_PROVENANCE](../PLACEMENT_AND_PROVENANCE.md): where the project came from

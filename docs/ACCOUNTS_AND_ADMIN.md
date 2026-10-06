@@ -43,3 +43,6 @@ GitHub Pages can only host the static site and the offline creator, not the WebS
 1. Run the server somewhere that keeps a Node process alive (a small VPS, Fly.io, Render, Railway, ...): `SBH_ADMIN_PASSWORD=... SBH_LEVEL=poundRoom npm start -w @sbh/server`, with a persistent disk for `apps/server/data/`.
 2. Put it behind HTTPS so it speaks `wss://` (the Pages site is https, browsers block plain `ws://` from it).
 3. In the GitHub repo, add a Variable `SBH_SERVER_URL` = `wss://your-server`; the next push to `main` rebuilds `/play/` pointing at it.
+
+## Saved looks
+Accounts (the developer account and registered players) keep their character look on the server: the saved look wins when you log in (the creator's pick is used only the first time). Guests are not saved. Developer-only pieces are stripped from non-developers. See `docs/CHARACTER_CREATOR.md`.
