@@ -1,6 +1,6 @@
 # Eight Gates: 8-player raid prototype room (PROPOSAL)
 
-Status: prototype, proposal-labelled. Anthony confirmed raids are 8 players (OPEN_QUESTIONS, 2026-09-30); this room's layout and numbers are Claude's proposal and revisable.
+Status: prototype, proposal-labelled. Bacon Spaceman confirmed raids are 8 players (OPEN_QUESTIONS, 2026-09-30); this room's layout and numbers are Claude's proposal and revisable.
 
 Run it: `npx tsx apps/client/scripts/serve-level.ts raidRoom` (or `SBH_LEVEL=raidRoom`), then open the client dev server. Room rules: min 6 / max 8 players.
 

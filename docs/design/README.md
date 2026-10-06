@@ -1,6 +1,6 @@
 # SBH design docs index
 
-Tags used everywhere: **[CONFIRMED]** Anthony's own words/answers, **[ACCEPTED-DELEGATED]** Claude decided because Anthony delegated it (revisable any time), **[PROPOSAL]** Claude's suggestion awaiting approval (money, legal, real-world risk, public promises always stay here until Anthony decides), **[OPEN]** unresolved.
+Tags used everywhere: **[CONFIRMED]** Bacon Spaceman's own words/answers, **[ACCEPTED-DELEGATED]** Claude decided because Bacon Spaceman delegated it (revisable any time), **[PROPOSAL]** Claude's suggestion awaiting approval (money, legal, real-world risk, public promises always stay here until Bacon Spaceman decides), **[OPEN]** unresolved.
 
 | Doc | Purpose |
 |---|---|
@@ -11,4 +11,4 @@ Tags used everywhere: **[CONFIRMED]** Anthony's own words/answers, **[ACCEPTED-D
 
 Related (repo root / docs): `DESIGN_BRIEF.md`, `DECISIONS.md` (accepted log, including the 2026-09-30 owner answers), `OPEN_QUESTIONS.md`, `CLAUDE_HANDOFF.md`, `docs/ART_NORTH_STAR.md`, `docs/superpowers/specs/2026-09-30-sbh-m1-shared-playground-design.md`.
 
-Rule: a proposal becomes confirmed only when Anthony accepts it and it is logged in `DECISIONS.md` with date and rationale. Delegated decisions are logged the same way and marked ACCEPTED-DELEGATED.
+Rule: a proposal becomes confirmed only when Bacon Spaceman accepts it and it is logged in `DECISIONS.md` with date and rationale. Delegated decisions are logged the same way and marked ACCEPTED-DELEGATED.

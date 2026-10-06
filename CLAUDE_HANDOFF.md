@@ -6,13 +6,13 @@ This is a proposed starting sequence, not approved implementation scope. Read `R
 
 ## Start here
 
-Confirm the smallest playable goal with Anthony. Present a short engine/networking comparison based on browser delivery, later Steam cross-play, precise movement, tooling, and operational cost. Record accepted decisions and assumptions before making broad architectural commitments. Keep later MMO/world/economy ambitions visible without building all of them into the first proof.
+Confirm the smallest playable goal with Bacon Spaceman. Present a short engine/networking comparison based on browser delivery, later Steam cross-play, precise movement, tooling, and operational cost. Record accepted decisions and assumptions before making broad architectural commitments. Keep later MMO/world/economy ambitions visible without building all of them into the first proof.
 
 ## Milestone 1: movement playground
 
 Recommended proof: original movement with acceleration/deceleration, momentum, variable jump height, air control, slopes, and bounces. Tune with a small set of repeatable jump/landing challenges and recorded parameters. Research desired SMW behavior lawfully; do not import Nintendo code/assets/ROMs into SBH.
 
-Suggested evidence: Anthony playtests responsive control, repeatable trajectories, consistent slope/contact behavior, and recoverable failure. Document simulation timestep, tuning values, inputs, and observed edge cases. Coyote time, jump buffering, and assist settings are options to evaluate, not confirmed requirements.
+Suggested evidence: Bacon Spaceman playtests responsive control, repeatable trajectories, consistent slope/contact behavior, and recoverable failure. Document simulation timestep, tuning values, inputs, and observed edge cases. Coyote time, jump buffering, and assist settings are options to evaluate, not confirmed requirements.
 
 ## Milestone 2: small shared region
 
@@ -32,4 +32,4 @@ Review movement and coop playtest evidence before committing to MMO scope. Prior
 
 ## Working boundaries for this handoff
 
-Preparation authorized documents and placement only. This session did not code, launch/message Claude, publish, buy, or create accounts. Obtain Anthony's implementation instructions in the next session. Preserve unrelated work. Use original/licensed assets and document sources. Never inherit monetization rules from other projects. Keep confirmed versus proposed status explicit as decisions evolve.
+Preparation authorized documents and placement only. This session did not code, launch/message Claude, publish, buy, or create accounts. Obtain Bacon Spaceman's implementation instructions in the next session. Preserve unrelated work. Use original/licensed assets and document sources. Never inherit monetization rules from other projects. Keep confirmed versus proposed status explicit as decisions evolve.

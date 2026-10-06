@@ -2,9 +2,9 @@
 
 Companion to `GAME_DESIGN_DOCUMENT.md` (sections 2, 3, 4, 6).
 
-**Decision 2026-09-30 [CONFIRMED by Anthony]:** the skill model is **both** a skill-point tree (Model A) **and** mastery-by-use unlocks (Model B), with **free respecs**. Section 6 defines how they coexist. Detail numbers (costs, caps, slot counts) remain **[PROPOSAL]** tuning values. Build order (mastery layer first, tree overlay after) is **[ACCEPTED-DELEGATED]**.
+**Decision 2026-09-30 [CONFIRMED by Bacon Spaceman]:** the skill model is **both** a skill-point tree (Model A) **and** mastery-by-use unlocks (Model B), with **free respecs**. Section 6 defines how they coexist. Detail numbers (costs, caps, slot counts) remain **[PROPOSAL]** tuning values. Build order (mastery layer first, tree overlay after) is **[ACCEPTED-DELEGATED]**.
 
-Badges: **[CONFIRMED]** = Anthony's own words (brief, decisions log, 2026-09-30 answers); **[ACCEPTED-DELEGATED]** = Claude chose by Anthony's delegation, revisable any time; **[PROPOSAL]** = Claude's design suggestion; **[OPEN]** = unresolved.
+Badges: **[CONFIRMED]** = Bacon Spaceman's own words (brief, decisions log, 2026-09-30 answers); **[ACCEPTED-DELEGATED]** = Claude chose by Bacon Spaceman's delegation, revisable any time; **[PROPOSAL]** = Claude's design suggestion; **[OPEN]** = unresolved.
 
 Reference numbers come from `packages/sim/src/config.ts` (60 Hz, 16 px tiles, hitbox 12x16). Heights and distances are continuous-physics approximations derived from those values; verify against sim tests before tuning anything to them.
 
@@ -19,7 +19,7 @@ Reference numbers come from `packages/sim/src/config.ts` (60 Hz, 16 px tiles, hi
 | R3 | Nothing purchasable with real money grants movement or ability power (no pay-to-win). Skill points and mastery are never sold or traded. | **[ACCEPTED-DELEGATED]** 2026-09-30 | DECISIONS "No paid power" |
 | R4 | No node/gear/powerup may make a **required** route impossible without it. Required routes are base-clearable (with the team, for co-op). | **[PROPOSAL]** | extends R1 |
 | R5 | Competitive play runs under an explicit **ruleset** (Open / Standard / Classic). Classic = base moveset only (normalized/unequipped leaderboard). | **[ACCEPTED-DELEGATED]** 2026-09-30 | DECISIONS rulesets |
-| R9 | Respec is **free**: no currency, instant, never lossy. | **[CONFIRMED]** 2026-09-30 | Anthony: free redos if you don't like your build |
+| R9 | Respec is **free**: no currency, instant, never lossy. | **[CONFIRMED]** 2026-09-30 | Bacon Spaceman: free redos if you don't like your build |
 | R10 | The tree and mastery never gate mount acquisition (mounts are earned via friendly questlines). | **[ACCEPTED-DELEGATED]** | difficulty pillar D2 |
 | R6 | Every movement-affecting bonus is **capped** by the Movement Budget (section 5). | **[PROPOSAL]** | fairness |
 | R7 | Mounts, abilities and gates are **never acquired from the tree or shop in a way that hard-locks progress**. | **[PROPOSAL]** | MOUNTS doc guardrail |
@@ -237,7 +237,7 @@ Ship the mastery layer first (cheaper, less grindy), then add the points tree as
 
 ### 6.5 Original comparison (reference)
 
-Earlier proposal compared the two as alternatives; Anthony chose both, so the comparison now shows what each half contributes.
+Earlier proposal compared the two as alternatives; Bacon Spaceman chose both, so the comparison now shows what each half contributes.
 
 | Dimension | Model A: Points tree | Model B: Mastery-by-use |
 |---|---|---|
@@ -253,7 +253,7 @@ Earlier proposal compared the two as alternatives; Anthony chose both, so the co
 | Extensibility ("no addition too small") | Add nodes (graph growth) | Add feats/perks (flat list growth) |
 | Ties to brief | "tentative skill tree" | Consistent with secrets/exploration emphasis |
 
-**Resolved 2026-09-30:** Anthony chose both with free respecs. Build mastery (Model B) first and layer the points tree (Model A) over the same catalog, per 6.2 to 6.4.
+**Resolved 2026-09-30:** Bacon Spaceman chose both with free respecs. Build mastery (Model B) first and layer the points tree (Model A) over the same catalog, per 6.2 to 6.4.
 
 ---
 

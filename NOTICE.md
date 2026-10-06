@@ -12,7 +12,7 @@ Other products mentioned (MapleStory, PokeMMO, Club Penguin, Terraria, Ms. Splos
 
 ## Who made it
 
-Created by Anthony (`baconspaceman`), human-directed and AI-assisted (Claude, OpenAI Codex, Grok). See [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
+Created by Bacon Spaceman (GitHub: `baconspaceman`), human-directed and AI-assisted (Claude, OpenAI Codex, Grok). See [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
 
 ## Originality
 

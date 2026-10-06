@@ -1,7 +1,7 @@
 import { parseLevel, type LevelMeta } from '../level';
 
 /**
- * "Eight Gates": 8-player raid prototype room (design: docs/design/RAID_ROOM.md, PROPOSAL until Anthony accepts it).
+ * "Eight Gates": 8-player raid prototype room (design: docs/design/RAID_ROOM.md, PROPOSAL until Bacon Spaceman accepts it).
  * Same parts as Twin Plates, scaled to a full party, in four segments with a checkpoint flag after each gate:
  *  1. hall: eight plates 4 tiles apart -> gate 0 (needs 6 held at once, so 2 can be missing or busy)
  *  2. 60-tile corridor: a 5 s timed lever far from gate 1 -> a sprinter slips through and latches it from the far side

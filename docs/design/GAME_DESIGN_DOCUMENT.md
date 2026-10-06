@@ -1,32 +1,32 @@
 # Super BoundHaven (SBH): Master Game Design Document
 
-Version 0.2, 2026-09-30 (owner answers recorded). Working title; independent project, unrelated to Anthony's other projects. This is the single document that aligns the brief, the decisions log, the mounts/exploration doc, the art north star, the M1 spec and the public site.
+Version 0.2, 2026-09-30 (owner answers recorded). Working title; independent project, unrelated to Bacon Spaceman's other projects. This is the single document that aligns the brief, the decisions log, the mounts/exploration doc, the art north star, the M1 spec and the public site.
 
 ## How to read this document
 
 | Badge | Meaning |
 |---|---|
-| **[CONFIRMED]** | Anthony's own words (design brief, accepted-decisions log, owner answers of 2026-09-30, owner direction in the art north star). Source is named. |
-| **[ACCEPTED-DELEGATED]** | Anthony said "I'll let you decide" (2026-09-30); Claude adopted its documented recommendation. Binding for development; revisable by Anthony any time. |
-| **[PROPOSAL]** | Claude's design suggestion awaiting Anthony's approval. Never treat as decided. Money, legal exposure, real-world risk and public promises stay here until Anthony decides. |
+| **[CONFIRMED]** | Bacon Spaceman's own words (design brief, accepted-decisions log, owner answers of 2026-09-30, owner direction in the art north star). Source is named. |
+| **[ACCEPTED-DELEGATED]** | Bacon Spaceman said "I'll let you decide" (2026-09-30); Claude adopted its documented recommendation. Binding for development; revisable by Bacon Spaceman any time. |
+| **[PROPOSAL]** | Claude's design suggestion awaiting Bacon Spaceman's approval. Never treat as decided. Money, legal exposure, real-world risk and public promises stay here until Bacon Spaceman decides. |
 | **[OPEN]** | Unresolved question; needs an answer (see section 14). |
 
 Ground rules that apply everywhere **[CONFIRMED]**: original assets and designs only (no third-party assets or mocap, 2026-09-30); no promises of dates, prices or rewards; long-term, open-ended scope ("no feature too big, no addition too small", DECISIONS 2026-09-30), so every system is designed for extensibility and phased. Do not import the other projects' rules. No real-money gambling is assumed. Licensing **[CONFIRMED]** 2026-09-30: code MIT; art, music, content and docs CC BY-NC-SA 4.0; name and logo reserved.
 
 Related docs: `DESIGN_BRIEF.md`, `DECISIONS.md`, `OPEN_QUESTIONS.md`, `docs/design/DIFFICULTY_PHILOSOPHY.md`, `docs/design/MOUNTS_AND_EXPLORATION.md`, `docs/design/SKILL_TREE_AND_ABILITIES.md` (detail tables), `docs/ART_NORTH_STAR.md`, `docs/superpowers/specs/2026-09-30-sbh-m1-shared-playground-design.md`.
 
-### Confirmed register (Anthony's words; everything else in this doc is proposal or open)
+### Confirmed register (Bacon Spaceman's words; everything else in this doc is proposal or open)
 
 | Confirmed item | Source |
 |---|---|
-| Mount roster: frog, dinosaur, flying dinosaur, cheetah; **no wolf planned** (more animals possible later) | DECISIONS log 2026-09-30; Anthony's answer 2026-09-30 |
-| Difficulty: challenging but not too difficult; **mounts must not be hard to get** | Anthony 2026-09-30; `DIFFICULTY_PHILOSOPHY.md` |
-| Base moveset gains **crouch/down** (and drop-through) and **action/activate**: six inputs | Anthony 2026-09-30 |
-| Skill model: **both** skill-point tree and mastery-by-use, with **free respecs** | Anthony 2026-09-30 |
-| Raids: **8 players** (cap 8); smaller co-op rooms for 2 to 4 | Anthony 2026-09-30 |
-| Character creator: add front/three-quarter face views to the preview, evaluate visually; side-view faces stay for gameplay | Anthony 2026-09-30 |
-| Strictly original: no third-party assets or mocap | Anthony 2026-09-30 |
-| Open-source: code MIT; art/music/content/docs CC BY-NC-SA 4.0; name and logo reserved | Anthony 2026-09-30 |
+| Mount roster: frog, dinosaur, flying dinosaur, cheetah; **no wolf planned** (more animals possible later) | DECISIONS log 2026-09-30; Bacon Spaceman's answer 2026-09-30 |
+| Difficulty: challenging but not too difficult; **mounts must not be hard to get** | Bacon Spaceman 2026-09-30; `DIFFICULTY_PHILOSOPHY.md` |
+| Base moveset gains **crouch/down** (and drop-through) and **action/activate**: six inputs | Bacon Spaceman 2026-09-30 |
+| Skill model: **both** skill-point tree and mastery-by-use, with **free respecs** | Bacon Spaceman 2026-09-30 |
+| Raids: **8 players** (cap 8); smaller co-op rooms for 2 to 4 | Bacon Spaceman 2026-09-30 |
+| Character creator: add front/three-quarter face views to the preview, evaluate visually; side-view faces stay for gameplay | Bacon Spaceman 2026-09-30 |
+| Strictly original: no third-party assets or mocap | Bacon Spaceman 2026-09-30 |
+| Open-source: code MIT; art/music/content/docs CC BY-NC-SA 4.0; name and logo reserved | Bacon Spaceman 2026-09-30 |
 | Mounts summonable anytime in the open world | same |
 | Some levels/areas require a specific mount; Metroidvania-style exploration with secrets and Easter eggs | same |
 | Art: Super Mario World essence (bones, inspiration), 100% original designs, no cubes | ART_NORTH_STAR owner direction 2026-09-30 |
@@ -64,7 +64,7 @@ SBH is an independent 16-bit-style side-scrolling **platforming MMO**: precise m
 |---|---|---|---|
 | P1 | **Movement is the skill** | **[CONFIRMED]** (brief) | Base moveset is deep; challenge is mostly precision platforming and timing |
 | P2 | **Fair, forgiving, endlessly retryable** | **[CONFIRMED]** ("challenging, fair, forgiving enough to encourage retries") | Fast retry, clear telegraphs, instant retry plus checkpoints on long levels **[ACCEPTED-DELEGATED]** |
-| P8 | **Challenging, but not too difficult; mounts approachable** | **[CONFIRMED]** (Anthony 2026-09-30) | Hardest content stays optional/endgame; mounts obtainable by an average player with moderate effort; assists and checkpoints exist; see `DIFFICULTY_PHILOSOPHY.md` |
+| P8 | **Challenging, but not too difficult; mounts approachable** | **[CONFIRMED]** (Bacon Spaceman 2026-09-30) | Hardest content stays optional/endgame; mounts obtainable by an average player with moderate effort; assists and checkpoints exist; see `DIFFICULTY_PHILOSOPHY.md` |
 | P3 | **Together is the point** | **[CONFIRMED]** (brief) | Players are solid; co-op requires coordinated execution, not solo carries |
 | P4 | **Explore and discover** | **[CONFIRMED]** (decisions log: Metroidvania-style world, secrets, Easter eggs) | Gates, secrets, map, curiosity rewarded |
 | P5 | **Gear eases, never replaces** | **[CONFIRMED]** (brief) | Build expression without breaking the skill ceiling |
@@ -75,13 +75,13 @@ SBH is an independent 16-bit-style side-scrolling **platforming MMO**: precise m
 | Is | Is not |
 |---|---|
 | An independent platformer MMO with mounts, raids, editor | A clone or reskin of any Nintendo game; no copied characters, tiles, enemies, music or levels **[CONFIRMED]** |
-| Skill-first, gear-assisted | Pay-to-win (no paid power **[ACCEPTED-DELEGATED]**; monetization terms still need Anthony, section 9) |
+| Skill-first, gear-assisted | Pay-to-win (no paid power **[ACCEPTED-DELEGATED]**; monetization terms still need Bacon Spaceman, section 9) |
 | Browser first, Steam later | Launch-date-bound; no date promised **[CONFIRMED]** |
 | Open-ended and extensible | A fixed launch feature list; not all regions required at launch |
 | Fictional cat/casino lore later | A real-money gambling product **[CONFIRMED]** (none assumed) |
 
 ### 1.4 Audience and tone
-Audience: players who like precise platformers and social games; references for *feel and community* are MapleStory, PokeMMO, Club Penguin, WoW (not content reuse) **[CONFIRMED]**. Age band and chat posture **[OPEN, needs Anthony]** (decision 15; interim development default is quick-chat only); accessibility follows `DIFFICULTY_PHILOSOPHY.md` assists. Tone: bright, friendly, quirky humor (e.g. the cat-staff lore) **[CONFIRMED]** in lore; danger is in the platforming, not grimness (art north star: "nothing muddy, nothing grim").
+Audience: players who like precise platformers and social games; references for *feel and community* are MapleStory, PokeMMO, Club Penguin, WoW (not content reuse) **[CONFIRMED]**. Age band and chat posture **[OPEN, needs Bacon Spaceman]** (decision 15; interim development default is quick-chat only); accessibility follows `DIFFICULTY_PHILOSOPHY.md` assists. Tone: bright, friendly, quirky humor (e.g. the cat-staff lore) **[CONFIRMED]** in lore; danger is in the platforming, not grimness (art north star: "nothing muddy, nothing grim").
 
 ### 1.5 Platform plan
 Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack accepted 2026-09-30: TypeScript end to end, Vite + PixiJS client, Node + `ws` authoritative server, shared deterministic `@sbh/sim`; client prediction + server authority + reconciliation, remote interpolation **[CONFIRMED]** (decisions log). Input devices **[ACCEPTED-DELEGATED]** 2026-09-30: keyboard first, then gamepad; touch/mobile is not a launch target (M1 spec lists touch out of scope). Six inputs (section 2.2). Steam cross-play design constraints: no browser-only assumptions in protocol; stable account linking **[OPEN]**.
@@ -93,7 +93,7 @@ Browser first; Steam later with browser/Steam cross-play **[CONFIRMED]**. Stack 
 
 ## 2. Core movement and the base moveset
 
-**Status:** M1 movement is implemented in `packages/sim` **[CONFIRMED]** as accepted direction; numbers are original tuning (config.ts: "no third-party game data used"). Final feel **[OPEN]** until Anthony playtests.
+**Status:** M1 movement is implemented in `packages/sim` **[CONFIRMED]** as accepted direction; numbers are original tuning (config.ts: "no third-party game data used"). Final feel **[OPEN]** until Bacon Spaceman playtests.
 
 ### 2.1 Simulation facts (from `packages/sim/src/config.ts` and `step.ts`)
 Tick 60 Hz, tile 16 px, screen 256x224 (16x14 tiles), hitbox 14x28, position units px, inputs = 4 bits today (LEFT, RIGHT, JUMP, RUN); target is six (adds DOWN and ACTION, section 2.2; sim work in M4).
@@ -201,7 +201,7 @@ Design rules: no mushrooms, capes/feathers, invincibility stars, fire flowers, o
 
 ## 4. Skill tree
 
-**Status:** **[CONFIRMED 2026-09-30]** Anthony chose **both** a skill-point tree and mastery-by-use unlocks, with **free respecs** ("free redos if you don't like your build"). Numbers, costs and slot counts below stay **[PROPOSAL]** tuning values; coexistence rules and build order are **[ACCEPTED-DELEGATED]**. Full detail in `SKILL_TREE_AND_ABILITIES.md` (sections 4 to 6).
+**Status:** **[CONFIRMED 2026-09-30]** Bacon Spaceman chose **both** a skill-point tree and mastery-by-use unlocks, with **free respecs** ("free redos if you don't like your build"). Numbers, costs and slot counts below stay **[PROPOSAL]** tuning values; coexistence rules and build order are **[ACCEPTED-DELEGATED]**. Full detail in `SKILL_TREE_AND_ABILITIES.md` (sections 4 to 6).
 
 ### 4.1 Constraints
 - No pay-to-win; points and mastery never purchasable **[ACCEPTED-DELEGATED]**. Must not break base-moveset fairness. Movement-affecting nodes capped and disabled in Classic (Classic/normalized leaderboard rule stays). Tree never gates required content or mount acquisition.
@@ -232,7 +232,7 @@ Comparison table (reference): mastery is higher on exploration fit and lower on 
 ## 5. Mounts and Metroidvania exploration
 
 ### 5.1 Confirmed **[CONFIRMED]** (DECISIONS log 2026-09-30; `MOUNTS_AND_EXPLORATION.md`)
-- Many different animals, each doing different things. Roster: **frog, dinosaur, flying dinosaur, cheetah**. **No wolf is planned** (Anthony, 2026-09-30); more animals may come later but none are committed.
+- Many different animals, each doing different things. Roster: **frog, dinosaur, flying dinosaur, cheetah**. **No wolf is planned** (Bacon Spaceman, 2026-09-30); more animals may come later but none are committed.
 - **Difficulty rule [CONFIRMED 2026-09-30]:** getting mounts must not be too difficult (pillar P8, `DIFFICULTY_PHILOSOPHY.md`).
 - **Summon anytime** in the open world.
 - Some levels and open-world areas **require** a specific mount (e.g. frog).
@@ -342,14 +342,14 @@ Required routes are base-clearable (section 2.3); gear widens margins on optiona
 ## 7. Co-op dungeons and raids
 
 ### 7.1 Confirmed intent **[CONFIRMED]** (brief)
-Cooperative dungeons must genuinely require coordinated actions: player bounces, switches, timing, shared execution. Hardest raids approach Kaizo difficulty mixed with Ms. Splosion Man-style cooperation. The brief said "six or eight"; **Anthony decided 8 players on 2026-09-30 [CONFIRMED]**, the standard hardest-raid group size. Solo completion is not the default reading.
+Cooperative dungeons must genuinely require coordinated actions: player bounces, switches, timing, shared execution. Hardest raids approach Kaizo difficulty mixed with Ms. Splosion Man-style cooperation. The brief said "six or eight"; **Bacon Spaceman decided 8 players on 2026-09-30 [CONFIRMED]**, the standard hardest-raid group size. Solo completion is not the default reading.
 
 ### 7.2 Tiers and group sizes
 | Tier | Purpose | Size |
 |---|---|---|
 | Co-op rooms / trials | Teach co-op primitives inside the open world | 2 to 4 [CONFIRMED: smaller co-op rooms for 2 to 4] |
 | Dungeons | Mixed execution, puzzle bosses | 3 to 5 **[ACCEPTED-DELEGATED]** |
-| Raids | Kaizo-level cooperation | **8 players, cap 8** [CONFIRMED]; cap stays 8 unless Anthony later decides otherwise |
+| Raids | Kaizo-level cooperation | **8 players, cap 8** [CONFIRMED]; cap stays 8 unless Bacon Spaceman later decides otherwise |
 
 A raid **requires 8** (minimum and cap are both 8 at launch); it never scales down, which keeps coordination real **[ACCEPTED-DELEGATED]**. Smaller groups play the 2 to 4 co-op rooms and dungeons. Raids are optional endgame (pillar P8): no mount or required progression sits behind them. Raid parties need ready-check and party-fill tools (friends, party finder) so 8 can actually assemble; design detail in 7.4.
 
@@ -436,14 +436,14 @@ Combination matrix **[PROPOSAL]**:
 | Pursuer + powerups that slow hazards (Hourglass) | Disabled |
 
 ### 8.5 Checkpoints and failure **[ACCEPTED-DELEGATED]**
-Sim now respawns at spawn on fall. Decided: instant retry, checkpoints on long levels, no punitive loss, no lives, raids by segment; assist options (extra checkpoints, wider forgiveness, slower threats, telegraph boost, practice mode, hints) per `DIFFICULTY_PHILOSOPHY.md`, marked "Assisted" and excluded from ranked boards. Matches Anthony's difficulty answer (P8).
+Sim now respawns at spawn on fall. Decided: instant retry, checkpoints on long levels, no punitive loss, no lives, raids by segment; assist options (extra checkpoints, wider forgiveness, slower threats, telegraph boost, practice mode, hints) per `DIFFICULTY_PHILOSOPHY.md`, marked "Assisted" and excluded from ranked boards. Matches Bacon Spaceman's difficulty answer (P8).
 
 ---
 
 ## 9. Economy and items
 
 ### 9.1 Stance and constraints
-Tradeable useful items, consumables, functional gear exist **[CONFIRMED]**. Currencies, sinks, crafting, trading model, paid power are **[OPEN]**. **No paid power is accepted by delegation (2026-09-30); the monetization model, prices and terms remain [PROPOSAL, needs Anthony]**; no promises of amounts, terms, dates, rewards **[CONFIRMED]**. Monetization and beta rules from other projects are not imported **[CONFIRMED]**.
+Tradeable useful items, consumables, functional gear exist **[CONFIRMED]**. Currencies, sinks, crafting, trading model, paid power are **[OPEN]**. **No paid power is accepted by delegation (2026-09-30); the monetization model, prices and terms remain [PROPOSAL, needs Bacon Spaceman]**; no promises of amounts, terms, dates, rewards **[CONFIRMED]**. Monetization and beta rules from other projects are not imported **[CONFIRMED]**.
 
 ### 9.2 Currencies **[PROPOSAL]**
 | Currency | Source | Tradeable | Purpose |
@@ -543,7 +543,7 @@ Known sim limitation today: the client predicts only the local player against st
 ### 12.2 Phased roadmap **[PROPOSAL]** (aligned with site roadmap: M1, M2, M3, editor, economy, cat site, Steam)
 | Phase | Scope | Entry | Exit |
 |---|---|---|---|
-| **M1** Movement playground (in progress) | Shared 60 Hz sim, prediction, stomp/push | Accepted 2026-09-30 | Anthony playtest signs off feel; tuning doc; tests green |
+| **M1** Movement playground (in progress) | Shared 60 Hz sim, prediction, stomp/push | Accepted 2026-09-30 | Bacon Spaceman playtest signs off feel; tuning doc; tests green |
 | **M2** Small shared region | Polished region, latency/jitter/loss tests, reconnect | M1 exit | Coherent motion for N clients at agreed latency; no state corruption |
 | **M3** Coordinated challenge | One co-op room (switches + bounce), disconnect rule | M2 exit | Solution requires coordination; retry cost acceptable; fair at tested latency |
 | **M4** Base moveset additions | DOWN (crouch/drop-through) and ACTION (six inputs), semi-solids, checkpoints, per-player cfg | M3 learnings | New moves regression-tested; feel playtested |
@@ -611,18 +611,18 @@ Mismatches or tensions between the brief, decisions log, open questions, public 
 
 ## 14. Resolved decision log
 
-Resolved 2026-09-30 after Anthony answered the 15-question queue. Status key: **DECIDED** = Anthony's own answer **[CONFIRMED]**; **DELEGATED** = Anthony said "I'll let you decide", Claude adopted its own recommendation **[ACCEPTED-DELEGATED]**, revisable by Anthony any time; **STILL OPEN** = money/legal/real-world-risk/public-promise items that need Anthony. Mirror of `DECISIONS.md`.
+Resolved 2026-09-30 after Bacon Spaceman answered the 15-question queue. Status key: **DECIDED** = Bacon Spaceman's own answer **[CONFIRMED]**; **DELEGATED** = Bacon Spaceman said "I'll let you decide", Claude adopted its own recommendation **[ACCEPTED-DELEGATED]**, revisable by Bacon Spaceman any time; **STILL OPEN** = money/legal/real-world-risk/public-promise items that need Bacon Spaceman. Mirror of `DECISIONS.md`.
 
 | # | Question | Result | Status | Rationale |
 |---|---|---|---|---|
-| 1 | Skill model | **Both**: skill-point tree plus mastery-by-use; **free respecs**; mastery first, tree overlay (order delegated) | DECIDED (model, free respec); DELEGATED (coexistence, order) | Anthony: free redos if you dislike your build. See section 4.4 |
+| 1 | Skill model | **Both**: skill-point tree plus mastery-by-use; **free respecs**; mastery first, tree overlay (order delegated) | DECIDED (model, free respec); DELEGATED (coexistence, order) | Bacon Spaceman: free redos if you dislike your build. See section 4.4 |
 | 2 | Fair-play rulesets | A) Open/Standard/Classic; Classic = normalized leaderboard | DELEGATED | Fair competition without banning builds from casual play |
-| 3 | Base moveset additions | **Yes to both**: DOWN (crouch/drop-through) and ACTION; coyote/buffer stay for everyone; six inputs | DECIDED (buttons); DELEGATED (coyote/buffer) | Anthony said yes; coyote/buffer match "forgiving" pillar |
-| 4 | Fail and checkpoints | A) Instant retry, checkpoints on long levels, no loss; raids by segment | DELEGATED | Matches Anthony's difficulty answer (P8) |
+| 3 | Base moveset additions | **Yes to both**: DOWN (crouch/drop-through) and ACTION; coyote/buffer stay for everyone; six inputs | DECIDED (buttons); DELEGATED (coyote/buffer) | Bacon Spaceman said yes; coyote/buffer match "forgiving" pillar |
+| 4 | Fail and checkpoints | A) Instant retry, checkpoints on long levels, no loss; raids by segment | DELEGATED | Matches Bacon Spaceman's difficulty answer (P8) |
 | 5 | Mount acquisition | Friendly short questline per mount, free, permanent, never sold, optional hard cosmetic extras; never behind raids | DECIDED (not too difficult); DELEGATED (questline design) | "Mounts must not be too difficult" |
 | 6 | Required-path mount gates | A) Always an alternate or loaner | DELEGATED | Never hard-lock players |
-| 7 | Raid size | **8 players**, cap 8; no scaling; smaller co-op rooms 2 to 4; dropout/replacement rules | DECIDED | Anthony: standard hardest-raid size |
-| 8 | Paid power | A) None; no pay-to-win. (Monetization model, prices, terms are separate) | DELEGATED (principle); STILL OPEN (monetization terms) | Protects skill-first pillar; money terms need Anthony |
+| 7 | Raid size | **8 players**, cap 8; no scaling; smaller co-op rooms 2 to 4; dropout/replacement rules | DECIDED | Bacon Spaceman: standard hardest-raid size |
+| 8 | Paid power | A) None; no pay-to-win. (Monetization model, prices, terms are separate) | DELEGATED (principle); STILL OPEN (monetization terms) | Protects skill-first pillar; money terms need Bacon Spaceman |
 | 9 | Trading | A) Atomic direct trade first, market later | DELEGATED | Smaller dupe/scam surface |
 | 10 | Accounts/persistence | Guest play with later account link; persist look, unlocks, loadouts first | DELEGATED (persistence scope); STILL OPEN (login provider, privacy) | Provider/privacy involve legal exposure |
 | 11 | Overworld shape | A) Capped channels per region plus instances; channel cap from M2 tests | DELEGATED | Proven MMO shape; measure first |
@@ -631,7 +631,7 @@ Resolved 2026-09-30 after Anthony answered the 15-question queue. Status key: **
 | 14 | First content slice | A) Grassland, Caves, Factory; City hub later | DELEGATED | Covers teaching, precision, timing |
 | 15 | Audience and chat | Interim dev default: quick-chat only, no free text | STILL OPEN (age band, chat posture) | Child-safety/legal exposure |
 
-Bonus items: **wolf mount: DECIDED no** (Anthony); **input devices: DELEGATED** keyboard then gamepad, no touch at launch; **currency/character names and final title/legal clearance: STILL OPEN**.
+Bonus items: **wolf mount: DECIDED no** (Bacon Spaceman); **input devices: DELEGATED** keyboard then gamepad, no touch at launch; **currency/character names and final title/legal clearance: STILL OPEN**.
 
 Other decisions recorded from the same answers:
 - **Difficulty philosophy [DECIDED]:** pillar P8, `DIFFICULTY_PHILOSOPHY.md`.
@@ -639,4 +639,4 @@ Other decisions recorded from the same answers:
 - **Third-party assets/mocap [DECIDED]:** none; strictly original.
 - **Open source [DECIDED]:** code MIT; art, music, content, docs CC BY-NC-SA 4.0; name and logo reserved (LICENSE files applied by the lead).
 
-Still needing Anthony (never decided by delegation): monetization model and prices, supporter terms, community-goal promises, early-player/download rewards, launch dates, casino mechanics beyond the no-real-money guardrail, login provider and privacy/age/chat posture, moderation policy/ToS/takedowns, final title/legal clearance, naming of currency and characters, and any future change to the BY-NC-SA terms once monetization is approved.
+Still needing Bacon Spaceman (never decided by delegation): monetization model and prices, supporter terms, community-goal promises, early-player/download rewards, launch dates, casino mechanics beyond the no-real-money guardrail, login provider and privacy/age/chat posture, moderation policy/ToS/takedowns, final title/legal clearance, naming of currency and characters, and any future change to the BY-NC-SA terms once monetization is approved.

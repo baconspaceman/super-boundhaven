@@ -1,10 +1,10 @@
 # Open questions
 
-> **Update 2026-09-30 (second pass):** Anthony answered the queue. Answered items are in the Answered section below with a pointer to `DECISIONS.md`. Items he delegated to Claude are marked ACCEPTED-DELEGATED (revisable by him any time). Only items involving money, legal exposure, real-world risk or public promises remain open. Full queue: `docs/design/GAME_DESIGN_DOCUMENT.md` section 14.
+> **Update 2026-09-30 (second pass):** Bacon Spaceman answered the queue. Answered items are in the Answered section below with a pointer to `DECISIONS.md`. Items he delegated to Claude are marked ACCEPTED-DELEGATED (revisable by him any time). Only items involving money, legal exposure, real-world risk or public promises remain open. Full queue: `docs/design/GAME_DESIGN_DOCUMENT.md` section 14.
 
 Claude can research options and present tradeoffs; do not silently convert defaults into accepted requirements.
 
-## Still open (needs Anthony)
+## Still open (needs Bacon Spaceman)
 
 - Monetization model, prices, optional monthly support terms, community goals, supporter names/consent, Steam-fee target. (Principle accepted: no paid power; cosmetics-only.)
 - Early-player/download rewards (amounts, terms, eligibility, how counted); any launch date or dated promise.
@@ -13,13 +13,13 @@ Claude can research options and present tradeoffs; do not silently convert defau
 - Moderation, terms of service and takedown handling for uploaded levels; weekly featured rewards specifics.
 - Final title, legal/name clearance, character and currency names.
 - Whether the BY-NC-SA 4.0 content license should change once monetization is approved.
-- Visual verdict on front/three-quarter faces after the creator preview is built (Anthony: "we'll see how that looks").
-- Pure engineering unknowns (measured later, not Anthony's call): channel cap per region, sync windows at 8 players, exact numbers in Movement Budget and mastery tiers.
+- Visual verdict on front/three-quarter faces after the creator preview is built (Bacon Spaceman: "we'll see how that looks").
+- Pure engineering unknowns (measured later, not Bacon Spaceman's call): channel cap per region, sync windows at 8 players, exact numbers in Movement Budget and mastery tiers.
 - Mounts and exploration still unresolved in detail: summon cooldown/stamina, mount health, passengers, mounts in races, map/discovery UI scope, Easter-egg framework scope (working proposals in `docs/design/MOUNTS_AND_EXPLORATION.md`).
 
 ## Answered
 
-### Answered by Anthony (2026-09-30, CONFIRMED)
+### Answered by Bacon Spaceman (2026-09-30, CONFIRMED)
 
 - Wolf mount? **No.** Roster is frog, dinosaur, flying dinosaur, cheetah; more animals later but no wolf planned.
 - Difficulty? **Challenging but not too difficult; mounts must not be hard to get.** See `docs/design/DIFFICULTY_PHILOSOPHY.md`.

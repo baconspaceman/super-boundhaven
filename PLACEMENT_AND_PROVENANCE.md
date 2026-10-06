@@ -1,6 +1,6 @@
 # Placement and provenance
 
-Prepared 2026-09-30 from Anthony's supplied SBH requirements. No external research or name/price/legal verification was performed during this organization task.
+Prepared 2026-09-30 from Bacon Spaceman's supplied SBH requirements. No external research or name/price/legal verification was performed during this organization task.
 
 ## Workspace choice
 
@@ -22,4 +22,4 @@ Destination copies are verified against staged files using SHA-256 hashes. No de
 
 ## Authorship
 
-The project is created by Anthony (`baconspaceman`) and is human-directed and AI-assisted; see [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
+The project is created by Bacon Spaceman (GitHub: `baconspaceman`) and is human-directed and AI-assisted; see [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
