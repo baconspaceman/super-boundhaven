@@ -7,6 +7,7 @@ Every document in the repository, grouped as in the docs portal. Status words ar
 - [README](../README.md): front page, status table, how to run it
 - [NOTICE](../NOTICE.md): rights, trademarks, originality
 - [CONTRIBUTING](../CONTRIBUTING.md): feedback welcome, code contributions not yet
+- [AI disclosure](AI_DISCLOSURE.md): who makes SBH and how (human-directed, AI-assisted)
 - [PLACEMENT_AND_PROVENANCE](../PLACEMENT_AND_PROVENANCE.md): where the project came from
 
 ## Design

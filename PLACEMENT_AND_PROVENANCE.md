@@ -19,3 +19,7 @@ Existing workspace found at `<workspace>`. Its root `AGENTS.md` describes a mult
 All six Markdown files in this folder were newly prepared. No existing implementation, assets, or notes were moved. Existing projects, originals, shared memory, accounts, and assistant processes were preserved. A staged copy remains in the delegated Codex task workspace under `SBH-handoff` for recovery.
 
 Destination copies are verified against staged files using SHA-256 hashes. No destructive cleanup is necessary or authorized by this preparation.
+
+## Authorship
+
+The project is created by Anthony (`baconspaceman`) and is human-directed and AI-assisted; see [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).

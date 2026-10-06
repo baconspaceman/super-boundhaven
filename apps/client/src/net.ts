@@ -96,6 +96,14 @@ export class Net {
   }
 
   /** Remember the look for reconnects and send it live. */
+  /** Stop for good (no reconnect): used when the server speaks a different protocol version. */
+  stop(): void {
+    this.wanted = false;
+    if (this.retry) clearTimeout(this.retry);
+    this.retry = null;
+    this.ws?.close();
+  }
+
   setLook(look: string): void {
     this.look = look;
     this.send({ t: 'setLook', look });

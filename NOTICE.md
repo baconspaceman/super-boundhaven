@@ -10,6 +10,10 @@ Super Mario World, Mario, Yoshi, Nintendo and other game titles and names mentio
 
 Other products mentioned (MapleStory, PokeMMO, Club Penguin, Terraria, Ms. Splosion Man, and similar) are likewise trademarks of their owners and are named only as references.
 
+## Who made it
+
+Created by Anthony (`baconspaceman`), human-directed and AI-assisted (Claude, OpenAI Codex, Grok). See [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
+
 ## Originality
 
 All characters, creatures, tiles, backgrounds, levels, mechanics, code and text are original. No third-party game assets, ROMs, ISOs, music, sound or source code are included. Blender scenes are procedural. See the "Originality and assets" section of the [README](README.md).

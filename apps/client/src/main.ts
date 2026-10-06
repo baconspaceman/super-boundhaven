@@ -7,7 +7,8 @@ import { Input } from './input';
 import { Net } from './net';
 import { Renderer } from './render';
 import { ActionPrompt } from './action-prompt';
-import { LocalWatch, leverInReach } from './scene-logic';
+import { PROTOCOL_VERSION } from '@sbh/protocol';
+import { LocalWatch, leverInReach, versionProblem } from './scene-logic';
 import { EventDeriver, Rumble, gameEvents } from './rumble';
 import { UiNav, cycleTabs } from './ui-nav';
 import { REGIONS, isRegion, type RegionId } from './world-art';
@@ -130,6 +131,14 @@ net.onStatus = (up) => {
 net.onMessage = (m) => {
   switch (m.t) {
     case 'welcome': {
+      const problem = versionProblem(m.v, PROTOCOL_VERSION);
+      if (problem) {
+        net.stop();
+        creator.setStatus(problem, true);
+        banner.textContent = problem;
+        banner.style.display = 'block';
+        break;
+      }
       joined = true;
       const prevId = game.myId;
       const levelChanged = game.welcome(m.id, m.level);

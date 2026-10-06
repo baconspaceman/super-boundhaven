@@ -8,6 +8,10 @@
 
 Early prototype. Not a finished game. Everything below says plainly what exists and what is only planned.
 
+**Created by Anthony ([baconspaceman](https://github.com/baconspaceman)). Human-directed, AI-assisted: built with Claude (Anthropic), OpenAI Codex and Grok (xAI).** [How it's made](docs/AI_DISCLOSURE.md)
+
+![made by](https://img.shields.io/badge/made%20by-baconspaceman-5a3fa0) ![process](https://img.shields.io/badge/process-human--directed%2C%20AI--assisted-24cfdb)
+
 [Game site](https://baconspaceman.github.io/super-boundhaven/) ·
 [Docs portal](https://baconspaceman.github.io/super-boundhaven/docs/) ·
 [Prototype (creator works offline)](https://baconspaceman.github.io/super-boundhaven/play/) ·
@@ -191,7 +195,7 @@ Browse everything in the **[docs portal](https://baconspaceman.github.io/super-b
 
 ## How this project is built
 
-SBH is a **human-led** project. The owner, Anthony (GitHub: `baconspaceman`), sets the vision, makes every design decision and accepts or rejects every proposal. Day-to-day engineering is done with **Claude (Anthropic) acting as head of development**, delegating to teams of sub-agents that each own a disjoint set of files (movement sim, netcode, art, Blender pipeline, design docs, site). Work is verified by tests, type-checking and real browser checks, and proposals stay labelled as proposals until the owner accepts them (see [DECISIONS.md](DECISIONS.md)). The handoff notes that let sessions resume are public in [docs/NEXT_ACTION.md](docs/NEXT_ACTION.md).
+SBH is **human-directed and AI-assisted** (full statement: [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md)). The owner, Anthony (GitHub: `baconspaceman`), sets the vision, makes every design decision and accepts or rejects every proposal. The AI tools used are Claude (Anthropic), OpenAI Codex and Grok (xAI), with Claude doing most of the day-to-day engineering. Day-to-day engineering is done with **Claude (Anthropic) acting as head of development**, delegating to teams of sub-agents that each own a disjoint set of files (movement sim, netcode, art, Blender pipeline, design docs, site). Work is verified by tests, type-checking and real browser checks, and proposals stay labelled as proposals until the owner accepts them (see [DECISIONS.md](DECISIONS.md)). The handoff notes that let sessions resume are public in [docs/NEXT_ACTION.md](docs/NEXT_ACTION.md).
 
 ## Originality and assets
 

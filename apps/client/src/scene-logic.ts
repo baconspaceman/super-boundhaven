@@ -212,3 +212,12 @@ export function smoothToward(cur: number, target: number, dtMs: number, tauMs = 
   const v = cur + (target - cur) * k;
   return Math.abs(target - v) < 0.05 ? target : v;
 }
+
+// ---- protocol version ----------------------------------------------------------------------------
+
+/** A player-facing message when the server's protocol version differs from this client's, else null. */
+export function versionProblem(serverV: number | undefined, clientV: number): string | null {
+  if (serverV === clientV) return null;
+  if (serverV === undefined || serverV < clientV) return 'This server is running an older version of the game. Ask the host to update it, then reload.';
+  return 'This server is running a newer version of the game than this page. Reload the page (Ctrl+F5) to update.';
+}

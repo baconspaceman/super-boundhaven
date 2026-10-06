@@ -18,6 +18,7 @@ import {
   leverVisual,
   roomStatus,
   smoothToward,
+  versionProblem,
 } from '../src/scene-logic';
 import { Game } from '../src/game';
 import { BIT } from '../src/bindings';
@@ -360,5 +361,14 @@ describe('Game: predicted stomp bounce', () => {
     dead.g.view.enemies.get(dead.def.id)!.alive = false;
     for (let i = 0; i < 4; i++) dead.g.tick(0);
     expect(dead.p.vy).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('protocol version check', () => {
+  it('accepts a matching server and explains an older or newer one', () => {
+    expect(versionProblem(4, 4)).toBeNull();
+    expect(versionProblem(3, 4)).toMatch(/older version/);
+    expect(versionProblem(undefined, 4)).toMatch(/older version/);
+    expect(versionProblem(5, 4)).toMatch(/newer version/);
   });
 });
